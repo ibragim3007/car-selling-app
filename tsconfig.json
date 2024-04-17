@@ -2,8 +2,9 @@
   "extends": "expo/tsconfig.base",
   "compilerOptions": {
     "strict": true,
-    "jsx": "react-jsx",
-    "lib": ["DOM", "ES2022"],
-    "moduleResolution": "node",
+    "baseUrl": "./",
+    "paths": {
+      "@/*": ["src/*", "assets/*"],
+    }
   },
 }

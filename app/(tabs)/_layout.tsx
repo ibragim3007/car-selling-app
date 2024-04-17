@@ -1,7 +1,10 @@
 import { AntDesign } from "@expo/vector-icons";
 import { Tabs } from "expo-router";
-
-import Car from "../../assets/icons/car/car.svg";
+import Car from "@/icons/linear/car.svg";
+import Profile from "@/icons/linear/user-square.svg";
+import Service from "@/icons/linear/category-2.svg";
+import Checks from "@/icons/linear/search-status.svg";
+import Home from "@/icons/linear/home-2.svg";
 
 const TabsLayout = () => {
   return (
@@ -11,12 +14,10 @@ const TabsLayout = () => {
         name="home"
         options={{
           headerTitle: "Главная",
-
           title: "Главная",
           href: "home",
-
           tabBarIcon: ({ color, size }) => (
-            <AntDesign name="home" size={size} color={color} />
+            <Home height={size} width={size} color={color} />
           ),
         }}
       />
@@ -27,21 +28,39 @@ const TabsLayout = () => {
           headerTitle: "Подборки",
           title: "Подборки",
           tabBarIcon: ({ color, size }) => (
-            <Car height={size} width={size} stroke={color} />
+            <Car height={size} width={size} color={color} />
           ),
         }}
       />
       <Tabs.Screen
         name="checks"
-        options={{ headerTitle: "Проверка", title: "Проверка" }}
+        options={{
+          headerTitle: "Проверка",
+          title: "Проверка",
+          tabBarIcon: ({ color, size }) => (
+            <Checks height={size} width={size} color={color} />
+          ),
+        }}
       />
       <Tabs.Screen
         name="services"
-        options={{ headerTitle: "Сервисы", title: "Сервисы" }}
+        options={{
+          headerTitle: "Сервисы",
+          title: "Сервисы",
+          tabBarIcon: ({ color, size }) => (
+            <Service height={size} width={size} color={color} />
+          ),
+        }}
       />
       <Tabs.Screen
         name="profile"
-        options={{ headerTitle: "Профиль", title: "Профиль" }}
+        options={{
+          headerTitle: "Профиль",
+          title: "Профиль",
+          tabBarIcon: ({ color, size }) => (
+            <Profile height={size} width={size} color={color} />
+          ),
+        }}
       />
     </Tabs>
   );
