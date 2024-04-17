@@ -1,10 +1,13 @@
+import Typography from "@/shared/ui/typography/Typography";
 import React from "react";
 import { Text, View } from "react-native";
 
 const CollectionsPage = () => {
   return (
     <View>
-      <Text>Hello world!</Text>
+      <Typography variant="body" weight="bold">
+        Hello world!
+      </Typography>
     </View>
   );
 };
