@@ -1,6 +1,6 @@
-import Typography from "@/shared/ui/typography/Typography";
-import React from "react";
-import { Text, View } from "react-native";
+import Typography from '@/shared/ui/typography/Typography';
+import React from 'react';
+import { View } from 'react-native';
 
 const CollectionsPage = () => {
   return (

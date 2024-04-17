@@ -4,15 +4,16 @@ import {
   fontsWeights,
 } from "@/shared/config/styles/typography/typography";
 import React from "react";
-import { Text, TextProps } from "react-native";
+import { Text } from "react-native";
 
 const Typography = (props: TypographyProps) => {
   const fontStyles = fontsWeights[props.weight || "medium"];
+  const typographyStyle = TypographyStyles[props.variant || "body"];
 
   const mergedStyles = Object.assign(
     {},
     props.style,
-    TypographyStyles[props.variant || "body"],
+    typographyStyle,
     fontStyles
   );
 

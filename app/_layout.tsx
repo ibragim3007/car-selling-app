@@ -1,3 +1,4 @@
+import { setupStore } from "@/shared/store/store";
 import {
   Montserrat_100Thin,
   Montserrat_100Thin_Italic,
@@ -21,6 +22,7 @@ import {
 } from "@expo-google-fonts/montserrat";
 import { Stack } from "expo-router";
 import React from "react";
+import { Provider } from "react-redux";
 
 const RootLayout = () => {
   let [fontsLoaded, fontError] = useFonts({
@@ -48,10 +50,14 @@ const RootLayout = () => {
     return null;
   }
 
+  const store = setupStore();
+
   return (
-    <Stack screenOptions={{ headerShown: false }}>
-      <Stack.Screen name="(tabs)" />
-    </Stack>
+    <Provider store={store}>
+      <Stack screenOptions={{ headerShown: false }}>
+        <Stack.Screen name="(tabs)" />
+      </Stack>
+    </Provider>
   );
 };
 
