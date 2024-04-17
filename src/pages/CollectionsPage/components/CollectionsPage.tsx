@@ -1,12 +1,12 @@
 import React from "react";
 import { Text, View } from "react-native";
 
-const Button = () => {
+const CollectionsPage = () => {
   return (
     <View>
-      <Text>Hello wolrd!</Text>
+      <Text>Hello world!</Text>
     </View>
   );
 };
 
-export default Button;
+export default CollectionsPage;
