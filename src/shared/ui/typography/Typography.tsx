@@ -1,21 +1,19 @@
-import {
-  TypographyProps,
-  TypographyStyles,
-  fontsWeights,
-} from "@/shared/config/styles/typography/typography";
-import React from "react";
-import { Text } from "react-native";
+import { useTheme } from '@/shared/hooks/stable/useTheme';
+import { TypographyProps, TypographyStyles, fontsWeights } from '@/shared/ui/styles/typography/typography';
+import React from 'react';
+import { Text, TextProps } from 'react-native';
 
 const Typography = (props: TypographyProps) => {
-  const fontStyles = fontsWeights[props.weight || "medium"];
-  const typographyStyle = TypographyStyles[props.variant || "body"];
+  const { colors } = useTheme();
 
-  const mergedStyles = Object.assign(
-    {},
-    props.style,
-    typographyStyle,
-    fontStyles
-  );
+  const fontStyles = fontsWeights[props.weight || 'medium'];
+  const typographyStyle = TypographyStyles[props.variant || 'body'];
+  const colorStyle: TextProps['style'] = {
+    color: colors.text[props.color || 'primary'],
+  };
+
+  const preMerge = Object.assign({}, typographyStyle, fontStyles, colorStyle);
+  const mergedStyles = Object.assign({}, props.style, preMerge);
 
   return (
     <Text {...props} style={mergedStyles}>

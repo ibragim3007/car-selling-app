@@ -1,4 +1,4 @@
-import { setupStore } from "@/shared/store/store";
+import { setupStore } from '@/shared/store/store';
 import {
   Montserrat_100Thin,
   Montserrat_100Thin_Italic,
@@ -19,13 +19,13 @@ import {
   Montserrat_900Black,
   Montserrat_900Black_Italic,
   useFonts,
-} from "@expo-google-fonts/montserrat";
-import { Stack } from "expo-router";
-import React from "react";
-import { Provider } from "react-redux";
+} from '@expo-google-fonts/montserrat';
+import { Stack } from 'expo-router';
+import React from 'react';
+import { Provider } from 'react-redux';
 
 const RootLayout = () => {
-  let [fontsLoaded, fontError] = useFonts({
+  const [fontsLoaded, fontError] = useFonts({
     Montserrat_100Thin,
     Montserrat_200ExtraLight,
     Montserrat_300Light,

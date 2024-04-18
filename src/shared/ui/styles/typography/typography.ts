@@ -15,9 +15,12 @@ type TypographyVariants =
 
 type TypographyWeight = 'regular' | 'bold' | 'medium';
 
+type TColor = 'primary' | 'secondary' | 'disabled' | 'white';
+
 export interface TypographyProps extends TextProps {
   variant?: TypographyVariants;
   weight?: TypographyWeight;
+  color?: TColor;
 }
 
 export const TypographyStyles: Record<TypographyVariants, TextProps['style']> = {
@@ -34,14 +37,20 @@ export const TypographyStyles: Record<TypographyVariants, TextProps['style']> = 
   'caption-2': { fontSize: 11 },
 };
 
+export const fontWeight = {
+  regular: 'Montserrat_400Regular',
+  medium: 'Montserrat_500Medium',
+  bold: 'Montserrat_700Bold',
+};
+
 export const fontsWeights: Record<TypographyWeight, TextProps['style']> = {
   regular: {
-    fontFamily: 'Montserrat_400Regular',
+    fontFamily: fontWeight.regular,
   },
   bold: {
-    fontFamily: 'Montserrat_700Bold',
+    fontFamily: fontWeight.bold,
   },
   medium: {
-    fontFamily: 'Montserrat_500Medium',
+    fontFamily: fontWeight.medium,
   },
 };

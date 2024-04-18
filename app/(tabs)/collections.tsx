@@ -1,6 +1,5 @@
-import CollectionsPage from "@/pages/CollectionsPage";
-import React from "react";
-import { Text, View } from "react-native";
+import CollectionsPage from '@/pages/CollectionsPage';
+import React from 'react';
 
 const Collections = () => {
   return <CollectionsPage />;

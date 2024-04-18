@@ -17,7 +17,6 @@ export interface ITheme {
     disabled: string;
     active: string;
   };
-
   accent: {
     primary: string;
     primary_dark: string;

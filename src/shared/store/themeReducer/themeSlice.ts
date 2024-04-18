@@ -2,11 +2,11 @@ import { ITheme, themes } from '@/shared/constants/theme/theme';
 import { createSlice } from '@reduxjs/toolkit';
 
 interface StoreInterface {
-  theme: ITheme;
+  colors: ITheme;
 }
 
 const initialState: StoreInterface = {
-  theme: themes[0],
+  colors: themes[0],
 };
 
 export const themeSlice = createSlice({
