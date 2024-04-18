@@ -2,6 +2,7 @@ import { useTheme } from '@/shared/hooks/stable/useTheme';
 import React, { useMemo, useState } from 'react';
 import { ActivityIndicator, Pressable, PressableProps, StyleSheet, Text, TextProps } from 'react-native';
 import { fontWeight } from '../styles/typography/typography';
+import { normalizedSize } from '@/shared/utils/size';
 
 type TColorsButton = 'green' | 'black';
 type TSizeButton = 'large' | 'small';
@@ -51,7 +52,7 @@ const Button: React.FC<ButtonProps> = ({
       },
       text: {
         green: { backgroundColor: 'transparent' },
-        black: { backgroundColor: colors.text.primary },
+        black: { backgroundColor: 'transparent' },
       },
     }),
     [colors, isPressed, props.disabled],
@@ -81,7 +82,7 @@ const Button: React.FC<ButtonProps> = ({
   const currentVariant = variantStyles[variant][color];
 
   const styleButton: PressableProps['style'] = {
-    paddingVertical: size === 'large' ? 13 : 8,
+    paddingVertical: size === 'large' ? normalizedSize(13) : normalizedSize(8),
     borderRadius: colors.styles.borderRadius,
   };
 
@@ -89,7 +90,7 @@ const Button: React.FC<ButtonProps> = ({
     color: colors.text.white,
     fontFamily: fontWeight.medium,
     textAlign: 'center',
-    fontSize: 16,
+    fontSize: normalizedSize(16),
   };
 
   const onTouchStart = () => {

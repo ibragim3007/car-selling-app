@@ -1,16 +1,16 @@
-import Button from '@/shared/ui/buttons/Button';
+import Card from '@/shared/ui/card/Card';
 import Typography from '@/shared/ui/typography/Typography';
 import React from 'react';
 import { View } from 'react-native';
 
 const CollectionsPage = () => {
   return (
-    <View style={{ gap: 10, margin: 20 }}>
-      <Typography variant="largeTitle">largeTitle</Typography>
-
-      <Button color="green" variant="default">
-        Hello world!
-      </Button>
+    <View>
+      <Card>
+        <Typography variant="title-1" weight="bold">
+          largeTitle
+        </Typography>
+      </Card>
     </View>
   );
 };

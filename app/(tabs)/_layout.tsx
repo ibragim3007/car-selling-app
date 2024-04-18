@@ -7,8 +7,11 @@ import Profile from '@/icons/linear/user-square.svg';
 import HeaderBar from '@/modules/HeaderBar';
 import { useTheme } from '@/shared/hooks/stable/useTheme';
 import { fontWeight } from '@/shared/ui/styles/typography/typography';
+import { normalizedSize } from '@/shared/utils/size';
 import { Tabs } from 'expo-router';
 import React from 'react';
+
+const IconSize = normalizedSize(22);
 
 const TabsLayout = () => {
   const { colors } = useTheme();
@@ -19,8 +22,12 @@ const TabsLayout = () => {
         headerRight: () => <HeaderBar />,
         tabBarInactiveTintColor: colors.text.secondary,
         tabBarActiveTintColor: colors.text.primary,
+        headerTitleStyle: {
+          fontSize: normalizedSize(16),
+        },
         tabBarLabelStyle: {
           fontFamily: fontWeight.medium,
+          fontSize: normalizedSize(10),
         },
       }}
     >
@@ -30,7 +37,7 @@ const TabsLayout = () => {
         options={{
           title: 'Главная',
           href: 'home',
-          tabBarIcon: ({ color, size }) => <Home height={size} width={size} color={color} />,
+          tabBarIcon: ({ color, size }) => <Home height={IconSize} width={IconSize} color={color} />,
         }}
       />
 
@@ -39,7 +46,7 @@ const TabsLayout = () => {
         options={{
           title: 'Подборки',
           headerTitle: () => <HeaderIcon />,
-          tabBarIcon: ({ color, size }) => <Car height={size} width={size} color={color} />,
+          tabBarIcon: ({ color, size }) => <Car height={IconSize} width={IconSize} color={color} />,
         }}
       />
       <Tabs.Screen
@@ -47,7 +54,7 @@ const TabsLayout = () => {
         options={{
           headerTitle: 'Проверка',
           title: 'Проверка',
-          tabBarIcon: ({ color, size }) => <Checks height={size} width={size} color={color} />,
+          tabBarIcon: ({ color, size }) => <Checks height={IconSize} width={IconSize} color={color} />,
         }}
       />
       <Tabs.Screen
@@ -56,7 +63,7 @@ const TabsLayout = () => {
           headerTitle: 'Сервисы',
           title: 'Сервисы',
           headerRight: () => null,
-          tabBarIcon: ({ color, size }) => <Service height={size} width={size} color={color} />,
+          tabBarIcon: ({ color, size }) => <Service height={IconSize} width={IconSize} color={color} />,
         }}
       />
       <Tabs.Screen
@@ -64,7 +71,7 @@ const TabsLayout = () => {
         options={{
           headerTitle: 'Профиль',
           title: 'Профиль',
-          tabBarIcon: ({ color, size }) => <Profile height={size} width={size} color={color} />,
+          tabBarIcon: ({ color, size }) => <Profile height={IconSize} width={IconSize} color={color} />,
         }}
       />
     </Tabs>

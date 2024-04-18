@@ -1,3 +1,4 @@
+import { normalizedSize } from '@/shared/utils/size';
 import { TextProps } from 'react-native';
 
 type TypographyVariants =
@@ -24,17 +25,17 @@ export interface TypographyProps extends TextProps {
 }
 
 export const TypographyStyles: Record<TypographyVariants, TextProps['style']> = {
-  largeTitle: { fontSize: 34 },
-  'title-1': { fontSize: 28 },
-  'title-2': { fontSize: 22 },
-  'title-3': { fontSize: 20 },
-  headline: { fontSize: 17 },
-  body: { fontSize: 17 },
-  callout: { fontSize: 16 },
-  subhead: { fontSize: 15 },
-  footnote: { fontSize: 13 },
-  'caption-1': { fontSize: 12 },
-  'caption-2': { fontSize: 11 },
+  largeTitle: { fontSize: normalizedSize(34) },
+  'title-1': { fontSize: normalizedSize(28) },
+  'title-2': { fontSize: normalizedSize(22) },
+  'title-3': { fontSize: normalizedSize(20) },
+  headline: { fontSize: normalizedSize(17) },
+  body: { fontSize: normalizedSize(17) },
+  callout: { fontSize: normalizedSize(16) },
+  subhead: { fontSize: normalizedSize(15) },
+  footnote: { fontSize: normalizedSize(13) },
+  'caption-1': { fontSize: normalizedSize(12) },
+  'caption-2': { fontSize: normalizedSize(11) },
 };
 
 export const fontWeight = {
