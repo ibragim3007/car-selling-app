@@ -27,6 +27,9 @@ export interface ITheme {
     alert: string;
     red: string;
   };
+  styles: {
+    borderRadius: number;
+  };
 }
 
 export const themes: ITheme[] = [
@@ -52,12 +55,15 @@ export const themes: ITheme[] = [
     accent: {
       primary: '#2DC574',
       primary_dark: '#22A860',
-      primary_pale_transparent: '#E9F9F0',
-      primary_pale: '#E9F9F0',
-      disabled: '#E9F9F0',
-      alert: '#FF912C',
-      negative: '#D92E1E',
-      red: '#D92E1E',
+      primary_pale_transparent: '#2DC5741A',
+      primary_pale: '#EAF9F1',
+      disabled: '#B3BCC6',
+      alert: '#FF9458',
+      negative: '#FA6D8F',
+      red: '#FF003D',
+    },
+    styles: {
+      borderRadius: 8,
     },
   },
 ];

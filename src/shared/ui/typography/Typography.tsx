@@ -6,7 +6,7 @@ import { Text, TextProps } from 'react-native';
 const Typography = (props: TypographyProps) => {
   const { colors } = useTheme();
 
-  const fontStyles = fontsWeights[props.weight || 'medium'];
+  const fontStyles = fontsWeights[props.weight || 'regular'];
   const typographyStyle = TypographyStyles[props.variant || 'body'];
   const colorStyle: TextProps['style'] = {
     color: colors.text[props.color || 'primary'],

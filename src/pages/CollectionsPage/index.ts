@@ -1,3 +1,3 @@
-import CollectionsPage from "./components/CollectionsPage";
+import CollectionsPage from './components/CollectionsPage';
 
 export default CollectionsPage;

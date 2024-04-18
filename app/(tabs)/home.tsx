@@ -1,12 +1,8 @@
+import HomPage from '@/pages/HomePage';
 import React from 'react';
-import { Text, View } from 'react-native';
 
-const HomePage = () => {
-  return (
-    <View>
-      <Text>HomePage</Text>
-    </View>
-  );
+const Home = () => {
+  return <HomPage />;
 };
 
-export default HomePage;
+export default Home;
