@@ -1,4 +1,6 @@
 import Button from '@/shared/ui/buttons/Button';
+import Grid from '@/shared/ui/layout/Grid';
+import Tag from '@/shared/ui/tags/Tag';
 import Typography from '@/shared/ui/typography/Typography';
 import { normalizedSize } from '@/shared/utils/size';
 
@@ -35,6 +37,30 @@ const HomePage = () => {
         <Button color="black" variant="text">
           Ghost Black
         </Button>
+        <Grid wrap row gap={20}>
+          <Tag color="green">Tag</Tag>
+          <Tag color="black">Tag</Tag>
+          <Tag color="red">Tag</Tag>
+          <Tag color="yellow">Tag</Tag>
+          <Tag color="purple">Tag</Tag>
+        </Grid>
+        <Grid wrap row gap={20}>
+          <Tag size="small" color="green">
+            Tag
+          </Tag>
+          <Tag size="small" color="black">
+            Tag
+          </Tag>
+          <Tag size="small" color="red">
+            Tag
+          </Tag>
+          <Tag size="small" color="yellow">
+            Tag
+          </Tag>
+          <Tag size="small" color="purple">
+            Tag
+          </Tag>
+        </Grid>
       </View>
     </ScrollView>
   );

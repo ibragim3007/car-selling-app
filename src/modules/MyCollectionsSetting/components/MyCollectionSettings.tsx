@@ -1,7 +1,7 @@
+import GroupInfo from '@/components/Informers/GroupInfo';
 import SettingIcon from '@/icons/linear/setting-4.svg';
 import Card from '@/shared/ui/card/Card';
 import Grid from '@/shared/ui/layout/Grid';
-import Typography from '@/shared/ui/typography/Typography';
 import React from 'react';
 const MyCollectionSettings = () => {
   return (
@@ -13,14 +13,7 @@ const MyCollectionSettings = () => {
       }}
     >
       <Grid row justfity="space-between" align="center">
-        <Grid row gap={10}>
-          <Typography variant="title-3" weight="bold">
-            Мои подборки
-          </Typography>
-          <Typography variant="title-3" weight="bold" color="disabled">
-            16
-          </Typography>
-        </Grid>
+        <GroupInfo leftInfo={'Мои подборки'} rightInfo={'16'} weight="bold" />
         <SettingIcon />
       </Grid>
     </Card>

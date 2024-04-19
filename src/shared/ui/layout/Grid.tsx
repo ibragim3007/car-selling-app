@@ -6,6 +6,7 @@ import { FlexAlignType, StyleSheet, View, ViewProps } from 'react-native';
 interface GridProps extends ViewProps {
   flex?: number;
   color?: string;
+  wrap?: boolean;
   align?: FlexAlignType;
   justfity?: 'flex-start' | 'flex-end' | 'center' | 'space-between' | 'space-around' | 'space-evenly';
   row?: boolean;
@@ -13,7 +14,7 @@ interface GridProps extends ViewProps {
   space?: 'sm' | 'md' | 'lg';
 }
 
-const Grid = ({ flex, color, align, justfity, row, gap, space, ...props }: GridProps) => {
+const Grid = ({ flex, color, align, justfity, row, gap, wrap, space, ...props }: GridProps) => {
   const gridStyles: StyleProp<ViewStyle> = StyleSheet.flatten([
     flex !== undefined && { flex },
     justfity !== undefined && { justifyContent: justfity },
@@ -21,6 +22,7 @@ const Grid = ({ flex, color, align, justfity, row, gap, space, ...props }: GridP
     color !== undefined && { backgroundColor: color },
     row !== undefined && { flexDirection: 'row' },
     gap !== undefined && { gap: normalizedSize(gap) },
+    wrap !== undefined && { flexWrap: 'wrap' },
     props.style,
   ]);
 

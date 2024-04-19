@@ -1,12 +1,8 @@
+import CarPage from '@/pages/CarPage';
 import React from 'react';
-import { Text, View } from 'react-native';
 
 const CarTab = () => {
-  return (
-    <View>
-      <Text>CAR</Text>
-    </View>
-  );
+  return <CarPage />;
 };
 
 export default CarTab;

@@ -14,7 +14,7 @@ type TypographyVariants =
   | 'caption-1'
   | 'caption-2';
 
-type TypographyWeight = 'regular' | 'bold' | 'medium';
+export type TypographyWeight = 'regular' | 'bold' | 'medium';
 
 type TColor = 'primary' | 'secondary' | 'disabled' | 'white';
 
