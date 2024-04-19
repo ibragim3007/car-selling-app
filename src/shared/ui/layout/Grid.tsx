@@ -10,9 +10,10 @@ interface GridProps extends ViewProps {
   justfity?: 'flex-start' | 'flex-end' | 'center' | 'space-between' | 'space-around' | 'space-evenly';
   row?: boolean;
   gap?: number;
+  space?: 'sm' | 'md' | 'lg';
 }
 
-const Grid = ({ flex, color, align, justfity, row, gap, ...props }: GridProps) => {
+const Grid = ({ flex, color, align, justfity, row, gap, space, ...props }: GridProps) => {
   const gridStyles: StyleProp<ViewStyle> = StyleSheet.flatten([
     flex !== undefined && { flex },
     justfity !== undefined && { justifyContent: justfity },

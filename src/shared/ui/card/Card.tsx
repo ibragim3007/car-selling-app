@@ -7,14 +7,16 @@ import { ViewProps } from 'react-native-svg/lib/typescript/fabric/utils';
 interface CardProps extends ViewProps {
   borderRadius?: number;
   p?: number;
+  mt?: number;
 }
 
-const Card = ({ borderRadius, p, ...props }: CardProps) => {
+const Card = ({ borderRadius, p, mt, ...props }: CardProps) => {
   const { colors } = useTheme();
   const stylesView: ViewProps['style'] = {
     backgroundColor: colors.background.primary,
     borderRadius: borderRadius !== undefined ? borderRadius : colors.styles.borderRadius,
     padding: normalizedSize(p || 0) || normalizedSize(16),
+    marginTop: mt !== undefined ? normalizedSize(mt) : 0,
   };
 
   const mergedStyles = StyleSheet.flatten([stylesView, props.style]);

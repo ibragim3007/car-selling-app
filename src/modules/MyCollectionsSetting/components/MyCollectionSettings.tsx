@@ -5,7 +5,17 @@ import React from 'react';
 import SettingIcon from '@/icons/linear/setting-4.svg';
 const MyCollectionSettings = () => {
   return (
-    <Card borderRadius={0} style={{ borderBottomLeftRadius: 20, borderBottomRightRadius: 20 }}>
+    <Card
+      borderRadius={0}
+      style={{
+        borderBottomLeftRadius: 20,
+        borderBottomRightRadius: 20,
+        position: 'absolute',
+        zIndex: 20,
+        elevation: 20,
+        width: '100%',
+      }}
+    >
       <Grid row justfity="space-between" align="center">
         <Grid row gap={10}>
           <Typography variant="title-3" weight="bold">
