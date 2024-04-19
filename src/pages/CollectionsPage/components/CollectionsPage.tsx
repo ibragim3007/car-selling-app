@@ -1,17 +1,17 @@
-import Card from '@/shared/ui/card/Card';
-import Typography from '@/shared/ui/typography/Typography';
+import CarList from '@/modules/CarList';
+import MyCollectionSettings from '@/modules/MyCollectionsSetting';
+import { useTheme } from '@/shared/hooks/stable/useTheme';
+import Grid from '@/shared/ui/layout/Grid';
+import { normalizedSizeVertical } from '@/shared/utils/size';
 import React from 'react';
-import { View } from 'react-native';
 
 const CollectionsPage = () => {
+  const { colors } = useTheme();
   return (
-    <View>
-      <Card>
-        <Typography variant="title-1" weight="bold">
-          largeTitle
-        </Typography>
-      </Card>
-    </View>
+    <Grid gap={normalizedSizeVertical(8)} style={{ backgroundColor: colors.background.secondary, height: '100%' }}>
+      <MyCollectionSettings />
+      <CarList />
+    </Grid>
   );
 };
 
