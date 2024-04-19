@@ -1,3 +1,5 @@
+import BackButton from '@/components/BackButton/BackButton';
+import HeaderCarTab from '@/modules/HeaderCarTab';
 import { setupStore } from '@/shared/store/store';
 import {
   Montserrat_100Thin,
@@ -55,7 +57,17 @@ const RootLayout = () => {
   return (
     <Provider store={store}>
       <Stack screenOptions={{ headerShown: false }}>
-        <Stack.Screen name="(tabs)" />
+        <Stack.Screen name="(tabs)" options={{ title: 'Подборки' }} />
+        <Stack.Screen
+          name="cars/[id]"
+          options={{
+            headerShown: true,
+            headerTitle: '',
+            headerBackButtonMenuEnabled: true,
+            headerLeft: () => <BackButton />,
+            headerRight: () => <HeaderCarTab />,
+          }}
+        />
       </Stack>
     </Provider>
   );

@@ -15,5 +15,6 @@ module.exports = (() => {
     sourceExts: [...resolver.sourceExts, "svg"]
   };
 
+
   return config;
 })();

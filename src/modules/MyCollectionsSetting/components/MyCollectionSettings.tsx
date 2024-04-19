@@ -1,8 +1,8 @@
+import SettingIcon from '@/icons/linear/setting-4.svg';
 import Card from '@/shared/ui/card/Card';
 import Grid from '@/shared/ui/layout/Grid';
 import Typography from '@/shared/ui/typography/Typography';
 import React from 'react';
-import SettingIcon from '@/icons/linear/setting-4.svg';
 const MyCollectionSettings = () => {
   return (
     <Card
@@ -10,10 +10,6 @@ const MyCollectionSettings = () => {
       style={{
         borderBottomLeftRadius: 20,
         borderBottomRightRadius: 20,
-        position: 'absolute',
-        zIndex: 20,
-        elevation: 20,
-        width: '100%',
       }}
     >
       <Grid row justfity="space-between" align="center">
