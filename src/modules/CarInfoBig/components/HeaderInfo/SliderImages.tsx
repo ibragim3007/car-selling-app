@@ -4,8 +4,14 @@ import Grid from '@/shared/ui/layout/Grid';
 import Typography from '@/shared/ui/typography/Typography';
 import { normalizedSize } from '@/shared/utils/size';
 import React, { useState } from 'react';
-import { Image, View } from 'react-native';
+import { Dimensions, Image, View } from 'react-native';
 import Carousel from 'react-native-reanimated-carousel';
+
+const PAGE_WIDTH = Dimensions.get('window').width;
+
+const baseOptions = {
+  width: PAGE_WIDTH * 0.885,
+} as const;
 
 interface SliderImagesProps {}
 
@@ -22,36 +28,39 @@ const SliderImages = () => {
         style={{
           position: 'absolute',
           zIndex: 10,
-          right: normalizedSize(12),
+          right: normalizedSize(30),
           top: normalizedSize(8),
           backgroundColor: '#292930db',
-          paddingHorizontal: normalizedSize(8),
-          paddingVertical: normalizedSize(4),
+          paddingHorizontal: normalizedSize(4),
+          paddingVertical: normalizedSize(2),
           borderRadius: colors.styles.borderRadius / 2,
         }}
       >
-        <Typography>
+        <Typography color="white">
           {currentIndexElement + 1} / {carImages.length}
         </Typography>
       </View>
-      <Carousel
-        loop={false}
-        width={normalizedSize(363)}
-        height={normalizedSize(234)}
-        scrollAnimationDuration={500}
-        data={carImages}
-        onSnapToItem={updateCurrentIndex}
-        renderItem={({ index, item }) => (
-          <Image
-            style={{ borderRadius: colors.styles.borderRadius, marginHorizontal: 0 }}
-            width={normalizedSize(343)}
-            height={normalizedSize(234)}
-            source={{
-              uri: item,
-            }}
-          />
-        )}
-      />
+      <Grid>
+        <Carousel
+          {...baseOptions}
+          width={PAGE_WIDTH * 0.885}
+          style={{ width: '100%' }}
+          maxScrollDistancePerSwipe={400}
+          loop={false}
+          data={carImages}
+          onSnapToItem={updateCurrentIndex}
+          renderItem={({ index, item }) => (
+            <Image
+              style={{ borderRadius: colors.styles.borderRadius, marginRight: 8 }}
+              // width={baseOptions.width}
+              height={normalizedSize(234)}
+              source={{
+                uri: item,
+              }}
+            />
+          )}
+        />
+      </Grid>
     </Grid>
   );
 };

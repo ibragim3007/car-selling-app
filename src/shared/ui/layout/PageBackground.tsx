@@ -9,7 +9,7 @@ const PageBackground = ({ style, ...props }: PageBackgroundProps) => {
 
   const styles: ViewProps['style'] = StyleSheet.flatten([
     {
-      backgroundColor: colors.background.primary,
+      backgroundColor: colors.background.secondary,
       height: '100%',
     },
     style,
