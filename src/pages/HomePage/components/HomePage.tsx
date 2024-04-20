@@ -1,3 +1,4 @@
+import TagPrice from '@/components/Informers/TagPrice';
 import { useTheme } from '@/shared/hooks/stable/useTheme';
 import { useAppDispatch } from '@/shared/hooks/storeHooks';
 import { switchTheme } from '@/shared/store/themeReducer/actions/switchTheme';
@@ -76,6 +77,16 @@ const HomePage = () => {
             <Tag size="small" color="purple">
               Tag
             </Tag>
+          </Grid>
+          <Grid gap={10} row>
+            <Grid gap={10}>
+              <TagPrice amount={12002000} isRised />
+              <TagPrice amount={512510} isRised={false} />
+            </Grid>
+            <Grid gap={10}>
+              <TagPrice amount={12002000} isRised size="small" />
+              <TagPrice amount={512510} isRised={false} size="small" />
+            </Grid>
           </Grid>
         </View>
       </ScrollView>

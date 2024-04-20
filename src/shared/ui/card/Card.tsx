@@ -15,7 +15,7 @@ const Card = ({ borderRadius, p, mt, ...props }: CardProps) => {
   const stylesView: ViewProps['style'] = {
     backgroundColor: colors.background.primary,
     borderRadius: borderRadius !== undefined ? borderRadius : colors.styles.borderRadius,
-    padding: normalizedSize(p || 0) || normalizedSize(16),
+    padding: p !== undefined ? normalizedSize(p) : normalizedSize(16),
     marginTop: mt !== undefined ? normalizedSize(mt) : 0,
   };
 
