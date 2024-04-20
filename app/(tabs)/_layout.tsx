@@ -22,6 +22,13 @@ const TabsLayout = () => {
         headerRight: () => <HeaderBar />,
         tabBarInactiveTintColor: colors.text.secondary,
         tabBarActiveTintColor: colors.text.primary,
+
+        headerStyle: {
+          backgroundColor: colors.background.primary,
+        },
+        tabBarStyle: {
+          backgroundColor: colors.background.secondary,
+        },
         headerTitleStyle: {
           fontSize: normalizedSize(16),
         },

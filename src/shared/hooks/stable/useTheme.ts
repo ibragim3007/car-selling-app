@@ -1,7 +1,7 @@
 import { useAppSelector } from '../storeHooks';
 
 export const useTheme = () => {
-  const { colors } = useAppSelector(state => state.themeReducer);
+  const { colors, currentTheme } = useAppSelector(state => state.themeReducer);
 
-  return { colors };
+  return { colors, currentTheme };
 };

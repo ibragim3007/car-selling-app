@@ -1,5 +1,3 @@
-import BackButton from '@/components/BackButton/BackButton';
-import HeaderCarTab from '@/modules/HeaderCarTab';
 import { setupStore } from '@/shared/store/store';
 import {
   Montserrat_100Thin,
@@ -22,9 +20,9 @@ import {
   Montserrat_900Black_Italic,
   useFonts,
 } from '@expo-google-fonts/montserrat';
-import { Stack } from 'expo-router';
 import React from 'react';
 import { Provider } from 'react-redux';
+import StackRoute from './(stack)';
 
 const RootLayout = () => {
   const [fontsLoaded, fontError] = useFonts({
@@ -56,19 +54,7 @@ const RootLayout = () => {
 
   return (
     <Provider store={store}>
-      <Stack screenOptions={{ headerShown: false }}>
-        <Stack.Screen name="(tabs)" options={{ title: 'Подборки' }} />
-        <Stack.Screen
-          name="cars/[id]"
-          options={{
-            headerShown: true,
-            headerTitle: '',
-            headerBackButtonMenuEnabled: true,
-            headerLeft: () => <BackButton />,
-            headerRight: () => <HeaderCarTab />,
-          }}
-        />
-      </Stack>
+      <StackRoute />
     </Provider>
   );
 };
