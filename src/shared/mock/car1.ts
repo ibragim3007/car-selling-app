@@ -4,7 +4,7 @@ import { ICar } from '../types';
 const carObjects: ICar[] = [];
 
 // Массив ссылок на реальные изображения автомобилей
-const carImages: string[] = [
+export const carImages: string[] = [
   'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS3W4rxJETzDgRjMBVC_Hr9konxkhMncGk6oqP9wTfFSQ&s',
   'https://avatars.dzeninfra.ru/get-zen_doc/9703229/pub_64787ba1a8deff0f31c35126_6478805396633a4a7210e42e/scale_1200',
   'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRYsd1Vn_yusl_QFHyGEbvMwEWZ5zP1HjR1gerkQx2A-Q&s',

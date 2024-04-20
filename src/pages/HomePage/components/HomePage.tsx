@@ -3,6 +3,7 @@ import { useAppDispatch } from '@/shared/hooks/storeHooks';
 import { switchTheme } from '@/shared/store/themeReducer/actions/switchTheme';
 import Button from '@/shared/ui/buttons/Button';
 import Grid from '@/shared/ui/layout/Grid';
+import PageBackground from '@/shared/ui/layout/PageBackground';
 import Tag from '@/shared/ui/tags/Tag';
 import Typography from '@/shared/ui/typography/Typography';
 import { normalizedSize } from '@/shared/utils/size';
@@ -11,7 +12,7 @@ import React from 'react';
 import { ScrollView, Switch, View } from 'react-native';
 
 const HomePage = () => {
-  const { colors, currentTheme } = useTheme();
+  const { currentTheme } = useTheme();
 
   const dispath = useAppDispatch();
   const swtichTheme = () => {
@@ -19,7 +20,7 @@ const HomePage = () => {
   };
 
   return (
-    <Grid style={{ backgroundColor: colors.background.secondary, height: '100%' }}>
+    <PageBackground>
       <ScrollView>
         <View style={{ gap: normalizedSize(10), margin: normalizedSize(20) }}>
           <Grid row align="center" gap={8}>
@@ -78,7 +79,7 @@ const HomePage = () => {
           </Grid>
         </View>
       </ScrollView>
-    </Grid>
+    </PageBackground>
   );
 };
 

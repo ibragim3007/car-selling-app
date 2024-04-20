@@ -31,6 +31,7 @@ const TabsLayout = () => {
         },
         headerTitleStyle: {
           fontSize: normalizedSize(16),
+          color: colors.text.primary,
         },
         tabBarLabelStyle: {
           fontFamily: fontWeight.medium,

@@ -8,7 +8,9 @@ import Grid from '@/shared/ui/layout/Grid';
 import Typography from '@/shared/ui/typography/Typography';
 import { normalizedSize } from '@/shared/utils/size';
 import React from 'react';
-import { Image, Pressable } from 'react-native';
+import { Pressable } from 'react-native';
+import SliderImages from './SliderImages';
+
 const HeaderInfo = () => {
   return (
     <Card borderRadius={0}>
@@ -35,15 +37,7 @@ const HeaderInfo = () => {
             <HighlightText isRed>Выше рынка {formatCurrency(60000)}</HighlightText>
           </Grid>
         </Grid>
-        <Grid>
-          <Image
-            width={normalizedSize(343)}
-            height={normalizedSize(234)}
-            source={{
-              uri: 'https://motor.ru/thumb/1500x0/filters:quality(75):no_upscale()/imgs/2022/08/31/11/5565052/cb408c9a3850ffade17fdd8c137f0f865374ddf8.jpg',
-            }}
-          />
-        </Grid>
+        <SliderImages />
       </Grid>
     </Card>
   );

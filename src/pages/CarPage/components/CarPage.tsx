@@ -1,12 +1,12 @@
 import CarInfoBig from '@/modules/CarInfoBig';
-import Grid from '@/shared/ui/layout/Grid';
+import PageBackground from '@/shared/ui/layout/PageBackground';
 import React from 'react';
 
 const CarPage = () => {
   return (
-    <Grid>
+    <PageBackground>
       <CarInfoBig />
-    </Grid>
+    </PageBackground>
   );
 };
 
