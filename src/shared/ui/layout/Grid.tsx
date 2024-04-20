@@ -1,6 +1,6 @@
 import { normalizedSize } from '@/shared/utils/size';
 import React from 'react';
-import { StyleProp, ViewStyle } from 'react-native';
+import { DimensionValue, StyleProp, ViewStyle } from 'react-native';
 import { FlexAlignType, StyleSheet, View, ViewProps } from 'react-native';
 
 interface GridProps extends ViewProps {
@@ -12,9 +12,11 @@ interface GridProps extends ViewProps {
   row?: boolean;
   gap?: number;
   space?: 'sm' | 'md' | 'lg';
+  height?: DimensionValue;
+  padding?: number;
 }
 
-const Grid = ({ flex, color, align, justfity, row, gap, wrap, space, ...props }: GridProps) => {
+const Grid = ({ flex, color, align, justfity, row, gap, wrap, height, padding, space, ...props }: GridProps) => {
   const gridStyles: StyleProp<ViewStyle> = StyleSheet.flatten([
     flex !== undefined && { flex },
     justfity !== undefined && { justifyContent: justfity },
@@ -23,6 +25,8 @@ const Grid = ({ flex, color, align, justfity, row, gap, wrap, space, ...props }:
     row !== undefined && { flexDirection: 'row' },
     gap !== undefined && { gap: normalizedSize(gap) },
     wrap !== undefined && { flexWrap: 'wrap' },
+    height !== undefined && { height },
+    padding !== undefined && { padding: normalizedSize(padding) },
     props.style,
   ]);
 

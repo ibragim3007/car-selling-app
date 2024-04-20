@@ -1,7 +1,7 @@
 import { useTheme } from '@/shared/hooks/stable/useTheme';
 import { TypographyProps, TypographyStyles, fontsWeights } from '@/shared/ui/styles/typography/typography';
 import React from 'react';
-import { Text, TextProps } from 'react-native';
+import { StyleSheet, Text, TextProps } from 'react-native';
 
 const Typography = (props: TypographyProps) => {
   const { colors } = useTheme();
@@ -12,11 +12,10 @@ const Typography = (props: TypographyProps) => {
     color: colors.text[props.color || 'primary'],
   };
 
-  const preMerge = Object.assign({}, typographyStyle, fontStyles, colorStyle);
-  const mergedStyles = Object.assign({}, props.style, preMerge);
+  const stylesText = StyleSheet.flatten([typographyStyle, fontStyles, colorStyle, props.style]);
 
   return (
-    <Text {...props} style={mergedStyles}>
+    <Text {...props} style={stylesText}>
       {props.children}
     </Text>
   );

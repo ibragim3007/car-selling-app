@@ -9,9 +9,10 @@ export type TSizeTag = 'small' | 'medium';
 export interface TagProps extends ViewProps {
   color?: TColorTag;
   size?: TSizeTag;
+  icon?: React.ReactNode;
 }
 
-const Tag = ({ children, color = 'green', size = 'medium', ...props }: TagProps) => {
+const Tag = ({ children, color = 'green', size = 'medium', icon, ...props }: TagProps) => {
   const { colors } = useTheme();
   const backgroundStyle: Record<TColorTag, ViewProps['style']> = {
     green: {
@@ -56,13 +57,16 @@ const Tag = ({ children, color = 'green', size = 'medium', ...props }: TagProps)
       paddingVertical: normalizedSize(size === 'medium' ? 4 : 2),
       alignSelf: 'flex-start',
       borderRadius: normalizedSize(4),
+      flexDirection: 'row',
+      gap: 5,
+      alignItems: 'center',
     },
     props.style,
   ]);
 
   return (
     <View {...props} style={stylesView}>
-      <Text style={textStyle[color]}>{children}</Text>
+      <Text style={[{ fontSize: normalizedSize(12) }, textStyle[color]]}>{children}</Text>
     </View>
   );
 };

@@ -1,18 +1,18 @@
+import { ARROWS } from '@/shared/constants/strings/Icons';
+import { priceFormat } from '@/shared/helpers/priceFormat';
+
 import Tag, { TagProps } from '@/shared/ui/tags/Tag';
 import React from 'react';
-import { FontAwesome6 } from '@expo/vector-icons';
-import { normalizedSize } from '@/shared/utils/size';
 
 interface TagPriceProps extends TagProps {
   amount: number;
-  arrow?: 'arrow-up' | 'arrow-down';
+  isRised: boolean;
 }
 
-const TagPrice = ({ amount, arrow = 'arrow-up', ...props }: TagPriceProps) => {
+const TagPrice = ({ amount, isRised, ...props }: TagPriceProps) => {
   return (
-    <Tag {...props}>
-      <FontAwesome6 name={arrow} size={normalizedSize(13)} color="black" />
-      {amount}
+    <Tag color={isRised ? 'red' : 'green'} {...props}>
+      {isRised ? ARROWS.arrowUp : ARROWS.arrowDown} {priceFormat(amount)}
     </Tag>
   );
 };
