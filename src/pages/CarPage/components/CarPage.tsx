@@ -8,12 +8,11 @@ import React from 'react';
 const CarPage = () => {
   return (
     <PageBackground>
-      <Grid flex={0.9}>
+      <Grid flex={0.88}>
         <CarList headerComponent={<CarInfoBig />} />
       </Grid>
-      <Grid flex={0.15}>
-        <OpenAd />
-      </Grid>
+
+      <OpenAd />
     </PageBackground>
   );
 };
