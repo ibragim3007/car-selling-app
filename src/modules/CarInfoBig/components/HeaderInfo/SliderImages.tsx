@@ -12,11 +12,14 @@ const PAGE_WIDTH = Dimensions.get('window').width;
 
 const baseOptions = {
   width: PAGE_WIDTH * 0.885,
+  sliderHeight: normalizedSize(234),
 } as const;
 
-interface SliderImagesProps {}
+interface SliderImagesProps {
+  items: string[];
+}
 
-const SliderImages = () => {
+const SliderImages = ({ items }: SliderImagesProps) => {
   const { colors } = useTheme();
   const [currentIndexElement, setCurrentIndexElement] = useState(0);
   const currentIndex = useThrottle(currentIndexElement, 200);
@@ -25,7 +28,7 @@ const SliderImages = () => {
   };
 
   return (
-    <Grid>
+    <Grid style={{ height: baseOptions.sliderHeight }}>
       <View
         style={{
           position: 'absolute',
@@ -45,16 +48,15 @@ const SliderImages = () => {
       <Grid>
         <Carousel
           {...baseOptions}
-          width={PAGE_WIDTH * 0.885}
           style={{ width: '100%' }}
           loop={false}
-          data={carImages}
+          data={items}
           onProgressChange={onScrollChange}
           renderItem={({ item }) => (
             <Image
               style={{ borderRadius: colors.styles.borderRadius, marginRight: 8 }}
               // width={baseOptions.width}
-              height={normalizedSize(234)}
+              height={baseOptions.sliderHeight}
               source={{
                 uri: item,
               }}

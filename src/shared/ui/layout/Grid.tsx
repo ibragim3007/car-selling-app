@@ -14,9 +14,25 @@ interface GridProps extends ViewProps {
   space?: 'sm' | 'md' | 'lg';
   height?: DimensionValue;
   padding?: number;
+  paddingVertical?: number;
+  paddingHorizontal?: number;
 }
 
-const Grid = ({ flex, color, align, justfity, row, gap, wrap, height, padding, space, ...props }: GridProps) => {
+const Grid = ({
+  flex,
+  color,
+  align,
+  justfity,
+  row,
+  gap,
+  wrap,
+  height,
+  padding,
+  space,
+  paddingHorizontal,
+  paddingVertical,
+  ...props
+}: GridProps) => {
   const gridStyles: StyleProp<ViewStyle> = StyleSheet.flatten([
     flex !== undefined && { flex },
     justfity !== undefined && { justifyContent: justfity },
@@ -27,6 +43,9 @@ const Grid = ({ flex, color, align, justfity, row, gap, wrap, height, padding, s
     wrap !== undefined && { flexWrap: 'wrap' },
     height !== undefined && { height },
     padding !== undefined && { padding: normalizedSize(padding) },
+    paddingVertical !== undefined && { paddingVertical: normalizedSize(paddingVertical) },
+    paddingHorizontal !== undefined && { paddingHorizontal: normalizedSize(paddingHorizontal) },
+    space !== undefined && { paddingHorizontal: space === 'sm' ? normalizedSize(8) : 10 },
     props.style,
   ]);
 

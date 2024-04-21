@@ -4,7 +4,7 @@ import React from 'react';
 import { StyleSheet, View } from 'react-native';
 import { ViewProps } from 'react-native-svg/lib/typescript/fabric/utils';
 
-interface CardProps extends ViewProps {
+export interface CardProps extends ViewProps {
   borderRadius?: number;
   p?: number;
   mt?: number;

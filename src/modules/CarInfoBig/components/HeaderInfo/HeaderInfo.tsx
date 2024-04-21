@@ -3,6 +3,7 @@ import HighlightText from '@/components/Informers/HighlightText';
 import TagPrice from '@/components/Informers/TagPrice';
 import ArrowRight from '@/icons/linear/arrow-right.svg';
 import { formatCurrency, priceFormat } from '@/shared/helpers/priceFormat';
+import { carImages } from '@/shared/mock/car1';
 import Card from '@/shared/ui/card/Card';
 import Grid from '@/shared/ui/layout/Grid';
 import Typography from '@/shared/ui/typography/Typography';
@@ -10,8 +11,6 @@ import { normalizedSize } from '@/shared/utils/size';
 import React from 'react';
 import { Pressable } from 'react-native';
 import SliderImages from './SliderImages';
-import ImageCarousel, { ImageCarouselItem } from '@/components/ImageCarousel/ImageCarousel';
-import { carImages } from '@/shared/mock/car1';
 
 const HeaderInfo = () => {
   return (
@@ -35,11 +34,9 @@ const HeaderInfo = () => {
               </Grid>
             </Pressable>
           </Grid>
-          <Grid>
-            <HighlightText isRed>Выше рынка {formatCurrency(60000)}</HighlightText>
-          </Grid>
+          <HighlightText isRed={true}>Выше рынка {formatCurrency(60000)}</HighlightText>
         </Grid>
-        <SliderImages />
+        <SliderImages items={carImages} />
       </Grid>
       {/* <ImageCarousel data={carImages} /> */}
     </Card>
