@@ -1,5 +1,5 @@
 import TagPrice from '@/components/Informers/TagPrice';
-import { useTheme } from '@/shared/hooks/stable/useTheme';
+import { useTheme } from '@/shared/hooks/stylesHooks/useTheme';
 import { useAppDispatch } from '@/shared/hooks/storeHooks';
 import { switchTheme } from '@/shared/store/themeReducer/actions/switchTheme';
 import Button from '@/shared/ui/buttons/Button';

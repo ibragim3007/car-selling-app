@@ -10,6 +10,8 @@ import { normalizedSize } from '@/shared/utils/size';
 import React from 'react';
 import { Pressable } from 'react-native';
 import SliderImages from './SliderImages';
+import ImageCarousel, { ImageCarouselItem } from '@/components/ImageCarousel/ImageCarousel';
+import { carImages } from '@/shared/mock/car1';
 
 const HeaderInfo = () => {
   return (
@@ -39,6 +41,7 @@ const HeaderInfo = () => {
         </Grid>
         <SliderImages />
       </Grid>
+      {/* <ImageCarousel data={carImages} /> */}
     </Card>
   );
 };

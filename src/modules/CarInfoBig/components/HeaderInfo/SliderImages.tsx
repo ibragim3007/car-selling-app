@@ -1,4 +1,5 @@
-import { useTheme } from '@/shared/hooks/stable/useTheme';
+import { useThrottle } from '@/shared/hooks/stable/useThrottle';
+import { useTheme } from '@/shared/hooks/stylesHooks/useTheme';
 import { carImages } from '@/shared/mock/car1';
 import Grid from '@/shared/ui/layout/Grid';
 import Typography from '@/shared/ui/typography/Typography';
@@ -18,10 +19,11 @@ interface SliderImagesProps {}
 const SliderImages = () => {
   const { colors } = useTheme();
   const [currentIndexElement, setCurrentIndexElement] = useState(0);
-
-  const updateCurrentIndex = (index: number) => {
-    setCurrentIndexElement(index);
+  const currentIndex = useThrottle(currentIndexElement, 200);
+  const onScrollChange = (offsetProgress: number, absoluteProgress: number) => {
+    setCurrentIndexElement(Math.round(absoluteProgress));
   };
+
   return (
     <Grid>
       <View
@@ -37,7 +39,7 @@ const SliderImages = () => {
         }}
       >
         <Typography color="white">
-          {currentIndexElement + 1} / {carImages.length}
+          {currentIndex + 1} / {carImages.length}
         </Typography>
       </View>
       <Grid>
@@ -45,11 +47,10 @@ const SliderImages = () => {
           {...baseOptions}
           width={PAGE_WIDTH * 0.885}
           style={{ width: '100%' }}
-          maxScrollDistancePerSwipe={400}
           loop={false}
           data={carImages}
-          onSnapToItem={updateCurrentIndex}
-          renderItem={({ index, item }) => (
+          onProgressChange={onScrollChange}
+          renderItem={({ item }) => (
             <Image
               style={{ borderRadius: colors.styles.borderRadius, marginRight: 8 }}
               // width={baseOptions.width}

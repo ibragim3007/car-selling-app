@@ -1,4 +1,4 @@
-import { useTheme } from '@/shared/hooks/stable/useTheme';
+import { useTheme } from '@/shared/hooks/stylesHooks/useTheme';
 import { normalizedSize } from '@/shared/utils/size';
 import React from 'react';
 import { StyleSheet, Text, TextProps, View, ViewProps } from 'react-native';

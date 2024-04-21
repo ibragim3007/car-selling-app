@@ -1,4 +1,4 @@
-import { useTheme } from '@/shared/hooks/stable/useTheme';
+import { useTheme } from '@/shared/hooks/stylesHooks/useTheme';
 import React from 'react';
 import { StyleSheet, View, ViewProps } from 'react-native';
 

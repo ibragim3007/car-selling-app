@@ -1,4 +1,4 @@
-import { useTheme } from '@/shared/hooks/stable/useTheme';
+import { useTheme } from '@/shared/hooks/stylesHooks/useTheme';
 import Typography from '@/shared/ui/typography/Typography';
 import React, { PropsWithChildren } from 'react';
 

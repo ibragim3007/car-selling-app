@@ -70,7 +70,7 @@ const carCities: string[] = [
 for (let i = 0; i < 100; i++) {
   const randomIndex = Math.floor(Math.random() * carImages.length);
   const newObj: ICar = {
-    id: i,
+    id: i.toString(),
     image: carImages[randomIndex],
     infoList: carInfoLists[randomIndex],
     title: carTitles[randomIndex],

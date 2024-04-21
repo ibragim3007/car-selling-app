@@ -1,4 +1,4 @@
-import { useTheme } from '@/shared/hooks/stable/useTheme';
+import { useTheme } from '@/shared/hooks/stylesHooks/useTheme';
 import { normalizedSize, normalizedSizeVertical } from '@/shared/utils/size';
 import React from 'react';
 import { Image } from 'react-native';

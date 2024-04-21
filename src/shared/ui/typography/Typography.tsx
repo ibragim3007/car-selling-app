@@ -1,4 +1,4 @@
-import { useTheme } from '@/shared/hooks/stable/useTheme';
+import { useTheme } from '@/shared/hooks/stylesHooks/useTheme';
 import { TypographyProps, TypographyStyles, fontsWeights } from '@/shared/ui/styles/typography/typography';
 import React from 'react';
 import { StyleSheet, Text, TextProps } from 'react-native';

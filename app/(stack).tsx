@@ -1,6 +1,6 @@
 import BackButton from '@/components/BackButton/BackButton';
 import HeaderCarTab from '@/modules/HeaderCarTab';
-import { useTheme } from '@/shared/hooks/stable/useTheme';
+import { useTheme } from '@/shared/hooks/stylesHooks/useTheme';
 import { Stack } from 'expo-router';
 import React from 'react';
 

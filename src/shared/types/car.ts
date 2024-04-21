@@ -1,5 +1,5 @@
 export interface ICar {
-  id: number;
+  id: string;
   cost: number;
   image: string;
   infoList: string[];

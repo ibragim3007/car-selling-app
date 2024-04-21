@@ -3,20 +3,21 @@ import { ICar } from '@/shared/types';
 import Card from '@/shared/ui/card/Card';
 import Grid from '@/shared/ui/layout/Grid';
 import Typography from '@/shared/ui/typography/Typography';
-import React from 'react';
+import { router } from 'expo-router';
+import React, { memo } from 'react';
 import { Pressable } from 'react-native';
 import ActionSide from './ActionSide/ActionSide';
 import CarImage from './InsideCard/CarImage';
 import HeaderTitle from './InsideCard/HeaderTitle';
 import BottomInfo from './InsideCard/InfoList/BottomInfo';
 import InfoList from './InsideCard/InfoList/InfoList';
-import { router } from 'expo-router';
+import { normalizedSize } from '@/shared/utils/size';
 
 interface CarItemProps {
   car: ICar;
 }
 
-const CarItem: React.FC<CarItemProps> = ({ car }) => {
+function CarItem({ car }: CarItemProps) {
   const onPressCar = () => {
     router.push(`/cars/${car.id}`);
   };
@@ -28,7 +29,7 @@ const CarItem: React.FC<CarItemProps> = ({ car }) => {
           <CarImage image={car.image} />
           <Grid justfity="space-between" flex={1}>
             <Grid gap={5}>
-              <HeaderTitle title={car.title} />
+              <HeaderTitle title={car.title} id={car.id} />
               <InfoList infoList={car.infoList} />
               <Typography weight="bold">{priceFormat(car.cost)}</Typography>
             </Grid>
@@ -40,6 +41,6 @@ const CarItem: React.FC<CarItemProps> = ({ car }) => {
       </Card>
     </Pressable>
   );
-};
+}
 
-export default CarItem;
+export default memo(CarItem);
