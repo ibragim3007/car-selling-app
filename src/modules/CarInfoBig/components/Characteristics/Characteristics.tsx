@@ -4,7 +4,7 @@ import React from 'react';
 
 const Characteristics = () => {
   return (
-    <CardTitle borderRadius={8} title={'Характеристики'} p={0}>
+    <CardTitle borderRadius={8} title={'Характеристики'} isNoPadding>
       <RowInfo title={'Поколение'} value={'200 рестайлинг (2012-2015)'} isEven={false} />
       <RowInfo title={'Год выпуска'} value={'2012'} isEven={true} />
       <RowInfo title={'Пробег'} value={'205 000 км'} isEven={false} />
