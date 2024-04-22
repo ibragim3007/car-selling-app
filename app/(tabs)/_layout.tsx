@@ -27,7 +27,7 @@ const TabsLayout = () => {
           backgroundColor: colors.background.primary,
         },
         tabBarStyle: {
-          backgroundColor: colors.background.secondary,
+          backgroundColor: colors.background.primary,
         },
         headerTitleStyle: {
           fontSize: normalizedSize(16),

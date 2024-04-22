@@ -18,6 +18,7 @@ const StackRoute = () => {
             headerBackButtonMenuEnabled: true,
             headerTitle: '',
             headerStyle: { backgroundColor: colors.background.primary },
+
             headerLeft: () => <BackButton />,
             headerRight: () => <HeaderCarTab />,
           }}

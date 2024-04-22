@@ -27,7 +27,9 @@ const RowInfo = ({ title, value, isEven }: RowInfoProps) => {
         </Typography>
       </Grid>
       <Grid flex={1}>
-        <Typography variant="caption-1">{value}</Typography>
+        <Typography weight="medium" variant="caption-1">
+          {value}
+        </Typography>
       </Grid>
     </Grid>
   );
