@@ -8,8 +8,12 @@ const MyCollectionSettings = () => {
     <Card
       borderRadius={0}
       style={{
-        borderBottomLeftRadius: 20,
-        borderBottomRightRadius: 20,
+        // borderBottomLeftRadius: 20,
+        // borderBottomRightRadius: 20,
+        position: 'absolute',
+        zIndex: 20,
+        elevation: 20,
+        width: '100%',
       }}
     >
       <Grid row justfity="space-between" align="center">

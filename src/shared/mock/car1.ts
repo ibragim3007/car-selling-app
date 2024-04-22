@@ -67,7 +67,7 @@ const carCities: string[] = [
 ];
 
 // Создание 10 случайных объектов и добавление их в массив
-for (let i = 0; i < 10000; i++) {
+for (let i = 0; i < 1000; i++) {
   const randomIndex = Math.floor(Math.random() * carImages.length);
   const newObj: ICar = {
     id: i.toString(),

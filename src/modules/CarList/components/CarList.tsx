@@ -7,11 +7,13 @@ import React from 'react';
 import CarItem from './CarItem/CarItem';
 
 interface CarListProps {
-  headerComponent: React.JSX.Element;
+  headerComponent?: React.JSX.Element;
   footerComponent?: React.JSX.Element;
+  stickyHeaderIndices?: number[];
+  topOffset?: number;
 }
 
-function CarList({ headerComponent, footerComponent }: CarListProps) {
+function CarList({ headerComponent, footerComponent, stickyHeaderIndices, topOffset }: CarListProps) {
   // const _renderItem = (info: ListRenderItemInfo<ICar>) => <CarItem key={info.item.id} car={info.item} />;
 
   const renderItem: ListRenderItem<ICar> = ({ item }) => {
@@ -19,18 +21,16 @@ function CarList({ headerComponent, footerComponent }: CarListProps) {
   };
   const lengthItem = normalizedSize(145);
   return (
-    <Grid flex={1}>
+    <Grid flex={1} style={{ marginTop: topOffset }}>
       <FlashList
         data={carObjects}
         renderItem={renderItem}
         estimatedItemSize={lengthItem}
+        stickyHeaderIndices={stickyHeaderIndices}
         removeClippedSubviews
-        // initialNumToRender={5}
-        // stickyHeaderIndices={[0]}
         ListHeaderComponent={headerComponent}
         ListFooterComponent={footerComponent}
         keyExtractor={item => item.id}
-        // getItemLayout={(data, index) => ({ length: lengthItem, offset: lengthItem * index, index })}
       />
     </Grid>
   );
