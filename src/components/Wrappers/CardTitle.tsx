@@ -6,19 +6,23 @@ import React from 'react';
 interface CardTitleProps extends CardProps {
   title: string;
   isNoPadding?: boolean;
+  rightHeader?: React.ReactNode;
 }
 
-const CardTitle = ({ title, isNoPadding, ...props }: CardTitleProps) => {
+const CardTitle = ({ title, isNoPadding, rightHeader, ...props }: CardTitleProps) => {
   return (
     <Card {...props} p={isNoPadding ? 0 : 16}>
       <Grid gap={isNoPadding ? 0 : 12}>
-        <Typography
-          variant="headline"
-          weight="bold"
-          style={{ paddingHorizontal: isNoPadding ? 16 : 0, paddingVertical: isNoPadding ? 12 : 0 }}
-        >
-          {title}
-        </Typography>
+        <Grid row justfity="space-between">
+          <Typography
+            variant="headline"
+            weight="bold"
+            style={{ paddingHorizontal: isNoPadding ? 16 : 0, paddingVertical: isNoPadding ? 12 : 0 }}
+          >
+            {title}
+          </Typography>
+          {rightHeader}
+        </Grid>
         {props.children}
       </Grid>
     </Card>

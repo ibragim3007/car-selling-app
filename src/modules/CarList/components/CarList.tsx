@@ -5,7 +5,6 @@ import { normalizedSize } from '@/shared/utils/size';
 import { FlashList, ListRenderItem } from '@shopify/flash-list';
 import React from 'react';
 import CarItem from './CarItem/CarItem';
-import MyCollectionSettings from '@/modules/MyCollectionsSetting';
 
 interface CarListProps {
   headerComponent?: React.JSX.Element;
@@ -22,10 +21,11 @@ function CarList({ headerComponent, footerComponent, stickyHeaderIndices, topOff
   };
   const lengthItem = normalizedSize(145);
   return (
-    <Grid flex={1} style={{ paddingTop: topOffset }}>
+    <Grid flex={1} style={{ paddingTop: 0 }}>
       <FlashList
         data={carObjects}
         renderItem={renderItem}
+        contentContainerStyle={{ paddingTop: topOffset }}
         estimatedItemSize={lengthItem}
         stickyHeaderIndices={stickyHeaderIndices}
         removeClippedSubviews

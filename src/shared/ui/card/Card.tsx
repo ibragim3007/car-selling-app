@@ -25,7 +25,7 @@ const Card = ({ borderRadius, p, mt, ...props }: CardProps) => {
   const mergedStyles = StyleSheet.flatten([stylesView, props.style]);
 
   return (
-    <Animated.View key={String(isFocused)} layout={LinearTransition.duration(80)} {...props} style={mergedStyles} />
+    <Animated.View key={String(isFocused)} layout={LinearTransition.duration(120)} {...props} style={mergedStyles} />
   );
 };
 
