@@ -83,6 +83,7 @@ const Button: React.FC<ButtonProps> = ({
 
   const styleButton: PressableProps['style'] = {
     paddingVertical: size === 'large' ? normalizedSize(13) : normalizedSize(8),
+    paddingHorizontal: size === 'large' ? normalizedSize(13) : normalizedSize(12),
     borderRadius: colors.styles.borderRadius,
   };
 
@@ -90,7 +91,7 @@ const Button: React.FC<ButtonProps> = ({
     color: colors.text.white,
     fontFamily: fontWeight.medium,
     textAlign: 'center',
-    fontSize: normalizedSize(16),
+    fontSize: normalizedSize(size === 'large' ? 16 : 12),
   };
 
   const onTouchStart = () => {

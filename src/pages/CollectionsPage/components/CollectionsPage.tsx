@@ -7,8 +7,7 @@ const CollectionsPage = () => {
   return (
     <PageBackground>
       <MyCollectionSettings />
-
-      <CarList topOffset={50} />
+      <CarList topOffset={55} />
     </PageBackground>
   );
 };
