@@ -1,12 +1,12 @@
 import ProfileInfoBig from '@/modules/Profile/ProfileInfoBig';
-import Grid from '@/shared/ui/layout/Grid';
+import PageBackground from '@/shared/ui/layout/PageBackground';
 import React from 'react';
 
 const ProfilePage = () => {
   return (
-    <Grid>
+    <PageBackground>
       <ProfileInfoBig />
-    </Grid>
+    </PageBackground>
   );
 };
 

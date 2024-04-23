@@ -21,14 +21,18 @@ const CardInformer = ({ title, value, Icon }: CardInformerProps) => {
       align="center"
       gap={10}
       flex={1}
-      style={{ borderRadius: colors.styles.borderRadius, backgroundColor: colors.background.neutral }}
+      style={{
+        borderRadius: colors.styles.borderRadius,
+        backgroundColor: colors.background.neutral,
+        overflow: 'hidden',
+      }}
     >
       <Icon height={normalizedSize(24)} width={normalizedSize(24)} />
-      <Grid justfity="space-between" gap={8}>
-        <Typography variant="caption-1" color="secondary">
+      <Grid justfity="space-between" gap={8} style={{ flex: 1 }}>
+        <Typography variant="caption-1" color="secondary" ellipsizeMode="tail" numberOfLines={1}>
           {title}
         </Typography>
-        <Typography variant="footnote" weight="bold">
+        <Typography variant="footnote" weight="bold" numberOfLines={1} ellipsizeMode="tail">
           {value}
         </Typography>
       </Grid>

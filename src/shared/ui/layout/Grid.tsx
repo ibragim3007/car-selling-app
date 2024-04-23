@@ -3,6 +3,7 @@ import React from 'react';
 import { DimensionValue, StyleProp, ViewStyle } from 'react-native';
 import { FlexAlignType, StyleSheet, View, ViewProps } from 'react-native';
 
+type TSpaceGrid = 'sm' | 'md' | 'lg';
 interface GridProps extends ViewProps {
   flex?: number;
   color?: string;
@@ -11,7 +12,7 @@ interface GridProps extends ViewProps {
   justfity?: 'flex-start' | 'flex-end' | 'center' | 'space-between' | 'space-around' | 'space-evenly';
   row?: boolean;
   gap?: number;
-  space?: 'sm' | 'md' | 'lg';
+  space?: TSpaceGrid;
   height?: DimensionValue;
   padding?: number;
   paddingVertical?: number;
@@ -45,7 +46,7 @@ const Grid = ({
     padding !== undefined && { padding: normalizedSize(padding) },
     paddingVertical !== undefined && { paddingVertical: normalizedSize(paddingVertical) },
     paddingHorizontal !== undefined && { paddingHorizontal: normalizedSize(paddingHorizontal) },
-    space !== undefined && { paddingHorizontal: space === 'sm' ? normalizedSize(8) : 10 },
+    space !== undefined && { gap: normalizedSize(calculateSize(space)) },
     props.style,
   ]);
 
@@ -53,3 +54,11 @@ const Grid = ({
 };
 
 export default Grid;
+
+function calculateSize(space: TSpaceGrid) {
+  if (space === 'sm') return 8;
+  else if (space === 'md') return 16;
+  else if (space === 'lg') return 32;
+
+  return 0;
+}
