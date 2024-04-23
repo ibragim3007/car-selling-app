@@ -9,7 +9,9 @@ import { useTheme } from '@/shared/hooks/stylesHooks/useTheme';
 import { fontWeight } from '@/shared/ui/styles/typography/typography';
 import { normalizedSize } from '@/shared/utils/size';
 import { Tabs } from 'expo-router';
+import MoreIcon from '@/icons/linear/more.svg';
 import React from 'react';
+import EditProfile from '@/modules/Profile/EditProfile';
 
 const IconSize = normalizedSize(22);
 
@@ -79,7 +81,8 @@ const TabsLayout = () => {
         options={{
           headerTitle: 'Профиль',
           title: 'Профиль',
-          tabBarIcon: ({ color, size }) => <Profile height={IconSize} width={IconSize} color={color} />,
+          tabBarIcon: ({ color }) => <Profile height={IconSize} width={IconSize} color={color} />,
+          headerRight: ({ tintColor }) => <EditProfile />,
         }}
       />
     </Tabs>
