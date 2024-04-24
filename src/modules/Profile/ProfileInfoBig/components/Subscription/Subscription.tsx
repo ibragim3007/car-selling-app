@@ -1,9 +1,10 @@
 import { useTheme } from '@/shared/hooks/stylesHooks/useTheme';
 import Card from '@/shared/ui/card/Card';
+import CheckIcon from '@/shared/ui/icons/CheckIcon';
 import Grid from '@/shared/ui/layout/Grid';
 import Typography from '@/shared/ui/typography/Typography';
 import { normalizedSize } from '@/shared/utils/size';
-import { AntDesign, SimpleLineIcons } from '@expo/vector-icons';
+import { SimpleLineIcons } from '@expo/vector-icons';
 import React from 'react';
 import { Alert, Pressable } from 'react-native';
 const Subscription = () => {
@@ -13,7 +14,7 @@ const Subscription = () => {
       <Card borderRadius={16}>
         <Grid row justfity="space-between" align="center">
           <Grid row gap={10} align="center">
-            <AntDesign name="checkcircle" size={normalizedSize(20)} color={colors.accent.primary} />
+            <CheckIcon />
             <Typography variant="subhead" weight="bold">
               Подписка
             </Typography>

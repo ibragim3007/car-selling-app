@@ -1,16 +1,29 @@
+import { useTheme } from '@/shared/hooks/stylesHooks/useTheme';
 import { normalizedSize } from '@/shared/utils/size';
 import React from 'react';
-import { Pressable, PressableProps } from 'react-native';
+import { Pressable, PressableProps, StyleSheet } from 'react-native';
 import { SvgProps } from 'react-native-svg';
 
-interface PressableIconProps extends PressableProps {
+export interface PressableIconProps extends PressableProps {
   Icon: React.FC<SvgProps>;
+  isPressed?: boolean;
+  insideOptions?: React.ReactNode;
 }
 
-const PressableIcon = ({ Icon, ...props }: PressableIconProps) => {
+const PressableIcon = ({ Icon, isPressed, insideOptions, ...props }: PressableIconProps) => {
+  const { colors } = useTheme();
+  const styles = StyleSheet.flatten([
+    {
+      backgroundColor: isPressed ? colors.background.neutral : 'transparent',
+      padding: normalizedSize(10),
+      borderRadius: 8,
+    },
+    props.style,
+  ]);
   return (
-    <Pressable style={{ backgroundColor: 'red', padding: normalizedSize(10) }} {...props}>
+    <Pressable {...props} style={styles}>
       <Icon />
+      {insideOptions}
     </Pressable>
   );
 };

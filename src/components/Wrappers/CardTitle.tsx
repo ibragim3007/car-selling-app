@@ -13,7 +13,7 @@ const CardTitle = ({ title, isNoPadding, rightHeader, ...props }: CardTitleProps
   return (
     <Card {...props} p={isNoPadding ? 0 : 16}>
       <Grid gap={isNoPadding ? 0 : 12}>
-        <Grid row justfity="space-between">
+        <Grid row justfity="space-between" align="center">
           <Typography
             variant="headline"
             weight="bold"

@@ -1,3 +1,4 @@
+import { ITheme } from '@/shared/constants/theme/theme';
 import { normalizedSize } from '@/shared/utils/size';
 import { TextProps } from 'react-native';
 
@@ -16,7 +17,7 @@ type TypographyVariants =
 
 export type TypographyWeight = 'regular' | 'bold' | 'medium';
 
-type TColor = 'primary' | 'secondary' | 'disabled' | 'white';
+export type TColor = 'primary' | 'secondary' | 'disabled' | 'white' | 'red' | 'success';
 
 export interface TypographyProps extends TextProps {
   variant?: TypographyVariants;
@@ -37,6 +38,27 @@ export const TypographyStyles: Record<TypographyVariants, TextProps['style']> = 
   'caption-1': { fontSize: normalizedSize(12) },
   'caption-2': { fontSize: normalizedSize(11) },
 };
+
+export const getColorsStyles = (colors: ITheme): Record<TColor, TextProps['style']> => ({
+  primary: {
+    color: colors.text.primary,
+  },
+  secondary: {
+    color: colors.text.secondary,
+  },
+  disabled: {
+    color: colors.text.disabled,
+  },
+  white: {
+    color: colors.text.white,
+  },
+  red: {
+    color: colors.accent.red,
+  },
+  success: {
+    color: colors.accent.primary,
+  },
+});
 
 export const fontWeight = {
   regular: 'Montserrat_400Regular',

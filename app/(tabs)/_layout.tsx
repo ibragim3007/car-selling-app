@@ -5,13 +5,12 @@ import Home from '@/icons/linear/home-2.svg';
 import Checks from '@/icons/linear/search-status.svg';
 import Profile from '@/icons/linear/user-square.svg';
 import HeaderBar from '@/modules/HeaderBar';
+import EditProfile from '@/modules/Profile/EditProfile';
 import { useTheme } from '@/shared/hooks/stylesHooks/useTheme';
 import { fontWeight } from '@/shared/ui/styles/typography/typography';
 import { normalizedSize } from '@/shared/utils/size';
 import { Tabs } from 'expo-router';
-import MoreIcon from '@/icons/linear/more.svg';
 import React from 'react';
-import EditProfile from '@/modules/Profile/EditProfile';
 
 const IconSize = normalizedSize(22);
 

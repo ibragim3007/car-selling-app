@@ -3,10 +3,14 @@ import SwitchCustom from '@/shared/ui/switch/Switch';
 import Typography from '@/shared/ui/typography/Typography';
 import React from 'react';
 
-const TitleSwitch = () => {
+interface TitleSwitchProps {
+  title: string;
+}
+
+const TitleSwitch = ({ title }: TitleSwitchProps) => {
   return (
     <Grid row justfity="space-between">
-      <Typography>Включить подборку</Typography>
+      <Typography>{title}</Typography>
       <SwitchCustom />
     </Grid>
   );
