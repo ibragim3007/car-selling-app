@@ -15,6 +15,7 @@ interface ButtonProps extends PressableProps {
   size?: TSizeButton;
   textStyle?: TextProps['style'];
   loading?: boolean;
+  fullWidth?: boolean;
 }
 
 const Button: React.FC<ButtonProps> = ({
@@ -23,6 +24,7 @@ const Button: React.FC<ButtonProps> = ({
   variant = 'default',
   textStyle,
   loading,
+  fullWidth,
   ...props
 }: ButtonProps) => {
   const { colors } = useTheme();
@@ -91,7 +93,7 @@ const Button: React.FC<ButtonProps> = ({
     color: colors.text.white,
     fontFamily: fontWeight.medium,
     textAlign: 'center',
-    fontSize: normalizedSize(size === 'large' ? 16 : 12),
+    fontSize: normalizedSize(size === 'large' ? 16 : 14),
   };
 
   const onTouchStart = () => {
@@ -101,7 +103,12 @@ const Button: React.FC<ButtonProps> = ({
     setIsPressed(false);
   };
 
-  const buttonS = StyleSheet.flatten([styleButton, currentVariant, props.style]);
+  const buttonS: ButtonProps['style'] = StyleSheet.flatten([
+    fullWidth !== undefined && { width: '100%' },
+    styleButton,
+    currentVariant,
+    props.style,
+  ]);
   const textS = StyleSheet.flatten([styleText, textVariant, textStyle]);
 
   return (

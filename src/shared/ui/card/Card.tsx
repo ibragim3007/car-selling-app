@@ -11,9 +11,25 @@ export interface CardProps extends ViewProps {
   p?: number;
   mt?: number;
   color?: 'primary' | 'secondary';
+  marginVertical?: number;
+  paddingVertical?: number;
+  paddingBottom?: number;
+  paddingTop?: number;
+  paddingHorizontal?: number;
 }
 
-const Card = ({ borderRadius, color = 'primary', p, mt, ...props }: CardProps) => {
+const Card = ({
+  borderRadius,
+  marginVertical,
+  paddingVertical,
+  paddingBottom,
+  paddingTop,
+  paddingHorizontal,
+  color = 'primary',
+  p,
+  mt,
+  ...props
+}: CardProps) => {
   const { colors } = useTheme();
   const stylesView: ViewProps['style'] = {
     backgroundColor: color === 'primary' ? colors.background.primary : colors.divider,
@@ -23,7 +39,15 @@ const Card = ({ borderRadius, color = 'primary', p, mt, ...props }: CardProps) =
   };
   const isFocused = useIsFocused();
 
-  const mergedStyles = StyleSheet.flatten([stylesView, props.style]);
+  const mergedStyles = StyleSheet.flatten([
+    stylesView,
+    marginVertical !== undefined && { marginVertical: normalizedSize(marginVertical) },
+    paddingVertical !== undefined && { paddingVertical: normalizedSize(paddingVertical) },
+    paddingHorizontal !== undefined && { paddingHorizontal: normalizedSize(paddingHorizontal) },
+    paddingTop !== undefined && { paddingTop: normalizedSize(paddingTop) },
+    paddingBottom !== undefined && { paddingBottom: normalizedSize(paddingBottom) },
+    props.style,
+  ]);
 
   return (
     <Animated.View key={String(isFocused)} layout={LinearTransition.duration(120)} {...props} style={mergedStyles} />

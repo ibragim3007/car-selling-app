@@ -5,6 +5,7 @@ import DarkModal from '@/shared/ui/layout/DarkModal';
 import GroupDropButton from '@/shared/ui/layout/GroupDropButton';
 import React, { useState } from 'react';
 import { GestureResponderEvent, Modal, ViewProps } from 'react-native';
+import Animated, { FadeInUp } from 'react-native-reanimated';
 
 interface DropdownProps {
   items: DropButtonProps[];
@@ -34,20 +35,25 @@ export const Dropdown = ({ items, ...props }: DropdownProps) => {
       insideOptions={
         <Modal transparent={true} onRequestClose={closeModal} visible={isOpen}>
           <DarkModal onPress={closeModal}>
-            <GroupDropButton
-              borderRadius={16}
-              style={{
-                position: 'absolute',
-                overflow: 'hidden',
-                zIndex: 30,
-                right: 20,
-                top: modalPosition.y + 30,
-              }}
-            >
-              {items.map((item, index) => (
-                <DropButton key={index} title={item.title} Icon={item.Icon} color={item.color} />
-              ))}
-            </GroupDropButton>
+            <Animated.View entering={FadeInUp.springify()}>
+              <GroupDropButton
+                borderRadius={16}
+                style={{
+                  position: 'absolute',
+                  overflow: 'hidden',
+                  // backgroundColor: 'transparent',
+                  zIndex: 30,
+                  right: 20,
+                  top: modalPosition.y + 30,
+                }}
+              >
+                {items.map((item, index) => (
+                  <Animated.View key={index} entering={FadeInUp.delay(index * 60).springify()}>
+                    <DropButton key={index} title={item.title} Icon={item.Icon} color={item.color} />
+                  </Animated.View>
+                ))}
+              </GroupDropButton>
+            </Animated.View>
           </DarkModal>
         </Modal>
       }
