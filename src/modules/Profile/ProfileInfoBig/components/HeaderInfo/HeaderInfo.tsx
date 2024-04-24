@@ -8,7 +8,7 @@ import React from 'react';
 const HeaderInfo = () => {
   const { colors } = useTheme();
   return (
-    <Card style={{ borderBottomLeftRadius: 16, borderBottomRightRadius: 16 }}>
+    <Card borderRadius={0} style={{ borderBottomLeftRadius: 16, borderBottomRightRadius: 16 }}>
       <Grid space="md" row align="center">
         <Grid>
           <Grid

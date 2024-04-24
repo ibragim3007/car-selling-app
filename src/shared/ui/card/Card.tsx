@@ -10,12 +10,13 @@ export interface CardProps extends ViewProps {
   borderRadius?: number;
   p?: number;
   mt?: number;
+  color?: 'primary' | 'secondary';
 }
 
-const Card = ({ borderRadius, p, mt, ...props }: CardProps) => {
+const Card = ({ borderRadius, color = 'primary', p, mt, ...props }: CardProps) => {
   const { colors } = useTheme();
   const stylesView: ViewProps['style'] = {
-    backgroundColor: colors.background.primary,
+    backgroundColor: color === 'primary' ? colors.background.primary : colors.divider,
     borderRadius: borderRadius !== undefined ? borderRadius : colors.styles.borderRadius,
     padding: p !== undefined ? normalizedSize(p) : normalizedSize(16),
     marginTop: mt !== undefined ? normalizedSize(mt) : 0,
