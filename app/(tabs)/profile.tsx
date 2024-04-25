@@ -1,12 +1,8 @@
-import React from "react";
-import { Text, View } from "react-native";
+import ProfilePage from '@/pages/ProfilePage';
+import React from 'react';
 
-const ProfilePage = () => {
-  return (
-    <View>
-      <Text>index</Text>
-    </View>
-  );
+const Profile = () => {
+  return <ProfilePage />;
 };
 
-export default ProfilePage;
+export default Profile;

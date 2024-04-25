@@ -1,9 +1,0 @@
-{
-  "plugins": {
-    "addAttributesToSVGElement": {
-      "attributes": {
-        "stroke": "{props.stroke}"
-      }
-    }
-  }
-}

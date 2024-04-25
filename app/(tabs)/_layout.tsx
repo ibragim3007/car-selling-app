@@ -1,47 +1,88 @@
-import { AntDesign } from "@expo/vector-icons";
-import { Tabs } from "expo-router";
+import HeaderIcon from '@/components/HeaderIcon/HeaderIcon';
+import Car from '@/icons/linear/car.svg';
+import Service from '@/icons/linear/category-2.svg';
+import Home from '@/icons/linear/home-2.svg';
+import Checks from '@/icons/linear/search-status.svg';
+import Profile from '@/icons/linear/user-square.svg';
+import HeaderBar from '@/modules/HeaderBar';
+import EditProfile from '@/modules/Profile/EditProfile';
+import { useTheme } from '@/shared/hooks/stylesHooks/useTheme';
+import { fontWeight } from '@/shared/ui/styles/typography/typography';
+import { normalizedSize } from '@/shared/utils/size';
+import { Tabs } from 'expo-router';
+import React from 'react';
 
-import Car from "../../assets/icons/car/car.svg";
+const IconSize = normalizedSize(22);
 
 const TabsLayout = () => {
+  const { colors } = useTheme();
   return (
-    <Tabs initialRouteName="HomePage">
+    <Tabs
+      initialRouteName="HomePage"
+      screenOptions={{
+        headerRight: () => <HeaderBar />,
+        tabBarInactiveTintColor: colors.text.secondary,
+        tabBarActiveTintColor: colors.text.primary,
+
+        headerStyle: {
+          backgroundColor: colors.background.primary,
+        },
+        tabBarStyle: {
+          backgroundColor: colors.background.primary,
+        },
+        headerTitleStyle: {
+          fontSize: normalizedSize(16),
+          color: colors.text.primary,
+        },
+        tabBarLabelStyle: {
+          fontFamily: fontWeight.medium,
+          fontSize: normalizedSize(10),
+        },
+      }}
+    >
       <Tabs.Screen redirect name="index" />
       <Tabs.Screen
         name="home"
         options={{
-          headerTitle: "Главная",
-
-          title: "Главная",
-          href: "home",
-
-          tabBarIcon: ({ color, size }) => (
-            <AntDesign name="home" size={size} color={color} />
-          ),
+          title: 'Главная',
+          href: 'home',
+          tabBarIcon: ({ color, size }) => <Home height={IconSize} width={IconSize} color={color} />,
         }}
       />
 
       <Tabs.Screen
         name="collections"
         options={{
-          headerTitle: "Подборки",
-          title: "Подборки",
-          tabBarIcon: ({ color, size }) => (
-            <Car height={size} width={size} stroke={color} />
-          ),
+          title: 'Подборки',
+          headerTitle: () => <HeaderIcon />,
+          tabBarIcon: ({ color, size }) => <Car height={IconSize} width={IconSize} color={color} />,
         }}
       />
       <Tabs.Screen
         name="checks"
-        options={{ headerTitle: "Проверка", title: "Проверка" }}
+        options={{
+          headerTitle: 'Проверка',
+          title: 'Проверка',
+          tabBarIcon: ({ color, size }) => <Checks height={IconSize} width={IconSize} color={color} />,
+        }}
       />
       <Tabs.Screen
         name="services"
-        options={{ headerTitle: "Сервисы", title: "Сервисы" }}
+        options={{
+          headerTitle: 'Сервисы',
+          title: 'Сервисы',
+          headerRight: () => null,
+          tabBarIcon: ({ color, size }) => <Service height={IconSize} width={IconSize} color={color} />,
+        }}
       />
       <Tabs.Screen
         name="profile"
-        options={{ headerTitle: "Профиль", title: "Профиль" }}
+        options={{
+          headerTitle: 'Профиль',
+          title: 'Профиль',
+          tabBarIcon: ({ color }) => <Profile height={IconSize} width={IconSize} color={color} />,
+          headerRight: ({ tintColor }) => <EditProfile />,
+        }}
       />
     </Tabs>
   );
