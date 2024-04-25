@@ -1,3 +1,4 @@
+import { routes } from '@/shared/config/routes';
 import { useAppDispatch } from '@/shared/hooks/storeHooks';
 import { closeModal } from '@/shared/store/modalReducer/actions/closeModal';
 import { openModal } from '@/shared/store/modalReducer/actions/openModal';
@@ -6,10 +7,17 @@ import ModalButton from '@/shared/ui/buttons/ModalButton';
 import Card from '@/shared/ui/card/Card';
 import Grid from '@/shared/ui/layout/Grid';
 import Typography from '@/shared/ui/typography/Typography';
+import { router } from 'expo-router';
 import React from 'react';
 
 const UnSubscripbeSuggestion = () => {
   const dispatch = useAppDispatch();
+
+  const onAuthClick = () => {
+    router.push(routes.auth.login);
+    dispatch(closeModal());
+  };
+
   const openAuthSuggestModal = () => {
     dispatch(
       openModal({
@@ -19,7 +27,7 @@ const UnSubscripbeSuggestion = () => {
           callback1: { color: 'green' },
         },
         buttons: [
-          <ModalButton color="green" key="1">
+          <ModalButton onPress={onAuthClick} color="green" key="1">
             Авторизоваться
           </ModalButton>,
           <ModalButton color="green" key="2">

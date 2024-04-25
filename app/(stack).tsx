@@ -22,23 +22,23 @@ const StackRoute = () => {
   const { colors } = useTheme();
 
   return (
-    <>
-      <Stack screenOptions={{ headerShown: false }}>
-        <Stack.Screen name="(tabs)" options={{ title: 'Подборки' }} />
-        <Stack.Screen name="cars/[id]" options={OptionsModal(colors)} />
-        <Stack.Screen
-          name="mycollections/mycollections"
-          options={{
-            headerShown: true,
-            headerBackButtonMenuEnabled: true,
-            headerTitle: '',
-            headerStyle: { backgroundColor: colors.background.primary },
-            headerRight: () => <Add height={normalizedSize(16)} width={normalizedSize(16)} />,
-            headerLeft: () => <BackButton />,
-          }}
-        />
-      </Stack>
-    </>
+    <Stack screenOptions={{ headerShown: false }}>
+      <Stack.Screen name="(tabs)" options={{ title: 'Подборки' }} />
+      <Stack.Screen name="cars/[id]" options={OptionsModal(colors)} />
+      <Stack.Screen name="auth/login" options={OptionsModal(colors)} />
+      <Stack.Screen name="auth/registration" options={OptionsModal(colors)} />
+      <Stack.Screen
+        name="(mycollections)/mycollections"
+        options={{
+          headerShown: true,
+          headerBackButtonMenuEnabled: true,
+          headerTitle: '',
+          headerStyle: { backgroundColor: colors.background.primary },
+          headerRight: () => <Add height={normalizedSize(16)} width={normalizedSize(16)} />,
+          headerLeft: () => <BackButton />,
+        }}
+      />
+    </Stack>
   );
 };
 

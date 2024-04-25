@@ -10,7 +10,7 @@ const MyCollectionSettings = () => {
   const [isShowCollections, setIsShowCollections] = useState(true);
 
   const pressSettingOpen = () => {
-    router.navigate('mycollections/mycollections');
+    router.navigate('/mycollections');
     // setIsShowCollections(!isShowCollections);
   };
 
