@@ -93,7 +93,7 @@ const Button: React.FC<ButtonProps> = ({
     color: colors.text.white,
     fontFamily: fontWeight.medium,
     textAlign: 'center',
-    fontSize: normalizedSize(size === 'large' ? 16 : 14),
+    fontSize: normalizedSize(size === 'large' ? 16 : 15),
   };
 
   const onTouchStart = () => {

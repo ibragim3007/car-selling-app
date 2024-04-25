@@ -19,6 +19,7 @@ interface GridProps extends ViewProps {
   paddingHorizontal?: number;
   paddingBottom?: number;
   paddingTop?: number;
+  marginVertical?: number;
 }
 
 const Grid = ({
@@ -36,6 +37,7 @@ const Grid = ({
   paddingVertical,
   paddingBottom,
   paddingTop,
+  marginVertical,
   ...props
 }: GridProps) => {
   const gridStyles: StyleProp<ViewStyle> = StyleSheet.flatten([
@@ -52,6 +54,7 @@ const Grid = ({
     paddingHorizontal !== undefined && { paddingHorizontal: normalizedSize(paddingHorizontal) },
     paddingTop !== undefined && { paddingTop: normalizedSize(paddingTop) },
     paddingBottom !== undefined && { paddingBottom: normalizedSize(paddingBottom) },
+    marginVertical !== undefined && { marginVertical: normalizedSize(marginVertical) },
     space !== undefined && { gap: normalizedSize(calculateSize(space)) },
     props.style,
   ]);
@@ -64,7 +67,7 @@ export default Grid;
 function calculateSize(space: TSpaceGrid) {
   if (space === 'sm') return 8;
   else if (space === 'md') return 16;
-  else if (space === 'lg') return 32;
+  else if (space === 'lg') return 24;
 
   return 0;
 }
