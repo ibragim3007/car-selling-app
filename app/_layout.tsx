@@ -23,6 +23,7 @@ import {
 import React from 'react';
 import { Provider } from 'react-redux';
 import StackRoute from './(stack)';
+import ModalAction from '@/components/Modal/ModalAction';
 
 const RootLayout = () => {
   const [fontsLoaded, fontError] = useFonts({
@@ -55,6 +56,7 @@ const RootLayout = () => {
   return (
     <Provider store={store}>
       <StackRoute />
+      <ModalAction />
     </Provider>
   );
 };

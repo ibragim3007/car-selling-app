@@ -8,7 +8,7 @@ type TColorsButton = 'green' | 'black';
 type TSizeButton = 'large' | 'small';
 type TVariantButton = 'default' | 'outline' | 'ghost' | 'text';
 
-interface ButtonProps extends PressableProps {
+export interface ButtonProps extends PressableProps {
   variant?: TVariantButton;
   children?: React.ReactNode;
   color?: TColorsButton;

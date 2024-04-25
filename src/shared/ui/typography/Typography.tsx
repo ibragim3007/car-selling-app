@@ -15,7 +15,13 @@ const Typography = (props: TypographyProps) => {
   const typographyStyle = TypographyStyles[props.variant || 'body'];
   const colorStyle: TextProps['style'] = getColorsStyles(colors)[props.color || 'primary'];
 
-  const stylesText = StyleSheet.flatten([typographyStyle, fontStyles, colorStyle, props.style]);
+  const stylesText = StyleSheet.flatten([
+    props.textAlign && { textAlign: props.textAlign },
+    typographyStyle,
+    fontStyles,
+    colorStyle,
+    props.style,
+  ]);
 
   return (
     <Text {...props} style={stylesText}>

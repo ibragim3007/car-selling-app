@@ -1,10 +1,12 @@
 import { combineReducers, configureStore } from '@reduxjs/toolkit';
 import { appReducer } from './appReducer/appSlice';
 import { themeReducer } from './themeReducer/themeSlice';
+import { modalReducer } from './modalReducer/modalSlice';
 
 const rootReducer = combineReducers({
   appReducer,
   themeReducer,
+  modalReducer,
 });
 
 export const setupStore = () => {

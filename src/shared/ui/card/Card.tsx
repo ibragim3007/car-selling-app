@@ -10,12 +10,14 @@ export interface CardProps extends ViewProps {
   borderRadius?: number;
   p?: number;
   mt?: number;
+  flex?: number;
   color?: 'primary' | 'secondary';
   marginVertical?: number;
   paddingVertical?: number;
   paddingBottom?: number;
   paddingTop?: number;
   paddingHorizontal?: number;
+  fullWidth?: boolean;
 }
 
 const Card = ({
@@ -24,10 +26,12 @@ const Card = ({
   paddingVertical,
   paddingBottom,
   paddingTop,
+  fullWidth,
   paddingHorizontal,
   color = 'primary',
   p,
   mt,
+  flex,
   ...props
 }: CardProps) => {
   const { colors } = useTheme();
@@ -39,13 +43,15 @@ const Card = ({
   };
   const isFocused = useIsFocused();
 
-  const mergedStyles = StyleSheet.flatten([
+  const mergedStyles: ViewProps['style'] = StyleSheet.flatten([
     stylesView,
+    flex !== undefined && { flex },
     marginVertical !== undefined && { marginVertical: normalizedSize(marginVertical) },
     paddingVertical !== undefined && { paddingVertical: normalizedSize(paddingVertical) },
     paddingHorizontal !== undefined && { paddingHorizontal: normalizedSize(paddingHorizontal) },
     paddingTop !== undefined && { paddingTop: normalizedSize(paddingTop) },
     paddingBottom !== undefined && { paddingBottom: normalizedSize(paddingBottom) },
+    fullWidth !== undefined && { width: '100%' },
     props.style,
   ]);
 

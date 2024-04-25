@@ -1,4 +1,5 @@
 import MoreIcon from '@/icons/linear/more.svg';
+import DropDownAnimation from '@/shared/ui/animations/DropDownAnimation';
 import DropButton, { DropButtonProps } from '@/shared/ui/buttons/DropButton';
 import PressableIcon from '@/shared/ui/buttons/PressableButton';
 import DarkModal from '@/shared/ui/layout/DarkModal';
@@ -48,9 +49,9 @@ export const Dropdown = ({ items, ...props }: DropdownProps) => {
                 }}
               >
                 {items.map((item, index) => (
-                  <Animated.View key={index} entering={FadeInUp.delay(index * 60).springify()}>
+                  <DropDownAnimation key={index} index={index}>
                     <DropButton key={index} title={item.title} Icon={item.Icon} color={item.color} />
-                  </Animated.View>
+                  </DropDownAnimation>
                 ))}
               </GroupDropButton>
             </Animated.View>

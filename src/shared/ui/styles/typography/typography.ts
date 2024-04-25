@@ -18,11 +18,12 @@ type TypographyVariants =
 export type TypographyWeight = 'regular' | 'bold' | 'medium';
 
 export type TColor = 'primary' | 'secondary' | 'disabled' | 'white' | 'red' | 'success';
-
+export type TTextAlign = 'auto' | 'left' | 'right' | 'center' | 'justify';
 export interface TypographyProps extends TextProps {
   variant?: TypographyVariants;
   weight?: TypographyWeight;
   color?: TColor;
+  textAlign?: TTextAlign;
 }
 
 export const TypographyStyles: Record<TypographyVariants, TextProps['style']> = {

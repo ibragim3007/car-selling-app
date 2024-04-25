@@ -1,7 +1,5 @@
 import UnSubscripbeSuggestion from '@/components/UnSubscripbeSuggestion/UnSubscripbeSuggestion';
 import CarList from '@/modules/CarList';
-import MyCollectionSettings from '@/modules/MyCollectionsSetting';
-import Grid from '@/shared/ui/layout/Grid';
 import PageBackground from '@/shared/ui/layout/PageBackground';
 import React from 'react';
 
