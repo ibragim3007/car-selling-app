@@ -1,13 +1,12 @@
-import Button from '@/shared/ui/buttons/Button';
 import Input from '@/components/Controllers/Input/Input';
+import Button from '@/shared/ui/buttons/Button';
 import Grid from '@/shared/ui/layout/Grid';
 import Typography from '@/shared/ui/typography/Typography';
 import React from 'react';
 import { FieldValues, useForm } from 'react-hook-form';
-import ErrorCard from '@/components/Informers/ErrorCard';
 
 export const LoginForm = () => {
-  const { control, handleSubmit } = useForm();
+  const { control, handleSubmit, setFocus } = useForm();
 
   const pressButton = (data: FieldValues) => {
     console.log(data);
@@ -20,7 +19,12 @@ export const LoginForm = () => {
           style={{ borderColor: 'red' }}
           name="login"
           control={control}
+          enterKeyHint="next"
+          keyboardType="ascii-capable"
+          autoCapitalize="none"
+          onSubmitEditing={() => setFocus('password')}
           label="Логин"
+          autoCorrect={false}
           rules={{
             required: 'Логин обязателен',
           }}
@@ -28,6 +32,8 @@ export const LoginForm = () => {
         <Input
           name="password"
           label="Пароль"
+          enterKeyHint="enter"
+          onSubmitEditing={handleSubmit(pressButton)}
           rules={{
             required: 'Пароль обязателен',
             minLength: {
@@ -44,7 +50,7 @@ export const LoginForm = () => {
           }
         />
       </Grid>
-      <ErrorCard text="Ошибка" />
+      {/* <ErrorCard text="Ошибка" /> */}
       <Button onPress={handleSubmit(pressButton)}>Войти</Button>
     </>
   );

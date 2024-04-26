@@ -51,7 +51,7 @@ const Input = ({ label, name, rules, labelProps, control, secureTextEntry, right
         control={control}
         name={name}
         rules={rules}
-        render={({ field: { value, onBlur, onChange }, fieldState: { error } }) => (
+        render={({ field: { value, onBlur, onChange, ref }, fieldState: { error } }) => (
           <>
             <Grid
               align="center"
@@ -63,6 +63,7 @@ const Input = ({ label, name, rules, labelProps, control, secureTextEntry, right
               row
             >
               <TextInput
+                ref={ref}
                 value={value}
                 textContentType={props.textContentType || 'oneTimeCode'}
                 onBlur={() => {
