@@ -1,19 +1,16 @@
-import TagPrice from '@/components/Informers/TagPrice';
 import UnSubscripbeSuggestion from '@/components/UnSubscripbeSuggestion/UnSubscripbeSuggestion';
 import HomeHeaderInfo from '@/modules/HomeHeaderHelp';
+import NewsSlider from '@/modules/NewsSlider';
+
 import { useAppDispatch } from '@/shared/hooks/storeHooks';
 import { useTheme } from '@/shared/hooks/stylesHooks/useTheme';
 import { switchTheme } from '@/shared/store/themeReducer/actions/switchTheme';
 import { updatePrimary } from '@/shared/store/themeReducer/actions/updatePrimary';
-import Button from '@/shared/ui/buttons/Button';
 import Grid from '@/shared/ui/layout/Grid';
 import PageBackground from '@/shared/ui/layout/PageBackground';
-import Tag from '@/shared/ui/tags/Tag';
-import Typography from '@/shared/ui/typography/Typography';
-import { normalizedSize } from '@/shared/utils/size';
 
 import React from 'react';
-import { ScrollView, Switch, View } from 'react-native';
+import { ScrollView } from 'react-native';
 
 const HomePage = () => {
   const { currentTheme } = useTheme();
@@ -28,10 +25,18 @@ const HomePage = () => {
   };
 
   return (
-    <PageBackground color="primary" paddingHorizontal={8} paddingVertical={8}>
-      <UnSubscripbeSuggestion />
-      <HomeHeaderInfo />
-      {/* <ScrollView>
+    <ScrollView showsVerticalScrollIndicator={false}>
+      <PageBackground color="primary">
+        {/* <UnSubscripbeSuggestion /> */}
+        <Grid space="lg" paddingTop={8} paddingBottom={50}>
+          <Grid flex={1} paddingHorizontal={8}>
+            <HomeHeaderInfo />
+          </Grid>
+          <Grid flex={1}>
+            <NewsSlider />
+          </Grid>
+        </Grid>
+        {/* <ScrollView>
         <View style={{ gap: normalizedSize(10), margin: normalizedSize(20) }}>
           <Grid row align="center" gap={8}>
             <Switch value={currentTheme === 'light' ? false : true} onChange={swtichTheme} />
@@ -113,7 +118,8 @@ const HomePage = () => {
           </Grid>
         </View>
       </ScrollView> */}
-    </PageBackground>
+      </PageBackground>
+    </ScrollView>
   );
 };
 

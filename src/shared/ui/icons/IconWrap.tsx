@@ -7,7 +7,7 @@ interface IconWrapProps extends SvgProps {
   size?: number;
 }
 
-const IconWrap = ({ Icon, size = 25, ...props }: IconWrapProps) => {
+const IconWrap = ({ Icon, size = 16, ...props }: IconWrapProps) => {
   const sizeNorm = normalizedSize(size);
 
   return <Icon {...props} height={sizeNorm} width={sizeNorm} />;
