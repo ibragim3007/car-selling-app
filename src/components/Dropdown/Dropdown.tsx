@@ -1,12 +1,10 @@
 import MoreIcon from '@/icons/linear/more.svg';
-import DropDownAnimation from '@/shared/ui/animations/DropDownAnimation';
 import DropButton, { DropButtonProps } from '@/shared/ui/buttons/DropButton';
 import PressableIcon from '@/shared/ui/buttons/PressableButton';
 import DarkModal from '@/shared/ui/layout/DarkModal';
 import GroupDropButton from '@/shared/ui/layout/GroupDropButton';
 import React, { useState } from 'react';
 import { GestureResponderEvent, Modal, ViewProps } from 'react-native';
-import Animated, { FadeInUp } from 'react-native-reanimated';
 
 interface DropdownProps {
   items: DropButtonProps[];

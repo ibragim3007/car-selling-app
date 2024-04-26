@@ -27,6 +27,14 @@ const StackRoute = () => {
       <Stack.Screen name="(tabs)" options={{ title: 'Подборки' }} />
       <Stack.Screen name="cars/[id]" options={OptionsModal(colors)} />
       <Stack.Screen
+        name="(pages)/help"
+        options={{
+          headerTitle: 'Помощь',
+          headerShown: true,
+          headerLeft: () => <BackButton />,
+        }}
+      />
+      <Stack.Screen
         name={routes.auth.login}
         options={{
           headerStyle: { backgroundColor: colors.background.primary },

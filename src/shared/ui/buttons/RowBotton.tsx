@@ -8,7 +8,7 @@ import Grid from '../layout/Grid';
 import Typography from '../typography/Typography';
 
 interface RowButtonProps extends TouchableOpacityProps {
-  Icon: React.FC<SvgProps>;
+  Icon?: React.FC<SvgProps>;
   title: string;
 }
 
@@ -20,7 +20,7 @@ const RowButton = ({ Icon, title, ...props }: RowButtonProps) => {
       <Card p={0} borderRadius={0}>
         <Grid row align="center" justfity="space-between" padding={18}>
           <Grid space="md" row align="center">
-            <Icon height={iconSize} width={iconSize} />
+            {Icon && <Icon height={iconSize} width={iconSize} />}
             <Typography weight="medium" variant="subhead">
               {title}
             </Typography>

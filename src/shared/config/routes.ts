@@ -7,6 +7,9 @@ export const routes = {
     profile: `${tabs}/profile`,
     services: `${tabs}/services`,
   },
+  pages: {
+    help: 'help',
+  },
   auth: {
     login: 'auth/login',
     registration: 'auth/registration',
