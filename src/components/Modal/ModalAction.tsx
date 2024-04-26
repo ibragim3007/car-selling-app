@@ -24,7 +24,9 @@ const ModalAction = () => {
             <GroupDropButton borderRadius={16} style={{ width: 270, overflow: 'hidden' }}>
               <Card borderRadius={0}>
                 <Grid align="center" justfity="center" space="md">
-                  <Typography weight="bold">{displayData?.title}</Typography>
+                  <Typography textAlign="center" weight="bold">
+                    {displayData?.title}
+                  </Typography>
                   <Typography textAlign="center" variant="footnote">
                     {displayData?.subhead}
                   </Typography>

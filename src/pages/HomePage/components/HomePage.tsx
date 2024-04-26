@@ -1,4 +1,5 @@
 import TagPrice from '@/components/Informers/TagPrice';
+import UnSubscripbeSuggestion from '@/components/UnSubscripbeSuggestion/UnSubscripbeSuggestion';
 import HomeHeaderInfo from '@/modules/HomeHeaderHelp';
 import { useAppDispatch } from '@/shared/hooks/storeHooks';
 import { useTheme } from '@/shared/hooks/stylesHooks/useTheme';
@@ -28,6 +29,7 @@ const HomePage = () => {
 
   return (
     <PageBackground color="primary" paddingHorizontal={8} paddingVertical={8}>
+      <UnSubscripbeSuggestion />
       <HomeHeaderInfo />
       {/* <ScrollView>
         <View style={{ gap: normalizedSize(10), margin: normalizedSize(20) }}>

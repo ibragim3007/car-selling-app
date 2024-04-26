@@ -8,7 +8,7 @@ import React from 'react';
 const ServicePage = () => {
   const { colors } = useTheme();
   return (
-    <PageBackground paddingHorizontal={8} paddingVertical={8}>
+    <PageBackground color="primary" paddingHorizontal={8} paddingVertical={8}>
       <Grid space="sm">
         <Grid space="sm" row>
           <Grid flex={1}>
