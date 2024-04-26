@@ -7,6 +7,7 @@ interface PageBackgroundProps extends ViewProps {
   paddingHorizontal?: number;
   paddingVertical?: number;
   color?: 'secondary' | 'primary';
+  isPaddingPage?: boolean;
 }
 
 const PageBackground = ({
@@ -14,6 +15,7 @@ const PageBackground = ({
   paddingHorizontal,
   paddingVertical,
   color = 'secondary',
+  isPaddingPage,
   ...props
 }: PageBackgroundProps) => {
   const { colors } = useTheme();
@@ -23,6 +25,7 @@ const PageBackground = ({
       backgroundColor: colors.background[color],
       height: '100%',
     },
+    isPaddingPage !== undefined && { padding: normalizedSize(16) },
     paddingHorizontal !== undefined && { paddingHorizontal: normalizedSize(paddingHorizontal) },
     paddingVertical !== undefined && { paddingVertical: normalizedSize(paddingVertical) },
     style,

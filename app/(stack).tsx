@@ -29,7 +29,10 @@ const StackRoute = () => {
         name="auth/login"
         options={{ headerTitle: 'Aвторизация', headerShown: true, headerLeft: () => <BackButton /> }}
       />
-      <Stack.Screen name="auth/registration" options={OptionsModal(colors)} />
+      <Stack.Screen
+        name="auth/registration"
+        options={{ headerTitle: 'Регистрация', headerShown: true, headerLeft: () => <BackButton /> }}
+      />
       <Stack.Screen
         name="(mycollections)/mycollections"
         options={{

@@ -4,10 +4,10 @@ import { normalizedSize } from '@/shared/utils/size';
 import React, { useState } from 'react';
 import { Control, Controller, FieldValues, UseControllerProps } from 'react-hook-form';
 import { StyleSheet, TextInput, TextInputProps } from 'react-native';
-import PressableIcon from '../buttons/PressableButton';
-import Grid from '../layout/Grid';
-import { TypographyProps, fontWeight } from '../styles/typography/typography';
-import Typography from '../typography/Typography';
+import PressableIcon from '../../../shared/ui/buttons/PressableButton';
+import Grid from '../../../shared/ui/layout/Grid';
+import { TypographyProps, fontWeight } from '../../../shared/ui/styles/typography/typography';
+import Typography from '../../../shared/ui/typography/Typography';
 export interface InputProps extends TextInputProps {
   label?: string;
   labelProps?: TypographyProps;
@@ -38,14 +38,14 @@ const Input = ({ label, name, rules, labelProps, control, secureTextEntry, right
 
   return (
     <Grid space="sm">
-      <Grid row justfity="space-between">
-        {label && (
+      {label && (
+        <Grid row justfity="space-between">
           <Typography variant="subhead" {...labelProps}>
             {label}
           </Typography>
-        )}
-        {rightSide && rightSide}
-      </Grid>
+          {rightSide && rightSide}
+        </Grid>
+      )}
 
       <Controller
         control={control}
@@ -64,7 +64,7 @@ const Input = ({ label, name, rules, labelProps, control, secureTextEntry, right
             >
               <TextInput
                 value={value}
-                textContentType="oneTimeCode"
+                textContentType={props.textContentType || 'oneTimeCode'}
                 onBlur={() => {
                   setIsFocus(false);
                   return onBlur;
