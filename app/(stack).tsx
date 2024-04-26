@@ -23,20 +23,35 @@ const StackRoute = () => {
   const { colors } = useTheme();
 
   return (
-    <Stack screenOptions={{ headerShown: false }}>
+    <Stack screenOptions={{ headerShown: false, headerTitleStyle: { color: colors.text.primary } }}>
       <Stack.Screen name="(tabs)" options={{ title: 'Подборки' }} />
       <Stack.Screen name="cars/[id]" options={OptionsModal(colors)} />
       <Stack.Screen
         name={routes.auth.login}
-        options={{ headerTitle: 'Aвторизация', headerShown: true, headerLeft: () => <BackButton /> }}
+        options={{
+          headerStyle: { backgroundColor: colors.background.primary },
+          headerTitle: 'Aвторизация',
+          headerShown: true,
+          headerLeft: () => <BackButton />,
+        }}
       />
       <Stack.Screen
         name={routes.auth.registration}
-        options={{ headerTitle: 'Регистрация', headerShown: true, headerLeft: () => <BackButton /> }}
+        options={{
+          headerStyle: { backgroundColor: colors.background.primary },
+          headerTitle: 'Регистрация',
+          headerShown: true,
+          headerLeft: () => <BackButton />,
+        }}
       />
       <Stack.Screen
         name={routes.auth.recovery}
-        options={{ headerTitle: 'Восстановление доступа', headerShown: true, headerLeft: () => <BackButton /> }}
+        options={{
+          headerStyle: { backgroundColor: colors.background.primary },
+          headerTitle: 'Восстановление доступа',
+          headerShown: true,
+          headerLeft: () => <BackButton />,
+        }}
       />
       <Stack.Screen
         name="(mycollections)/mycollections"

@@ -39,6 +39,7 @@ const Input = ({
   const styles: InputProps['style'] = StyleSheet.flatten([
     secureTextEntry && { flex: 1 },
     {
+      color: colors.text.primary,
       width: '100%',
       fontSize: normalizedSize(15),
       padding: normalizedSize(16),
@@ -81,6 +82,7 @@ const Input = ({
                   setIsFocus(false);
                   return onBlur;
                 }}
+                placeholderTextColor={colors.text.secondary}
                 onChangeText={onChange}
                 onFocus={() => setIsFocus(true)}
                 secureTextEntry={showPassword}

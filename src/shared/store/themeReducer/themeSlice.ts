@@ -22,6 +22,9 @@ export const themeSlice = createSlice({
     setCurrentColors(state, action: PayloadAction<ITheme>) {
       state.colors = action.payload;
     },
+    setPrimaryColor(state, action: PayloadAction<string>) {
+      state.colors.accent.primary = action.payload;
+    },
   },
 });
 

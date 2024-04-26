@@ -1,7 +1,8 @@
 import TagPrice from '@/components/Informers/TagPrice';
-import { useTheme } from '@/shared/hooks/stylesHooks/useTheme';
 import { useAppDispatch } from '@/shared/hooks/storeHooks';
+import { useTheme } from '@/shared/hooks/stylesHooks/useTheme';
 import { switchTheme } from '@/shared/store/themeReducer/actions/switchTheme';
+import { updatePrimary } from '@/shared/store/themeReducer/actions/updatePrimary';
 import Button from '@/shared/ui/buttons/Button';
 import Grid from '@/shared/ui/layout/Grid';
 import PageBackground from '@/shared/ui/layout/PageBackground';
@@ -15,9 +16,13 @@ import { ScrollView, Switch, View } from 'react-native';
 const HomePage = () => {
   const { currentTheme } = useTheme();
 
-  const dispath = useAppDispatch();
+  const dispatch = useAppDispatch();
   const swtichTheme = () => {
-    dispath(switchTheme());
+    dispatch(switchTheme());
+  };
+
+  const changeTheme = (color: string) => {
+    dispatch(updatePrimary(color));
   };
 
   return (
@@ -27,6 +32,20 @@ const HomePage = () => {
           <Grid row align="center" gap={8}>
             <Switch value={currentTheme === 'light' ? false : true} onChange={swtichTheme} />
             <Typography>Тема</Typography>
+          </Grid>
+          <Grid row wrap gap={10}>
+            <Button style={{ backgroundColor: 'orange' }} onPress={() => changeTheme('orange')}>
+              primary
+            </Button>
+            <Button style={{ backgroundColor: 'dodgerblue' }} onPress={() => changeTheme('dodgerblue')}>
+              primary
+            </Button>
+            <Button style={{ backgroundColor: 'violet' }} onPress={() => changeTheme('violet')}>
+              primary
+            </Button>
+            <Button style={{ backgroundColor: '#DE3163' }} onPress={() => changeTheme('#DE3163')}>
+              primary
+            </Button>
           </Grid>
           <Typography variant="largeTitle">largeTitle</Typography>
           <Typography variant="title-1">Title-1</Typography>
