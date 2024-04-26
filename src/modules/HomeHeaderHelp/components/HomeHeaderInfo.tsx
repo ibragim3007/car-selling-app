@@ -8,6 +8,7 @@ const HomeHeaderInfo = () => {
   return (
     <Grid space="sm">
       <CardService
+        height={90}
         style={{ borderRadius: 24 }}
         href={routes.tabs.collections}
         backgroundColor={'#FFAD43'}

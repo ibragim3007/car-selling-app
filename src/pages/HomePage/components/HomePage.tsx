@@ -25,10 +25,10 @@ const HomePage = () => {
   };
 
   return (
-    <ScrollView showsVerticalScrollIndicator={false}>
+    <ScrollView bounces={false} showsVerticalScrollIndicator={false}>
       <PageBackground color="primary">
         {/* <UnSubscripbeSuggestion /> */}
-        <Grid space="lg" paddingTop={8} paddingBottom={50}>
+        <Grid space="md" paddingTop={8}>
           <Grid flex={1} paddingHorizontal={8}>
             <HomeHeaderInfo />
           </Grid>

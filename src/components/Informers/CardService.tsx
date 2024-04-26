@@ -15,6 +15,7 @@ interface CardServiceProp extends CardProps {
   Icon?: React.FC<SvgProps>;
   backgroundColor?: string;
   href: string;
+  height?: number;
 }
 
 const CardService = ({
@@ -23,6 +24,7 @@ const CardService = ({
   Icon,
   backgroundColor,
   additionalInfo,
+  height = 120,
   href,
   ...props
 }: CardServiceProp) => {
@@ -31,14 +33,14 @@ const CardService = ({
       backgroundColor: backgroundColor || 'transparent',
       padding: normalizedSize(12),
       overflow: 'hidden',
-      minHeight: normalizedSize(120),
+      minHeight: normalizedSize(height),
       borderRadius: 12,
     },
     props.style,
   ]);
 
   return (
-    <Pressable onPress={() => router.push(href)} style={[{ minHeight: normalizedSize(120), flex: props.flex }]}>
+    <Pressable onPress={() => router.push(href)} style={[{ minHeight: normalizedSize(height), flex: props.flex }]}>
       <Card {...props} style={styles}>
         <Grid flex={1} space="sm">
           <Grid flex={1} space="sm">
