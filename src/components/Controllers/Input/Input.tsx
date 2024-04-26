@@ -13,11 +13,22 @@ export interface InputProps extends TextInputProps {
   labelProps?: TypographyProps;
   rightSide?: React.ReactNode;
   control: Control<FieldValues, any>;
+  showError?: boolean;
   name: string;
   rules?: UseControllerProps['rules'];
 }
 
-const Input = ({ label, name, rules, labelProps, control, secureTextEntry, rightSide, ...props }: InputProps) => {
+const Input = ({
+  label,
+  name,
+  rules,
+  labelProps,
+  control,
+  showError = true,
+  secureTextEntry,
+  rightSide,
+  ...props
+}: InputProps) => {
   const { colors } = useTheme();
   const [showPassword, setShowPassword] = useState(secureTextEntry);
   const [isFocus, setIsFocus] = useState(false);
@@ -80,7 +91,7 @@ const Input = ({ label, name, rules, labelProps, control, secureTextEntry, right
                 <PressableIcon onPress={pressShowPassword} Icon={EyeIcon} style={{ padding: normalizedSize(12) }} />
               )}
             </Grid>
-            {error && (
+            {error && showError && (
               <Typography variant="caption-1" color="red">
                 {error?.message || 'Ошибка'}
               </Typography>

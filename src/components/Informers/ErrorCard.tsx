@@ -5,7 +5,7 @@ import { normalizedSize } from '@/shared/utils/size';
 import React, { PropsWithChildren } from 'react';
 
 interface ErrorCardProps extends PropsWithChildren {
-  text: string;
+  text?: string;
 }
 
 const ErrorCard = ({ text, children }: ErrorCardProps) => {
@@ -13,7 +13,7 @@ const ErrorCard = ({ text, children }: ErrorCardProps) => {
   return (
     <Grid style={{ backgroundColor: colors.background.negative, padding: normalizedSize(12), borderRadius: 12 }}>
       <Typography variant="footnote" color="red">
-        {children || text}
+        {children || text || 'Ошибка'}
       </Typography>
     </Grid>
   );
