@@ -36,25 +36,25 @@ export const Dropdown = ({ items, ...props }: DropdownProps) => {
       insideOptions={
         <Modal transparent={true} onRequestClose={closeModal} visible={isOpen}>
           <DarkModal onPress={closeModal}>
-            <Animated.View entering={FadeInUp.springify()}>
-              <GroupDropButton
-                borderRadius={16}
-                style={{
-                  position: 'absolute',
-                  overflow: 'hidden',
-                  // backgroundColor: 'transparent',
-                  zIndex: 30,
-                  right: 20,
-                  top: modalPosition.y + 30,
-                }}
-              >
-                {items.map((item, index) => (
-                  <DropDownAnimation key={index} index={index}>
-                    <DropButton key={index} title={item.title} Icon={item.Icon} color={item.color} />
-                  </DropDownAnimation>
-                ))}
-              </GroupDropButton>
-            </Animated.View>
+            {/* <Animated.View entering={FadeInUp.springify()}> */}
+            <GroupDropButton
+              borderRadius={16}
+              style={{
+                position: 'absolute',
+                overflow: 'hidden',
+                // backgroundColor: 'transparent',
+                zIndex: 30,
+                right: 20,
+                top: modalPosition.y + 30,
+              }}
+            >
+              {items.map((item, index) => (
+                // <DropDownAnimation key={index} index={index}>
+                <DropButton key={index} title={item.title} Icon={item.Icon} color={item.color} />
+                // </DropDownAnimation>
+              ))}
+            </GroupDropButton>
+            {/* </Animated.View> */}
           </DarkModal>
         </Modal>
       }

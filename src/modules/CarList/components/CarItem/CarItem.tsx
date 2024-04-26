@@ -11,7 +11,6 @@ import CarImage from './InsideCard/CarImage';
 import HeaderTitle from './InsideCard/HeaderTitle';
 import BottomInfo from './InsideCard/InfoList/BottomInfo';
 import InfoList from './InsideCard/InfoList/InfoList';
-import { normalizedSize } from '@/shared/utils/size';
 
 interface CarItemProps {
   car: ICar;

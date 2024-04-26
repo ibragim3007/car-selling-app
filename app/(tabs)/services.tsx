@@ -1,12 +1,8 @@
+import ServicePage from '@/pages/ServicePage/Main';
 import React from 'react';
-import { Text, View } from 'react-native';
 
 const Services = () => {
-  return (
-    <View>
-      <Text>Services</Text>
-    </View>
-  );
+  return <ServicePage />;
 };
 
 export default Services;

@@ -1,4 +1,5 @@
 import TagPrice from '@/components/Informers/TagPrice';
+import HomeHeaderInfo from '@/modules/HomeHeaderHelp';
 import { useAppDispatch } from '@/shared/hooks/storeHooks';
 import { useTheme } from '@/shared/hooks/stylesHooks/useTheme';
 import { switchTheme } from '@/shared/store/themeReducer/actions/switchTheme';
@@ -26,8 +27,9 @@ const HomePage = () => {
   };
 
   return (
-    <PageBackground>
-      <ScrollView>
+    <PageBackground color="primary" paddingHorizontal={8} paddingVertical={8}>
+      <HomeHeaderInfo />
+      {/* <ScrollView>
         <View style={{ gap: normalizedSize(10), margin: normalizedSize(20) }}>
           <Grid row align="center" gap={8}>
             <Switch value={currentTheme === 'light' ? false : true} onChange={swtichTheme} />
@@ -108,7 +110,7 @@ const HomePage = () => {
             </Grid>
           </Grid>
         </View>
-      </ScrollView>
+      </ScrollView> */}
     </PageBackground>
   );
 };
