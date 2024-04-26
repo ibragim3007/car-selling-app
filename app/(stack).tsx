@@ -6,6 +6,7 @@ import Add from '@/icons/linear/add.svg';
 import { Stack } from 'expo-router';
 import React from 'react';
 import { normalizedSize } from '@/shared/utils/size';
+import { routes } from '@/shared/config/routes';
 
 function OptionsModal(colors: ITheme) {
   return {
@@ -26,12 +27,16 @@ const StackRoute = () => {
       <Stack.Screen name="(tabs)" options={{ title: 'Подборки' }} />
       <Stack.Screen name="cars/[id]" options={OptionsModal(colors)} />
       <Stack.Screen
-        name="auth/login"
+        name={routes.auth.login}
         options={{ headerTitle: 'Aвторизация', headerShown: true, headerLeft: () => <BackButton /> }}
       />
       <Stack.Screen
-        name="auth/registration"
+        name={routes.auth.registration}
         options={{ headerTitle: 'Регистрация', headerShown: true, headerLeft: () => <BackButton /> }}
+      />
+      <Stack.Screen
+        name={routes.auth.recovery}
+        options={{ headerTitle: 'Восстановление доступа', headerShown: true, headerLeft: () => <BackButton /> }}
       />
       <Stack.Screen
         name="(mycollections)/mycollections"

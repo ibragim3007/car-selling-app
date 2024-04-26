@@ -1,4 +1,4 @@
-import Input from '@/components/Controllers/Input/Input';
+import InputTel from '@/components/Controllers/Input/InputTel';
 import Button from '@/shared/ui/buttons/Button';
 import Grid from '@/shared/ui/layout/Grid';
 import Typography from '@/shared/ui/typography/Typography';
@@ -13,21 +13,7 @@ const RegistrationModule = () => {
         Введите номер телефона и получите доступ к системе на 2 часа
       </Typography>
       <Grid space="lg">
-        <Grid space="sm">
-          <Typography weight="bold">Введите номер</Typography>
-          <Grid row align="center" space="sm">
-            <Typography weight="bold">+7</Typography>
-            <Grid flex={1}>
-              <Input
-                keyboardType="phone-pad"
-                name="tel"
-                control={control}
-                placeholder="(000) 000-00-00"
-                textContentType="telephoneNumber"
-              />
-            </Grid>
-          </Grid>
-        </Grid>
+        <InputTel name={'tel'} control={control} />
         <Grid space="lg">
           <Button>Отправить</Button>
           <Typography color="secondary" variant="subhead" textAlign="center">

@@ -49,7 +49,7 @@ const Button: React.FC<ButtonProps> = ({
         black: { backgroundColor: colors.background.neutral },
       },
       ghost: {
-        green: { backgroundColor: 'transparent' },
+        green: { backgroundColor: isPressed ? colors.background.success : 'transparent' },
         black: { backgroundColor: isPressed ? colors.background.neutral : 'transparent' },
       },
       text: {
@@ -114,7 +114,7 @@ const Button: React.FC<ButtonProps> = ({
   return (
     <Pressable {...props} style={buttonS} onTouchStart={onTouchStart} onTouchEnd={onTouchEnd}>
       {loading ? (
-        <ActivityIndicator size={'small'} color={colors.text.primary} />
+        <ActivityIndicator size={'small'} color={colors.text.white} />
       ) : (
         <Text {...styleText} style={textS}>
           {props.children}

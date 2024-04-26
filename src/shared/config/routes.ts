@@ -8,7 +8,8 @@ export const routes = {
     services: `${tabs}/services`,
   },
   auth: {
-    login: '/auth/login',
-    registration: '/auth/registration',
+    login: 'auth/login',
+    registration: 'auth/registration',
+    recovery: 'auth/recovery',
   },
 };

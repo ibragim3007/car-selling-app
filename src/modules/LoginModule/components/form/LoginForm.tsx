@@ -1,15 +1,18 @@
 import Input from '@/components/Controllers/Input/Input';
+import { routes } from '@/shared/config/routes';
 import Button from '@/shared/ui/buttons/Button';
 import Grid from '@/shared/ui/layout/Grid';
 import Typography from '@/shared/ui/typography/Typography';
+import { Link } from 'expo-router';
 import React from 'react';
 import { FieldValues, useForm } from 'react-hook-form';
+import { Alert } from 'react-native';
 
 export const LoginForm = () => {
   const { control, handleSubmit, setFocus } = useForm();
 
   const pressButton = (data: FieldValues) => {
-    console.log(data);
+    Alert.alert(JSON.stringify(data));
   };
 
   return (
@@ -44,9 +47,11 @@ export const LoginForm = () => {
           control={control}
           secureTextEntry
           rightSide={
-            <Typography variant="subhead" weight="medium" color="success">
-              Забыли пароль?
-            </Typography>
+            <Link href={routes.auth.recovery}>
+              <Typography variant="subhead" weight="medium" color="success">
+                Забыли пароль?
+              </Typography>
+            </Link>
           }
         />
       </Grid>
