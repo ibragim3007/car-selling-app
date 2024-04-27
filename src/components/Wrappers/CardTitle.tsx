@@ -9,11 +9,12 @@ interface CardTitleProps extends CardProps {
   isNoPadding?: boolean;
   rightHeader?: React.ReactNode;
   titleProps?: TypographyProps;
+  transparent?: boolean;
 }
 
-const CardTitle = ({ title, isNoPadding, rightHeader, titleProps, ...props }: CardTitleProps) => {
+const CardTitle = ({ title, isNoPadding, rightHeader, titleProps, transparent, ...props }: CardTitleProps) => {
   return (
-    <Card {...props} p={isNoPadding ? 0 : 16}>
+    <Card {...props} p={isNoPadding ? 0 : 16} style={transparent && { backgroundColor: 'transparent' }}>
       <Grid gap={isNoPadding ? 0 : 12}>
         <Grid row justfity="space-between" align="center">
           <Typography

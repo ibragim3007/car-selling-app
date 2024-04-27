@@ -7,7 +7,7 @@ interface AdviceCardProps extends IAdvice {}
 
 const AdviceCard = ({ title, description }: AdviceCardProps) => {
   return (
-    <CardTitle title={title} titleProps={{ weight: 'medium', variant: 'footnote' }}>
+    <CardTitle borderRadius={16} title={title} titleProps={{ weight: 'medium', variant: 'footnote' }}>
       <Typography variant="footnote">{description}</Typography>
     </CardTitle>
   );

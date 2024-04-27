@@ -66,7 +66,7 @@ const AdvicePage = () => {
   const insets = useSafeAreaInsets();
   return (
     <ScrollViewPage spaceVertical="sm">
-      <Grid space="md" style={{ marginBottom: insets.bottom * 2 }}>
+      <Grid space="sm" style={{ marginBottom: insets.bottom * 2 }}>
         {advices.map((advice, index) => (
           <AdviceCard key={index} title={advice.title} description={advice.description} />
         ))}

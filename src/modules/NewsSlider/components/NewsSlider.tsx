@@ -16,7 +16,12 @@ export const NewsSlider = () => {
 
   return (
     <Grid space="sm" flex={1}>
-      <CardTitle titleProps={{ variant: 'title-3' }} title="Новости" rightHeader={<IconWrap Icon={ArrowRight} />} />
+      <CardTitle
+        transparent
+        titleProps={{ variant: 'title-3' }}
+        title="Новости"
+        rightHeader={<IconWrap Icon={ArrowRight} />}
+      />
 
       <FlashList
         contentContainerStyle={{ paddingHorizontal: normalizedSize(8) }}

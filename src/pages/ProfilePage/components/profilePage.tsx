@@ -1,12 +1,12 @@
 import ProfileInfoBig from '@/modules/Profile/ProfileInfoBig';
-import PageBackground from '@/shared/ui/layout/PageBackground';
+import ScrollViewPage from '@/shared/ui/layout/ScrollViewPage';
 import React from 'react';
 
 const ProfilePage = () => {
   return (
-    <PageBackground>
+    <ScrollViewPage>
       <ProfileInfoBig />
-    </PageBackground>
+    </ScrollViewPage>
   );
 };
 
