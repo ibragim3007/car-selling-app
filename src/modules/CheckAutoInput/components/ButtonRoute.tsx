@@ -1,5 +1,6 @@
 import Input from '@/components/Controllers/Input/Input';
 import { IItem } from '@/components/Controllers/buttons/ToggleButton';
+import ErrorCard from '@/components/Informers/ErrorCard';
 import Button from '@/shared/ui/buttons/Button';
 import Grid from '@/shared/ui/layout/Grid';
 import React from 'react';
@@ -10,14 +11,31 @@ interface ButtonRouteProps {
 }
 
 const ButtonRoute = ({ item }: ButtonRouteProps) => {
-  const { control } = useForm();
-
+  const {
+    control,
+    handleSubmit,
+    formState: { errors },
+  } = useForm();
+  const pressButton = () => {
+    console.log('first');
+  };
   return (
-    <Grid space="sm" row wrap>
-      <Grid flex={1}>
-        <Input name="some" control={control} placeholder={item.title} />
+    <Grid space="sm">
+      <Grid space="sm" row wrap>
+        <Grid flex={1}>
+          <Input
+            name="some"
+            control={control}
+            placeholder={item.title}
+            showError={false}
+            rules={{ required: 'Нужны данные' }}
+          />
+        </Grid>
+        <Button onPress={handleSubmit(pressButton)} size="small">
+          Проверить
+        </Button>
       </Grid>
-      <Button size="small">Проверить</Button>
+      {errors.some && <ErrorCard text={errors.some?.message?.toString()} />}
     </Grid>
   );
 };
