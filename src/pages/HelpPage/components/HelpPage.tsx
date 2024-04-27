@@ -13,7 +13,7 @@ const HelpPage = () => {
         <Grid>
           <RowButton title="Диалог с оператором" />
           <RowButton onPress={() => router.push(routes.pages.support.advice)} title="Советы" />
-          <RowButton title="Часто задаваемые вопросы" />
+          <RowButton onPress={() => router.push(routes.pages.support.questions)} title="Часто задаваемые вопросы" />
           <RowButton title="Описание интерфейса" />
           <RowButton title="Скачать инструкцию" />
         </Grid>

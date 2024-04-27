@@ -47,6 +47,14 @@ const StackRoute = () => {
           headerLeft: () => <BackButton />,
         }}
       />
+      <Stack.Screen
+        name={`(pages)/${routes.pages.support.questions}`}
+        options={{
+          headerTitle: 'Часто задаваемые вопросы',
+          headerShown: true,
+          headerLeft: () => <BackButton />,
+        }}
+      />
       <Stack.Screen name="cars/[id]" options={OptionsModal(colors)} />
       <Stack.Screen
         name={routes.auth.login}

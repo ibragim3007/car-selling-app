@@ -11,6 +11,7 @@ export const routes = {
     support: {
       help: 'support/help',
       advice: 'support/advice',
+      questions: 'support/questions',
     },
   },
   auth: {

@@ -30,6 +30,7 @@ const ScrollViewPage = ({
     space !== undefined && { gap: normalizedSize(calculateSpacing(space)) },
     spaceHorizontal !== undefined && { paddingHorizontal: normalizedSize(calculateSpacing(spaceHorizontal)) },
     spaceVertical !== undefined && { paddingVertical: normalizedSize(calculateSpacing(spaceVertical)) },
+
     style,
   ]);
 
