@@ -26,11 +26,11 @@ const ToggleButton = ({ items, onChange, value }: ToggleButtonProps) => {
         <Pressable style={{ flex: 1 }} key={index} onPress={() => onPress(item)}>
           <Card
             color={value.value === item.value ? 'primary' : 'transparent'}
-            paddingHorizontal={8}
+            paddingHorizontal={7}
             paddingVertical={6}
-            style={{ shadowColor: '#000', shadowOpacity: 0.2, shadowOffset: { height: 2, width: 0 } }}
+            style={{ shadowColor: '#000', shadowOpacity: 0.1, shadowOffset: { height: 2, width: 0 } }}
           >
-            <Typography textAlign="center" variant="footnote">
+            <Typography lineBreakMode="clip" numberOfLines={1} textAlign="center" variant="footnote">
               {item.title}
             </Typography>
           </Card>
