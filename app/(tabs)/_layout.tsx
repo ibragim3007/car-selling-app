@@ -63,8 +63,9 @@ const TabsLayout = () => {
       <Tabs.Screen
         name="checks"
         options={{
-          headerTitle: 'Проверка',
+          headerTitle: 'Проверка авто',
           title: 'Проверка',
+          headerRight: () => null,
           tabBarIcon: ({ color, size }) => <Checks height={IconSize} width={IconSize} color={color} />,
         }}
       />

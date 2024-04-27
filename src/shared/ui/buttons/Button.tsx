@@ -87,6 +87,7 @@ const Button: React.FC<ButtonProps> = ({
     paddingVertical: size === 'large' ? normalizedSize(13) : normalizedSize(8),
     paddingHorizontal: size === 'large' ? normalizedSize(13) : normalizedSize(12),
     borderRadius: colors.styles.borderRadius,
+    justifyContent: 'center',
   };
 
   const styleText: TextProps['style'] = {

@@ -11,7 +11,7 @@ export interface CardProps extends ViewProps {
   p?: number;
   mt?: number;
   flex?: number;
-  color?: 'primary' | 'secondary';
+  color?: 'primary' | 'secondary' | 'transparent';
   marginVertical?: number;
   paddingVertical?: number;
   paddingBottom?: number;
@@ -36,7 +36,7 @@ const Card = ({
 }: CardProps) => {
   const { colors } = useTheme();
   const stylesView: ViewProps['style'] = {
-    backgroundColor: color === 'primary' ? colors.background.primary : colors.divider,
+    backgroundColor: color === 'transparent' ? color : color === 'primary' ? colors.background.primary : colors.divider,
     borderRadius: borderRadius !== undefined ? borderRadius : colors.styles.borderRadius,
     padding: p !== undefined ? normalizedSize(p) : normalizedSize(16),
     marginTop: mt !== undefined ? normalizedSize(mt) : 0,
