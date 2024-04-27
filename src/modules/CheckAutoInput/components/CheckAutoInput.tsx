@@ -3,7 +3,7 @@ import CardTitle from '@/components/Wrappers/CardTitle';
 import React, { useState } from 'react';
 import ButtonRoute from './ButtonRoute';
 
-const options = [
+export const options = [
   {
     title: 'VIN',
     value: 'VIN',
@@ -18,7 +18,7 @@ const options = [
   },
 ];
 
-const CheckAutoInput = () => {
+export const CheckAutoInput = () => {
   const [currentValue, setCurrentValue] = useState<IItem>({ title: 'Vin', value: 'VIN' });
   const onChange = (item: IItem) => {
     setCurrentValue(item);
@@ -30,5 +30,3 @@ const CheckAutoInput = () => {
     </CardTitle>
   );
 };
-
-export default CheckAutoInput;

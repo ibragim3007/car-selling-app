@@ -1,3 +1,3 @@
-import CheckAutoInput from './components/CheckAutoInput';
+import { CheckAutoInput } from './components/CheckAutoInput';
 
 export default CheckAutoInput;
