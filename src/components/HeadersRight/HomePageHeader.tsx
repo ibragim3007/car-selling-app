@@ -8,7 +8,7 @@ import HeaderRightWrapper from '../Wrappers/HeaderRightWrapper';
 const HomePageHeader = () => {
   return (
     <HeaderRightWrapper>
-      <PressableIcon onPress={() => router.push(routes.pages.help)} Icon={QAIcon} />
+      <PressableIcon onPress={() => router.push(routes.pages.support.help)} Icon={QAIcon} />
     </HeaderRightWrapper>
   );
 };

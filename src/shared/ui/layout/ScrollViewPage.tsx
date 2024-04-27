@@ -1,20 +1,13 @@
-import { TSpaceGrid, calculateSpacing } from '@/shared/helpers/styleHelp/calculateSpacing';
-import { useTheme } from '@/shared/hooks/stylesHooks/useTheme';
-import { normalizedSize } from '@/shared/utils/size';
 import React from 'react';
-import { StyleSheet, View, ViewProps } from 'react-native';
+import { ScrollView, ScrollViewProps, StyleSheet, ViewProps } from 'react-native';
+import { PageBackgroundProps } from './PageBackground';
+import { normalizedSize } from '@/shared/utils/size';
+import { useTheme } from '@/shared/hooks/stylesHooks/useTheme';
+import { calculateSpacing } from '@/shared/helpers/styleHelp/calculateSpacing';
 
-export interface PageBackgroundProps extends ViewProps {
-  paddingHorizontal?: number;
-  paddingVertical?: number;
-  color?: 'secondary' | 'primary';
-  isPaddingPage?: boolean;
-  space?: TSpaceGrid;
-  spaceVertical?: TSpaceGrid;
-  spaceHorizontal?: TSpaceGrid;
-}
+interface ScrollViewPageProps extends ScrollViewProps, PageBackgroundProps {}
 
-const PageBackground = ({
+const ScrollViewPage = ({
   style,
   paddingHorizontal,
   paddingVertical,
@@ -24,9 +17,8 @@ const PageBackground = ({
   spaceHorizontal,
   spaceVertical,
   ...props
-}: PageBackgroundProps) => {
+}: ScrollViewPageProps) => {
   const { colors } = useTheme();
-
   const styles: ViewProps['style'] = StyleSheet.flatten([
     {
       backgroundColor: colors.background[color],
@@ -41,7 +33,7 @@ const PageBackground = ({
     style,
   ]);
 
-  return <View {...props} style={styles} />;
+  return <ScrollView style={styles} {...props} />;
 };
 
-export default PageBackground;
+export default ScrollViewPage;

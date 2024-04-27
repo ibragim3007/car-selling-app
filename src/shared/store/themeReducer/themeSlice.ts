@@ -8,7 +8,7 @@ interface StoreInterface {
 }
 
 const initialState: StoreInterface = {
-  colors: themes[0],
+  colors: themes[1],
   currentTheme: 'light',
 };
 

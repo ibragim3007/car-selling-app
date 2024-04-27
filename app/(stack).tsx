@@ -23,21 +23,34 @@ const StackRoute = () => {
   const { colors } = useTheme();
 
   return (
-    <Stack screenOptions={{ headerShown: false, headerTitleStyle: { color: colors.text.primary } }}>
+    <Stack
+      screenOptions={{
+        headerShown: false,
+        headerTitleStyle: { color: colors.text.primary },
+        headerStyle: { backgroundColor: colors.background.primary },
+      }}
+    >
       <Stack.Screen name="(tabs)" options={{ title: 'Подборки' }} />
-      <Stack.Screen name="cars/[id]" options={OptionsModal(colors)} />
       <Stack.Screen
-        name="(pages)/help"
+        name={`(pages)/${routes.pages.support.advice}`}
+        options={{
+          headerTitle: 'Советы',
+          headerShown: true,
+          headerLeft: () => <BackButton />,
+        }}
+      />
+      <Stack.Screen
+        name={`(pages)/${routes.pages.support.help}`}
         options={{
           headerTitle: 'Помощь',
           headerShown: true,
           headerLeft: () => <BackButton />,
         }}
       />
+      <Stack.Screen name="cars/[id]" options={OptionsModal(colors)} />
       <Stack.Screen
         name={routes.auth.login}
         options={{
-          headerStyle: { backgroundColor: colors.background.primary },
           headerTitle: 'Aвторизация',
           headerShown: true,
           headerLeft: () => <BackButton />,
@@ -46,7 +59,6 @@ const StackRoute = () => {
       <Stack.Screen
         name={routes.auth.registration}
         options={{
-          headerStyle: { backgroundColor: colors.background.primary },
           headerTitle: 'Регистрация',
           headerShown: true,
           headerLeft: () => <BackButton />,
@@ -55,7 +67,6 @@ const StackRoute = () => {
       <Stack.Screen
         name={routes.auth.recovery}
         options={{
-          headerStyle: { backgroundColor: colors.background.primary },
           headerTitle: 'Восстановление доступа',
           headerShown: true,
           headerLeft: () => <BackButton />,
@@ -67,7 +78,6 @@ const StackRoute = () => {
           headerShown: true,
           headerBackButtonMenuEnabled: true,
           headerTitle: '',
-          headerStyle: { backgroundColor: colors.background.primary },
           headerRight: () => <Add height={normalizedSize(16)} width={normalizedSize(16)} />,
           headerLeft: () => <BackButton />,
         }}
