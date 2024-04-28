@@ -8,12 +8,12 @@ import React, { PropsWithChildren } from 'react';
 interface RowInfoProps extends PropsWithChildren {
   title: string;
   value?: string | number;
-  isEven: boolean;
+  isEven?: boolean;
   transparent?: boolean;
   valueProps?: TypographyProps;
 }
 
-const RowInfo = ({ title, value, isEven, transparent, valueProps, children }: RowInfoProps) => {
+const RowInfo = ({ title, value, isEven = true, transparent, valueProps, children }: RowInfoProps) => {
   const { colors } = useTheme();
   const rowColor = transparent ? 'transparent' : isEven ? colors.background.primary : colors.background.neutral;
 

@@ -4,7 +4,7 @@ import React from 'react';
 import { DimensionValue, StyleProp, ViewStyle } from 'react-native';
 import { FlexAlignType, StyleSheet, View, ViewProps } from 'react-native';
 
-interface GridProps extends ViewProps {
+export interface GridProps extends ViewProps {
   flex?: number;
   color?: string;
   wrap?: boolean;
