@@ -1,6 +1,6 @@
 import { TSpaceGrid, calculateSpacing } from '@/shared/helpers/styleHelp/calculateSpacing';
 import { useTheme } from '@/shared/hooks/stylesHooks/useTheme';
-import { normalizedSize } from '@/shared/utils/size';
+import { isTablet, normalizedSize } from '@/shared/utils/size';
 import React from 'react';
 import { StyleSheet, View, ViewProps } from 'react-native';
 
@@ -32,6 +32,7 @@ const PageBackground = ({
       backgroundColor: colors.background[color],
       height: '100%',
     },
+    isTablet() && { alignSelf: 'center', maxWidth: '70%' },
     isPaddingPage !== undefined && { padding: normalizedSize(16) },
     paddingHorizontal !== undefined && { paddingHorizontal: normalizedSize(paddingHorizontal) },
     paddingVertical !== undefined && { paddingVertical: normalizedSize(paddingVertical) },

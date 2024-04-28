@@ -8,20 +8,24 @@ const scaleVertical = SCREEN_HEIGHT / 812;
 
 export function normalizedSize(size: number) {
   const newSize = size * scale;
-  if (Platform.OS === 'ios') {
+  if (isTablet()) {
+    return size;
+  } else if (Platform.OS === 'ios') {
     return Math.round(PixelRatio.roundToNearestPixel(newSize));
-  } else {
+  } else if (Platform.OS === 'android') {
     return Math.round(PixelRatio.roundToNearestPixel(newSize)) - 1;
   }
+  return size;
 }
 
 export function normalizedSizeVertical(size: number) {
   const newSize = size * scaleVertical;
   if (Platform.OS === 'ios') {
     return Math.round(PixelRatio.roundToNearestPixel(newSize));
-  } else {
+  } else if (Platform.OS === 'android') {
     return Math.round(PixelRatio.roundToNearestPixel(newSize)) - 1;
   }
+  return size;
 }
 
 export function isTablet() {

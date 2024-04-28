@@ -1,7 +1,7 @@
 import React from 'react';
 import { ScrollView, ScrollViewProps, StyleSheet, ViewProps } from 'react-native';
 import { PageBackgroundProps } from './PageBackground';
-import { normalizedSize } from '@/shared/utils/size';
+import { isTablet, normalizedSize } from '@/shared/utils/size';
 import { useTheme } from '@/shared/hooks/stylesHooks/useTheme';
 import { calculateSpacing } from '@/shared/helpers/styleHelp/calculateSpacing';
 
@@ -24,6 +24,7 @@ const ScrollViewPage = ({
       backgroundColor: colors.background[color],
       height: '100%',
     },
+    isTablet() && { alignSelf: 'center', width: '70%' },
     isPaddingPage !== undefined && { padding: normalizedSize(16) },
     paddingHorizontal !== undefined && { paddingHorizontal: normalizedSize(paddingHorizontal) },
     paddingVertical !== undefined && { paddingVertical: normalizedSize(paddingVertical) },

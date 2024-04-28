@@ -28,7 +28,8 @@ const ToggleButton = ({ items, onChange, value }: ToggleButtonProps) => {
       color={colors.background.neutral}
       style={{ borderRadius: colors.styles.borderRadius, overflow: 'hidden' }}
       row
-      padding={2}
+      paddingVertical={2}
+      paddingHorizontal={3}
     >
       {items.map((item, index) => (
         <Grid flex={1} row key={index} align="center">
@@ -43,12 +44,12 @@ const ToggleButton = ({ items, onChange, value }: ToggleButtonProps) => {
           >
             <Card
               color={value.value === item.value ? 'primary' : 'transparent'}
-              // paddingHorizontal={7}
+              paddingHorizontal={8}
               paddingVertical={6}
               style={{
                 shadowColor: '#000',
-                shadowOpacity: 0.2,
-                shadowOffset: { height: 2, width: 0 },
+                shadowOpacity: 0.12,
+                shadowOffset: { height: 3, width: 0 },
                 transform: [{ scale: 1.015 }],
               }}
             >
