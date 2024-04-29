@@ -90,6 +90,16 @@ const StackRoute = () => {
           headerLeft: () => <BackButton />,
         }}
       />
+      <Stack.Screen
+        name="(pages)/profile/edit"
+        options={{
+          headerShown: true,
+          headerBackButtonMenuEnabled: true,
+          headerTitle: '',
+          headerRight: () => null,
+          headerLeft: () => <BackButton />,
+        }}
+      />
     </Stack>
   );
 };

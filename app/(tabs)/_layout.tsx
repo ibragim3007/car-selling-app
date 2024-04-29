@@ -1,3 +1,4 @@
+import EditProfile from '@/components/HeadersRight/EditProfile';
 import HeaderBar from '@/components/HeadersRight/HeaderBar';
 import HomePageHeader from '@/components/HeadersRight/HomePageHeader';
 import HeaderIcon from '@/components/HeadersTitle/HeaderIcon';
@@ -7,7 +8,6 @@ import Home from '@/icons/linear/home-2.svg';
 import Checks from '@/icons/linear/search-status.svg';
 import Profile from '@/icons/linear/user-square.svg';
 
-import EditProfile from '@/modules/Profile/EditProfile';
 import { useTheme } from '@/shared/hooks/stylesHooks/useTheme';
 import { fontWeight } from '@/shared/ui/styles/typography/typography';
 import { normalizedSize } from '@/shared/utils/size';

@@ -13,6 +13,9 @@ export const routes = {
       advice: 'support/advice',
       questions: 'support/questions',
     },
+    profile: {
+      edit: 'profile/edit',
+    },
   },
   auth: {
     login: 'auth/login',

@@ -12,12 +12,21 @@ interface DropdownProps {
   modal?: boolean;
 }
 
-export const Dropdown = ({ items, ...props }: DropdownProps) => {
+export const Dropdown = ({ items }: DropdownProps) => {
   const [isOpen, setModalVisible] = useState(false);
 
   const closeModal = () => {
     setModalVisible(!isOpen);
   };
+
+  const pressOnItem = (e: GestureResponderEvent, item: DropButtonProps) => {
+    closeModal();
+
+    if (item.onPress) {
+      item.onPress(e);
+    }
+  };
+
   const [modalPosition, setModalPosition] = useState({ x: 0, y: 0 });
 
   const openModal = (event: GestureResponderEvent) => {
@@ -48,7 +57,13 @@ export const Dropdown = ({ items, ...props }: DropdownProps) => {
             >
               {items.map((item, index) => (
                 // <DropDownAnimation key={index} index={index}>
-                <DropButton key={index} title={item.title} Icon={item.Icon} color={item.color} />
+                <DropButton
+                  key={index}
+                  title={item.title}
+                  Icon={item.Icon}
+                  color={item.color}
+                  onPress={e => pressOnItem(e, item)}
+                />
                 // </DropDownAnimation>
               ))}
             </GroupDropButton>

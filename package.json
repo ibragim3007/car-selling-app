@@ -12,6 +12,7 @@
   "dependencies": {
     "@expo-google-fonts/montserrat": "^0.2.3",
     "@expo/vector-icons": "^14.0.0",
+    "@gorhom/bottom-sheet": "^4.6.1",
     "@reduxjs/toolkit": "^2.2.3",
     "@shopify/flash-list": "1.6.3",
     "@types/react-redux": "^7.1.33",

@@ -8,9 +8,10 @@ export interface PressableIconProps extends PressableProps {
   Icon: React.FC<SvgProps>;
   isPressed?: boolean;
   insideOptions?: React.ReactNode;
+  size?: number;
 }
 
-const PressableIcon = ({ Icon, isPressed, insideOptions, ...props }: PressableIconProps) => {
+const PressableIcon = ({ Icon, isPressed, insideOptions, size, ...props }: PressableIconProps) => {
   const { colors } = useTheme();
   const styles = StyleSheet.flatten([
     {
@@ -22,7 +23,7 @@ const PressableIcon = ({ Icon, isPressed, insideOptions, ...props }: PressableIc
   ]);
   return (
     <Pressable {...props} style={styles}>
-      <Icon />
+      {size ? <Icon width={normalizedSize(size)} height={normalizedSize(size)} /> : <Icon />}
       {insideOptions}
     </Pressable>
   );
