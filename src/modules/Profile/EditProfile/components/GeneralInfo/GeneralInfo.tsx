@@ -1,37 +1,17 @@
-import Input from '@/components/Controllers/Input/Input';
-import GoInButton from '@/components/Controllers/buttons/GoInButton';
-import BottomSheetModal from '@/components/Modal/BottomSheetModal';
+import BottomSheetInput from '@/components/Controllers/Input/BottomSheetInput';
 import CardTitle from '@/components/Wrappers/CardTitle';
 import Divider from '@/shared/ui/divider/Divider';
-import { BottomSheetModal as BTMS, useBottomSheetModal } from '@gorhom/bottom-sheet';
 
-import React, { useRef } from 'react';
-import { useForm } from 'react-hook-form';
+import React from 'react';
 
 const GeneralInfo = () => {
-  const buttomSheetRefName = useRef<BTMS>(null);
-  const buttomSheetRefLastName = useRef<BTMS>(null);
-  const { dismiss } = useBottomSheetModal();
-  const { control, setFocus } = useForm();
-  const handlePressName = () => {
-    setFocus('name');
-    buttomSheetRefName.current?.present();
-  };
-  const handlePressLastName = () => buttomSheetRefLastName.current?.present();
-
   return (
     <CardTitle title="Основная информация" borderRadius={16}>
-      <GoInButton title="Имя" value={'Иван'} fn={handlePressName} />
-      <BottomSheetModal title={'Имя'} ref={buttomSheetRefName}>
-        <Input control={control} name="name" defaultValue="Иван" />
-      </BottomSheetModal>
+      <BottomSheetInput name="name" title="Имя" value={'Иван'} />
       <Divider />
-      <GoInButton title="Фамилия" value={'Иванов'} fn={handlePressLastName} />
-      <BottomSheetModal title={'Фамилия'} ref={buttomSheetRefLastName}>
-        <Input control={control} name="lastname" defaultValue="Иванов" />
-      </BottomSheetModal>
+      <BottomSheetInput name="lastname" title="Фамилия" value={'Иванов'} />
       <Divider />
-      <GoInButton title="Компания" value={'Частное лицо'} />
+      <BottomSheetInput title="Компания" value={'Частное лицо'} />
     </CardTitle>
   );
 };
