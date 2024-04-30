@@ -7,7 +7,6 @@ export type Ref = BottomSheetModal;
 
 interface CustomBottomSheetModalProps extends PropsWithChildren {
   title: string;
-  onClose?: () => void;
 }
 
 const CustomBottomSheetModal = forwardRef<Ref, CustomBottomSheetModalProps>((props, ref) => {

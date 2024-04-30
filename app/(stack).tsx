@@ -91,11 +91,31 @@ const StackRoute = () => {
         }}
       />
       <Stack.Screen
-        name="(pages)/profile/edit"
+        name={`(pages)/${routes.pages.profile.edit}`}
         options={{
           headerShown: true,
           headerBackButtonMenuEnabled: true,
-          headerTitle: '',
+          headerTitle: 'Настройки профиля',
+          headerRight: () => null,
+          headerLeft: () => <BackButton />,
+        }}
+      />
+      <Stack.Screen
+        name={`(pages)/${routes.pages.profile.updatePassword}`}
+        options={{
+          headerShown: true,
+          headerBackButtonMenuEnabled: true,
+          headerTitle: 'Сменить пароль',
+          headerRight: () => null,
+          headerLeft: () => <BackButton />,
+        }}
+      />
+      <Stack.Screen
+        name={`(pages)/${routes.pages.profile.delete}`}
+        options={{
+          headerShown: true,
+          headerBackButtonMenuEnabled: true,
+          headerTitle: 'Удаление аккаунта',
           headerRight: () => null,
           headerLeft: () => <BackButton />,
         }}

@@ -1,4 +1,4 @@
-import React, { useRef } from 'react';
+import React, { useRef, useState } from 'react';
 import GoInButton from '../buttons/GoInButton';
 
 import BottomSheetModal from '@/components/Modal/BottomSheetModal';
@@ -15,17 +15,18 @@ interface BottomSheetInputProps {
 const BottomSheetInput = ({ title, value, name }: BottomSheetInputProps) => {
   const { control } = useForm();
   const buttomSheetRef = useRef<BTMS>(null);
-
+  const [buttonFocus, setButtonFocus] = useState(false);
   const pressOnIcon = () => {
     if (name) {
+      setButtonFocus(true);
       buttomSheetRef.current?.present();
     }
   };
 
   return (
     <GoInButton title={title} value={value} name={name} fn={pressOnIcon}>
-      <BottomSheetModal title={title} ref={buttomSheetRef} onClose={pressOnIcon}>
-        {name && <Input autoFocus control={control} name={name} defaultValue={String(value)} />}
+      <BottomSheetModal title={title} ref={buttomSheetRef}>
+        {name && <Input autoFocus={buttonFocus} control={control} name={name} defaultValue={String(value)} />}
       </BottomSheetModal>
     </GoInButton>
   );

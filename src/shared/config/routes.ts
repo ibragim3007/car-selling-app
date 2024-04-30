@@ -15,6 +15,8 @@ export const routes = {
     },
     profile: {
       edit: 'profile/edit',
+      updatePassword: 'profile/update-password',
+      delete: 'profile/delete',
     },
   },
   auth: {
