@@ -1,17 +1,17 @@
 import Grid from '@/shared/ui/layout/Grid';
-import SwitchCustom from '@/shared/ui/switch/Switch';
+import SwitchCustom, { SwitchCustomProps } from '@/shared/ui/switch/Switch';
 import Typography from '@/shared/ui/typography/Typography';
 import React from 'react';
 
-interface TitleSwitchProps {
+interface TitleSwitchProps extends SwitchCustomProps {
   title: string;
 }
 
-const TitleSwitch = ({ title }: TitleSwitchProps) => {
+const TitleSwitch = ({ title, ...props }: TitleSwitchProps) => {
   return (
     <Grid row justfity="space-between">
       <Typography>{title}</Typography>
-      <SwitchCustom />
+      <SwitchCustom {...props} />
     </Grid>
   );
 };

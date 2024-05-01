@@ -24,7 +24,12 @@ const CardTitle = ({
   ...props
 }: CardTitleProps) => {
   return (
-    <Card p={isNoPadding ? 0 : 16} style={transparent && { backgroundColor: 'transparent' }} {...props}>
+    <Card
+      borderRadius={16}
+      p={isNoPadding ? 0 : 16}
+      style={transparent && { backgroundColor: 'transparent' }}
+      {...props}
+    >
       <Grid gap={isNoPadding ? 0 : 12}>
         <Pressable onPress={onPressHeader}>
           <Grid row justfity="space-between" align="center">

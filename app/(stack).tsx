@@ -120,6 +120,16 @@ const StackRoute = () => {
           headerLeft: () => <BackButton />,
         }}
       />
+      <Stack.Screen
+        name={'(pages)/settings/index'}
+        options={{
+          headerShown: true,
+          headerBackButtonMenuEnabled: true,
+          headerTitle: 'Настройки',
+          headerRight: () => null,
+          headerLeft: () => <BackButton />,
+        }}
+      />
     </Stack>
   );
 };

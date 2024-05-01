@@ -25,7 +25,7 @@ const RowButton = ({ Icon, title, ...props }: RowButtonProps) => {
               {title}
             </Typography>
           </Grid>
-          <ArrowRight width={iconSize} height={iconSize} />
+          {props.onPress && <ArrowRight width={iconSize} height={iconSize} />}
         </Grid>
       </Card>
     </TouchableOpacity>

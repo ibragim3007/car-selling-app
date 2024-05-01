@@ -13,6 +13,9 @@ export const routes = {
       advice: 'support/advice',
       questions: 'support/questions',
     },
+    settings: {
+      index: 'settings',
+    },
     profile: {
       edit: 'profile/edit',
       updatePassword: 'profile/update-password',
