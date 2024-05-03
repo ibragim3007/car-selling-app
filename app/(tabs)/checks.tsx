@@ -1,12 +1,8 @@
+import ChecksPage from '@/pages/ChecksPage';
 import React from 'react';
-import { Text, View } from 'react-native';
 
 const Checks = () => {
-  return (
-    <View>
-      <Text>Checks</Text>
-    </View>
-  );
+  return <ChecksPage />;
 };
 
 export default Checks;

@@ -1,19 +1,17 @@
-import { Dropdown } from '@/components/Dropdown/Dropdown';
-import EditIcon from '@/icons/linear/edit-2.svg';
-import LogOutIcon from '@/icons/linear/logout.svg';
+import Grid from '@/shared/ui/layout/Grid';
 import React from 'react';
-import { View } from 'react-native';
-const EditProfile = () => {
+import ContactInfo from './ContactInfo/ContactInfo';
+import CredentialsInfo from './CredentialsInfo/CredentialsInfo';
+import DeleteAccount from './DeleteAccount/DeleteAccount';
+import GeneralInfo from './GeneralInfo/GeneralInfo';
+
+export const EditProfile = () => {
   return (
-    <View style={{ marginRight: 20 }}>
-      <Dropdown
-        items={[
-          { title: 'Редактировать профиль', Icon: EditIcon },
-          { title: 'Сменить пользователя', Icon: LogOutIcon, color: 'red' },
-        ]}
-      />
-    </View>
+    <Grid space="sm">
+      <GeneralInfo />
+      <ContactInfo />
+      <CredentialsInfo />
+      <DeleteAccount />
+    </Grid>
   );
 };
-
-export default EditProfile;

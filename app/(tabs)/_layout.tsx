@@ -1,11 +1,13 @@
-import HeaderIcon from '@/components/HeaderIcon/HeaderIcon';
+import EditProfile from '@/components/HeadersRight/EditProfile';
+import HeaderBar from '@/components/HeadersRight/HeaderBar';
+import HomePageHeader from '@/components/HeadersRight/HomePageHeader';
+import HeaderIcon from '@/components/HeadersTitle/HeaderIcon';
 import Car from '@/icons/linear/car.svg';
 import Service from '@/icons/linear/category-2.svg';
 import Home from '@/icons/linear/home-2.svg';
 import Checks from '@/icons/linear/search-status.svg';
 import Profile from '@/icons/linear/user-square.svg';
-import HeaderBar from '@/modules/HeaderBar';
-import EditProfile from '@/modules/Profile/EditProfile';
+
 import { useTheme } from '@/shared/hooks/stylesHooks/useTheme';
 import { fontWeight } from '@/shared/ui/styles/typography/typography';
 import { normalizedSize } from '@/shared/utils/size';
@@ -23,7 +25,6 @@ const TabsLayout = () => {
         headerRight: () => <HeaderBar />,
         tabBarInactiveTintColor: colors.text.secondary,
         tabBarActiveTintColor: colors.text.primary,
-
         headerStyle: {
           backgroundColor: colors.background.primary,
         },
@@ -44,8 +45,9 @@ const TabsLayout = () => {
       <Tabs.Screen
         name="home"
         options={{
-          title: 'Главная',
           href: 'home',
+          headerTitle: () => <HeaderIcon />,
+          headerRight: () => <HomePageHeader />,
           tabBarIcon: ({ color, size }) => <Home height={IconSize} width={IconSize} color={color} />,
         }}
       />
@@ -61,8 +63,9 @@ const TabsLayout = () => {
       <Tabs.Screen
         name="checks"
         options={{
-          headerTitle: 'Проверка',
+          headerTitle: 'Проверка авто',
           title: 'Проверка',
+          headerRight: () => null,
           tabBarIcon: ({ color, size }) => <Checks height={IconSize} width={IconSize} color={color} />,
         }}
       />

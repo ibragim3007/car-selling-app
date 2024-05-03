@@ -4,7 +4,7 @@ import { ActivityIndicator, Pressable, PressableProps, StyleSheet, Text, TextPro
 import { fontWeight } from '../styles/typography/typography';
 import { normalizedSize } from '@/shared/utils/size';
 
-type TColorsButton = 'green' | 'black';
+type TColorsButton = 'green' | 'black' | 'red';
 type TSizeButton = 'large' | 'small';
 type TVariantButton = 'default' | 'outline' | 'ghost' | 'text';
 
@@ -43,18 +43,30 @@ const Button: React.FC<ButtonProps> = ({
         black: {
           backgroundColor: props.disabled ? colors.accent.disabled : isPressed ? '#4D4D53' : colors.text.primary,
         },
+        red: {
+          backgroundColor: colors.accent.red,
+        },
       },
       outline: {
         green: { backgroundColor: colors.accent.primary_pale_transparent },
         black: { backgroundColor: colors.background.neutral },
+        red: {
+          backgroundColor: colors.accent.red,
+        },
       },
       ghost: {
-        green: { backgroundColor: 'transparent' },
+        green: { backgroundColor: isPressed ? colors.background.success : 'transparent' },
         black: { backgroundColor: isPressed ? colors.background.neutral : 'transparent' },
+        red: {
+          backgroundColor: colors.accent.red,
+        },
       },
       text: {
         green: { backgroundColor: 'transparent' },
         black: { backgroundColor: 'transparent' },
+        red: {
+          backgroundColor: colors.accent.red,
+        },
       },
     }),
     [colors, isPressed, props.disabled],
@@ -64,18 +76,22 @@ const Button: React.FC<ButtonProps> = ({
       default: {
         green: { color: colors.text.white },
         black: { color: colors.text.white },
+        red: { color: colors.text.white },
       },
       outline: {
         green: { color: colors.accent.primary },
         black: { color: colors.text.primary },
+        red: { color: colors.text.primary },
       },
       ghost: {
         green: { color: colors.accent.primary },
         black: { color: colors.text.primary },
+        red: { color: colors.text.primary },
       },
       text: {
         green: { color: colors.accent.primary },
         black: { color: colors.text.primary },
+        red: { color: colors.text.primary },
       },
     }),
     [colors],
@@ -87,13 +103,14 @@ const Button: React.FC<ButtonProps> = ({
     paddingVertical: size === 'large' ? normalizedSize(13) : normalizedSize(8),
     paddingHorizontal: size === 'large' ? normalizedSize(13) : normalizedSize(12),
     borderRadius: colors.styles.borderRadius,
+    justifyContent: 'center',
   };
 
   const styleText: TextProps['style'] = {
     color: colors.text.white,
     fontFamily: fontWeight.medium,
     textAlign: 'center',
-    fontSize: normalizedSize(size === 'large' ? 16 : 14),
+    fontSize: normalizedSize(size === 'large' ? 16 : 15),
   };
 
   const onTouchStart = () => {
@@ -114,7 +131,7 @@ const Button: React.FC<ButtonProps> = ({
   return (
     <Pressable {...props} style={buttonS} onTouchStart={onTouchStart} onTouchEnd={onTouchEnd}>
       {loading ? (
-        <ActivityIndicator size={'small'} color={colors.text.primary} />
+        <ActivityIndicator size={'small'} color={colors.text.white} />
       ) : (
         <Text {...styleText} style={textS}>
           {props.children}

@@ -1,19 +1,20 @@
 import { useTheme } from '@/shared/hooks/stylesHooks/useTheme';
-import React, { useState } from 'react';
-import { Switch } from 'react-native';
+import React from 'react';
+import { Switch, SwitchProps } from 'react-native';
 
-const SwitchCustom = () => {
-  const [currentSwitch, setCurrentSwitch] = useState(false);
+export interface SwitchCustomProps extends SwitchProps {}
+
+const SwitchCustom = ({ ...props }: SwitchCustomProps) => {
   const { colors } = useTheme();
   return (
     <Switch
+      {...props}
       thumbColor={colors.background.primary}
       trackColor={{
         true: colors.text.primary,
         false: colors.text.secondary,
       }}
-      onChange={() => setCurrentSwitch(!currentSwitch)}
-      value={currentSwitch}
+      value={props.value}
     />
   );
 };

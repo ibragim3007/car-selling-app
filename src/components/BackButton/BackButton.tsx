@@ -1,14 +1,13 @@
-import React from 'react';
 import ArrowLeft from '@/icons/linear/arrow-left.svg';
+import PressableIcon from '@/shared/ui/buttons/PressableButton';
+import { normalizedSize } from '@/shared/utils/size';
 import { router } from 'expo-router';
-import { Pressable } from 'react-native';
+import React from 'react';
+
+const iconSize = normalizedSize(20);
 
 const BackButton = () => {
-  return (
-    <Pressable onPress={() => router.back()}>
-      <ArrowLeft height={25} width={25} />
-    </Pressable>
-  );
+  return <PressableIcon Icon={() => ArrowLeft({ height: iconSize, width: iconSize })} onPress={() => router.back()} />;
 };
 
 export default BackButton;

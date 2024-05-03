@@ -24,6 +24,9 @@ import React from 'react';
 import { Provider } from 'react-redux';
 import StackRoute from './(stack)';
 import ModalAction from '@/components/Modal/ModalAction';
+import { GestureHandlerRootView } from 'react-native-gesture-handler';
+import { BottomSheetModalProvider } from '@gorhom/bottom-sheet';
+import LoadApp from '@/shared/providers/LoadApp';
 
 const RootLayout = () => {
   const [fontsLoaded, fontError] = useFonts({
@@ -55,8 +58,14 @@ const RootLayout = () => {
 
   return (
     <Provider store={store}>
-      <StackRoute />
-      <ModalAction />
+      <LoadApp>
+        <GestureHandlerRootView style={{ flex: 1 }}>
+          <BottomSheetModalProvider>
+            <StackRoute />
+            <ModalAction />
+          </BottomSheetModalProvider>
+        </GestureHandlerRootView>
+      </LoadApp>
     </Provider>
   );
 };
