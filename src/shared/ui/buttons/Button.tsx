@@ -133,7 +133,7 @@ const Button: React.FC<ButtonProps> = ({
       {loading ? (
         <ActivityIndicator size={'small'} color={colors.text.white} />
       ) : (
-        <Text {...styleText} style={textS}>
+        <Text {...styleText} style={textS} numberOfLines={1}>
           {props.children}
         </Text>
       )}
