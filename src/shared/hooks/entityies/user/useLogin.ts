@@ -1,7 +1,7 @@
 import { useLoginMutation } from '@/shared/api/entityies/auth/api.auth';
 import { routes } from '@/shared/config/routes';
 import { Inform } from '@/shared/services/logger.service/loger.service';
-import { setToken } from '@/shared/store/appReducer/actions/setToken';
+import { setToken } from '@/shared/store/appReducer/actions/auth/setToken';
 import { ILogin } from '@/shared/types';
 import { router } from 'expo-router';
 import { useAppDispatch } from '../../storeHooks';

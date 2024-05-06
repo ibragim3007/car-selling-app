@@ -6,7 +6,7 @@ import React from 'react';
 
 interface GoInButtonProps extends GridProps {
   title: string;
-  value: string | number;
+  value?: string | number;
 
   name?: string;
   fn?: () => void;
