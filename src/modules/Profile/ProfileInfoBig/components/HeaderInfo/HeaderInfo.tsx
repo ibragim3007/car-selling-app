@@ -1,4 +1,5 @@
 import { useUserQuery } from '@/shared/api/entityies/auth/api.auth';
+import { formatPhoneNumber } from '@/shared/helpers/formatPhoneNumber';
 import { useTheme } from '@/shared/hooks/stylesHooks/useTheme';
 import Card from '@/shared/ui/card/Card';
 import Grid from '@/shared/ui/layout/Grid';
@@ -32,7 +33,7 @@ const HeaderInfo = () => {
           </Typography>
 
           <Typography color="secondary" variant="subhead">
-            +7 (922) 222-22-22
+            {formatPhoneNumber(data?.phone || '')}
           </Typography>
         </Grid>
       </Grid>
