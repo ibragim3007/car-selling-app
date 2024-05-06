@@ -1,6 +1,16 @@
 export interface INews {
-  id: string;
+  id: number;
+  date: Date;
   title: string;
-  shortDescription: string;
-  coverImage: string;
+  descr: string;
+  image: string;
+  fullimg: string;
+}
+
+export interface INewsShort {
+  date: Date;
+  datetimestamp: number;
+  page: number;
+  take: number;
+  items: INews[];
 }

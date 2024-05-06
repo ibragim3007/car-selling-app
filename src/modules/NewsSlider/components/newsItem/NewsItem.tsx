@@ -32,7 +32,7 @@ const NewsItem = ({ item, ...props }: NewsItemProps) => {
         >
           <Grid gap={12} padding={0}>
             <Image
-              source={{ uri: item.coverImage }}
+              source={{ uri: item.fullimg }}
               alt={item.title}
               style={{
                 borderTopLeftRadius: 12,
@@ -46,7 +46,7 @@ const NewsItem = ({ item, ...props }: NewsItemProps) => {
                 {item.title}
               </Typography>
               <Typography variant="caption-1" numberOfLines={2} lineBreakMode="tail">
-                {item.shortDescription}
+                {item.descr}
               </Typography>
             </Grid>
           </Grid>

@@ -13,6 +13,9 @@ const apiConfig = {
     cars: { url: '/cars', method: 'GET' },
     car: { url: '/cars', method: 'GET' },
   },
+  news: {
+    news: { url: '/news', method: 'GET' },
+  },
 };
 
 export default apiConfig;
