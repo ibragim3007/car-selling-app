@@ -7,7 +7,7 @@ import { SvgProps } from 'react-native-svg';
 
 interface CardInformerProps {
   title: string;
-  value: string;
+  value: string | number;
   Icon: React.FC<SvgProps>;
 }
 

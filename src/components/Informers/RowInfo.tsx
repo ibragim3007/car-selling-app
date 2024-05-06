@@ -34,7 +34,7 @@ const RowInfo = ({ title, value, isEven = true, transparent, valueProps, childre
           children
         ) : (
           <Typography weight="medium" variant="caption-1" {...valueProps}>
-            {value}
+            {value ? value : '---'}
           </Typography>
         )}
       </Grid>

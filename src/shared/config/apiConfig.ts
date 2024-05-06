@@ -9,6 +9,10 @@ const apiConfig = {
     login: { url: '/login', method: 'POST' },
     user: { url: '/user', method: 'GET' },
   },
+  car: {
+    cars: { url: '/cars', method: 'GET' },
+    car: { url: '/cars', method: 'GET' },
+  },
 };
 
 export default apiConfig;

@@ -1,4 +1,3 @@
-import carObjects from '@/shared/mock/car1';
 import { ICar } from '@/shared/types';
 import Grid from '@/shared/ui/layout/Grid';
 import { normalizedSize } from '@/shared/utils/size';
@@ -11,9 +10,20 @@ interface CarListProps {
   footerComponent?: React.JSX.Element;
   stickyHeaderIndices?: number[];
   topOffset?: number;
+  data?: ICar[];
+  loading?: boolean;
+  onRefresh?: () => void;
 }
 
-function CarList({ headerComponent, footerComponent, stickyHeaderIndices, topOffset }: CarListProps) {
+function CarList({
+  data,
+  headerComponent,
+  footerComponent,
+  loading,
+  stickyHeaderIndices,
+  topOffset,
+  onRefresh,
+}: CarListProps) {
   // const _renderItem = (info: ListRenderItemInfo<ICar>) => <CarItem key={info.item.id} car={info.item} />;
 
   const renderItem: ListRenderItem<ICar> = ({ item }) => {
@@ -23,7 +33,9 @@ function CarList({ headerComponent, footerComponent, stickyHeaderIndices, topOff
   return (
     <Grid flex={1} style={{ paddingTop: 0 }}>
       <FlashList
-        data={carObjects}
+        data={data}
+        onRefresh={onRefresh}
+        refreshing={loading}
         renderItem={renderItem}
         contentContainerStyle={{ paddingTop: topOffset }}
         estimatedItemSize={lengthItem}
@@ -31,7 +43,7 @@ function CarList({ headerComponent, footerComponent, stickyHeaderIndices, topOff
         removeClippedSubviews
         ListHeaderComponent={headerComponent}
         ListFooterComponent={footerComponent}
-        keyExtractor={item => item.id}
+        keyExtractor={item => String(item.id)}
       />
     </Grid>
   );

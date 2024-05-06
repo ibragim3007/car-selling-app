@@ -5,15 +5,15 @@ import React from 'react';
 
 interface HeaderTitleProps {
   title: string;
-  id: string;
+  id: number;
 }
 
-const HeaderTitle: React.FC<HeaderTitleProps> = ({ title, id }) => {
+const HeaderTitle: React.FC<HeaderTitleProps> = ({ title }) => {
   return (
     <Grid row align="center" gap={5}>
       <CheckIcon />
-      <Typography variant="headline" weight="bold">
-        {title} {id}
+      <Typography style={{ flex: 1 }} lineBreakMode="clip" numberOfLines={1} variant="headline" weight="bold">
+        {title}
       </Typography>
     </Grid>
   );

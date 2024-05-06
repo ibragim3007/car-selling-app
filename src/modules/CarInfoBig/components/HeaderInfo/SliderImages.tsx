@@ -1,6 +1,6 @@
 import { useThrottle } from '@/shared/hooks/stable/useThrottle';
 import { useTheme } from '@/shared/hooks/stylesHooks/useTheme';
-import { carImages } from '@/shared/mock/car1';
+
 import Grid from '@/shared/ui/layout/Grid';
 import Typography from '@/shared/ui/typography/Typography';
 import { normalizedSize } from '@/shared/utils/size';
@@ -42,7 +42,7 @@ const SliderImages = ({ items }: SliderImagesProps) => {
         }}
       >
         <Typography color="white">
-          {currentIndex + 1} / {carImages.length}
+          {currentIndex + 1} / {items.length}
         </Typography>
       </View>
       <Grid>

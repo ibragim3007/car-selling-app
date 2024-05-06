@@ -1,3 +1,4 @@
+import { formatToMillage } from '@/shared/helpers/formatMileage';
 import { priceFormat } from '@/shared/helpers/priceFormat';
 import { ICar } from '@/shared/types';
 import Card from '@/shared/ui/card/Card';
@@ -10,7 +11,7 @@ import ActionSide from './ActionSide/ActionSide';
 import CarImage from './InsideCard/CarImage';
 import HeaderTitle from './InsideCard/HeaderTitle';
 import BottomInfo from './InsideCard/InfoList/BottomInfo';
-import InfoList from './InsideCard/InfoList/InfoList';
+import InfoItem from './InsideCard/InfoList/InfoItem';
 
 interface CarItemProps {
   car: ICar;
@@ -25,12 +26,18 @@ function CarItem({ car }: CarItemProps) {
     <Pressable onPress={onPressCar}>
       <Card p={8} borderRadius={0} mt={8} style={{ width: '100%' }}>
         <Grid gap={12} justfity="space-between" row>
-          <CarImage image={car.image} />
+          <CarImage image={car.picture} />
           <Grid justfity="space-between" flex={1}>
             <Grid gap={5}>
               <HeaderTitle title={car.title} id={car.id} />
-              <InfoList infoList={car.infoList} />
-              <Typography weight="bold">{priceFormat(car.cost)}</Typography>
+              <Grid row wrap>
+                <InfoItem infoString={car.year} />
+                {car.mileage && <InfoItem infoString={formatToMillage(car.mileage)} />}
+                <InfoItem infoString={car.engine} />
+                <InfoItem infoString={car.volume} />
+                <InfoItem infoString={car.transmission} isLastElement />
+              </Grid>
+              <Typography weight="bold">{priceFormat(car.price)}</Typography>
             </Grid>
 
             <BottomInfo car={car} />
