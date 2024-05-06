@@ -37,11 +37,14 @@ const ModalAction = () => {
                 </Grid>
                 {displayData?.children && displayData?.children}
               </Card>
-
-              <Grid gap={1} row>
+              <Grid
+                gap={1}
+                wrap={displayData?.type === 'vertical' ? true : false}
+                row={displayData?.type === 'horizontal' ? true : false}
+              >
                 {displayData?.buttons?.map((button, index) => {
                   return (
-                    <Grid key={index} flex={1}>
+                    <Grid key={index} flex={displayData?.type === 'vertical' ? 0 : 1} style={{ width: '100%' }}>
                       {button}
                     </Grid>
                   );

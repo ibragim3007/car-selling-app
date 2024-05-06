@@ -2,7 +2,7 @@ import EyeIcon from '@/icons/linear/eye.svg';
 import { useTheme } from '@/shared/hooks/stylesHooks/useTheme';
 import { normalizedSize } from '@/shared/utils/size';
 import React, { useState } from 'react';
-import { Control, Controller, FieldValues, UseControllerProps } from 'react-hook-form';
+import { Control, Controller, UseControllerProps } from 'react-hook-form';
 import { StyleSheet, TextInput, TextInputProps } from 'react-native';
 import PressableIcon from '../../../shared/ui/buttons/PressableButton';
 import Grid from '../../../shared/ui/layout/Grid';
@@ -12,7 +12,7 @@ export interface InputProps extends TextInputProps {
   label?: string;
   labelProps?: TypographyProps;
   rightSide?: React.ReactNode;
-  control: Control<FieldValues, any>;
+  control: Control<any, any>;
   showError?: boolean;
   name: string;
   rules?: UseControllerProps['rules'];
@@ -27,6 +27,7 @@ const Input = ({
   showError = true,
   secureTextEntry,
   rightSide,
+
   ...props
 }: InputProps) => {
   const { colors } = useTheme();

@@ -43,7 +43,7 @@ export const themes: ITheme[] = [
       white: '#FFFFFF',
     },
     background: {
-      primary: '#FFFFFF',
+      primary: '#ffffff',
       secondary: '#E7E9ED',
       neutral: '#a9afb517',
       success: '#009e2f25',

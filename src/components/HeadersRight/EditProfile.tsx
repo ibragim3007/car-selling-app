@@ -21,7 +21,7 @@ const EditProfile = () => {
     dispatch(
       openModal({
         subhead: '',
-        type: 'vertical',
+        type: 'horizontal',
         children: (
           <Typography textAlign="center" variant="subhead" weight="medium">
             Вы уверены, что хотите сменить пользователя?

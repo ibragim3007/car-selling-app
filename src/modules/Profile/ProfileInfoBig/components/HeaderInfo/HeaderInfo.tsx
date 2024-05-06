@@ -1,3 +1,4 @@
+import { useUserQuery } from '@/shared/api/entityies/auth/api.auth';
 import { useTheme } from '@/shared/hooks/stylesHooks/useTheme';
 import Card from '@/shared/ui/card/Card';
 import Grid from '@/shared/ui/layout/Grid';
@@ -7,6 +8,7 @@ import { FontAwesome6 } from '@expo/vector-icons';
 import React from 'react';
 const HeaderInfo = () => {
   const { colors } = useTheme();
+  const { data } = useUserQuery();
   return (
     <Card borderRadius={0} style={{ borderBottomLeftRadius: 16, borderBottomRightRadius: 16 }}>
       <Grid space="md" row align="center">
@@ -26,8 +28,9 @@ const HeaderInfo = () => {
         </Grid>
         <Grid gap={8}>
           <Typography weight="bold" variant="title-2">
-            Иван Иванов
+            {data?.fname} {data?.lname}
           </Typography>
+
           <Typography color="secondary" variant="subhead">
             +7 (922) 222-22-22
           </Typography>

@@ -2,10 +2,12 @@ import { PayloadAction, createSlice } from '@reduxjs/toolkit';
 
 interface AppStoreInterface {
   version: string;
+  token: string;
 }
 
 const initialState: AppStoreInterface = {
   version: '1',
+  token: '',
 };
 
 export const appSlice = createSlice({
@@ -14,6 +16,9 @@ export const appSlice = createSlice({
   reducers: {
     setVersion(state, action: PayloadAction<AppStoreInterface['version']>) {
       state.version = action.payload;
+    },
+    setToken(state, action: PayloadAction<AppStoreInterface['token']>) {
+      state.token = action.payload;
     },
   },
 });
