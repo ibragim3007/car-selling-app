@@ -1,20 +1,26 @@
 import { Dropdown } from '@/components/Dropdown/Dropdown';
 import SurfaceInfo from '@/components/Informers/SurfaceInfo';
+import TableInfo from '@/components/Informers/TableInfo';
 import TitleSwitch from '@/components/TitleSwitch/TitleSwitch';
 import CardTitle from '@/components/Wrappers/CardTitle';
 import EditIcon from '@/icons/linear/edit-2.svg';
-import Badge from '@/shared/ui/badge/Badge';
+import { useDeleteFilterMutation } from '@/shared/api/entityies/filters/filter.api';
+import { IFilter } from '@/shared/types/filters.types';
 import Divider from '@/shared/ui/divider/Divider';
-import Grid from '@/shared/ui/layout/Grid';
 import Typography from '@/shared/ui/typography/Typography';
 import React from 'react';
 import SectionWrapper from './Section/SectionWrapper';
-import RowInfo from '@/components/Informers/RowInfo';
 
-const FilterComponent = () => {
+interface FilterComponentProps {
+  filter: IFilter;
+}
+
+const FilterComponent = ({ filter }: FilterComponentProps) => {
+  const [deleteFilter] = useDeleteFilterMutation();
+
   return (
     <CardTitle
-      title="Подборка 1"
+      title={filter.name}
       rightHeader={
         <Dropdown
           items={[
@@ -29,6 +35,7 @@ const FilterComponent = () => {
             {
               Icon: EditIcon,
               title: 'Удалить',
+              onPress: () => deleteFilter(filter.id),
               color: 'red',
             },
           ]}
@@ -36,8 +43,8 @@ const FilterComponent = () => {
       }
     >
       <Divider />
-      <TitleSwitch title="Включить подборку" />
-      <SectionWrapper title="Марка">
+      <TitleSwitch title="Включить подборку" value={filter.enabled} />
+      {/* <SectionWrapper title="Марка">
         <SurfaceInfo>
           <Typography>Audi</Typography>
           <Badge value={56} />
@@ -50,19 +57,30 @@ const FilterComponent = () => {
           <Typography>Audi</Typography>
           <Badge value={56} />
         </SurfaceInfo>
-      </SectionWrapper>
-      <SectionWrapper title="География">
-        <SurfaceInfo>
-          <Typography>Екатернбург</Typography>
-        </SurfaceInfo>
-        <SurfaceInfo>
-          <Typography>Омск</Typography>
-        </SurfaceInfo>
-        <SurfaceInfo>
-          <Typography>Ростов-на-Дону</Typography>
-        </SurfaceInfo>
-      </SectionWrapper>
-      <TitleSwitch title="Уведомления (Telegram)" />
+      </SectionWrapper> */}
+      {filter.cityList && (
+        <SectionWrapper title="География">
+          {filter.cityList.map(city => (
+            <SurfaceInfo key={city.id}>
+              <Typography>{city.name}</Typography>
+            </SurfaceInfo>
+          ))}
+        </SectionWrapper>
+      )}
+      {/* <SectionWrapper title="Цена, ₽">
+        <Typography>{filter.horsepower.join(', ')}</Typography>
+      </SectionWrapper> */}
+
+      <TableInfo title="Пробег, км" value={filter.mileages.join('-')} />
+      <TableInfo title="Повреждения" value={filter.carState} />
+      <TableInfo title="Цена, ₽" value={filter.pricechanges.join('-')} />
+      {/* <TableInfo title="Год выпуска" value={filter} /> */}
+      <TableInfo title="Объем двигателя, л" value={filter.ices.join('-')} />
+      <TableInfo title="Пробег, км" value={filter.mileages.join('-')} />
+      <TableInfo title="Владельцы" value={filter.owners} />
+      {/* <TableInfo title="Тип топлива" value={filter.mileages.join('-')} /> */}
+
+      <TitleSwitch title="Уведомления (Telegram)" value={filter.notifications} />
     </CardTitle>
   );
 };

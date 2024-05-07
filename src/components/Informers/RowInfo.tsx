@@ -5,7 +5,7 @@ import Typography from '@/shared/ui/typography/Typography';
 import { normalizedSize } from '@/shared/utils/size';
 import React, { PropsWithChildren } from 'react';
 
-interface RowInfoProps extends PropsWithChildren {
+export interface RowInfoProps extends PropsWithChildren {
   title: string;
   value?: string | number;
   isEven?: boolean;

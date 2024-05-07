@@ -16,6 +16,10 @@ const apiConfig = {
   news: {
     news: { url: '/news', method: 'GET' },
   },
+  filter: {
+    filters: { url: '/filters', method: 'GET' },
+    delete: { url: '/filters', method: 'DELETE' },
+  },
 };
 
 export default apiConfig;
