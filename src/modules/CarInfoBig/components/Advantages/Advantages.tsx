@@ -4,7 +4,7 @@ import { ICar, ICarBig } from '@/shared/types';
 import React from 'react';
 
 interface AdvantagesProps {
-  car: ICarBig;
+  car?: ICarBig;
 }
 
 const Advantages = ({ car }: AdvantagesProps) => {

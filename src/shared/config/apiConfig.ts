@@ -20,6 +20,9 @@ const apiConfig = {
     filters: { url: '/filters', method: 'GET' },
     delete: { url: '/filters', method: 'DELETE' },
   },
+  dictionary: {
+    dictionary: { url: '/dictionaries', method: 'GET' },
+  },
 };
 
 export default apiConfig;

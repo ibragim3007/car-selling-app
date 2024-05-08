@@ -10,7 +10,6 @@ import React from 'react';
 
 const CollectionsPage = () => {
   const { data } = useUserQuery();
-  // const { data: cars, isFetching, refetch, isLoading } = useCarsQuery();
   const { carsForDisplay, nextPage, isLoading, isFetching, refetch } = useCarsList();
 
   return (

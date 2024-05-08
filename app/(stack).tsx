@@ -1,12 +1,11 @@
 import BackButton from '@/components/BackButton/BackButton';
+import MyFiltersHeader from '@/components/HeadersRight/MyFiltersHeader';
 import HeaderCarTab from '@/modules/HeaderCarTab';
+import { routes } from '@/shared/config/routes';
 import { ITheme } from '@/shared/constants/theme/theme';
 import { useTheme } from '@/shared/hooks/stylesHooks/useTheme';
-import Add from '@/icons/linear/add.svg';
 import { Stack } from 'expo-router';
 import React from 'react';
-import { normalizedSize } from '@/shared/utils/size';
-import { routes } from '@/shared/config/routes';
 
 function OptionsModal(colors: ITheme) {
   return {
@@ -28,6 +27,7 @@ const StackRoute = () => {
         headerShown: false,
         headerTitleStyle: { color: colors.text.primary },
         headerStyle: { backgroundColor: colors.background.primary },
+        headerLeft: () => <BackButton />,
       }}
     >
       <Stack.Screen name="(tabs)" options={{ title: 'Подборки' }} />
@@ -36,7 +36,6 @@ const StackRoute = () => {
         options={{
           headerTitle: 'Советы',
           headerShown: true,
-          headerLeft: () => <BackButton />,
         }}
       />
       <Stack.Screen
@@ -44,7 +43,6 @@ const StackRoute = () => {
         options={{
           headerTitle: 'Помощь',
           headerShown: true,
-          headerLeft: () => <BackButton />,
         }}
       />
       <Stack.Screen
@@ -52,7 +50,6 @@ const StackRoute = () => {
         options={{
           headerTitle: 'Часто задаваемые вопросы',
           headerShown: true,
-          headerLeft: () => <BackButton />,
         }}
       />
       <Stack.Screen name="cars/[id]" options={OptionsModal(colors)} />
@@ -61,7 +58,6 @@ const StackRoute = () => {
         options={{
           headerTitle: 'Aвторизация',
           headerShown: true,
-          headerLeft: () => <BackButton />,
         }}
       />
       <Stack.Screen
@@ -69,7 +65,6 @@ const StackRoute = () => {
         options={{
           headerTitle: 'Регистрация',
           headerShown: true,
-          headerLeft: () => <BackButton />,
         }}
       />
       <Stack.Screen
@@ -77,17 +72,24 @@ const StackRoute = () => {
         options={{
           headerTitle: 'Восстановление доступа',
           headerShown: true,
-          headerLeft: () => <BackButton />,
         }}
       />
       <Stack.Screen
-        name="(mycollections)/mycollections"
+        name={routes.pages.filter.mycollections}
         options={{
           headerShown: true,
           headerBackButtonMenuEnabled: true,
-          headerTitle: '',
-          headerRight: () => <Add height={normalizedSize(16)} width={normalizedSize(16)} />,
-          headerLeft: () => <BackButton />,
+          headerTitle: 'Подборки',
+          headerRight: () => <MyFiltersHeader />,
+        }}
+      />
+      <Stack.Screen
+        name={routes.pages.filter.newfilter}
+        options={{
+          headerShown: true,
+          headerBackButtonMenuEnabled: true,
+          headerTitle: 'Новая подборка',
+          headerRight: () => null,
         }}
       />
       <Stack.Screen
@@ -97,7 +99,6 @@ const StackRoute = () => {
           headerBackButtonMenuEnabled: true,
           headerTitle: 'Настройки профиля',
           headerRight: () => null,
-          headerLeft: () => <BackButton />,
         }}
       />
       <Stack.Screen
@@ -107,7 +108,6 @@ const StackRoute = () => {
           headerBackButtonMenuEnabled: true,
           headerTitle: 'Сменить пароль',
           headerRight: () => null,
-          headerLeft: () => <BackButton />,
         }}
       />
       <Stack.Screen
@@ -117,7 +117,6 @@ const StackRoute = () => {
           headerBackButtonMenuEnabled: true,
           headerTitle: 'Удаление аккаунта',
           headerRight: () => null,
-          headerLeft: () => <BackButton />,
         }}
       />
       <Stack.Screen
@@ -127,7 +126,6 @@ const StackRoute = () => {
           headerBackButtonMenuEnabled: true,
           headerTitle: 'Настройки',
           headerRight: () => null,
-          headerLeft: () => <BackButton />,
         }}
       />
     </Stack>

@@ -1,16 +1,18 @@
 import Card from '@/shared/ui/card/Card';
 import React from 'react';
 
-import Car from '@/icons/linear/car.svg';
 import CardInformer from '@/components/Informers/CardInformer';
-import Grid from '@/shared/ui/layout/Grid';
+import Car from '@/icons/linear/car.svg';
 import { ICarBig } from '@/shared/types';
+import Grid from '@/shared/ui/layout/Grid';
+import { IDictionaryRoot } from '@/shared/types/dictionary.types';
 
 interface GeneralInfoProps {
   car: ICarBig;
+  dict?: IDictionaryRoot;
 }
 
-const GeneralInfo = ({ car }: GeneralInfoProps) => {
+const GeneralInfo = ({ car, dict }: GeneralInfoProps) => {
   return (
     <Card>
       <Grid gap={8}>

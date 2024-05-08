@@ -12,6 +12,8 @@ import CarImage from './InsideCard/CarImage';
 import HeaderTitle from './InsideCard/HeaderTitle';
 import BottomInfo from './InsideCard/InfoList/BottomInfo';
 import InfoItem from './InsideCard/InfoList/InfoItem';
+import { useDictionaryQuery } from '@/shared/api/entityies/dictionary/dictionary.api';
+import { compare } from '@/shared/helpers/compare';
 
 interface CarItemProps {
   car: ICar;
@@ -22,6 +24,7 @@ function CarItem({ car }: CarItemProps) {
     router.push(`/cars/${car.id}`);
   };
 
+  const { data: dict } = useDictionaryQuery();
   return (
     <Pressable onPress={onPressCar}>
       <Card p={8} borderRadius={0} mt={8} style={{ width: '100%' }}>
@@ -34,8 +37,8 @@ function CarItem({ car }: CarItemProps) {
                 <InfoItem infoString={car.year} />
                 {car.mileage && <InfoItem infoString={formatToMillage(car.mileage)} />}
                 <InfoItem infoString={car.engine} />
-                <InfoItem infoString={car.volume} />
-                <InfoItem infoString={car.transmission} isLastElement />
+                <InfoItem infoString={`${car.volume} л.`} />
+                <InfoItem infoString={compare(dict!.transmissions, car.transmission)} isLastElement />
               </Grid>
               <Typography weight="bold">{priceFormat(car.price)}</Typography>
             </Grid>

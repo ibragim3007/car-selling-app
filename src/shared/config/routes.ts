@@ -21,6 +21,10 @@ export const routes = {
       updatePassword: 'profile/update-password',
       delete: 'profile/delete',
     },
+    filter: {
+      mycollections: '(mycollections)/mycollections',
+      newfilter: '(mycollections)/new-filter',
+    },
   },
   auth: {
     login: 'auth/login',

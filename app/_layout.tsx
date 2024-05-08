@@ -59,14 +59,12 @@ const RootLayout = () => {
   return (
     <Provider store={store}>
       <LoadApp>
-        <Provider store={store}>
-          <GestureHandlerRootView style={{ flex: 1 }}>
-            <BottomSheetModalProvider>
-              <StackRoute />
-              <ModalAction />
-            </BottomSheetModalProvider>
-          </GestureHandlerRootView>
-        </Provider>
+        <GestureHandlerRootView style={{ flex: 1 }}>
+          <BottomSheetModalProvider>
+            <StackRoute />
+            <ModalAction />
+          </BottomSheetModalProvider>
+        </GestureHandlerRootView>
       </LoadApp>
     </Provider>
   );

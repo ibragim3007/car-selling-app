@@ -11,12 +11,15 @@ import { normalizedSize } from '@/shared/utils/size';
 import React from 'react';
 import { Pressable } from 'react-native';
 import SliderImages from './SliderImages';
+import { IDictionaryRoot } from '@/shared/types/dictionary.types';
+import { compare } from '@/shared/helpers/compare';
 
 interface HeaderInfoProps {
   car: ICarBig;
+  dict?: IDictionaryRoot;
 }
 
-const HeaderInfo = ({ car }: HeaderInfoProps) => {
+const HeaderInfo = ({ car, dict }: HeaderInfoProps) => {
   return (
     <Card borderRadius={0}>
       <Grid gap={16}>
@@ -39,6 +42,8 @@ const HeaderInfo = ({ car }: HeaderInfoProps) => {
             </Pressable>
           </Grid>
           <HighlightText isRed={car.deviation > 0}>
+            {/* исправить и сделать по дефолту */}
+            {/* {compare(dict!.avgCostDeviations, car.drive)} */}
             {car.deviation > 0 ? 'Выше' : 'Ниже'} рынка на {formatCurrency(car.deviation)}
           </HighlightText>
         </Grid>
