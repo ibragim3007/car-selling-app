@@ -11,6 +11,7 @@ const CarImage: React.FC<CarImageProps> = ({ image }) => {
   const { colors } = useTheme();
   return (
     <ImageLazy
+      uri={image}
       style={{
         borderRadius: colors.styles.borderRadius,
         width: normalizedSize(104),

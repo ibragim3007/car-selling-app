@@ -88,7 +88,7 @@ const ImageCarousel: FC<ImageCarouselProps> = ({ data }) => {
           return (
             <View style={{ width: ITEM_LENGTH }}>
               <Animated.View style={[{}, styles.itemContent]}>
-                <ImageLazy source={{ uri: item }} style={styles.itemImage} />
+                <ImageLazy source={{ uri: item }} uri={item} style={styles.itemImage} />
               </Animated.View>
             </View>
           );

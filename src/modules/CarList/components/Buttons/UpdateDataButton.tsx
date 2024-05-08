@@ -34,6 +34,7 @@ const styles = StyleSheet.create({
     top: 10,
     width: '50%',
     zIndex: 30,
+    elevation: 30,
     alignSelf: 'center',
   },
 });

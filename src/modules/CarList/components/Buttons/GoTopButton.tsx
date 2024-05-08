@@ -24,6 +24,7 @@ const styles = StyleSheet.create({
     bottom: 10,
     right: 10,
     zIndex: 30,
+    elevation: 30,
   },
 });
 export default GoTopButton;
