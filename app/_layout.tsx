@@ -22,7 +22,7 @@ import {
 } from '@expo-google-fonts/montserrat';
 import React from 'react';
 import { Provider } from 'react-redux';
-import StackRoute from './stack';
+import StackRoute from './(stack)';
 import ModalAction from '@/components/Modal/ModalAction';
 import { GestureHandlerRootView } from 'react-native-gesture-handler';
 import { BottomSheetModalProvider } from '@gorhom/bottom-sheet';
