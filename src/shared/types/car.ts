@@ -1,7 +1,9 @@
+import { IErrorMessage } from './errors.types';
+
 export interface ICar {
   id: number;
   title: string;
-  credate: Date;
+  credate: string;
   timestamp: number;
   price: number;
   delta: number;
@@ -56,4 +58,17 @@ export interface ICarBig extends ICar {
   ownerType: number;
   priceType: number;
   videoUrl: string;
+}
+
+export interface IErrorCars {
+  errors: IErrorMessage[];
+  results: ICar[];
+}
+
+export interface ICarParams {
+  filters: string;
+  lastId: number;
+  fromid: number;
+  toid: number;
+  av100Marka: number;
 }

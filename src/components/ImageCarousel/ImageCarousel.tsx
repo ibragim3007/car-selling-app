@@ -5,7 +5,8 @@ import { useTheme } from '@/shared/hooks/stylesHooks/useTheme';
 import Typography from '@/shared/ui/typography/Typography';
 import { normalizedSize } from '@/shared/utils/size';
 import React, { FC, useCallback, useEffect, useRef, useState } from 'react';
-import { Animated, Dimensions, FlatList, Image, StyleSheet, View, ViewToken } from 'react-native';
+import { Animated, Dimensions, FlatList, StyleSheet, View, ViewToken } from 'react-native';
+import ImageLazy from '../Informers/images/ImageLazy';
 
 const { width } = Dimensions.get('window');
 
@@ -87,7 +88,7 @@ const ImageCarousel: FC<ImageCarouselProps> = ({ data }) => {
           return (
             <View style={{ width: ITEM_LENGTH }}>
               <Animated.View style={[{}, styles.itemContent]}>
-                <Image source={{ uri: item }} style={styles.itemImage} />
+                <ImageLazy source={{ uri: item }} style={styles.itemImage} />
               </Animated.View>
             </View>
           );
