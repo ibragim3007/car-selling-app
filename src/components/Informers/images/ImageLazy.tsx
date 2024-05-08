@@ -9,7 +9,7 @@ interface ImageLazyProps extends ImageProps {
 }
 
 const ImageLazy = ({ ...props }: ImageLazyProps) => {
-  return <Image placeholder={{ blurhash }} {...props} transition={500} />;
+  return <Image placeholder={{ blurhash }} {...props} />;
 };
 
 export default ImageLazy;

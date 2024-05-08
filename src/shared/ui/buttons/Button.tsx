@@ -131,7 +131,7 @@ const Button: React.FC<ButtonProps> = ({
   return (
     <Pressable {...props} style={buttonS} onTouchStart={onTouchStart} onTouchEnd={onTouchEnd}>
       {loading ? (
-        <ActivityIndicator size={'small'} color={colors.text.white} />
+        <ActivityIndicator size={'small'} color={styleText.color} />
       ) : (
         <Text {...styleText} style={textS} numberOfLines={1}>
           {props.children}

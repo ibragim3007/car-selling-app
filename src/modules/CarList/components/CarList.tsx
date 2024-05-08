@@ -1,11 +1,11 @@
 import { ICar } from '@/shared/types';
-import Button from '@/shared/ui/buttons/Button';
 import Grid from '@/shared/ui/layout/Grid';
 import { normalizedSize } from '@/shared/utils/size';
 import { FlashList, FlashListProps, ListRenderItem } from '@shopify/flash-list';
 import React, { useCallback, useState } from 'react';
-import { NativeScrollEvent, NativeSyntheticEvent, StyleSheet } from 'react-native';
-import Animated, { FadeInDown, FadeOutDown, SlideInDown, SlideOutDown } from 'react-native-reanimated';
+import { NativeScrollEvent, NativeSyntheticEvent } from 'react-native';
+import GoTopButton from './Buttons/GoTopButton';
+import UpdateDataButton from './Buttons/UpdateDataButton';
 import CarItem from './CarItem/CarItem';
 
 interface CarListProps extends Partial<FlashListProps<ICar>> {
@@ -41,6 +41,11 @@ function CarList({
     flastListRef?.scrollToOffset({ offset: 0, animated: true });
   };
 
+  const goUpdateButton = () => {
+    if (onRefresh) onRefresh();
+    flastListRef?.scrollToOffset({ offset: 0, animated: true });
+  };
+
   const [goTopButtonShow, setGoTopButtonShow] = useState(false);
 
   const onScroll = (event: NativeSyntheticEvent<NativeScrollEvent>) => {
@@ -50,6 +55,8 @@ function CarList({
 
   return (
     <Grid flex={1} style={{ paddingTop: 0 }}>
+      {goTopButtonShow && <UpdateDataButton goUpdateButton={goUpdateButton} />}
+      {goTopButtonShow && <GoTopButton goTopButton={goTopButton} />}
       <FlashList
         ref={ref => {
           flastListRef = ref;
@@ -66,26 +73,11 @@ function CarList({
         ListFooterComponent={footerComponent}
         keyExtractor={keyExtractor}
         onScroll={onScroll}
-        onEndReachedThreshold={8}
+        onEndReachedThreshold={4}
         {...props}
       />
-      {goTopButtonShow && (
-        <Animated.View style={styles.goTopButton} entering={FadeInDown} exiting={FadeOutDown}>
-          <Button color="black" onPress={goTopButton}>
-            Наверх
-          </Button>
-        </Animated.View>
-      )}
     </Grid>
   );
 }
-
-const styles = StyleSheet.create({
-  goTopButton: {
-    position: 'absolute',
-    bottom: 10,
-    right: 10,
-  },
-});
 
 export default CarList;
