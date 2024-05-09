@@ -1,7 +1,7 @@
 import { rootApi } from '../../root/api';
 
 import apiConfig from '@/shared/config/apiConfig';
-import { IDictionaryRoot } from '@/shared/types/dictionary.types';
+import { IDictionaryRoot, IRegionsDict } from '@/shared/types/dictionary.types';
 
 export const filterApi = rootApi.injectEndpoints({
   endpoints: build => ({
@@ -13,7 +13,15 @@ export const filterApi = rootApi.injectEndpoints({
         };
       },
     }),
+    regions: build.query<IRegionsDict, void>({
+      query: () => {
+        return {
+          url: apiConfig.dictionary.regions.url,
+          method: apiConfig.dictionary.regions.method,
+        };
+      },
+    }),
   }),
 });
 
-export const { useDictionaryQuery } = filterApi;
+export const { useDictionaryQuery, useRegionsQuery } = filterApi;

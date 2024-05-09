@@ -22,6 +22,7 @@ const apiConfig = {
   },
   dictionary: {
     dictionary: { url: '/dictionaries', method: 'GET' },
+    regions: { url: '/regions', method: 'GET' },
   },
 };
 

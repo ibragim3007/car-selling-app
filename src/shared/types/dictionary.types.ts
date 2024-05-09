@@ -36,3 +36,13 @@ export interface Gear extends BaseTypeDictionary {}
 export interface Body extends BaseTypeDictionary {}
 
 export interface AvgCostDeviation extends BaseTypeDictionary, orderIdType {}
+
+export interface IRegionsDict {
+  requestdate: string;
+  regions: IRegion[];
+}
+
+export interface IRegion {
+  key: number;
+  regionid: number;
+}

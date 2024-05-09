@@ -24,6 +24,9 @@ export const routes = {
     filter: {
       mycollections: '(mycollections)/mycollections',
       newfilter: '(mycollections)/new-filter',
+      modal: {
+        choiceRegion: '(mycollections)/modal/choice-region',
+      },
     },
   },
   auth: {

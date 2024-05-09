@@ -8,10 +8,12 @@ import PressableIcon from '../../../shared/ui/buttons/PressableButton';
 import Grid from '../../../shared/ui/layout/Grid';
 import { TypographyProps, fontWeight } from '../../../shared/ui/styles/typography/typography';
 import Typography from '../../../shared/ui/typography/Typography';
+
 export interface InputProps extends TextInputProps {
   label?: string;
   labelProps?: TypographyProps;
   rightSide?: React.ReactNode;
+  endIcon?: React.ReactNode;
   control: Control<any, any>;
   showError?: boolean;
   name: string;
@@ -27,10 +29,10 @@ const Input = ({
   showError = true,
   secureTextEntry,
   rightSide,
-
+  endIcon,
   ...props
 }: InputProps) => {
-  const { colors } = useTheme();
+  const { colors, currentTheme } = useTheme();
   const [showPassword, setShowPassword] = useState(secureTextEntry);
   const [isFocus, setIsFocus] = useState(false);
   const pressShowPassword = () => {
@@ -76,6 +78,7 @@ const Input = ({
               row
             >
               <TextInput
+                keyboardAppearance={currentTheme}
                 ref={ref}
                 value={value}
                 textContentType={props.textContentType || 'oneTimeCode'}
@@ -93,6 +96,7 @@ const Input = ({
               {secureTextEntry && (
                 <PressableIcon onPress={pressShowPassword} Icon={EyeIcon} style={{ padding: normalizedSize(12) }} />
               )}
+              {endIcon && endIcon}
             </Grid>
             {error && showError && (
               <Typography variant="caption-1" color="red">

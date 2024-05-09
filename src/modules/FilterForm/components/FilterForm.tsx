@@ -1,31 +1,27 @@
 import Input from '@/components/Controllers/Input/Input';
-import { IFilterCreate } from '@/shared/types/filters.types';
 import Grid from '@/shared/ui/layout/Grid';
 import React from 'react';
-import { useForm } from 'react-hook-form';
+import { FieldValues, UseFormReturn } from 'react-hook-form';
+import AddButton from './buttons/AddButton';
+import GeoInputs from './inputs/GeoInput/GeoInputs';
 import WrapperBlock from './wrapper/WrapperBlock';
-import { createFilterDefault } from '@/shared/constants/defaultValues/createFilterDefault';
-import ToggleButton from '@/components/Controllers/buttons/ToggleButton';
 
-const FilterForm = () => {
-  const { control } = useForm<IFilterCreate>({
-    defaultValues: createFilterDefault,
-  });
+interface FilterFormProps<T extends FieldValues> {
+  formApi: UseFormReturn<T, any, undefined>;
+}
+
+const FilterForm = <T extends FieldValues>({ formApi }: FilterFormProps<T>) => {
+  const { control, handleSubmit, formState } = formApi;
 
   return (
     <Grid space="sm">
       <WrapperBlock title="Название подборки">
         <Input control={control} name="name" />
       </WrapperBlock>
-      <WrapperBlock title="География">
-        <ToggleButton
-          onChange={item => console.log(item)}
-          value={{ title: 'По городам', value: 'city' }}
-          items={[
-            { title: 'По городам', value: 'city' },
-            { title: 'По регионам', value: 'regions' },
-          ]}
-        />
+      <GeoInputs />
+      <WrapperBlock title="Тип авто">
+        <Input control={control} name="name" />
+        <AddButton>Добавить авто</AddButton>
       </WrapperBlock>
     </Grid>
   );

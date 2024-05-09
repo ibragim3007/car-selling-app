@@ -93,6 +93,16 @@ const StackRoute = () => {
         }}
       />
       <Stack.Screen
+        name={routes.pages.filter.modal.choiceRegion}
+        options={{
+          headerShown: true,
+          headerBackButtonMenuEnabled: true,
+          headerTitle: 'Выбор региона',
+          headerRight: () => null,
+          presentation: 'modal',
+        }}
+      />
+      <Stack.Screen
         name={`(pages)/${routes.pages.profile.edit}`}
         options={{
           headerShown: true,

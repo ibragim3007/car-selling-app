@@ -1,11 +1,11 @@
 import { useTheme } from '@/shared/hooks/stylesHooks/useTheme';
 import { normalizedSize } from '@/shared/utils/size';
-import { BottomSheetBackdrop, BottomSheetModal, BottomSheetView } from '@gorhom/bottom-sheet';
-import React, { PropsWithChildren, forwardRef, useCallback, useMemo } from 'react';
+import { BottomSheetBackdrop, BottomSheetModal, BottomSheetModalProps } from '@gorhom/bottom-sheet';
+import React, { forwardRef, useCallback, useMemo } from 'react';
 import BottomSheetModalHeader from './BottomSheetModalHeader/BottomSheetModalHeader';
 export type Ref = BottomSheetModal;
 
-interface CustomBottomSheetModalProps extends PropsWithChildren {
+interface CustomBottomSheetModalProps extends BottomSheetModalProps {
   title: string;
 }
 
@@ -26,9 +26,10 @@ const CustomBottomSheetModal = forwardRef<Ref, CustomBottomSheetModalProps>((pro
       backgroundStyle={{ backgroundColor: colors.background.primary }}
       index={0}
       snapPoints={snapPoints}
+      {...props}
     >
       {/* <Grid paddingVertical={normalizedSize(16)}>{props.children}</Grid> */}
-      <BottomSheetView>{props.children}</BottomSheetView>
+      {/* <BottomSheetView>{props.children}</BottomSheetView> */}
     </BottomSheetModal>
   );
 });
