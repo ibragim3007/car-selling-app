@@ -33,7 +33,7 @@ function CarList({
   };
   const lengthItem = normalizedSize(145);
 
-  const keyExtractor = useCallback((item: any, i: number) => `${i}-${item.id}`, []);
+  const keyExtractor = useCallback((item: ICar, i: number) => `${i}-${item.id}`, []);
 
   let flastListRef: FlashList<ICar> | null;
 

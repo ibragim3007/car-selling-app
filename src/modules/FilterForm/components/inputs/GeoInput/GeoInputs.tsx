@@ -16,10 +16,10 @@ const GeoInputs = () => {
     buttomSheetRef.current?.present();
     // router.push(routes.pages.filter.modal.choiceRegion);
   };
-  const { setValue, control } = useFormContext<IFilterCreate>();
-  const {
-    field: { value, onChange },
-  } = useController({ control, name: 'regions' });
+  // const formContext = useFormContext<IFilterCreate>();
+  // const {
+  //   field: { value, onChange },
+  // } = useController({ control, name: 'regions' });
 
   return (
     <WrapperBlock title="География">
