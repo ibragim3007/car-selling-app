@@ -5,9 +5,12 @@ import React from 'react';
 import { FormProvider, useForm } from 'react-hook-form';
 
 const NewFIlterPage = () => {
-  const formApi = useForm({
+  const { ...formApi } = useForm({
     defaultValues: createFilterDefault,
+    mode: 'onChange',
+    reValidateMode: 'onChange',
   });
+
   return (
     <ScrollViewPage spaceVertical="sm">
       <FormProvider {...formApi}>

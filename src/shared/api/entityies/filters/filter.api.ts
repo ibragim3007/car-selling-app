@@ -15,6 +15,16 @@ export const filterApi = rootApi.injectEndpoints({
       providesTags: (result, error, arg) =>
         result ? [...result.map(({ id }) => ({ type: 'Filters' as const, id })), 'Filters'] : ['Filters'],
     }),
+    filter: build.query<IFilter[], void>({
+      query: () => {
+        return {
+          url: `${apiConfig.filter.filters.url}/filterId`,
+          method: apiConfig.filter.filters.method,
+        };
+      },
+      providesTags: (result, error, arg) =>
+        result ? [...result.map(({ id }) => ({ type: 'Filters' as const, id })), 'Filters'] : ['Filters'],
+    }),
     deleteFilter: build.mutation<IFilter[], number>({
       query: (filterId: number) => {
         return {
@@ -27,4 +37,4 @@ export const filterApi = rootApi.injectEndpoints({
   }),
 });
 
-export const { useFiltersQuery, useDeleteFilterMutation } = filterApi;
+export const { useFiltersQuery, useDeleteFilterMutation, useFilterQuery } = filterApi;

@@ -28,6 +28,7 @@ const CustomBottomSheetModal = forwardRef<Ref, CustomBottomSheetModalProps>((pro
       snapPoints={snapPoints}
       {...props}
     >
+      {props.children}
       {/* <Grid paddingVertical={normalizedSize(16)}>{props.children}</Grid> */}
       {/* <BottomSheetView>{props.children}</BottomSheetView> */}
     </BottomSheetModal>

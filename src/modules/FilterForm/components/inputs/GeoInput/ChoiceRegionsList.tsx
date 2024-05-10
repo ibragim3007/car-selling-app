@@ -9,7 +9,7 @@ import TextField from '@/shared/ui/inputs/TextField';
 import Grid from '@/shared/ui/layout/Grid';
 import { AntDesign } from '@expo/vector-icons';
 import React, { useCallback } from 'react';
-import { UseFormReturn } from 'react-hook-form';
+import { UseFormReturn, useController, useFormContext } from 'react-hook-form';
 
 interface ChoiceRegionsListProps {
   formContext: UseFormReturn<IFilterCreate, any, undefined>;
@@ -18,6 +18,7 @@ interface ChoiceRegionsListProps {
 const ChoiceRegionsList = () => {
   const { data: regions } = useRegionsQuery();
   const { data: dict } = useDictionaryQuery();
+
   const keyExtractor = useCallback((item: IRegion, i: number) => `${i}-${item.regionid}`, []);
 
   return (
@@ -25,12 +26,14 @@ const ChoiceRegionsList = () => {
       <TextField placeholder="Поиск" endIcon={<AntDesign color="red" />} />
       <RowList title="Выбрать все" />
 
-      {/* <List<IRegion>
+      <List<IRegion>
         data={regions?.regions}
         keyExtractor={keyExtractor}
-        renderItem={({ item }) => <RowList title={compare(dict!.regions, item.regionid)} />}
+        renderItem={({ item }) => (
+          <RowList<IRegion> value={item.regionid} title={compare(dict!.regions, item.regionid)} />
+        )}
         estimatedItemSize={43}
-      /> */}
+      />
 
       <Grid flex={0.2} justfity="center">
         <Button style={{ marginBottom: 20 }} color="black">

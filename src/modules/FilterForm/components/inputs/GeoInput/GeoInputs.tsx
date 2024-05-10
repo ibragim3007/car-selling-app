@@ -5,8 +5,8 @@ import React, { useRef } from 'react';
 import AddButton from '../../buttons/AddButton';
 import WrapperBlock from '../../wrapper/WrapperBlock';
 import ChoiceRegionsList from './ChoiceRegionsList';
-import { useController, useFormContext } from 'react-hook-form';
-import { IFilterCreate } from '@/shared/types/filters.types';
+import { FormProvider, useFormContext } from 'react-hook-form';
+import Input from '@/components/Controllers/Input/Input';
 interface GeoInputsProps {}
 
 const GeoInputs = () => {
@@ -16,10 +16,7 @@ const GeoInputs = () => {
     buttomSheetRef.current?.present();
     // router.push(routes.pages.filter.modal.choiceRegion);
   };
-  // const formContext = useFormContext<IFilterCreate>();
-  // const {
-  //   field: { value, onChange },
-  // } = useController({ control, name: 'regions' });
+  const control = useFormContext();
 
   return (
     <WrapperBlock title="География">
@@ -33,8 +30,11 @@ const GeoInputs = () => {
       />
 
       <BottomSheetModal ref={buttomSheetRef} title="asd" snapPoints={['90%']}>
-        <ChoiceRegionsList />
+        <FormProvider {...control}>
+          <ChoiceRegionsList />
+        </FormProvider>
       </BottomSheetModal>
+
       <AddButton onPress={pressOpen}>Добавить регион</AddButton>
     </WrapperBlock>
   );
