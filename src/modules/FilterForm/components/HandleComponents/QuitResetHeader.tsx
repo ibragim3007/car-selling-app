@@ -4,6 +4,7 @@ import Typography from '@/shared/ui/typography/Typography';
 import { useBottomSheetModal } from '@gorhom/bottom-sheet';
 import React from 'react';
 import CloseIcon from '@/icons/linear/close-square.svg';
+import { Pressable } from 'react-native';
 
 interface BottomSheetModalHeaderProps {
   title: string;
@@ -23,11 +24,13 @@ const QuitResetHeader = ({ title, reset, close }: BottomSheetModalHeaderProps) =
           {title}
         </Typography>
       </Grid>
-      <Grid style={{ marginRight: 20 }} align="flex-end" flex={1}>
-        <Typography variant="caption-1" color="success">
-          Сбросить
-        </Typography>
-      </Grid>
+      <Pressable style={{ flex: 1 }} onPress={reset}>
+        <Grid paddingVertical={15} style={{ marginRight: 20 }} align="flex-end" flex={1}>
+          <Typography variant="caption-1" color="success">
+            Сбросить
+          </Typography>
+        </Grid>
+      </Pressable>
     </Grid>
   );
 };

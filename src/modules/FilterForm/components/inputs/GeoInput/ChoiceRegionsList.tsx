@@ -12,9 +12,24 @@ import { AntDesign } from '@expo/vector-icons';
 import React from 'react';
 
 // Надо будет рефакторить
-const ChoiceRegionsList = () => {
-  const { loading, filteredRegions, isEverythingSelected, search, keyExtractor, setSearch, onToggleSelection } =
-    useRegion();
+
+interface ChoiceRegionsListProps {
+  regionUse: ReturnType<typeof useRegion>;
+}
+
+const ChoiceRegionsList = ({ regionUse }: ChoiceRegionsListProps) => {
+  const {
+    loading,
+    filteredRegions,
+    isEverythingSelected,
+    search,
+    currentPickedRegions,
+    onChangeCurrentPicked,
+    onAcceptChanges,
+    keyExtractor,
+    setSearch,
+    onToggleSelection,
+  } = regionUse;
 
   const { colors } = useTheme();
 
@@ -41,12 +56,19 @@ const ChoiceRegionsList = () => {
         data={filteredRegions}
         keyExtractor={keyExtractor}
         ListFooterComponent={() => loading && <LoadingData />}
-        renderItem={({ item }) => <RowList<IRegion> value={item.id} title={item.name} />}
+        renderItem={({ item }) => (
+          <RowList<IRegion>
+            onChange={onChangeCurrentPicked}
+            selectedValues={currentPickedRegions}
+            value={item.id}
+            title={item.name}
+          />
+        )}
         estimatedItemSize={43}
       />
 
       <Grid paddingHorizontal={8} flex={0.2} justfity="center">
-        <Button style={{ marginBottom: 20 }} color="black">
+        <Button onPress={onAcceptChanges} style={{ marginBottom: 20 }} color="black">
           Применить
         </Button>
       </Grid>

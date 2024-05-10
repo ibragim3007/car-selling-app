@@ -8,6 +8,7 @@ import AddButton from '../../buttons/AddButton';
 import WrapperBlock from '../../wrapper/WrapperBlock';
 import ChoiceRegionsList from './ChoiceRegionsList';
 import RegionsDisplay from './DisplaySelected/RegionsDisplay';
+import { useRegion } from '@/shared/api/entityies/filters/useRegions';
 
 const GeoInputs = () => {
   const buttomSheetRef = useRef<BTMS>(null);
@@ -16,6 +17,8 @@ const GeoInputs = () => {
     buttomSheetRef.current?.present();
   };
   const control = useFormContext();
+
+  const regionUse = useRegion();
 
   return (
     <WrapperBlock title="География">
@@ -29,13 +32,13 @@ const GeoInputs = () => {
       />
 
       <BottomSheetModal
-        handleComponent={() => <QuitResetHeader title="Регион" />}
+        handleComponent={() => <QuitResetHeader reset={regionUse.resetButton} title="Регион" />}
         ref={buttomSheetRef}
         title="Регион"
         snapPoints={['90%']}
       >
         <FormProvider {...control}>
-          <ChoiceRegionsList />
+          <ChoiceRegionsList regionUse={regionUse} />
         </FormProvider>
       </BottomSheetModal>
       <RegionsDisplay />
