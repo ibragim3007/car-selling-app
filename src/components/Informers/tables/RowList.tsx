@@ -19,12 +19,13 @@ const RowList = <TItem,>({ title, value, ...props }: RowListProps<TItem>) => {
     control,
     name: 'regions',
   });
-  const isSelected = selectedValues?.find(v => v === value) ? true : false;
+  const isSelected = selectedValues?.find(v => v === value) !== undefined ? true : false;
+
   const onChangeCheckBox = () => {
     const newValue = [...selectedValues!];
 
-    if (!isSelected) {
-      newValue?.push(value || 0);
+    if (!isSelected && value !== undefined) {
+      newValue?.push(value);
       setValue('regions', newValue);
     } else {
       setValue(

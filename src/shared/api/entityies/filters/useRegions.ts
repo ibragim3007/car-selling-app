@@ -1,20 +1,20 @@
-import { IRegion } from '@/shared/types/dictionary.types';
+import { BaseTypeDictionary, orderIdType } from '@/shared/types/dictionary.types';
 import { IFilterCreate } from '@/shared/types/filters.types';
 import { useCallback, useState } from 'react';
-import { useFormContext, useController } from 'react-hook-form';
-import { useRegionsQuery, useDictionaryQuery } from '../dictionary/dictionary.api';
+import { useController, useFormContext } from 'react-hook-form';
+import { useDictionaryQuery } from '../dictionary/dictionary.api';
 
 export const useRegion = () => {
-  const { data: regions, isLoading: isRegionsLoading } = useRegionsQuery();
   const { data: dict, isLoading: isDictLoading } = useDictionaryQuery();
-  const keyExtractor = useCallback((item: IRegion, i: number) => `${i}-${item.regionid}`, []);
+
+  const keyExtractor = useCallback((item: BaseTypeDictionary & orderIdType, i: number) => `${i}-${item.id}`, []);
 
   const { control } = useFormContext<IFilterCreate>();
   const { field } = useController({ control, name: 'regions' });
 
-  const isEverythingSelected = field.value?.length === regions?.regions?.length;
+  const isEverythingSelected = field.value?.length === dict?.regions?.length;
   const onToggleSelection = () => {
-    field.onChange(isEverythingSelected ? [] : regions?.regions.map(region => region.regionid));
+    field.onChange(isEverythingSelected ? [] : dict?.regions.map(region => region.id));
   };
 
   const [search, setSearch] = useState('');
@@ -23,23 +23,15 @@ export const useRegion = () => {
       region.name.toLowerCase().includes(search.toLowerCase()),
     );
 
-    const filteredList = regions?.regions.filter(region => {
-      return filteredRegionsText?.some(some => some.id === region.regionid);
-    });
-
-    return { filteredList, filteredRegionsText };
+    return filteredRegionsText;
   };
-
-  const { filteredList, filteredRegionsText } = filterDict();
 
   return {
     selectedRegions: field.value,
-    loading: isDictLoading || isRegionsLoading,
+    loading: isDictLoading,
     dict,
-    regions,
     isEverythingSelected,
-    filteredRegionsText,
-    filteredList,
+    filteredRegions: filterDict(),
     search,
     keyExtractor,
     setSearch,

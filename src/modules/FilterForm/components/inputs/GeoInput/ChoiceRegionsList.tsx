@@ -1,9 +1,8 @@
 import List from '@/components/Informers/tables/List';
 import RowList from '@/components/Informers/tables/RowList';
 import { useRegion } from '@/shared/api/entityies/filters/useRegions';
-import { compare } from '@/shared/helpers/compare';
 import { useTheme } from '@/shared/hooks/stylesHooks/useTheme';
-import { IRegion } from '@/shared/types/dictionary.types';
+import { BaseTypeDictionary, IRegion, orderIdType } from '@/shared/types/dictionary.types';
 import Button from '@/shared/ui/buttons/Button';
 import LabelCheckbox from '@/shared/ui/inputs/LabelCheckbox';
 import TextField from '@/shared/ui/inputs/TextField';
@@ -14,17 +13,8 @@ import React from 'react';
 
 // Надо будет рефакторить
 const ChoiceRegionsList = () => {
-  const {
-    loading,
-    regions,
-    isEverythingSelected,
-    filteredRegionsText,
-    filteredList,
-    search,
-    keyExtractor,
-    setSearch,
-    onToggleSelection,
-  } = useRegion();
+  const { loading, filteredRegions, isEverythingSelected, search, keyExtractor, setSearch, onToggleSelection } =
+    useRegion();
 
   const { colors } = useTheme();
 
@@ -47,13 +37,11 @@ const ChoiceRegionsList = () => {
           style={{ borderBottomWidth: 1, borderColor: colors.divider }}
         />
       </Grid>
-      <List<IRegion>
-        data={filteredList || regions?.regions}
+      <List<BaseTypeDictionary & orderIdType>
+        data={filteredRegions}
         keyExtractor={keyExtractor}
         ListFooterComponent={() => loading && <LoadingData />}
-        renderItem={({ item }) => (
-          <RowList<IRegion> value={item.regionid} title={compare(filteredRegionsText!, item.regionid)} />
-        )}
+        renderItem={({ item }) => <RowList<IRegion> value={item.id} title={item.name} />}
         estimatedItemSize={43}
       />
 

@@ -3,7 +3,7 @@ export type BaseTypeDictionary = {
   name: string;
 };
 
-type orderIdType = {
+export type orderIdType = {
   orderId: number;
 };
 
