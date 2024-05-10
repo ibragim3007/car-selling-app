@@ -13,6 +13,7 @@ interface CardInformerProps {
 
 const CardInformer = ({ title, value, Icon }: CardInformerProps) => {
   const { colors } = useTheme();
+  if (value === undefined || value === null || value === '') return null;
   return (
     <Grid
       paddingVertical={8}

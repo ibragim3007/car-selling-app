@@ -46,6 +46,10 @@ export const useRegion = () => {
     setCurrentPickedRegions(field.value);
   };
 
+  const dismissSheet = () => {
+    setCurrentPickedRegions(field.value);
+  };
+
   useEffect(() => {
     setCurrentPickedRegions(field.value);
   }, [field.value]);
@@ -58,6 +62,7 @@ export const useRegion = () => {
     isEverythingSelected,
     filteredRegions: filterDict(),
     search,
+    dismissSheet,
     resetButton,
     keyExtractor,
     setSearch,

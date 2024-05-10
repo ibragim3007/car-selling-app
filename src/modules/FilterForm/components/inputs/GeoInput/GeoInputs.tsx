@@ -32,6 +32,7 @@ const GeoInputs = () => {
       />
 
       <BottomSheetModal
+        onDismiss={regionUse.dismissSheet}
         handleComponent={() => <QuitResetHeader reset={regionUse.resetButton} title="Регион" />}
         ref={buttomSheetRef}
         title="Регион"

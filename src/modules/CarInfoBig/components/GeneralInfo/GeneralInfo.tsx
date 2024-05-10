@@ -4,8 +4,8 @@ import React from 'react';
 import CardInformer from '@/components/Informers/CardInformer';
 import Car from '@/icons/linear/car.svg';
 import { ICarBig } from '@/shared/types';
-import Grid from '@/shared/ui/layout/Grid';
 import { IDictionaryRoot } from '@/shared/types/dictionary.types';
+import Grid from '@/shared/ui/layout/Grid';
 
 interface GeneralInfoProps {
   car: ICarBig;
@@ -17,11 +17,11 @@ const GeneralInfo = ({ car, dict }: GeneralInfoProps) => {
     <Card>
       <Grid gap={8}>
         <Grid row gap={8}>
-          <CardInformer Icon={Car} title="Владельцев" value={`${car.ownerCount} человека`} />
+          {car.ownerCount && <CardInformer Icon={Car} title="Владельцев" value={`${car.ownerCount} человека`} />}
           <CardInformer Icon={Car} title="Индекс цены" value={car.index} />
         </Grid>
         <Grid row gap={8}>
-          <CardInformer Icon={Car} title="Состояние" value={'---'} />
+          <CardInformer Icon={Car} title="Состояние" value={car.remont} />
           <CardInformer Icon={Car} title="Кузов" value={car.body} />
         </Grid>
       </Grid>

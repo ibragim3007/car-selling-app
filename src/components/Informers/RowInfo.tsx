@@ -16,6 +16,7 @@ export interface RowInfoProps extends PropsWithChildren {
 const RowInfo = ({ title, value, isEven = true, transparent, valueProps, children }: RowInfoProps) => {
   const { colors } = useTheme();
   const rowColor = transparent ? 'transparent' : isEven ? colors.background.primary : colors.background.neutral;
+  if (value === undefined || value === null) return null;
 
   return (
     <Grid
@@ -34,7 +35,7 @@ const RowInfo = ({ title, value, isEven = true, transparent, valueProps, childre
           children
         ) : (
           <Typography weight="medium" variant="caption-1" {...valueProps}>
-            {value ? value : '---'}
+            {value}
           </Typography>
         )}
       </Grid>
