@@ -2,12 +2,12 @@ import ToggleButton from '@/components/Controllers/buttons/ToggleButton';
 import BottomSheetModal from '@/components/Modal/BottomSheetModal';
 import { BottomSheetModal as BTMS } from '@gorhom/bottom-sheet';
 import React, { useRef } from 'react';
+import { FormProvider, useFormContext } from 'react-hook-form';
+import QuitResetHeader from '../../HandleComponents/QuitResetHeader';
 import AddButton from '../../buttons/AddButton';
 import WrapperBlock from '../../wrapper/WrapperBlock';
 import ChoiceRegionsList from './ChoiceRegionsList';
-import { FormProvider, useFormContext } from 'react-hook-form';
-import Input from '@/components/Controllers/Input/Input';
-interface GeoInputsProps {}
+import RegionsDisplay from './DisplaySelected/RegionsDisplay';
 
 const GeoInputs = () => {
   const buttomSheetRef = useRef<BTMS>(null);
@@ -28,12 +28,17 @@ const GeoInputs = () => {
         ]}
       />
 
-      <BottomSheetModal ref={buttomSheetRef} title="asd" snapPoints={['90%']}>
+      <BottomSheetModal
+        handleComponent={() => <QuitResetHeader title="Регион" />}
+        ref={buttomSheetRef}
+        title="Регион"
+        snapPoints={['90%']}
+      >
         <FormProvider {...control}>
           <ChoiceRegionsList />
         </FormProvider>
       </BottomSheetModal>
-
+      <RegionsDisplay />
       <AddButton onPress={pressOpen}>Добавить регион</AddButton>
     </WrapperBlock>
   );

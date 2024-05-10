@@ -1,5 +1,4 @@
 import { useTheme } from '@/shared/hooks/stylesHooks/useTheme';
-import { normalizedSize } from '@/shared/utils/size';
 import { BottomSheetBackdrop, BottomSheetModal, BottomSheetModalProps } from '@gorhom/bottom-sheet';
 import React, { forwardRef, useCallback, useMemo } from 'react';
 import BottomSheetModalHeader from './BottomSheetModalHeader/BottomSheetModalHeader';

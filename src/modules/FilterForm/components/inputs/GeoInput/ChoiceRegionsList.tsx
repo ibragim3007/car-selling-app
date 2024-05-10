@@ -2,6 +2,7 @@ import List from '@/components/Informers/tables/List';
 import RowList from '@/components/Informers/tables/RowList';
 import { useRegion } from '@/shared/api/entityies/filters/useRegions';
 import { compare } from '@/shared/helpers/compare';
+import { useTheme } from '@/shared/hooks/stylesHooks/useTheme';
 import { IRegion } from '@/shared/types/dictionary.types';
 import Button from '@/shared/ui/buttons/Button';
 import LabelCheckbox from '@/shared/ui/inputs/LabelCheckbox';
@@ -25,18 +26,27 @@ const ChoiceRegionsList = () => {
     onToggleSelection,
   } = useRegion();
 
+  const { colors } = useTheme();
+
   return (
-    <Grid flex={1} space="sm">
-      <Grid paddingHorizontal={12}>
-        <TextField
-          placeholder="Поиск"
-          value={search}
-          onChangeText={v => setSearch(v)}
-          endIcon={<AntDesign name="search1" size={22} />}
+    <Grid flex={1}>
+      <Grid space="sm">
+        <Grid paddingHorizontal={12}>
+          <TextField
+            placeholder="Поиск"
+            value={search}
+            onChangeText={v => setSearch(v)}
+            endIcon={<AntDesign name="search1" size={22} />}
+          />
+        </Grid>
+
+        <LabelCheckbox
+          onChange={onToggleSelection}
+          title="Выбрать все"
+          checked={isEverythingSelected}
+          style={{ borderBottomWidth: 1, borderColor: colors.divider }}
         />
       </Grid>
-
-      <LabelCheckbox onChange={onToggleSelection} title="Выбрать все" checked={isEverythingSelected} />
       <List<IRegion>
         data={filteredList || regions?.regions}
         keyExtractor={keyExtractor}

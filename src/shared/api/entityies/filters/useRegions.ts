@@ -33,6 +33,7 @@ export const useRegion = () => {
   const { filteredList, filteredRegionsText } = filterDict();
 
   return {
+    selectedRegions: field.value,
     loading: isDictLoading || isRegionsLoading,
     dict,
     regions,
