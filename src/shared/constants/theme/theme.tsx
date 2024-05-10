@@ -50,7 +50,7 @@ export const themes: ITheme[] = [
       alert: '#ffc8002d',
       negative: '#d92e1e28',
       disabled: '#f4f4f427',
-      active: '#f8fbff2a',
+      active: '#F8FBFF',
     },
     accent: {
       primary: '#2DC574',

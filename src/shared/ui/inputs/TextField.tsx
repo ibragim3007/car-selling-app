@@ -29,7 +29,7 @@ const TextField = React.forwardRef<Ref, TextFieldProps>(
     };
 
     const styles: TextFieldProps['style'] = StyleSheet.flatten([
-      secureTextEntry && { flex: 1 },
+      secureTextEntry || endIcon ? { flex: 1 } : undefined,
       {
         color: colors.text.primary,
         width: '100%',
@@ -59,10 +59,10 @@ const TextField = React.forwardRef<Ref, TextFieldProps>(
             secureTextEntry={showPassword}
             style={styles}
           />
+          <Grid style={{ padding: normalizedSize(12) }}>{endIcon && endIcon}</Grid>
           {secureTextEntry && (
             <PressableIcon onPress={pressShowPassword} Icon={EyeIcon} style={{ padding: normalizedSize(12) }} />
           )}
-          {endIcon && endIcon}
         </Grid>
         {error && showError && (
           <Typography variant="caption-1" color="red">

@@ -21,7 +21,7 @@ const CustomBottomSheetModal = forwardRef<Ref, CustomBottomSheetModalProps>((pro
       backdropComponent={renderBackdrop}
       enableDismissOnClose={true}
       handleComponent={() => <BottomSheetModalHeader title={props.title} />}
-      style={{ borderRadius: 16, paddingHorizontal: normalizedSize(16) }}
+      // style={{ borderRadius: 16, paddingHorizontal: normalizedSize(16) }}
       ref={ref}
       backgroundStyle={{ backgroundColor: colors.background.primary }}
       index={0}

@@ -14,7 +14,6 @@ const GeoInputs = () => {
 
   const pressOpen = () => {
     buttomSheetRef.current?.present();
-    // router.push(routes.pages.filter.modal.choiceRegion);
   };
   const control = useFormContext();
 
