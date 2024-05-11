@@ -3,7 +3,8 @@ import { normalizedSize } from '@/shared/utils/size';
 import { Entypo, Fontisto } from '@expo/vector-icons';
 import React from 'react';
 import { ColorValue, Pressable, StyleSheet } from 'react-native';
-interface CheckboxCustom {
+
+export interface CheckboxCustom {
   value?: boolean;
   disabled?: boolean;
   color?: ColorValue;

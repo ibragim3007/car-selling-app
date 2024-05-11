@@ -46,3 +46,15 @@ export interface IRegion {
   key: number;
   regionid: number;
 }
+
+export interface IMarkaModel {
+  modelid: number;
+  markaid: number;
+  marka: string;
+  model: string;
+}
+
+export interface IModel {
+  id: 505;
+  name: string;
+}

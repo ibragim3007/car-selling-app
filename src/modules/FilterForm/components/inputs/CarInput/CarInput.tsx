@@ -7,7 +7,7 @@ import { IFilterCreate } from '@/shared/types/filters.types';
 import PressableIcon from '@/shared/ui/buttons/PressableButton';
 import { BottomSheetModal as BTMS } from '@gorhom/bottom-sheet';
 import React, { useRef } from 'react';
-import { useController, useFormContext } from 'react-hook-form';
+import { FormProvider, useController, useFormContext } from 'react-hook-form';
 import QuitResetHeader from '../../HandleComponents/QuitResetHeader';
 import AddButton from '../../buttons/AddButton';
 import WrapperBlock from '../../wrapper/WrapperBlock';
@@ -15,8 +15,8 @@ import AutoChoiceList from './AutoChoiceList';
 
 const CarInput = () => {
   const buttomSheetRef = useRef<BTMS>(null);
-  const { control } = useFormContext<IFilterCreate>();
-  const { field } = useController({ control, name: 'carTypes' });
+  const formApi = useFormContext<IFilterCreate>();
+  const { field } = useController({ control: formApi.control, name: 'carTypes' });
 
   const onPressAddAuto = () => {
     buttomSheetRef.current?.present();
@@ -26,7 +26,7 @@ const CarInput = () => {
     <WrapperBlock title="Тип авто">
       <Input
         readOnly
-        control={control}
+        control={formApi.control}
         value={field.value?.map(v => enumCompare(carTypes, v)).join(', ')}
         name={field.name}
         endIcon={
@@ -41,11 +41,13 @@ const CarInput = () => {
       />
       <BottomSheetModal
         snapPoints={['90%']}
-        handleComponent={() => <QuitResetHeader title="Тип автомобиля" />}
+        handleComponent={() => <QuitResetHeader title="Марка" reset={() => console.log('first')} />}
         ref={buttomSheetRef}
         title="Тип автомобиля"
       >
-        <AutoChoiceList />
+        <FormProvider {...formApi}>
+          <AutoChoiceList />
+        </FormProvider>
       </BottomSheetModal>
       <AddButton onPress={onPressAddAuto}>Добавить авто</AddButton>
     </WrapperBlock>

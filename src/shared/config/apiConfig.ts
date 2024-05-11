@@ -23,6 +23,8 @@ const apiConfig = {
   dictionary: {
     dictionary: { url: '/dictionaries', method: 'GET' },
     regions: { url: '/regions', method: 'GET' },
+    markaModel: { url: '/markamodel', method: 'GET' },
+    models: { url: '/models', method: 'GET' },
   },
 };
 

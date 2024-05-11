@@ -6,7 +6,7 @@ import { useBottomSheetModal } from '@gorhom/bottom-sheet';
 import React from 'react';
 
 interface BottomSheetModalHeaderProps {
-  title: string;
+  title: string | number;
   active?: () => void;
   close?: () => void;
 }

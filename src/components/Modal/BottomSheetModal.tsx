@@ -6,7 +6,7 @@ import BottomSheetModalHeader from './BottomSheetModalHeader/BottomSheetModalHea
 export type Ref = BottomSheetModal;
 
 interface CustomBottomSheetModalProps extends BottomSheetModalProps {
-  title: string;
+  title: string | number;
   children: React.ReactNode;
 }
 

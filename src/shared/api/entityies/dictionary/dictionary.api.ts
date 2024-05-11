@@ -1,7 +1,7 @@
 import { rootApi } from '../../root/api';
 
 import apiConfig from '@/shared/config/apiConfig';
-import { IDictionaryRoot, IRegionsDict } from '@/shared/types/dictionary.types';
+import { IDictionaryRoot, IMarkaModel, IModel, IRegionsDict } from '@/shared/types/dictionary.types';
 
 export const filterApi = rootApi.injectEndpoints({
   endpoints: build => ({
@@ -21,7 +21,24 @@ export const filterApi = rootApi.injectEndpoints({
         };
       },
     }),
+    markaModel: build.query<IMarkaModel[], void>({
+      query: () => {
+        return {
+          url: apiConfig.dictionary.markaModel.url,
+          method: apiConfig.dictionary.markaModel.method,
+        };
+      },
+    }),
+    models: build.query<IModel[], number>({
+      query: (mark: number) => {
+        return {
+          url: apiConfig.dictionary.models.url,
+          method: apiConfig.dictionary.markaModel.method,
+          params: { mark },
+        };
+      },
+    }),
   }),
 });
 
-export const { useDictionaryQuery, useRegionsQuery } = filterApi;
+export const { useDictionaryQuery, useRegionsQuery, useMarkaModelQuery, useModelsQuery } = filterApi;
