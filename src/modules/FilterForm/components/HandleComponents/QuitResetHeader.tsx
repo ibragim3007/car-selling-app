@@ -5,6 +5,7 @@ import { useBottomSheetModal } from '@gorhom/bottom-sheet';
 import React from 'react';
 import CloseIcon from '@/icons/linear/close-square.svg';
 import { Pressable } from 'react-native';
+import { useTheme } from '@/shared/hooks/stylesHooks/useTheme';
 
 interface BottomSheetModalHeaderProps {
   title: string;
@@ -14,23 +15,39 @@ interface BottomSheetModalHeaderProps {
 
 const QuitResetHeader = ({ title, reset, close }: BottomSheetModalHeaderProps) => {
   const { dismiss } = useBottomSheetModal();
+  const { colors } = useTheme();
   return (
-    <Grid row justfity="space-between" paddingVertical={11} align="center">
-      <Grid flex={1}>
-        <PressableIcon Icon={CloseIcon} size={25} onPress={() => dismiss()} />
-      </Grid>
-      <Grid align="center" flex={1}>
+    <Grid
+      style={{ borderBottomWidth: 1, borderColor: colors.divider }}
+      row
+      justfity="center"
+      paddingVertical={5}
+      align="center"
+    >
+      <PressableIcon Icon={CloseIcon} size={25} onPress={() => dismiss()} />
+
+      <Grid align="center" justfity="center" flex={1}>
         <Typography variant="headline" weight="bold" numberOfLines={1} ellipsizeMode="tail">
           {title}
         </Typography>
       </Grid>
-      <Pressable style={{ flex: 1 }} onPress={reset}>
-        <Grid paddingVertical={15} style={{ marginRight: 20 }} align="flex-end" flex={1}>
-          <Typography variant="caption-1" color="success">
-            Сбросить
-          </Typography>
-        </Grid>
-      </Pressable>
+      {reset && (
+        <Pressable onPress={reset}>
+          <Grid paddingVertical={15} style={{ marginRight: 20 }} align="flex-end" flex={1}>
+            <Typography variant="caption-1" color="success">
+              Сбросить
+            </Typography>
+          </Grid>
+        </Pressable>
+      )}
+      {!reset && (
+        <PressableIcon
+          style={{ backgroundColor: 'red', opacity: 0 }}
+          Icon={CloseIcon}
+          size={25}
+          onPress={() => dismiss()}
+        />
+      )}
     </Grid>
   );
 };

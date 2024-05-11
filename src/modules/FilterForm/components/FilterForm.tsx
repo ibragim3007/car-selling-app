@@ -2,7 +2,7 @@ import Input from '@/components/Controllers/Input/Input';
 import Grid from '@/shared/ui/layout/Grid';
 import React from 'react';
 import { FieldValues, UseFormReturn } from 'react-hook-form';
-import AddButton from './buttons/AddButton';
+import CarInput from './inputs/CarInput/CarInput';
 import GeoInputs from './inputs/GeoInput/GeoInputs';
 import WrapperBlock from './wrapper/WrapperBlock';
 
@@ -19,10 +19,7 @@ const FilterForm = <T extends FieldValues>({ formApi }: FilterFormProps<T>) => {
         <Input control={control} name="name" />
       </WrapperBlock>
       <GeoInputs />
-      <WrapperBlock title="Тип авто">
-        <Input control={control} name="name" />
-        <AddButton>Добавить авто</AddButton>
-      </WrapperBlock>
+      <CarInput />
     </Grid>
   );
 };

@@ -1,4 +1,5 @@
 import { useTheme } from '@/shared/hooks/stylesHooks/useTheme';
+import Grid from '@/shared/ui/layout/Grid';
 import { BottomSheetBackdrop, BottomSheetModal, BottomSheetModalProps } from '@gorhom/bottom-sheet';
 import React, { forwardRef, useCallback, useMemo } from 'react';
 import BottomSheetModalHeader from './BottomSheetModalHeader/BottomSheetModalHeader';
@@ -6,6 +7,7 @@ export type Ref = BottomSheetModal;
 
 interface CustomBottomSheetModalProps extends BottomSheetModalProps {
   title: string;
+  children: React.ReactNode;
 }
 
 const CustomBottomSheetModal = forwardRef<Ref, CustomBottomSheetModalProps>((props, ref) => {
@@ -20,14 +22,17 @@ const CustomBottomSheetModal = forwardRef<Ref, CustomBottomSheetModalProps>((pro
       backdropComponent={renderBackdrop}
       enableDismissOnClose={true}
       handleComponent={() => <BottomSheetModalHeader title={props.title} />}
-      // style={{ borderRadius: 16, paddingHorizontal: normalizedSize(16) }}
+      // style={{ borderRadius: 16, paddingVertical: normalizedSize(12) }}
       ref={ref}
       backgroundStyle={{ backgroundColor: colors.background.primary }}
       index={0}
       snapPoints={snapPoints}
       {...props}
     >
-      {props.children}
+      <Grid paddingVertical={12} flex={1}>
+        {props.children}
+      </Grid>
+
       {/* <Grid paddingVertical={normalizedSize(16)}>{props.children}</Grid> */}
       {/* <BottomSheetView>{props.children}</BottomSheetView> */}
     </BottomSheetModal>

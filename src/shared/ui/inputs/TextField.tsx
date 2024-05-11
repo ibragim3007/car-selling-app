@@ -11,7 +11,7 @@ import Typography from '../typography/Typography';
 
 export type Ref = TextInput;
 
-interface TextFieldProps extends TextInputProps {
+export interface TextFieldProps extends TextInputProps {
   rightSide?: React.ReactNode;
   endIcon?: React.ReactNode;
   ref?: RefCallBack;
