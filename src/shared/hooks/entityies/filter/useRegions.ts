@@ -2,7 +2,7 @@ import { BaseTypeDictionary, orderIdType } from '@/shared/types/dictionary.types
 import { IFilterCreate } from '@/shared/types/filters.types';
 import { useCallback, useEffect, useState } from 'react';
 import { useController, useFormContext } from 'react-hook-form';
-import { useDictionaryQuery } from '../dictionary/dictionary.api';
+import { useDictionaryQuery } from '../../../api/entityies/dictionary/dictionary.api';
 import { useBottomSheetModal } from '@gorhom/bottom-sheet';
 
 export const useRegion = () => {

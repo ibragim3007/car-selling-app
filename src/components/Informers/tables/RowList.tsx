@@ -1,4 +1,4 @@
-import Grid, { GridProps } from '@/shared/ui/layout/Grid';
+import { GridProps } from '@/shared/ui/layout/Grid';
 import React from 'react';
 
 import { CheckboxCustom } from '@/shared/ui/inputs/Checkbox';
@@ -10,7 +10,9 @@ export interface RowListProps<TItem> extends GridProps {
   selectedValues?: number[];
   type?: CheckboxCustom['type'];
   onChange?: (value: number) => void;
+  badgeNumber?: number;
   rightSide?: React.ReactNode;
+  isSelectedForce?: boolean;
 }
 
 const RowList = <TItem,>({
@@ -20,6 +22,8 @@ const RowList = <TItem,>({
   onChange,
   selectedValues,
   rightSide,
+  badgeNumber,
+  isSelectedForce,
 }: RowListProps<TItem>) => {
   const isSelected = selectedValues?.find(v => v === value) !== undefined ? true : false;
 
@@ -28,12 +32,14 @@ const RowList = <TItem,>({
   };
 
   return (
-    <Grid row justfity="space-between" align="center">
-      <Grid flex={0.9}>
-        <LabelCheckbox type={type} checked={isSelected} title={title || '--error'} onChange={onChangeCheckBox} />
-      </Grid>
-      <Grid flex={0.1}>{rightSide && rightSide}</Grid>
-    </Grid>
+    <LabelCheckbox
+      badgeNumber={badgeNumber}
+      type={type}
+      checked={isSelectedForce || isSelected}
+      title={title || '--error'}
+      onChange={onChangeCheckBox}
+      rightSide={rightSide}
+    />
   );
 };
 

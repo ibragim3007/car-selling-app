@@ -8,6 +8,7 @@ import { useDeleteFilterMutation } from '@/shared/api/entityies/filters/filter.a
 import { IFilter } from '@/shared/types/filters.types';
 import Divider from '@/shared/ui/divider/Divider';
 import Typography from '@/shared/ui/typography/Typography';
+import { router } from 'expo-router';
 import React from 'react';
 import SectionWrapper from './Section/SectionWrapper';
 
@@ -27,6 +28,7 @@ const FilterComponent = ({ filter }: FilterComponentProps) => {
             {
               Icon: EditIcon,
               title: 'Редактировать',
+              onPress: () => router.push(`(mycollections)/filters/${filter.id}`),
             },
             {
               Icon: EditIcon,

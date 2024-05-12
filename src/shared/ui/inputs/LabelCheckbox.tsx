@@ -4,15 +4,26 @@ import { Pressable } from 'react-native';
 import Grid, { GridProps } from '../layout/Grid';
 import Typography from '../typography/Typography';
 import Checkbox, { CheckboxCustom } from './Checkbox';
+import Badge from '../badge/Badge';
 
 export interface LabelCheckboxProps extends GridProps {
   onChange?: () => void;
   checked?: boolean;
   title: string | number;
   type?: CheckboxCustom['type'];
+  badgeNumber?: number;
+  rightSide?: React.ReactNode;
 }
 
-const LabelCheckbox = ({ checked = false, title, type = 'check', onChange, ...props }: LabelCheckboxProps) => {
+const LabelCheckbox = ({
+  checked = false,
+  title,
+  type = 'check',
+  badgeNumber,
+  onChange,
+  rightSide,
+  ...props
+}: LabelCheckboxProps) => {
   const { colors } = useTheme();
 
   const isBackgroundHighlight = checked && type === 'check';
@@ -20,15 +31,17 @@ const LabelCheckbox = ({ checked = false, title, type = 'check', onChange, ...pr
   return (
     <Pressable onPress={onChange}>
       <Grid
-        paddingHorizontal={18}
-        color={isBackgroundHighlight ? colors.background.active : 'transparent'}
-        paddingVertical={14}
+        justfity="space-between"
         row
-        space="sm"
-        {...props}
+        align="center"
+        color={isBackgroundHighlight ? colors.background.active : 'transparent'}
       >
-        <Checkbox type={type} onValueChange={onChange} value={checked} />
-        <Typography variant="subhead">{title ? title : '---(error)'}</Typography>
+        <Grid flex={0.9} paddingVertical={14} paddingHorizontal={18} row space="sm" {...props}>
+          <Checkbox type={type} onValueChange={onChange} value={checked} />
+          <Typography variant="subhead">{title ? title : '---(error)'}</Typography>
+          {badgeNumber !== undefined && badgeNumber !== 0 && <Badge value={badgeNumber} />}
+        </Grid>
+        <Grid flex={0.1}>{rightSide && rightSide}</Grid>
       </Grid>
     </Pressable>
   );

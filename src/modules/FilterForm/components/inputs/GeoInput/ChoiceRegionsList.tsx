@@ -1,6 +1,6 @@
 import List from '@/components/Informers/tables/List';
 import RowList from '@/components/Informers/tables/RowList';
-import { useRegion } from '@/shared/api/entityies/filters/useRegions';
+import { useRegion } from '@/shared/hooks/entityies/filter/useRegions';
 import { useTheme } from '@/shared/hooks/stylesHooks/useTheme';
 import { BaseTypeDictionary, IRegion, orderIdType } from '@/shared/types/dictionary.types';
 import LabelCheckbox from '@/shared/ui/inputs/LabelCheckbox';

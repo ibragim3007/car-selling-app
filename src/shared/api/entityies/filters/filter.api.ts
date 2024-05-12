@@ -1,7 +1,7 @@
 import { rootApi } from '../../root/api';
 
 import apiConfig from '@/shared/config/apiConfig';
-import { IFilter } from '@/shared/types/filters.types';
+import { IEditFilter, IFilter } from '@/shared/types/filters.types';
 
 export const filterApi = rootApi.injectEndpoints({
   endpoints: build => ({
@@ -15,15 +15,15 @@ export const filterApi = rootApi.injectEndpoints({
       providesTags: (result, error, arg) =>
         result ? [...result.map(({ id }) => ({ type: 'Filters' as const, id })), 'Filters'] : ['Filters'],
     }),
-    filter: build.query<IFilter[], void>({
-      query: () => {
+    filter: build.query<IEditFilter, string>({
+      query: (filterId: string) => {
         return {
-          url: `${apiConfig.filter.filters.url}/filterId`,
+          url: `${apiConfig.filter.filters.url}/${filterId}`,
           method: apiConfig.filter.filters.method,
         };
       },
-      providesTags: (result, error, arg) =>
-        result ? [...result.map(({ id }) => ({ type: 'Filters' as const, id })), 'Filters'] : ['Filters'],
+      // providesTags: (result, error, arg) =>
+      //   result ? [...result.map(({ id }) => ({ type: 'Filters' as const, id })), 'Filters'] : ['Filters'],
     }),
     deleteFilter: build.mutation<IFilter[], number>({
       query: (filterId: number) => {

@@ -8,7 +8,7 @@ import AddButton from '../../buttons/AddButton';
 import WrapperBlock from '../../wrapper/WrapperBlock';
 import ChoiceRegionsList from './ChoiceRegionsList';
 import RegionsDisplay from './DisplaySelected/RegionsDisplay';
-import { useRegion } from '@/shared/api/entityies/filters/useRegions';
+import { useRegion } from '@/shared/hooks/entityies/filter/useRegions';
 
 const GeoInputs = () => {
   const buttomSheetRef = useRef<BTMS>(null);

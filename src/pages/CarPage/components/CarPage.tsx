@@ -1,8 +1,5 @@
 import CarInfoBig from '@/modules/CarInfoBig';
 import OpenAd from '@/modules/CarInfoBig/components/OpenAd/OpenAd';
-import CarList from '@/modules/CarList';
-import Grid from '@/shared/ui/layout/Grid';
-import PageBackground from '@/shared/ui/layout/PageBackground';
 import ScrollViewPage from '@/shared/ui/layout/ScrollViewPage';
 import React from 'react';
 

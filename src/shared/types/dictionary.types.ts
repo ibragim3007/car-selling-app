@@ -54,7 +54,13 @@ export interface IMarkaModel {
   model: string;
 }
 
+export interface IMarkToModel {
+  name: string;
+  id: number;
+  model: IModel[];
+}
+
 export interface IModel {
-  id: 505;
+  id: number;
   name: string;
 }

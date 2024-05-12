@@ -1,19 +1,21 @@
+import CloseIcon from '@/icons/linear/close-square.svg';
+import { useTheme } from '@/shared/hooks/stylesHooks/useTheme';
 import PressableIcon from '@/shared/ui/buttons/PressableButton';
 import Grid from '@/shared/ui/layout/Grid';
 import Typography from '@/shared/ui/typography/Typography';
 import { useBottomSheetModal } from '@gorhom/bottom-sheet';
 import React from 'react';
-import CloseIcon from '@/icons/linear/close-square.svg';
 import { Pressable } from 'react-native';
-import { useTheme } from '@/shared/hooks/stylesHooks/useTheme';
+import { SvgProps } from 'react-native-svg';
 
 interface BottomSheetModalHeaderProps {
   title: string;
   reset?: () => void;
   close?: () => void;
+  dismissIcon?: React.FC<SvgProps>;
 }
 
-const QuitResetHeader = ({ title, reset, close }: BottomSheetModalHeaderProps) => {
+const QuitResetHeader = ({ title, reset, close, dismissIcon }: BottomSheetModalHeaderProps) => {
   const { dismiss } = useBottomSheetModal();
   const { colors } = useTheme();
   return (
@@ -24,8 +26,7 @@ const QuitResetHeader = ({ title, reset, close }: BottomSheetModalHeaderProps) =
       paddingVertical={5}
       align="center"
     >
-      <PressableIcon Icon={CloseIcon} size={25} onPress={() => dismiss()} />
-
+      <PressableIcon Icon={dismissIcon || CloseIcon} size={25} onPress={() => dismiss()} />
       <Grid align="center" justfity="center" flex={1}>
         <Typography variant="headline" weight="bold" numberOfLines={1} ellipsizeMode="tail">
           {title}

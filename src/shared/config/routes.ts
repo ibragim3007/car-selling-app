@@ -22,7 +22,8 @@ export const routes = {
       delete: 'profile/delete',
     },
     filter: {
-      mycollections: '(mycollections)/mycollections',
+      filters: '(mycollections)/filters',
+      filter: '(mycollections)/filters/[id]',
       newfilter: '(mycollections)/new-filter',
       modal: {
         choiceRegion: '(mycollections)/modal/choice-region',

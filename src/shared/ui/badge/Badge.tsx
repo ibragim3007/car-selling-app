@@ -17,6 +17,7 @@ const Badge = ({ value }: BadgeProps) => {
         borderRadius: 56,
         paddingHorizontal: normalizedSize(4),
         paddingVertical: normalizedSize(2),
+        alignSelf: 'center',
       }}
     >
       <Typography variant="caption-2" color="white">

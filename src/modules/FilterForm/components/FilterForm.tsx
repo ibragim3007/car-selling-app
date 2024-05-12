@@ -5,6 +5,7 @@ import { FieldValues, UseFormReturn } from 'react-hook-form';
 import CarInput from './inputs/CarInput/CarInput';
 import GeoInputs from './inputs/GeoInput/GeoInputs';
 import WrapperBlock from './wrapper/WrapperBlock';
+import Button from '@/shared/ui/buttons/Button';
 
 interface FilterFormProps<T extends FieldValues> {
   formApi: UseFormReturn<T, any, undefined>;
@@ -13,6 +14,10 @@ interface FilterFormProps<T extends FieldValues> {
 const FilterForm = <T extends FieldValues>({ formApi }: FilterFormProps<T>) => {
   const { control, handleSubmit, formState } = formApi;
 
+  const onPressCreate = (data: FieldValues) => {
+    console.log(data.regions);
+  };
+
   return (
     <Grid space="sm">
       <WrapperBlock title="Название подборки">
@@ -20,6 +25,7 @@ const FilterForm = <T extends FieldValues>({ formApi }: FilterFormProps<T>) => {
       </WrapperBlock>
       <GeoInputs />
       <CarInput />
+      <Button onPress={handleSubmit(onPressCreate)}>Создать</Button>
     </Grid>
   );
 };

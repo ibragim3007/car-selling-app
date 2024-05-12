@@ -75,7 +75,7 @@ const StackRoute = () => {
         }}
       />
       <Stack.Screen
-        name={routes.pages.filter.mycollections}
+        name={`${routes.pages.filter.filters}/index`}
         options={{
           headerShown: true,
           headerBackButtonMenuEnabled: true,
@@ -108,6 +108,15 @@ const StackRoute = () => {
           headerShown: true,
           headerBackButtonMenuEnabled: true,
           headerTitle: 'Настройки профиля',
+          headerRight: () => null,
+        }}
+      />
+      <Stack.Screen
+        name={routes.pages.filter.filter}
+        options={{
+          headerShown: true,
+          headerBackButtonMenuEnabled: true,
+          headerTitle: 'Изменение подборки',
           headerRight: () => null,
         }}
       />

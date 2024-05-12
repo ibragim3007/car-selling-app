@@ -12,10 +12,12 @@ import QuitResetHeader from '../../HandleComponents/QuitResetHeader';
 import AddButton from '../../buttons/AddButton';
 import WrapperBlock from '../../wrapper/WrapperBlock';
 import AutoChoiceList from './AutoChoiceList';
+import SelectedCars from './DisplaySelected/SelectedCars';
 
 const CarInput = () => {
   const buttomSheetRef = useRef<BTMS>(null);
   const formApi = useFormContext<IFilterCreate>();
+
   const { field } = useController({ control: formApi.control, name: 'carTypes' });
 
   const onPressAddAuto = () => {
@@ -49,6 +51,7 @@ const CarInput = () => {
           <AutoChoiceList />
         </FormProvider>
       </BottomSheetModal>
+      <SelectedCars />
       <AddButton onPress={onPressAddAuto}>Добавить авто</AddButton>
     </WrapperBlock>
   );

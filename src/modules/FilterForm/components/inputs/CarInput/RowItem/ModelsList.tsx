@@ -9,41 +9,75 @@ import AcceptButton from '../../../buttons/AcceptButton';
 import SearchInput from '../../../buttons/SearchInput';
 import { useController, useFormContext } from 'react-hook-form';
 import { IFilterCreate } from '@/shared/types/filters.types';
+import { useBottomSheetModal } from '@gorhom/bottom-sheet';
 
 interface ModelsListProps {
   markaId: number;
 }
+// нужно рефакторить эту парашу
 
 const ModelsList = ({ markaId }: ModelsListProps) => {
   const keyExtractor = useCallback((item: IModel, i: number) => `${i}-${item.id}`, []);
   const { data: models, isLoading, error, isError } = useModelsQuery(markaId);
-
-  const { control } = useFormContext<IFilterCreate>();
+  const [search, setSearch] = useState('');
+  const { dismiss } = useBottomSheetModal();
+  const { control, setValue } = useFormContext<IFilterCreate>();
   const { field } = useController({ control, name: 'models' });
+  const {
+    field: { value: marksValue },
+  } = useController({ control, name: 'marks' });
 
-  const [pickedValues, setPickedValues] = useState(field.value);
+  const [pickedValues, setPickedValues] = useState(field.value || []);
+  const [currentListPicked, setCurrentListPicked] = useState<number[]>([]);
 
   const onChangeCurrentPicked = (value: number) => {
     const isSelected = pickedValues?.find(curr => curr === value) !== undefined ? true : false;
     if (pickedValues && !isSelected) {
       setPickedValues([...pickedValues, value]);
-    } else if (isSelected) setPickedValues(pickedValues?.filter(a => a !== value));
+      setCurrentListPicked([...currentListPicked, value]);
+    } else if (isSelected) {
+      setPickedValues(pickedValues?.filter(a => a !== value));
+      setCurrentListPicked(currentListPicked?.filter(a => a !== value));
+    }
   };
+
+  const searchByText = () => {
+    const filteredModels = models?.filter(model => model.name.toLowerCase().includes(search.toLowerCase()));
+
+    return { filteredModels };
+  };
+
+  const onPressAcceptButton = () => {
+    if (marksValue?.includes(markaId)) {
+      console.log(markaId, marksValue);
+      setValue(
+        'marks',
+        marksValue.filter(a => a !== markaId),
+      );
+    } else if (marksValue && currentListPicked.length > 0) {
+      setValue('marks', [...marksValue, markaId]);
+    }
+
+    setValue('models', pickedValues);
+    dismiss();
+  };
+
+  const { filteredModels } = searchByText();
 
   return (
     <ELD data={models} isLoading={isLoading} error={error} isError={isError}>
       <Grid flex={1}>
         <Grid paddingHorizontal={12}>
-          <SearchInput placeholder={'Введите...'} />
+          <SearchInput placeholder={'Введите...'} value={search} onChangeText={text => setSearch(text)} />
         </Grid>
         <List<IModel>
-          data={models}
+          data={filteredModels}
           renderItem={({ item }) => (
             <RowList onChange={onChangeCurrentPicked} selectedValues={pickedValues} title={item.name} value={item.id} />
           )}
           keyExtractor={keyExtractor}
         />
-        <AcceptButton />
+        <AcceptButton onPress={onPressAcceptButton} />
       </Grid>
     </ELD>
   );

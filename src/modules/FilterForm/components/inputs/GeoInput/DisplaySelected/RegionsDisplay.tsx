@@ -1,4 +1,4 @@
-import { useRegion } from '@/shared/api/entityies/filters/useRegions';
+import { useRegion } from '@/shared/hooks/entityies/filter/useRegions';
 import Grid from '@/shared/ui/layout/Grid';
 import React from 'react';
 

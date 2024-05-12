@@ -3,6 +3,7 @@ import Grid from '@/shared/ui/layout/Grid';
 import { BottomSheetBackdrop, BottomSheetModal, BottomSheetModalProps } from '@gorhom/bottom-sheet';
 import React, { forwardRef, useCallback, useMemo } from 'react';
 import BottomSheetModalHeader from './BottomSheetModalHeader/BottomSheetModalHeader';
+
 export type Ref = BottomSheetModal;
 
 interface CustomBottomSheetModalProps extends BottomSheetModalProps {
