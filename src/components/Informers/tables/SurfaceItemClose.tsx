@@ -16,7 +16,7 @@ const SurfaceItemClose = ({ value, title, badgeNumber, onRemove }: SurfaceItemCl
   return (
     <SurfaceInfo>
       <Typography style={{ textAlignVertical: 'center' }}>{title}</Typography>
-      {badgeNumber && <Badge value={badgeNumber} />}
+      {badgeNumber !== undefined && <Badge value={badgeNumber} />}
       {onRemove && <PressableIcon onPress={() => onRemove(value)} style={{ padding: 0 }} Icon={CloseIcon} />}
     </SurfaceInfo>
   );
