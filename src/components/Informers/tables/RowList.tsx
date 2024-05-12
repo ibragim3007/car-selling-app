@@ -20,7 +20,6 @@ const RowList = <TItem,>({
   onChange,
   selectedValues,
   rightSide,
-  ...props
 }: RowListProps<TItem>) => {
   const isSelected = selectedValues?.find(v => v === value) !== undefined ? true : false;
 
@@ -31,13 +30,7 @@ const RowList = <TItem,>({
   return (
     <Grid row justfity="space-between" align="center">
       <Grid flex={0.9}>
-        <LabelCheckbox
-          type={type}
-          {...props}
-          checked={isSelected}
-          title={title || '--error'}
-          onChange={onChangeCheckBox}
-        />
+        <LabelCheckbox type={type} checked={isSelected} title={title || '--error'} onChange={onChangeCheckBox} />
       </Grid>
       <Grid flex={0.1}>{rightSide && rightSide}</Grid>
     </Grid>

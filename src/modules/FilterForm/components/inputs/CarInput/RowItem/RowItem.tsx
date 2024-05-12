@@ -21,13 +21,7 @@ const RowItem = <TItem,>({ ...props }: RowItemProps<TItem>) => {
     <Grid>
       <RowList {...props} onChange={open} rightSide={<ArrowRight />} />
 
-      <BottomSheetModal
-        enablePanDownToClose={false}
-        // enableDismissOnClose={false}
-        snapPoints={['90%']}
-        ref={buttomSheetRef}
-        title={props.title || ''}
-      >
+      <BottomSheetModal title={props.title} enablePanDownToClose={false} snapPoints={['90%']} ref={buttomSheetRef}>
         <FormProvider {...formApi}>
           <ModelsList markaId={props.value} />
         </FormProvider>

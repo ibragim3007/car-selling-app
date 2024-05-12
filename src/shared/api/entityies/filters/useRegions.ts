@@ -31,7 +31,6 @@ export const useRegion = () => {
   const isEverythingSelected = currentPickedRegions?.length === dict?.regions?.length;
   const onToggleSelection = () => {
     setCurrentPickedRegions(isEverythingSelected ? [] : dict?.regions.map(region => region.id));
-    // field.onChange(isEverythingSelected ? [] : dict?.regions.map(region => region.id));
   };
 
   const filterDict = () => {

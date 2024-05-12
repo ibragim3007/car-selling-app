@@ -1,9 +1,9 @@
+import { useTheme } from '@/shared/hooks/stylesHooks/useTheme';
 import React from 'react';
 import { Pressable } from 'react-native';
-import Checkbox, { CheckboxCustom } from './Checkbox';
 import Grid, { GridProps } from '../layout/Grid';
 import Typography from '../typography/Typography';
-import { useTheme } from '@/shared/hooks/stylesHooks/useTheme';
+import Checkbox, { CheckboxCustom } from './Checkbox';
 
 export interface LabelCheckboxProps extends GridProps {
   onChange?: () => void;
@@ -23,9 +23,9 @@ const LabelCheckbox = ({ checked = false, title, type = 'check', onChange, ...pr
         paddingHorizontal={18}
         color={isBackgroundHighlight ? colors.background.active : 'transparent'}
         paddingVertical={14}
-        {...props}
         row
         space="sm"
+        {...props}
       >
         <Checkbox type={type} onValueChange={onChange} value={checked} />
         <Typography variant="subhead">{title ? title : '---(error)'}</Typography>
