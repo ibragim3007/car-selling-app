@@ -11,11 +11,11 @@ const EditFilterPage = () => {
   const { data: filter, isLoading, isError, error } = useFilterQuery(params.id || '');
 
   return (
-    <ELD data={filter} isLoading={isLoading} isError={isError} error={error}>
-      <ScrollViewPage spaceVertical="sm">
+    <ScrollViewPage spaceVertical="sm">
+      <ELD data={filter} isLoading={isLoading} isError={isError} error={error}>
         <EditFilterPageInner filter={filter!} />
-      </ScrollViewPage>
-    </ELD>
+      </ELD>
+    </ScrollViewPage>
   );
 };
 

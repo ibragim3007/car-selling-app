@@ -23,6 +23,7 @@ const ModelsList = ({ markaId }: ModelsListProps) => {
   const { dismiss } = useBottomSheetModal();
   const { control, setValue } = useFormContext<IFilterCreate>();
   const { field } = useController({ control, name: 'models' });
+
   const {
     field: { value: marksValue },
   } = useController({ control, name: 'marks' });
@@ -47,9 +48,11 @@ const ModelsList = ({ markaId }: ModelsListProps) => {
     return { filteredModels };
   };
 
+  console.log(pickedValues, currentListPicked);
+
   const onPressAcceptButton = () => {
-    if (marksValue?.includes(markaId)) {
-      console.log(markaId, marksValue);
+    console.log(markaId, marksValue);
+    if (marksValue?.includes(markaId) && currentListPicked.length === 0) {
       setValue(
         'marks',
         marksValue.filter(a => a !== markaId),
