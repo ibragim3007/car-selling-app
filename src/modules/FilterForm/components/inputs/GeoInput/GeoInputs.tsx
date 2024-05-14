@@ -59,6 +59,7 @@ export const GeoInputs = () => {
         formApi={control}
         ref={buttomSheetRef2}
         pageData={{
+          showAllSelect: true,
           search: { placeholder: 'Поиск...' },
           name: 'regions',
           items: regionUse.filteredRegions || [],

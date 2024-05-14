@@ -35,8 +35,9 @@ const LabelCheckbox = ({
         row
         align="center"
         color={isBackgroundHighlight ? colors.background.active : 'transparent'}
+        {...props}
       >
-        <Grid flex={0.9} paddingVertical={14} paddingHorizontal={18} row space="sm" {...props}>
+        <Grid flex={0.9} paddingVertical={14} paddingHorizontal={18} row space="sm">
           <Checkbox type={type} onValueChange={onChange} value={checked} />
           <Typography variant="subhead">{title ? title : '---(error)'}</Typography>
           {badgeNumber !== undefined && badgeNumber !== 0 && <Badge value={badgeNumber} />}

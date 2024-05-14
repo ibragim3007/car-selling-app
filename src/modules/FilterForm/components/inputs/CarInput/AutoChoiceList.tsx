@@ -5,6 +5,7 @@ import { useDictionaryQuery, useMarkaModelQuery } from '@/shared/api/entityies/d
 import { Mark } from '@/shared/types/dictionary.types';
 import Grid from '@/shared/ui/layout/Grid';
 import LoadingData from '@/shared/ui/loading/LoadingData';
+import { useBottomSheetModal } from '@gorhom/bottom-sheet';
 import React, { useCallback, useState } from 'react';
 import AcceptButton from '../../../../../components/ModalCheckboxList/components/AcceptButton';
 import SearchInput from '../../../../../components/ModalCheckboxList/components/SearchInput';
@@ -26,6 +27,11 @@ const AutoChoiceList = () => {
 
   const { filteredMarks } = searchMarks();
 
+  const { dismiss } = useBottomSheetModal();
+  const onPressAccept = () => {
+    dismiss();
+  };
+
   return (
     <ELD
       data={dict || markaModel}
@@ -34,7 +40,7 @@ const AutoChoiceList = () => {
       isError={isError}
     >
       <Grid flex={1} space="md">
-        <Grid paddingHorizontal={12}>
+        <Grid paddingTop={12} paddingHorizontal={12}>
           <SearchInput placeholder="Введите..." onChangeText={text => setSearch(text)} />
         </Grid>
         {isLoading ? (
@@ -50,7 +56,7 @@ const AutoChoiceList = () => {
             />
           </Grid>
         )}
-        <AcceptButton />
+        <AcceptButton onPress={onPressAccept} />
       </Grid>
     </ELD>
   );

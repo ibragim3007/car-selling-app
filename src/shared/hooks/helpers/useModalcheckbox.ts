@@ -33,7 +33,8 @@ export const useModalcheckbox = ({ name, items }: MainPagePropsGlobal) => {
   const [searchText, setSearchText] = useState('');
   const filterItems = () => items.filter(item => item.name.toLowerCase().includes(searchText.toLowerCase()));
 
-  const isEverythingSelected = selectedValues.length === items.length;
+  const selecteThisListValues = selectedValues.filter(sV => items.map(item => item.id).includes(sV));
+  const isEverythingSelected = selecteThisListValues.length === items.length;
   const onToggleSelection = () => setSelectedValues(isEverythingSelected ? [] : items.map(item => item.id));
 
   const reset = () => {

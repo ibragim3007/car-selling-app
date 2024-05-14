@@ -11,6 +11,7 @@ import Grid from '@/shared/ui/layout/Grid';
 import AntDesign from '@expo/vector-icons/build/AntDesign';
 import React from 'react';
 import AcceptButton from './AcceptButton';
+import { useTheme } from '@/shared/hooks/stylesHooks/useTheme';
 
 export interface MainPagePropsGlobal extends Omit<MainPageProps, 'checkModalboxUse'> {}
 
@@ -19,10 +20,11 @@ export interface MainPageProps {
   items: BaseTypeDictionary[];
   name: keyof IFilterCreate;
   listProps?: Partial<ListProps>;
+  showAllSelect?: boolean;
   checkModalboxUse: ReturnType<typeof useModalcheckbox>;
 }
 
-const MainPage = ({ name, items, search, listProps, checkModalboxUse }: MainPageProps) => {
+const MainPage = ({ name, items, search, listProps, checkModalboxUse, showAllSelect }: MainPageProps) => {
   const {
     selectedValues,
     searchText,
@@ -35,15 +37,26 @@ const MainPage = ({ name, items, search, listProps, checkModalboxUse }: MainPage
     acceptChanges,
   } = checkModalboxUse;
 
+  const { colors } = useTheme();
+
   return (
     <Grid flex={1}>
-      <SearchInput
-        value={searchText}
-        onChangeText={text => setSearchText(text)}
-        endIcon={<AntDesign name="search1" size={22} />}
-        {...search}
-      />
-      <LabelCheckbox title="Выбрать все" checked={isEverythingSelected} onChange={onToggleSelection} />
+      <Grid padding={12}>
+        <SearchInput
+          value={searchText}
+          onChangeText={text => setSearchText(text)}
+          endIcon={<AntDesign name="search1" size={22} />}
+          {...search}
+        />
+      </Grid>
+      {showAllSelect && (
+        <LabelCheckbox
+          style={{ borderBottomColor: colors.divider, borderBottomWidth: 1 }}
+          title="Выбрать все"
+          checked={isEverythingSelected}
+          onChange={onToggleSelection}
+        />
+      )}
       <List
         {...listProps}
         estimatedItemSize={43}
