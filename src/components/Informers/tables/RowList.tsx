@@ -3,19 +3,20 @@ import React from 'react';
 
 import { CheckboxCustom } from '@/shared/ui/inputs/Checkbox';
 import LabelCheckbox from '@/shared/ui/inputs/LabelCheckbox';
+import { BaseTypeDictionary } from '@/shared/types/dictionary.types';
 
-export interface RowListProps<TItem> extends GridProps {
+export interface RowListProps extends GridProps {
   title?: string | number;
   value: number;
   selectedValues?: number[];
   type?: CheckboxCustom['type'];
-  onChange?: (value: number) => void;
+  onChange?: (value: number, isSelected: boolean) => void;
   badgeNumber?: number;
   rightSide?: React.ReactNode;
   isSelectedForce?: boolean;
 }
 
-const RowList = <TItem,>({
+const RowList = ({
   title,
   value,
   type = 'check',
@@ -24,11 +25,11 @@ const RowList = <TItem,>({
   rightSide,
   badgeNumber,
   isSelectedForce,
-}: RowListProps<TItem>) => {
+}: RowListProps) => {
   const isSelected = selectedValues?.find(v => v === value) !== undefined ? true : false;
 
   const onChangeCheckBox = () => {
-    if (onChange) onChange(value);
+    if (onChange) onChange(value, isSelected);
   };
 
   return (

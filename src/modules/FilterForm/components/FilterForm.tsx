@@ -3,9 +3,9 @@ import Grid from '@/shared/ui/layout/Grid';
 import React from 'react';
 import { FieldValues, UseFormReturn } from 'react-hook-form';
 import CarInput from './inputs/CarInput/CarInput';
-import GeoInputs from './inputs/GeoInput/GeoInputs';
 import WrapperBlock from './wrapper/WrapperBlock';
 import Button from '@/shared/ui/buttons/Button';
+import { GeoInputs } from './inputs/GeoInput/GeoInputs';
 
 interface FilterFormProps<T extends FieldValues> {
   formApi: UseFormReturn<T, any, undefined>;

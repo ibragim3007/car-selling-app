@@ -1,5 +1,7 @@
 import ToggleButton from '@/components/Controllers/buttons/ToggleButton';
 import BottomSheetModal from '@/components/Modal/BottomSheetModal';
+import ModalCheckboxList from '@/components/ModalCheckboxList/ModalCheckboxList';
+import { useRegion } from '@/shared/hooks/entityies/filter/useRegions';
 import { BottomSheetModal as BTMS } from '@gorhom/bottom-sheet';
 import React, { useRef } from 'react';
 import { FormProvider, useFormContext } from 'react-hook-form';
@@ -8,13 +10,17 @@ import AddButton from '../../buttons/AddButton';
 import WrapperBlock from '../../wrapper/WrapperBlock';
 import ChoiceRegionsList from './ChoiceRegionsList';
 import RegionsDisplay from './DisplaySelected/RegionsDisplay';
-import { useRegion } from '@/shared/hooks/entityies/filter/useRegions';
 
-const GeoInputs = () => {
+export const GeoInputs = () => {
   const buttomSheetRef = useRef<BTMS>(null);
+  const buttomSheetRef2 = useRef<BTMS>(null);
 
   const pressOpen = () => {
     buttomSheetRef.current?.present();
+  };
+
+  const pressOpen2 = () => {
+    buttomSheetRef2.current?.present();
   };
   const control = useFormContext();
 
@@ -31,7 +37,7 @@ const GeoInputs = () => {
         ]}
       />
 
-      <BottomSheetModal
+      {/* <BottomSheetModal
         onDismiss={regionUse.dismissSheet}
         handleComponent={() => <QuitResetHeader reset={regionUse.resetButton} title="Регион" />}
         ref={buttomSheetRef}
@@ -43,9 +49,23 @@ const GeoInputs = () => {
         </FormProvider>
       </BottomSheetModal>
       <RegionsDisplay />
-      <AddButton onPress={pressOpen}>Добавить регион</AddButton>
+      <AddButton onPress={pressOpen}>Добавить регион</AddButton> */}
+
+      <ModalCheckboxList
+        bottomSheetModal={{
+          title: 'Регион',
+          children: null,
+        }}
+        formApi={control}
+        ref={buttomSheetRef2}
+        pageData={{
+          search: { placeholder: 'Поиск...' },
+          name: 'regions',
+          items: regionUse.filteredRegions || [],
+        }}
+      />
+
+      <AddButton onPress={pressOpen2}>Добавить регион</AddButton>
     </WrapperBlock>
   );
 };
-
-export default GeoInputs;
