@@ -1,6 +1,7 @@
 import { MainPagePropsGlobal } from '@/components/ModalCheckboxList/components/MainPage';
 import { BaseTypeDictionary } from '@/shared/types/dictionary.types';
 import { IFilterCreate } from '@/shared/types/filters.types';
+import { mergeArrays } from '@/shared/utils/mergeArrays';
 import { useBottomSheetModal } from '@gorhom/bottom-sheet';
 import { useCallback, useEffect, useState } from 'react';
 import { useController, useFormContext } from 'react-hook-form';
@@ -18,7 +19,14 @@ export const useModalcheckbox = ({ name, items }: MainPagePropsGlobal) => {
   };
 
   const acceptChanges = () => {
-    setValue(name, selectedValues);
+    const itemsIds = items.map(item => item.id);
+    const notPicked = itemsIds.filter(itemId => !selectedValues.includes(itemId));
+
+    const allValuesWithoutUnpicked = (field.value as number[]).filter(v => !notPicked.includes(v));
+
+    const merged = mergeArrays(allValuesWithoutUnpicked, selectedValues);
+
+    setValue(name, merged);
     dismiss();
   };
 

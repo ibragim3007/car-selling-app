@@ -6,8 +6,8 @@ import { Mark } from '@/shared/types/dictionary.types';
 import Grid from '@/shared/ui/layout/Grid';
 import LoadingData from '@/shared/ui/loading/LoadingData';
 import React, { useCallback, useState } from 'react';
-import AcceptButton from '../../buttons/AcceptButton';
-import SearchInput from '../../buttons/SearchInput';
+import AcceptButton from '../../../../../components/ModalCheckboxList/components/AcceptButton';
+import SearchInput from '../../../../../components/ModalCheckboxList/components/SearchInput';
 import RowItem from './RowItem/RowItem';
 
 const AutoChoiceList = () => {
@@ -46,7 +46,7 @@ const AutoChoiceList = () => {
             <List<Mark>
               data={filteredMarks}
               keyExtractor={keyExtractor}
-              renderItem={({ item }) => <RowItem<Mark> title={item.name} value={item.id} />}
+              renderItem={({ item }) => <RowItem title={item.name} value={item.id} />}
             />
           </Grid>
         )}

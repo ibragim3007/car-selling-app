@@ -3,7 +3,6 @@ import React from 'react';
 
 import { CheckboxCustom } from '@/shared/ui/inputs/Checkbox';
 import LabelCheckbox from '@/shared/ui/inputs/LabelCheckbox';
-import { BaseTypeDictionary } from '@/shared/types/dictionary.types';
 
 export interface RowListProps extends GridProps {
   title?: string | number;

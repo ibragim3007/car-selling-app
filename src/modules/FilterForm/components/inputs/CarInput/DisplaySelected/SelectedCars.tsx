@@ -3,7 +3,7 @@ import { useDictionaryQuery, useMarkaModelQuery } from '@/shared/api/entityies/d
 import { compare } from '@/shared/helpers/compare';
 import { IFilterCreate } from '@/shared/types/filters.types';
 import Grid from '@/shared/ui/layout/Grid';
-import React from 'react';
+import React, { useEffect } from 'react';
 import { useFormContext, useWatch } from 'react-hook-form';
 
 const SelectedCars = () => {
@@ -13,6 +13,18 @@ const SelectedCars = () => {
 
   const { data: dict } = useDictionaryQuery();
   const { data: markaModels } = useMarkaModelQuery();
+
+  useEffect(() => {
+    const res = markaModels?.filter(a => models?.includes(a.modelid));
+    const answer = res?.reduce((acc: number[], obj) => {
+      if (!acc.includes(obj.markaid)) {
+        acc.push(obj.markaid);
+      }
+      return acc;
+    }, []);
+
+    formApi.setValue('marks', answer);
+  }, [formApi, markaModels, models]);
 
   const removeMark = (mark: number) => {
     if (!markaModels) return;

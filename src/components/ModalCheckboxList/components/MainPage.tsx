@@ -1,7 +1,7 @@
 import List, { ListProps } from '@/components/Informers/tables/List';
 import RowList from '@/components/Informers/tables/RowList';
-import AcceptButton from '@/modules/FilterForm/components/buttons/AcceptButton';
-import SearchInput from '@/modules/FilterForm/components/buttons/SearchInput';
+
+import SearchInput from '@/components/ModalCheckboxList/components/SearchInput';
 import { useModalcheckbox } from '@/shared/hooks/helpers/useModalcheckbox';
 import { BaseTypeDictionary } from '@/shared/types/dictionary.types';
 import { IFilterCreate } from '@/shared/types/filters.types';
@@ -10,6 +10,7 @@ import { TextFieldProps } from '@/shared/ui/inputs/TextField';
 import Grid from '@/shared/ui/layout/Grid';
 import AntDesign from '@expo/vector-icons/build/AntDesign';
 import React from 'react';
+import AcceptButton from './AcceptButton';
 
 export interface MainPagePropsGlobal extends Omit<MainPageProps, 'checkModalboxUse'> {}
 

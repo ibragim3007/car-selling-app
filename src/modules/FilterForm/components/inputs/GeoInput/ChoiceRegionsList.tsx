@@ -9,7 +9,7 @@ import Grid from '@/shared/ui/layout/Grid';
 import LoadingData from '@/shared/ui/loading/LoadingData';
 import { AntDesign } from '@expo/vector-icons';
 import React from 'react';
-import AcceptButton from '../../buttons/AcceptButton';
+import AcceptButton from '../../../../../components/ModalCheckboxList/components/AcceptButton';
 
 // Надо будет рефакторить
 

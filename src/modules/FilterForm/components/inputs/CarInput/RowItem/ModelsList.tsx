@@ -5,8 +5,8 @@ import { useModelsQuery } from '@/shared/api/entityies/dictionary/dictionary.api
 import { IModel } from '@/shared/types/dictionary.types';
 import Grid from '@/shared/ui/layout/Grid';
 import React, { useCallback, useState } from 'react';
-import AcceptButton from '../../../buttons/AcceptButton';
-import SearchInput from '../../../buttons/SearchInput';
+import AcceptButton from '../../../../../../components/ModalCheckboxList/components/AcceptButton';
+import SearchInput from '../../../../../../components/ModalCheckboxList/components/SearchInput';
 import { useController, useFormContext } from 'react-hook-form';
 import { IFilterCreate } from '@/shared/types/filters.types';
 import { useBottomSheetModal } from '@gorhom/bottom-sheet';

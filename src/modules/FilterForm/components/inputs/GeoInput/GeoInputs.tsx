@@ -48,7 +48,7 @@ export const GeoInputs = () => {
           <ChoiceRegionsList regionUse={regionUse} />
         </FormProvider>
       </BottomSheetModal>
-      <RegionsDisplay />
+      
       <AddButton onPress={pressOpen}>Добавить регион</AddButton> */}
 
       <ModalCheckboxList
@@ -64,6 +64,7 @@ export const GeoInputs = () => {
           items: regionUse.filteredRegions || [],
         }}
       />
+      <RegionsDisplay />
 
       <AddButton onPress={pressOpen2}>Добавить регион</AddButton>
     </WrapperBlock>

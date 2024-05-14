@@ -34,7 +34,7 @@ const QuitResetHeader = ({ title, reset, close, dismissIcon }: BottomSheetModalH
       </Grid>
       {reset && (
         <Pressable onPress={reset}>
-          <Grid paddingVertical={15} style={{ marginRight: 20 }} align="flex-end" flex={1}>
+          <Grid paddingVertical={15} style={{ marginRight: 20 }} align="flex-end">
             <Typography variant="caption-1" color="success">
               Сбросить
             </Typography>
