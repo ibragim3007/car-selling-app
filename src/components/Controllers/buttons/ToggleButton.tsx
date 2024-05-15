@@ -1,28 +1,19 @@
 import { useTheme } from '@/shared/hooks/stylesHooks/useTheme';
-import Card from '@/shared/ui/card/Card';
-import Divider from '@/shared/ui/divider/Divider';
 import Grid from '@/shared/ui/layout/Grid';
-import Typography from '@/shared/ui/typography/Typography';
-import { normalizedSize } from '@/shared/utils/size';
 import React from 'react';
-import { Pressable } from 'react-native';
+// export interface IItem {
+//   value: string;
+//   title: string;
+// }
+interface ToggleButtonProps<TItem> {
+  items: TItem[];
 
-export interface IItem {
-  value: string;
-  title: string;
-}
-interface ToggleButtonProps {
-  items: IItem[];
-  value: IItem;
-  onChange: (item: IItem) => void;
+  Item: (item: TItem, index: number) => React.ReactNode;
 }
 
-const ToggleButton = ({ items, onChange, value }: ToggleButtonProps) => {
+const ToggleButton = <TItem,>({ items, Item }: ToggleButtonProps<TItem>) => {
   const { colors } = useTheme();
-  const onPress = (value: IItem) => {
-    onChange(value);
-  };
-  const isShowDivider = (index: number) => index !== items.length - 1;
+
   return (
     <Grid
       color={colors.background.neutral}
@@ -31,38 +22,7 @@ const ToggleButton = ({ items, onChange, value }: ToggleButtonProps) => {
       paddingVertical={2}
       paddingHorizontal={3}
     >
-      {items.map((item, index) => (
-        <Grid flex={1} row key={index} align="center">
-          <Pressable
-            style={{
-              flex: 1,
-              height: '100%',
-              borderRightColor: colors.divider,
-            }}
-            key={index}
-            onPress={() => onPress(item)}
-          >
-            <Card
-              color={value.value === item.value ? 'primary' : 'transparent'}
-              paddingHorizontal={8}
-              paddingVertical={6}
-              style={{
-                shadowColor: '#000',
-                shadowOpacity: 0.12,
-                shadowOffset: { height: 3, width: 0 },
-                transform: [{ scale: 1.015 }],
-              }}
-            >
-              <Typography lineBreakMode="clip" numberOfLines={1} textAlign="center" variant="footnote">
-                {item.title}
-              </Typography>
-            </Card>
-          </Pressable>
-          {isShowDivider(index) && (
-            <Divider style={{ position: 'absolute', right: -normalizedSize(9), zIndex: -1, height: '60%' }} vertical />
-          )}
-        </Grid>
-      ))}
+      {items.map((item, index) => Item(item, index))}
     </Grid>
   );
 };

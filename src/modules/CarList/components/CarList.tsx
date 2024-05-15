@@ -1,29 +1,69 @@
-import carObjects from '@/shared/mock/car1';
 import { ICar } from '@/shared/types';
 import Grid from '@/shared/ui/layout/Grid';
 import { normalizedSize } from '@/shared/utils/size';
-import { FlashList, ListRenderItem } from '@shopify/flash-list';
-import React from 'react';
+import { FlashList, FlashListProps, ListRenderItem } from '@shopify/flash-list';
+import React, { useCallback, useState } from 'react';
+import { NativeScrollEvent, NativeSyntheticEvent } from 'react-native';
+import GoTopButton from './Buttons/GoTopButton';
+import UpdateDataButton from './Buttons/UpdateDataButton';
 import CarItem from './CarItem/CarItem';
 
-interface CarListProps {
+interface CarListProps extends Partial<FlashListProps<ICar>> {
   headerComponent?: React.JSX.Element;
   footerComponent?: React.JSX.Element;
   stickyHeaderIndices?: number[];
   topOffset?: number;
+  data?: ICar[];
+  loading?: boolean;
+  onRefresh?: () => void;
 }
 
-function CarList({ headerComponent, footerComponent, stickyHeaderIndices, topOffset }: CarListProps) {
-  // const _renderItem = (info: ListRenderItemInfo<ICar>) => <CarItem key={info.item.id} car={info.item} />;
-
+function CarList({
+  data,
+  headerComponent,
+  footerComponent,
+  loading,
+  stickyHeaderIndices,
+  topOffset,
+  onRefresh,
+  ...props
+}: CarListProps) {
   const renderItem: ListRenderItem<ICar> = ({ item }) => {
     return <CarItem car={item} />;
   };
   const lengthItem = normalizedSize(145);
+
+  const keyExtractor = useCallback((item: ICar, i: number) => `${i}-${item.id}`, []);
+
+  let flastListRef: FlashList<ICar> | null;
+
+  const goTopButton = () => {
+    flastListRef?.scrollToOffset({ offset: 0, animated: true });
+  };
+
+  const goUpdateButton = () => {
+    if (onRefresh) onRefresh();
+    flastListRef?.scrollToOffset({ offset: 0, animated: true });
+  };
+
+  const [goTopButtonShow, setGoTopButtonShow] = useState(false);
+
+  const onScroll = (event: NativeSyntheticEvent<NativeScrollEvent>) => {
+    if (event.nativeEvent.contentOffset.y > 2000) setGoTopButtonShow(true);
+    else setGoTopButtonShow(false);
+  };
+
   return (
     <Grid flex={1} style={{ paddingTop: 0 }}>
+      {goTopButtonShow && <UpdateDataButton goUpdateButton={goUpdateButton} />}
+      {goTopButtonShow && <GoTopButton goTopButton={goTopButton} />}
       <FlashList
-        data={carObjects}
+        ref={ref => {
+          flastListRef = ref;
+        }}
+        data={data}
+        onRefresh={onRefresh}
+        refreshing={loading}
         renderItem={renderItem}
         contentContainerStyle={{ paddingTop: topOffset }}
         estimatedItemSize={lengthItem}
@@ -31,7 +71,10 @@ function CarList({ headerComponent, footerComponent, stickyHeaderIndices, topOff
         removeClippedSubviews
         ListHeaderComponent={headerComponent}
         ListFooterComponent={footerComponent}
-        keyExtractor={item => item.id}
+        keyExtractor={keyExtractor}
+        onScroll={onScroll}
+        onEndReachedThreshold={4}
+        {...props}
       />
     </Grid>
   );

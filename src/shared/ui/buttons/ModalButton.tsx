@@ -7,6 +7,7 @@ const ModalButton = ({ ...props }: ButtonProps) => {
   const styles = StyleSheet.flatten([
     {
       borderRadius: 0,
+      paddingHorizontal: 1,
     },
     props.style,
   ]);

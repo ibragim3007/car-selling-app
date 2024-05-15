@@ -3,7 +3,7 @@ import HighlightText from '@/components/Informers/HighlightText';
 import TagPrice from '@/components/Informers/TagPrice';
 import ArrowRight from '@/icons/linear/arrow-right.svg';
 import { formatCurrency, priceFormat } from '@/shared/helpers/priceFormat';
-import { carImages } from '@/shared/mock/car1';
+import { ICarBig } from '@/shared/types';
 import Card from '@/shared/ui/card/Card';
 import Grid from '@/shared/ui/layout/Grid';
 import Typography from '@/shared/ui/typography/Typography';
@@ -11,19 +11,26 @@ import { normalizedSize } from '@/shared/utils/size';
 import React from 'react';
 import { Pressable } from 'react-native';
 import SliderImages from './SliderImages';
+import { IDictionaryRoot } from '@/shared/types/dictionary.types';
+import { compare } from '@/shared/helpers/compare';
 
-const HeaderInfo = () => {
+interface HeaderInfoProps {
+  car: ICarBig;
+  dict?: IDictionaryRoot;
+}
+
+const HeaderInfo = ({ car, dict }: HeaderInfoProps) => {
   return (
     <Card borderRadius={0}>
       <Grid gap={16}>
         <Grid gap={4}>
-          <GroupInfo leftInfo={'TOYOTA Land Cruiser'} rightInfo={'2012'} weight="medium" />
+          <GroupInfo leftInfo={car.title} rightInfo={car.year} weight="medium" />
           <Grid row justfity="space-between" align="center">
             <Grid gap={8} row align="center">
               <Typography variant="title-3" weight="bold">
-                {priceFormat(1200000)}
+                {priceFormat(car.price)}
               </Typography>
-              <TagPrice amount={110121} isRised={false} style={{ alignSelf: 'stretch' }} />
+              <TagPrice amount={car.delta} isRised={car.delta < 0} style={{ alignSelf: 'stretch' }} />
             </Grid>
             <Pressable>
               <Grid row gap={4} align="center" padding={5}>
@@ -34,9 +41,13 @@ const HeaderInfo = () => {
               </Grid>
             </Pressable>
           </Grid>
-          <HighlightText isRed={true}>Выше рынка {formatCurrency(60000)}</HighlightText>
+          <HighlightText isRed={car.deviation > 0}>
+            {/* исправить и сделать по дефолту */}
+            {/* {compare(dict!.avgCostDeviations, car.drive)} */}
+            {car.deviation > 0 ? 'Выше' : 'Ниже'} рынка на {formatCurrency(car.deviation)}
+          </HighlightText>
         </Grid>
-        <SliderImages items={carImages} />
+        <SliderImages items={car.photos} />
       </Grid>
       {/* <ImageCarousel data={carImages} /> */}
     </Card>

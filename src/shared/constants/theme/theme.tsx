@@ -43,14 +43,14 @@ export const themes: ITheme[] = [
       white: '#FFFFFF',
     },
     background: {
-      primary: '#FFFFFF',
+      primary: '#ffffff',
       secondary: '#E7E9ED',
       neutral: '#a9afb517',
       success: '#009e2f25',
       alert: '#ffc8002d',
       negative: '#d92e1e28',
       disabled: '#f4f4f427',
-      active: '#f8fbff2a',
+      active: '#F8FBFF',
     },
     accent: {
       primary: '#2DC574',

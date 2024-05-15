@@ -1,18 +1,27 @@
 import Input from '@/components/Controllers/Input/Input';
+import ErrorCard from '@/components/Informers/ErrorCard';
 import { routes } from '@/shared/config/routes';
+import { useLogin } from '@/shared/hooks/entityies/user/useLogin';
+import { ILogin } from '@/shared/types';
 import Button from '@/shared/ui/buttons/Button';
 import Grid from '@/shared/ui/layout/Grid';
 import Typography from '@/shared/ui/typography/Typography';
+import { isServerError } from '@/shared/utils/isServerError';
 import { Link } from 'expo-router';
 import React from 'react';
-import { FieldValues, useForm } from 'react-hook-form';
-import { Alert } from 'react-native';
+import { useForm } from 'react-hook-form';
 
 export const LoginForm = () => {
-  const { control, handleSubmit, setFocus } = useForm();
+  const { isError, isLoading, error, pressLoginButton } = useLogin();
+  const { control, handleSubmit, setFocus } = useForm<ILogin>({
+    defaultValues: {
+      login: '',
+      password: '',
+    },
+  });
 
-  const pressButton = (data: FieldValues) => {
-    Alert.alert(JSON.stringify(data));
+  const pressButton = async (data: ILogin) => {
+    await pressLoginButton(data);
   };
 
   return (
@@ -55,8 +64,10 @@ export const LoginForm = () => {
           }
         />
       </Grid>
-      {/* <ErrorCard text="Ошибка" /> */}
-      <Button onPress={handleSubmit(pressButton)}>Войти</Button>
+      {isError && !isLoading && isServerError(error) && <ErrorCard error={error} />}
+      <Button loading={isLoading} onPress={handleSubmit(pressButton)}>
+        Войти
+      </Button>
     </>
   );
 };

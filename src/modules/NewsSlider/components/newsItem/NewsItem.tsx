@@ -1,10 +1,11 @@
+import ImageLazy from '@/components/Informers/images/ImageLazy';
 import { INews } from '@/shared/types/news';
 import Card, { CardProps } from '@/shared/ui/card/Card';
 import Grid from '@/shared/ui/layout/Grid';
 import Typography from '@/shared/ui/typography/Typography';
 import { normalizedSize } from '@/shared/utils/size';
 import React from 'react';
-import { Image, Pressable } from 'react-native';
+import { Pressable } from 'react-native';
 
 interface NewsItemProps extends CardProps {
   item: INews;
@@ -31,8 +32,8 @@ const NewsItem = ({ item, ...props }: NewsItemProps) => {
           {...props}
         >
           <Grid gap={12} padding={0}>
-            <Image
-              source={{ uri: item.coverImage }}
+            <ImageLazy
+              source={{ uri: item.fullimg }}
               alt={item.title}
               style={{
                 borderTopLeftRadius: 12,
@@ -46,7 +47,7 @@ const NewsItem = ({ item, ...props }: NewsItemProps) => {
                 {item.title}
               </Typography>
               <Typography variant="caption-1" numberOfLines={2} lineBreakMode="tail">
-                {item.shortDescription}
+                {item.descr}
               </Typography>
             </Grid>
           </Grid>

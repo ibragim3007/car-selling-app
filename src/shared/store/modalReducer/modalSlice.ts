@@ -6,8 +6,9 @@ type TOptionCallback = { color?: ButtonProps['color'] };
 type TCallbacks = 'callback1' | 'callback2' | 'callback3';
 
 export interface DisplayDataModalProps {
-  title: string;
+  title?: string;
   subhead: string;
+  children?: React.ReactNode;
   type?: 'horizontal' | 'vertical';
   options?: Partial<Record<TCallbacks, TOptionCallback>>;
   buttons?: React.ReactNode[];

@@ -1,13 +1,18 @@
 import { PropsWithChildren, useEffect } from 'react';
 import { useAppDispatch } from '../hooks/storeHooks';
-import { loadTheme } from '../store/themeReducer/actions/loadTheme';
+import { loadApp } from '../store/appReducer/actions/loadApp';
+import { useDictionaryQuery } from '../api/entityies/dictionary/dictionary.api';
 
 interface LoadAppProps extends PropsWithChildren {}
 
 const LoadApp = ({ children }: LoadAppProps) => {
   const dispatch = useAppDispatch();
+  useDictionaryQuery();
+
   useEffect(() => {
-    void dispatch(loadTheme());
+    void (async () => {
+      await dispatch(loadApp());
+    })();
   }, [dispatch]);
   return children;
 };

@@ -5,7 +5,7 @@ import React from 'react';
 
 interface GroupInfoProps {
   leftInfo: string;
-  rightInfo: string;
+  rightInfo: string | number;
   weight?: TypographyWeight;
 }
 

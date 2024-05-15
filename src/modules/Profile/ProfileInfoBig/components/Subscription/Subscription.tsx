@@ -1,3 +1,4 @@
+import { useUserQuery } from '@/shared/api/entityies/auth/api.auth';
 import { useTheme } from '@/shared/hooks/stylesHooks/useTheme';
 import Card from '@/shared/ui/card/Card';
 import CheckIcon from '@/shared/ui/icons/CheckIcon';
@@ -9,6 +10,8 @@ import React from 'react';
 import { Alert, Pressable } from 'react-native';
 const Subscription = () => {
   const { colors } = useTheme();
+  const { data } = useUserQuery();
+
   return (
     <Pressable onPress={() => Alert.alert('Hello!')}>
       <Card borderRadius={16}>

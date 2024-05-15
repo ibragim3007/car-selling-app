@@ -26,6 +26,7 @@ const UnSubscripbeSuggestion = () => {
         options: {
           callback1: { color: 'green' },
         },
+        type: 'vertical',
         buttons: [
           <ModalButton onPress={onAuthClick} color="green" key="1">
             Авторизоваться

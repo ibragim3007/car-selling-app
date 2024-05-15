@@ -8,15 +8,17 @@ interface BottomInfoProps {
 }
 
 const BottomInfo = ({ car }: BottomInfoProps) => {
+  const creadate = car.credate;
+
   return (
     <Grid gap={6} row>
       <Typography color="secondary" variant="caption-1">
-        {car.date.getHours()}:{car.date.getMinutes()}
+        {creadate || ''}
       </Typography>
       <Typography color="secondary" variant="caption-1">
-        {car.date.getDate()}.{car.date.getMonth()}.{car.date.getFullYear()}
+        {/* {creadate.getDate()}.{creadate.getMonth()}.{creadate.getFullYear()} */}
       </Typography>
-      <Typography color="secondary" variant="caption-1">
+      <Typography style={{ flex: 1 }} color="secondary" variant="caption-1" numberOfLines={1}>
         {car.city}
       </Typography>
     </Grid>

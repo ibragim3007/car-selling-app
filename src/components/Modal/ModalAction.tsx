@@ -24,21 +24,32 @@ const ModalAction = () => {
             <GroupDropButton borderRadius={16} style={{ width: 270, overflow: 'hidden' }}>
               <Card borderRadius={0}>
                 <Grid align="center" justfity="center" space="md">
-                  <Typography textAlign="center" weight="bold">
-                    {displayData?.title}
-                  </Typography>
-                  <Typography textAlign="center" variant="footnote">
-                    {displayData?.subhead}
-                  </Typography>
+                  {displayData?.title && (
+                    <Typography textAlign="center" weight="bold">
+                      {displayData?.title}
+                    </Typography>
+                  )}
+                  {displayData?.subhead && (
+                    <Typography textAlign="center" variant="footnote">
+                      {displayData?.subhead}
+                    </Typography>
+                  )}
                 </Grid>
+                {displayData?.children && displayData?.children}
               </Card>
-              {displayData?.buttons?.map((button, index) => {
-                return (
-                  // <DropDownAnimation key={index} index={index}>
-                  button
-                  // </DropDownAnimation>
-                );
-              })}
+              <Grid
+                gap={1}
+                wrap={displayData?.type === 'vertical' ? true : false}
+                row={displayData?.type === 'horizontal' ? true : false}
+              >
+                {displayData?.buttons?.map((button, index) => {
+                  return (
+                    <Grid key={index} flex={displayData?.type === 'vertical' ? 0 : 1} style={{ width: '100%' }}>
+                      {button}
+                    </Grid>
+                  );
+                })}
+              </Grid>
             </GroupDropButton>
             {/* </Animated.View> */}
           </Pressable>

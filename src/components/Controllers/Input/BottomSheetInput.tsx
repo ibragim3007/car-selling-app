@@ -8,7 +8,7 @@ import Input from './Input';
 
 interface BottomSheetInputProps {
   title: string;
-  value: string | number;
+  value?: string | number;
   name?: string;
 }
 

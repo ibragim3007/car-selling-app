@@ -4,11 +4,12 @@ import Typography from '@/shared/ui/typography/Typography';
 import React from 'react';
 
 interface InfoItemProps {
-  infoString: string;
+  infoString: string | number;
   isLastElement?: boolean;
 }
 
 const InfoItem: React.FC<InfoItemProps> = ({ infoString, isLastElement }) => {
+  if (!infoString) return null;
   return (
     <Grid row align="center">
       <Typography color="secondary" variant="caption-1">

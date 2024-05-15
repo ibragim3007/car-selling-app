@@ -21,6 +21,14 @@ export const routes = {
       updatePassword: 'profile/update-password',
       delete: 'profile/delete',
     },
+    filter: {
+      filters: '(mycollections)/filters',
+      filter: '(mycollections)/filters/[id]',
+      newfilter: '(mycollections)/new-filter',
+      modal: {
+        choiceRegion: '(mycollections)/modal/choice-region',
+      },
+    },
   },
   auth: {
     login: 'auth/login',
