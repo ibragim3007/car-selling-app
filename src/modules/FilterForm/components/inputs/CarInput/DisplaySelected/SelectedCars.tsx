@@ -16,15 +16,17 @@ const SelectedCars = () => {
 
   useEffect(() => {
     const res = markaModels?.filter(a => models?.includes(a.modelid));
+
+    if (!res) return;
+
     const answer = res?.reduce((acc: number[], obj) => {
-      if (!acc.includes(obj.markaid)) {
-        acc.push(obj.markaid);
-      }
+      if (!acc.includes(obj.markaid)) acc.push(obj.markaid);
+
       return acc;
     }, []);
 
-    formApi.setValue('marks', answer);
-  }, [formApi, markaModels, models]);
+    if (answer) formApi.setValue('marks', answer);
+  }, [markaModels, models]);
 
   const removeMark = (mark: number) => {
     if (!markaModels) return;

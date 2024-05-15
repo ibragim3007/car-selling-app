@@ -13,6 +13,8 @@ import AddButton from '../../buttons/AddButton';
 import WrapperBlock from '../../wrapper/WrapperBlock';
 import AutoChoiceList from './AutoChoiceList';
 import SelectedCars from './DisplaySelected/SelectedCars';
+import Typography from '@/shared/ui/typography/Typography';
+import Select from '@/components/Controllers/Input/Select/Select';
 
 const CarInput = () => {
   const buttomSheetRef = useRef<BTMS>(null);
@@ -26,20 +28,10 @@ const CarInput = () => {
 
   return (
     <WrapperBlock title="Тип авто">
-      <Input
-        readOnly
+      <Select
         control={formApi.control}
         value={field.value?.map(v => enumCompare(carTypes, v)).join(', ')}
         name={field.name}
-        endIcon={
-          <PressableIcon
-            Icon={() =>
-              ArrowDown({
-                style: { transform: [{ rotate: '180deg' }] },
-              })
-            }
-          />
-        }
       />
       <BottomSheetModal
         snapPoints={['90%']}
@@ -51,6 +43,7 @@ const CarInput = () => {
           <AutoChoiceList />
         </FormProvider>
       </BottomSheetModal>
+      <Typography>Марка и модель</Typography>
       <SelectedCars />
       <AddButton onPress={onPressAddAuto}>Добавить авто</AddButton>
     </WrapperBlock>

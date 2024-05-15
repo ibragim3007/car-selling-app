@@ -45,6 +45,7 @@ const CardTitle = ({
             >
               {title}
             </Typography>
+
             {rightHeader}
           </Grid>
         </Pressable>

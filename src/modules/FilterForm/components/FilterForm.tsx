@@ -6,6 +6,7 @@ import CarInput from './inputs/CarInput/CarInput';
 import WrapperBlock from './wrapper/WrapperBlock';
 import Button from '@/shared/ui/buttons/Button';
 import { GeoInputs } from './inputs/GeoInput/GeoInputs';
+import StateInput from './inputs/StateInput/StateInput';
 
 interface FilterFormProps<T extends FieldValues> {
   formApi: UseFormReturn<T, any, undefined>;
@@ -25,6 +26,7 @@ const FilterForm = <T extends FieldValues>({ formApi }: FilterFormProps<T>) => {
       </WrapperBlock>
       <GeoInputs />
       <CarInput />
+      <StateInput />
       <Button onPress={handleSubmit(onPressCreate)}>Создать</Button>
     </Grid>
   );
