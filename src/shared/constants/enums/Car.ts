@@ -1,7 +1,7 @@
 // TODO - Обновить значения
 
 export interface IEnum {
-  id: number;
+  id: number | null;
   text: string;
 }
 
@@ -183,6 +183,33 @@ export const priceTypes = [
   {
     id: 4,
     text: 'Отличная',
+  },
+];
+
+export const owners = [
+  {
+    id: 0,
+    text: 'Неважно',
+  },
+  {
+    id: 1,
+    text: '1 владелец',
+  },
+  {
+    id: 2,
+    text: 'До 2 владельцев',
+  },
+  {
+    id: 3,
+    text: 'До 3 владельцев',
+  },
+  {
+    id: 4,
+    text: 'До 4 владельцев',
+  },
+  {
+    id: 5,
+    text: 'До 5 владельцев',
   },
 ];
 

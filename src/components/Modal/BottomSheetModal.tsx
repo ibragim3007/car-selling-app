@@ -12,7 +12,7 @@ export interface CustomBottomSheetModalProps extends BottomSheetModalProps {
 }
 
 const CustomBottomSheetModal = forwardRef<Ref, CustomBottomSheetModalProps>((props, ref) => {
-  const snapPoints = useMemo(() => ['60%', '75%'], []);
+  const snapPoints = useMemo(() => ['50%'], []);
   const { colors } = useTheme();
   const renderBackdrop = useCallback(
     (props: any) => <BottomSheetBackdrop appearsOnIndex={0} disappearsOnIndex={-1} {...props} />,

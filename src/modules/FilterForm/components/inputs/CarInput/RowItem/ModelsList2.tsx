@@ -4,7 +4,7 @@ import { useModelsQuery } from '@/shared/api/entityies/dictionary/dictionary.api
 import { useModalcheckbox } from '@/shared/hooks/helpers/useModalcheckbox';
 import Grid from '@/shared/ui/layout/Grid';
 import React from 'react';
-import QuitResetHeader from '../../../HandleComponents/QuitResetHeader';
+import QuitResetHeader from '../../../../../../components/Modal/components/QuitResetHeader';
 import ArrowLeft from '@/icons/linear/arrow-left.svg';
 
 interface ModelsListProps2 {
