@@ -37,19 +37,16 @@ const SelectRange = ({ title, name, values, subtitleInput, onChangeValues, ...pr
     buttomSheetRef.current?.dismiss();
   };
 
+  const inputPlaceholder =
+    !firstRange || !secondRange
+      ? 'Неважно'
+      : `${formatNumber(firstRange || 0)} - ${formatNumber(secondRange || 0)} ${subtitleInput ? subtitleInput : ''}`;
   return (
     <>
-      <SelectButtonWrap
-        value={`${formatNumber(firstRange || 0)} - ${formatNumber(secondRange || 0)} ${
-          subtitleInput ? subtitleInput : ''
-        }`}
-        name={name}
-        onPress={onPresent}
-        {...props}
-      />
+      <SelectButtonWrap value={inputPlaceholder} name={name} onPress={onPresent} {...props} />
       <BottomSheetModal handleComponent={() => <QuitResetHeader title={title} />} ref={buttomSheetRef}>
         <Grid flex={1}>
-          <Grid padding={16} row>
+          <Grid padding={16} row gap={1}>
             <Range label="От" onChange={updateFirstRange} currentValue={firstRange} data={MILEAGE_MOCK} />
             <Range
               label="До"

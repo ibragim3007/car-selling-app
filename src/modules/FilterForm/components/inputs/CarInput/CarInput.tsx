@@ -1,21 +1,18 @@
-import Input from '@/components/Controllers/Input/Input';
+import Select from '@/components/Controllers/Input/Select/Select';
 import BottomSheetModal from '@/components/Modal/BottomSheetModal';
-import ArrowDown from '@/icons/linear/arrow-down.svg';
 import { carTypes } from '@/shared/constants/enums/Car';
 import { enumCompare } from '@/shared/helpers/enumCompare';
 import { IFilterCreate } from '@/shared/types/filters.types';
-import PressableIcon from '@/shared/ui/buttons/PressableButton';
+import Typography from '@/shared/ui/typography/Typography';
 import { BottomSheetModal as BTMS } from '@gorhom/bottom-sheet';
 import React, { useRef } from 'react';
 import { FormProvider, useController, useFormContext } from 'react-hook-form';
 import QuitResetHeader from '../../../../../components/Modal/components/QuitResetHeader';
 import AddButton from '../../buttons/AddButton';
+import WrapInputLabel from '../../wrapper/WrapInputLabel';
 import WrapperBlock from '../../wrapper/WrapperBlock';
 import AutoChoiceList from './AutoChoiceList';
 import SelectedCars from './DisplaySelected/SelectedCars';
-import Typography from '@/shared/ui/typography/Typography';
-import Select from '@/components/Controllers/Input/Select/Select';
-import WrapInputLabel from '../../wrapper/WrapInputLabel';
 
 const CarInput = () => {
   const buttomSheetRef = useRef<BTMS>(null);

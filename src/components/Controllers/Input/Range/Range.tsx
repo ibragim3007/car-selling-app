@@ -4,7 +4,9 @@ import { FlashList, FlashListProps } from '@shopify/flash-list';
 import React, { useEffect, useRef, useState } from 'react';
 import { Animated } from 'react-native';
 
+import { ScrollView } from 'react-native-gesture-handler';
 import RangeItem, { ITEM_SIZE } from './RangeItem';
+import { normalizedSize } from '@/shared/utils/size';
 
 interface RangeProps extends Partial<FlashListProps<number>> {
   label?: string;
@@ -12,7 +14,7 @@ interface RangeProps extends Partial<FlashListProps<number>> {
   onChange: (newValue: number) => void;
 }
 
-const Range = <TItem extends string | number>({ currentValue, onChange, label, ...props }: RangeProps) => {
+const Range = ({ currentValue, onChange, label, ...props }: RangeProps) => {
   const ref = React.useRef<FlashList<number>>(null);
   const [index, setIndex] = useState(props.data?.findIndex(d => d === currentValue) || 0);
   const scrollX = useRef(new Animated.Value(0)).current;
@@ -34,7 +36,7 @@ const Range = <TItem extends string | number>({ currentValue, onChange, label, .
           </Typography>
         </Grid>
       )}
-      <Grid flex={1} height={170}>
+      <Grid flex={1} height={normalizedSize(170)}>
         <FlashList
           {...props}
           data={props.data}
@@ -44,6 +46,7 @@ const Range = <TItem extends string | number>({ currentValue, onChange, label, .
           snapToInterval={ITEM_SIZE}
           estimatedItemSize={ITEM_SIZE}
           decelerationRate="fast"
+          renderScrollComponent={ScrollView}
           onMomentumScrollEnd={onUpdate}
           onScroll={ev => {
             const index = Math.round(ev.nativeEvent.contentOffset.y / ITEM_SIZE);
@@ -51,7 +54,7 @@ const Range = <TItem extends string | number>({ currentValue, onChange, label, .
             scrollX.setValue(ev.nativeEvent.contentOffset.y);
           }}
           contentContainerStyle={{
-            paddingVertical: ITEM_SIZE + 25,
+            paddingVertical: ITEM_SIZE + normalizedSize(32.5),
           }}
           renderItem={({ item, index }) => <RangeItem title={item} index={index} scrollX={scrollX} />}
         />

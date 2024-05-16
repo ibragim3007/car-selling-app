@@ -26,7 +26,7 @@ export const useModalcheckbox = ({ name, items }: MainPagePropsGlobal) => {
 
     const merged = mergeArrays(allValuesWithoutUnpicked, selectedValues);
 
-    setValue(name, merged);
+    setValue(name, merged, { shouldDirty: true, shouldTouch: true, shouldValidate: true });
     dismiss();
   };
 

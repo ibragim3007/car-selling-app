@@ -3,11 +3,10 @@ import Grid from '@/shared/ui/layout/Grid';
 import React from 'react';
 import { FieldValues, UseFormReturn } from 'react-hook-form';
 import CarInput from './inputs/CarInput/CarInput';
-import WrapperBlock from './wrapper/WrapperBlock';
-import Button from '@/shared/ui/buttons/Button';
 import { GeoInputs } from './inputs/GeoInput/GeoInputs';
-import StateInput from './inputs/StateInput/StateInput';
 import MileagesInput from './inputs/MileagesInput/MileagesInput';
+import StateInput from './inputs/StateInput/StateInput';
+import WrapperBlock from './wrapper/WrapperBlock';
 
 interface FilterFormProps<T extends FieldValues> {
   formApi: UseFormReturn<T, any, undefined>;
@@ -16,12 +15,8 @@ interface FilterFormProps<T extends FieldValues> {
 const FilterForm = <T extends FieldValues>({ formApi }: FilterFormProps<T>) => {
   const { control, handleSubmit, formState } = formApi;
 
-  const onPressCreate = (data: FieldValues) => {
-    console.log(data);
-  };
-
   return (
-    <Grid space="sm">
+    <Grid space="sm" paddingBottom={40}>
       <WrapperBlock title="Название подборки">
         <Input control={control} name="name" />
       </WrapperBlock>
@@ -29,7 +24,6 @@ const FilterForm = <T extends FieldValues>({ formApi }: FilterFormProps<T>) => {
       <CarInput />
       <StateInput />
       <MileagesInput />
-      <Button onPress={handleSubmit(onPressCreate)}>Создать</Button>
     </Grid>
   );
 };

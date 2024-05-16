@@ -20,12 +20,12 @@ const MileagesInput = () => {
   return (
     <WrapperBlock>
       <Grid space="lg">
-        <WrapInputLabel title="Повреждения">
+        <WrapInputLabel title="Пробег">
           <ToggleButton
             items={carMiliages}
             Item={(item, index) => (
               <ToggleButtonItem
-                onPress={item => setValue('carState', item.id)}
+                onPress={item => setValue('carState', item.id, { shouldDirty: true })}
                 key={item.id}
                 currentValue={field.value}
                 title={item.text}
@@ -37,11 +37,11 @@ const MileagesInput = () => {
             )}
           />
         </WrapInputLabel>
-        {field.value === 2 && (
+        {field.value !== 1 && (
           <WrapInputLabel title="Величина пробега">
             <SelectRange
               values={mileages}
-              onChangeValues={value => setValue('mileages', value)}
+              onChangeValues={value => setValue('mileages', value, { shouldDirty: true })}
               title="Пробег"
               control={control}
               name="mileages"

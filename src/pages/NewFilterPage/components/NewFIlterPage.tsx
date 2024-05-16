@@ -1,3 +1,4 @@
+import BottomButton from '@/components/Controllers/buttons/BottomButton';
 import FilterForm from '@/modules/FilterForm';
 import { createFilterDefault } from '@/shared/constants/defaultValues/createFilterDefault';
 import ScrollViewPage from '@/shared/ui/layout/ScrollViewPage';
@@ -12,11 +13,12 @@ const NewFIlterPage = () => {
   });
 
   return (
-    <ScrollViewPage spaceVertical="sm">
-      <FormProvider {...formApi}>
+    <FormProvider {...formApi}>
+      <ScrollViewPage spaceVertical="sm">
         <FilterForm formApi={formApi} />
-      </FormProvider>
-    </ScrollViewPage>
+      </ScrollViewPage>
+      <BottomButton>Создать</BottomButton>
+    </FormProvider>
   );
 };
 

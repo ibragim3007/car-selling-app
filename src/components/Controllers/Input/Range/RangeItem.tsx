@@ -49,7 +49,7 @@ const RangeItem = ({ title, index, scrollX }: RangeItemProps) => {
         ]}
       >
         <Typography textAlign="left" variant="subhead">
-          {formatNumber(Number(title))}
+          {title === 0 ? 'Неважно' : formatNumber(Number(title))}
         </Typography>
       </Animated.View>
     </Animated.View>

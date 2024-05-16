@@ -50,7 +50,7 @@ const SelectedCars = () => {
         if (!mark) return null;
         const modelsOfThisMark = markaModels?.filter(markaModel => markaModel.markaid === mark).map(mb => mb.modelid);
         const amountOf = models?.filter(m => modelsOfThisMark?.includes(m)).length;
-        console.log(modelsOfThisMark);
+
         const isSame = modelsOfThisMark?.length === amountOf;
 
         return (

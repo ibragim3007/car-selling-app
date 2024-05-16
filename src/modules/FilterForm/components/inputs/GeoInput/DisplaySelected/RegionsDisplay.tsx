@@ -23,6 +23,7 @@ const RegionsDisplay = () => {
     setValue(
       'regions',
       newValue?.filter(v => v !== value),
+      { shouldDirty: true, shouldTouch: true, shouldValidate: true },
     );
   };
 
