@@ -1,3 +1,5 @@
+export type TRange = [number, number];
+
 export interface IFilterCreate {
   idCities?: number[];
   devicetoken?: string;
@@ -5,7 +7,7 @@ export interface IFilterCreate {
   years?: number[];
   prices?: number[];
   horsepower?: number[];
-  mileages?: number[];
+  mileages?: TRange;
   marks?: number[];
   models?: number[];
   states?: number[];

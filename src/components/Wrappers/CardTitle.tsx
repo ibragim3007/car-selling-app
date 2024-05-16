@@ -6,7 +6,7 @@ import React from 'react';
 import { Pressable } from 'react-native';
 
 export interface CardTitleProps extends CardProps {
-  title: string;
+  title?: string;
   isNoPadding?: boolean;
   rightHeader?: React.ReactNode;
   titleProps?: TypographyProps;
@@ -31,24 +31,26 @@ const CardTitle = ({
       {...props}
     >
       <Grid gap={isNoPadding ? 0 : 12}>
-        <Pressable onPress={onPressHeader}>
-          <Grid row justfity="space-between" align="center">
-            <Typography
-              variant="headline"
-              weight="bold"
-              style={{
-                flex: 0.95,
-                paddingHorizontal: isNoPadding ? 16 : 0,
-                paddingVertical: isNoPadding ? 12 : 0,
-              }}
-              {...titleProps}
-            >
-              {title}
-            </Typography>
+        {title && (
+          <Pressable onPress={onPressHeader}>
+            <Grid row justfity="space-between" align="center">
+              <Typography
+                variant="headline"
+                weight="bold"
+                style={{
+                  flex: 0.95,
+                  paddingHorizontal: isNoPadding ? 16 : 0,
+                  paddingVertical: isNoPadding ? 12 : 0,
+                }}
+                {...titleProps}
+              >
+                {title}
+              </Typography>
 
-            {rightHeader}
-          </Grid>
-        </Pressable>
+              {rightHeader}
+            </Grid>
+          </Pressable>
+        )}
         {props.children}
       </Grid>
     </Card>

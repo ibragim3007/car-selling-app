@@ -7,6 +7,7 @@ import WrapperBlock from './wrapper/WrapperBlock';
 import Button from '@/shared/ui/buttons/Button';
 import { GeoInputs } from './inputs/GeoInput/GeoInputs';
 import StateInput from './inputs/StateInput/StateInput';
+import MileagesInput from './inputs/MileagesInput/MileagesInput';
 
 interface FilterFormProps<T extends FieldValues> {
   formApi: UseFormReturn<T, any, undefined>;
@@ -16,7 +17,7 @@ const FilterForm = <T extends FieldValues>({ formApi }: FilterFormProps<T>) => {
   const { control, handleSubmit, formState } = formApi;
 
   const onPressCreate = (data: FieldValues) => {
-    console.log(data.regions);
+    console.log(data);
   };
 
   return (
@@ -27,6 +28,7 @@ const FilterForm = <T extends FieldValues>({ formApi }: FilterFormProps<T>) => {
       <GeoInputs />
       <CarInput />
       <StateInput />
+      <MileagesInput />
       <Button onPress={handleSubmit(onPressCreate)}>Создать</Button>
     </Grid>
   );

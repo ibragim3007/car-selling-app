@@ -129,18 +129,18 @@ export const carTypes = [
   },
 ];
 
-export const carStates = [
+export const carMiliages = [
   {
     id: 0,
     text: 'Любые',
   },
   {
-    id: 2,
-    text: 'С пробегом',
-  },
-  {
     id: 1,
     text: 'Новые',
+  },
+  {
+    id: 2,
+    text: 'С пробегом',
   },
 ];
 

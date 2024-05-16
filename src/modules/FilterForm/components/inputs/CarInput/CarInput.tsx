@@ -15,6 +15,7 @@ import AutoChoiceList from './AutoChoiceList';
 import SelectedCars from './DisplaySelected/SelectedCars';
 import Typography from '@/shared/ui/typography/Typography';
 import Select from '@/components/Controllers/Input/Select/Select';
+import WrapInputLabel from '../../wrapper/WrapInputLabel';
 
 const CarInput = () => {
   const buttomSheetRef = useRef<BTMS>(null);
@@ -27,24 +28,26 @@ const CarInput = () => {
   };
 
   return (
-    <WrapperBlock title="Тип авто">
-      <Select
-        control={formApi.control}
-        value={field.value?.map(v => enumCompare(carTypes, v)).join(', ')}
-        name={field.name}
-        title={''}
-        data={[]}
-      />
-      <BottomSheetModal
-        snapPoints={['90%']}
-        handleComponent={() => <QuitResetHeader title="Марка" reset={() => console.log('first')} />}
-        ref={buttomSheetRef}
-        title="Тип автомобиля"
-      >
-        <FormProvider {...formApi}>
-          <AutoChoiceList />
-        </FormProvider>
-      </BottomSheetModal>
+    <WrapperBlock>
+      <WrapInputLabel title="Тип авто">
+        <Select
+          control={formApi.control}
+          value={field.value?.map(v => enumCompare(carTypes, v)).join(', ')}
+          name={field.name}
+          title={''}
+          data={[]}
+        />
+        <BottomSheetModal
+          snapPoints={['90%']}
+          handleComponent={() => <QuitResetHeader title="Марка" reset={() => console.log('first')} />}
+          ref={buttomSheetRef}
+          title="Тип автомобиля"
+        >
+          <FormProvider {...formApi}>
+            <AutoChoiceList />
+          </FormProvider>
+        </BottomSheetModal>
+      </WrapInputLabel>
       <Typography>Марка и модель</Typography>
       <SelectedCars />
       <AddButton onPress={onPressAddAuto}>Добавить авто</AddButton>

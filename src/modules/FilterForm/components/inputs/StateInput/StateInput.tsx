@@ -6,9 +6,9 @@ import { enumCompare } from '@/shared/helpers/enumCompare';
 import { IFilterCreate } from '@/shared/types/filters.types';
 import Card from '@/shared/ui/card/Card';
 import Grid from '@/shared/ui/layout/Grid';
-import Typography from '@/shared/ui/typography/Typography';
 import React from 'react';
 import { useController, useFormContext } from 'react-hook-form';
+import WrapInputLabel from '../../wrapper/WrapInputLabel';
 
 const StateInput = () => {
   const { control } = useFormContext<IFilterCreate>();
@@ -18,8 +18,7 @@ const StateInput = () => {
   return (
     <Card borderRadius={16}>
       <Grid space="lg">
-        <Grid space="sm">
-          <Typography>Повреждения</Typography>
+        <WrapInputLabel title="Повреждения">
           <ToggleButton
             items={states}
             Item={(item, index) => (
@@ -35,9 +34,9 @@ const StateInput = () => {
               />
             )}
           />
-        </Grid>
-        <Grid space="sm">
-          <Typography>Владельцы по ПТС</Typography>
+        </WrapInputLabel>
+
+        <WrapInputLabel title="Владельцы по ПТС">
           <Select
             title="Владельцы по ПТС"
             name="owners"
@@ -45,7 +44,7 @@ const StateInput = () => {
             control={control}
             data={owners}
           />
-        </Grid>
+        </WrapInputLabel>
       </Grid>
     </Card>
   );
