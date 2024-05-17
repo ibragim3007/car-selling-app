@@ -1,7 +1,6 @@
 import BottomSheetModal from '@/components/Modal/BottomSheetModal';
 import QuitResetHeader from '@/components/Modal/components/QuitResetHeader';
 import AcceptButton from '@/components/ModalCheckboxList/components/AcceptButton';
-import { MILEAGE_MOCK } from '@/shared/constants/enums/RangeValues';
 import { formatNumber } from '@/shared/helpers/formatMileage';
 import { IFilterCreate, TRange } from '@/shared/types/filters.types';
 import Grid from '@/shared/ui/layout/Grid';
@@ -22,8 +21,7 @@ interface SelectRangeProps extends InputProps {
 
 const SelectRange = ({ title, name, values, subtitleInput, onChangeValues, dataMock, ...props }: SelectRangeProps) => {
   const buttomSheetRef = useRef<BSM>(null);
-  const firstValue = (values || [])[0];
-  const secondValue = (values || [])[1];
+  const [firstValue, secondValue] = values || [0, 0];
 
   const onPresent = () => {
     buttomSheetRef.current?.present();
@@ -36,9 +34,12 @@ const SelectRange = ({ title, name, values, subtitleInput, onChangeValues, dataM
   const updateSecondRange = (newValue: number) => setSecondRange(newValue);
 
   const pressAccept = () => {
+    console.log('SET: ', firstRange, secondRange);
     if (firstRange !== undefined && secondRange !== undefined) onChangeValues([firstRange, secondRange]);
     buttomSheetRef.current?.dismiss();
   };
+
+  console.log(firstRange, secondRange);
 
   const inputPlaceholder =
     !firstValue || !secondValue
@@ -55,7 +56,7 @@ const SelectRange = ({ title, name, values, subtitleInput, onChangeValues, dataM
               label="До"
               onChange={updateSecondRange}
               currentValue={secondRange}
-              data={dataMock?.filter(a => a > Number(firstRange))}
+              data={dataMock?.filter(a => a > Number(firstRange || 0))}
             />
           </Grid>
 

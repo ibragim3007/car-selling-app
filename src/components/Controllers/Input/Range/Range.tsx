@@ -4,9 +4,9 @@ import { FlashList, FlashListProps } from '@shopify/flash-list';
 import React, { useEffect, useRef, useState } from 'react';
 import { Animated } from 'react-native';
 
+import { normalizedSize } from '@/shared/utils/size';
 import { ScrollView } from 'react-native-gesture-handler';
 import RangeItem, { ITEM_SIZE } from './RangeItem';
-import { normalizedSize } from '@/shared/utils/size';
 
 interface RangeProps extends Partial<FlashListProps<number>> {
   label?: string;
@@ -16,16 +16,17 @@ interface RangeProps extends Partial<FlashListProps<number>> {
 
 const Range = ({ currentValue, onChange, label, ...props }: RangeProps) => {
   const ref = React.useRef<FlashList<number>>(null);
-  const [index, setIndex] = useState(props.data?.findIndex(d => d === currentValue) || 0);
+  const findIndex = props.data?.findIndex(d => d === currentValue) || 0;
+  const [index, setIndex] = useState(findIndex === -1 ? 0 : findIndex);
   const scrollX = useRef(new Animated.Value(0)).current;
-
-  useEffect(() => {
-    setIndex(0);
-  }, [currentValue, props.data]);
 
   const onUpdate = () => {
     if (props.data) onChange(props.data[index]);
   };
+
+  useEffect(() => {
+    onUpdate();
+  }, [props.data]);
 
   return (
     <Grid row flex={1} space="lg" justfity="center" align="center">
