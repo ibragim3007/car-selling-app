@@ -20,7 +20,7 @@ const Range = ({ currentValue, onChange, label, ...props }: RangeProps) => {
   const scrollX = useRef(new Animated.Value(0)).current;
 
   useEffect(() => {
-    setIndex(props.data?.findIndex(d => d === currentValue) || 0);
+    setIndex(0);
   }, [currentValue, props.data]);
 
   const onUpdate = () => {

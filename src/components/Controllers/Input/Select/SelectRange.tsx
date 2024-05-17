@@ -22,26 +22,28 @@ interface SelectRangeProps extends InputProps {
 
 const SelectRange = ({ title, name, values, subtitleInput, onChangeValues, dataMock, ...props }: SelectRangeProps) => {
   const buttomSheetRef = useRef<BSM>(null);
+  const firstValue = (values || [])[0];
+  const secondValue = (values || [])[1];
 
   const onPresent = () => {
     buttomSheetRef.current?.present();
   };
 
-  const [firstRange, setFirstRange] = useState((values || [])[0]);
+  const [firstRange, setFirstRange] = useState(firstValue);
   const updateFirstRange = (newValue: number) => setFirstRange(newValue);
 
-  const [secondRange, setSecondRange] = useState((values || [])[1]);
+  const [secondRange, setSecondRange] = useState(secondValue);
   const updateSecondRange = (newValue: number) => setSecondRange(newValue);
 
   const pressAccept = () => {
-    if (firstRange && secondRange) onChangeValues([firstRange, secondRange]);
+    if (firstRange !== undefined && secondRange !== undefined) onChangeValues([firstRange, secondRange]);
     buttomSheetRef.current?.dismiss();
   };
 
   const inputPlaceholder =
-    !firstRange || !secondRange
+    !firstValue || !secondValue
       ? 'Неважно'
-      : `${formatNumber(firstRange || 0)} - ${formatNumber(secondRange || 0)} ${subtitleInput ? subtitleInput : ''}`;
+      : `${formatNumber(firstValue || 0)} - ${formatNumber(secondValue || 0)} ${subtitleInput ? subtitleInput : ''}`;
   return (
     <>
       <SelectButtonWrap value={inputPlaceholder} name={name} onPress={onPresent} {...props} />

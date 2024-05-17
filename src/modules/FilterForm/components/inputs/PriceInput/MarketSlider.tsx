@@ -5,7 +5,7 @@ import Grid from '@/shared/ui/layout/Grid';
 import Typography from '@/shared/ui/typography/Typography';
 import { normalizedSize } from '@/shared/utils/size';
 import { SliderOnChangeCallback } from '@miblanchard/react-native-slider/lib/types';
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 
 const STEP = 50_000;
 const MIN = -500_000;
@@ -29,6 +29,16 @@ const MarketSlider = ({ value, onSlidingComplete }: MarketSliderProps) => {
   const changeValue = (newValue: number[]) => {
     setCurrentValue(newValue[0]);
   };
+
+  const [currentColor, setCurrentColor] = useState(colors.accent.primary);
+
+  useEffect(() => {
+    if (currentValue > 0) {
+      setCurrentColor(colors.accent.red);
+    } else {
+      setCurrentColor(colors.accent.primary);
+    }
+  }, [colors.accent.primary, colors.accent.red, currentValue]);
 
   return (
     <Grid>
@@ -57,6 +67,7 @@ const MarketSlider = ({ value, onSlidingComplete }: MarketSliderProps) => {
         </Grid>
       </Grid>
       <SliderCustom
+        startFromZero
         onSlidingComplete={onSlidingComplete}
         onValueChange={changeValue}
         animationType={'spring'}
@@ -65,9 +76,10 @@ const MarketSlider = ({ value, onSlidingComplete }: MarketSliderProps) => {
         maximumValue={MAX}
         minimumValue={MIN}
         trackMarks={Marked}
-        minimumTrackTintColor={colors.accent.red}
-        maximumTrackTintColor={colors.accent.primary}
-        trackStyle={{ opacity: 0.8 }}
+        minimumTrackTintColor={currentColor}
+        renderMaximumTrackComponent={() => (
+          <Grid style={{ backgroundColor: colors.accent.primary, opacity: 0.4, height: 4, width: '50%' }} />
+        )}
         renderTrackMarkComponent={index => (
           <Grid gap={1} style={{ position: 'absolute', top: 17, left: 13 }}>
             <Grid>
