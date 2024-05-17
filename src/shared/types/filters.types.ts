@@ -5,7 +5,7 @@ export interface IFilterCreate {
   devicetoken?: string;
   name?: string;
   years?: number[];
-  prices?: number[];
+  prices?: TRange;
   horsepower?: number[];
   mileages?: TRange;
   marks?: number[];

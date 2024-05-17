@@ -8,6 +8,7 @@ import React from 'react';
 import { useController, useFormContext } from 'react-hook-form';
 import WrapInputLabel from '../../wrapper/WrapInputLabel';
 import WrapperBlock from '../../wrapper/WrapperBlock';
+import { MILEAGE_MOCK } from '@/shared/constants/enums/RangeValues';
 
 const MileagesInput = () => {
   const { setValue, control } = useFormContext<IFilterCreate>();
@@ -46,6 +47,7 @@ const MileagesInput = () => {
               control={control}
               name="mileages"
               subtitleInput="км"
+              dataMock={MILEAGE_MOCK}
             />
           </WrapInputLabel>
         )}

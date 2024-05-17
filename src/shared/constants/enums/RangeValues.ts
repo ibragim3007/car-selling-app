@@ -1,27 +1,27 @@
-const PRICE_MOCK = [''];
+const PRICE_MOCK = [0];
 for (let i = 30_000; i < 80_000; i += 5_000) {
-  PRICE_MOCK.push(i.toString());
+  PRICE_MOCK.push(i);
 }
 for (let i = 80_000; i < 250_000; i += 10_000) {
-  PRICE_MOCK.push(i.toString());
+  PRICE_MOCK.push(i);
 }
 for (let i = 250_000; i < 750_000; i += 50_000) {
-  PRICE_MOCK.push(i.toString());
+  PRICE_MOCK.push(i);
 }
 
 for (let i = 800_000; i < 2_500_000; i += 100_000) {
-  PRICE_MOCK.push(i.toString());
+  PRICE_MOCK.push(i);
 }
 
 for (let i = 2_500_000; i < 5_500_000; i += 250_000) {
-  PRICE_MOCK.push(i.toString());
+  PRICE_MOCK.push(i);
 }
 
 for (let i = 5_500_000; i < 16_500_000; i += 500_000) {
-  PRICE_MOCK.push(i.toString());
+  PRICE_MOCK.push(i);
 }
 
-PRICE_MOCK.push('30000000', '40000000', '50000000');
+PRICE_MOCK.push(30000000, 40000000, 50000000);
 
 const MILEAGE_MOCK = [0];
 for (let i = 1_000; i < 15_000; i += 1_000) {

@@ -17,9 +17,10 @@ interface SelectRangeProps extends InputProps {
   onChangeValues: (value: TRange) => void;
   values?: TRange;
   subtitleInput?: string;
+  dataMock?: number[];
 }
 
-const SelectRange = ({ title, name, values, subtitleInput, onChangeValues, ...props }: SelectRangeProps) => {
+const SelectRange = ({ title, name, values, subtitleInput, onChangeValues, dataMock, ...props }: SelectRangeProps) => {
   const buttomSheetRef = useRef<BSM>(null);
 
   const onPresent = () => {
@@ -47,12 +48,12 @@ const SelectRange = ({ title, name, values, subtitleInput, onChangeValues, ...pr
       <BottomSheetModal handleComponent={() => <QuitResetHeader title={title} />} ref={buttomSheetRef}>
         <Grid flex={1}>
           <Grid padding={16} row gap={1}>
-            <Range label="От" onChange={updateFirstRange} currentValue={firstRange} data={MILEAGE_MOCK} />
+            <Range label="От" onChange={updateFirstRange} currentValue={firstRange} data={dataMock} />
             <Range
               label="До"
               onChange={updateSecondRange}
               currentValue={secondRange}
-              data={MILEAGE_MOCK.filter(a => a > Number(firstRange))}
+              data={dataMock?.filter(a => a > Number(firstRange))}
             />
           </Grid>
 
