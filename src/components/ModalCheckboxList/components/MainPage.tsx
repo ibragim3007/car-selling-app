@@ -3,15 +3,15 @@ import RowList from '@/components/Informers/tables/RowList';
 
 import SearchInput from '@/components/ModalCheckboxList/components/SearchInput';
 import { useModalcheckbox } from '@/shared/hooks/helpers/useModalcheckbox';
+import { useTheme } from '@/shared/hooks/stylesHooks/useTheme';
 import { BaseTypeDictionary } from '@/shared/types/dictionary.types';
 import { IFilterCreate } from '@/shared/types/filters.types';
-import LabelCheckbox from '@/shared/ui/inputs/LabelCheckbox';
 import { TextFieldProps } from '@/shared/ui/inputs/TextField';
+import TitleCheckbox from '@/shared/ui/inputs/TitleCheckbox';
 import Grid from '@/shared/ui/layout/Grid';
 import AntDesign from '@expo/vector-icons/build/AntDesign';
 import React from 'react';
 import AcceptButton from './AcceptButton';
-import { useTheme } from '@/shared/hooks/stylesHooks/useTheme';
 
 export interface MainPagePropsGlobal extends Omit<MainPageProps, 'checkModalboxUse'> {}
 
@@ -50,7 +50,9 @@ const MainPage = ({ name, items, search, listProps, checkModalboxUse, showAllSel
         />
       </Grid>
       {showAllSelect && (
-        <LabelCheckbox
+        <TitleCheckbox
+          paddingHorizontal={18}
+          paddingVertical={14}
           style={{ borderBottomColor: colors.divider, borderBottomWidth: 1 }}
           title="Выбрать все"
           checked={isEverythingSelected}

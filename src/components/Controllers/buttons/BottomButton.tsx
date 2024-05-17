@@ -8,7 +8,7 @@ interface BottomButtonProps extends ButtonProps {}
 const BottomButton = ({ ...props }: BottomButtonProps) => {
   const { bottom } = useSafeAreaInsets();
   return (
-    <Card paddingBottom={bottom || 10}>
+    <Card borderRadius={0} paddingBottom={bottom || 10}>
       <Button {...props} />
     </Card>
   );

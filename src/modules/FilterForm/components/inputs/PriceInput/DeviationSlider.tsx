@@ -1,10 +1,10 @@
+import SliderCustom from '@/components/Controllers/Input/Slider/SliderCustom';
 import { priceFormat } from '@/shared/helpers/priceFormat';
 import { useTheme } from '@/shared/hooks/stylesHooks/useTheme';
 import Grid from '@/shared/ui/layout/Grid';
 import Tag from '@/shared/ui/tags/Tag';
 import Typography from '@/shared/ui/typography/Typography';
 import { normalizedSize } from '@/shared/utils/size';
-import { Slider } from '@miblanchard/react-native-slider';
 import { SliderOnChangeCallback } from '@miblanchard/react-native-slider/lib/types';
 import React, { useState } from 'react';
 
@@ -35,32 +35,13 @@ const DeviationSlider = ({ value, onSlidingComplete }: DeviationSliderProps) => 
   return (
     <Grid flex={1}>
       <Tag>{priceFormat(currentValue)}</Tag>
-      <Slider
-        thumbStyle={{
-          borderWidth: 1,
-          width: normalizedSize(24),
-          borderRadius: 50,
-          height: normalizedSize(24),
-          borderColor: '#00000030',
-          backgroundColor: '#fff',
-          shadowColor: '#000',
-          shadowRadius: 4,
-          shadowOpacity: 0.1,
-          shadowOffset: {
-            height: 4,
-            width: 0,
-          },
-        }}
+      <SliderCustom
         onSlidingComplete={onSlidingComplete}
-        minimumTrackTintColor={colors.accent.primary}
-        maximumTrackTintColor={colors.accent.primary_pale}
-        trackStyle={{ height: 4 }}
         value={currentValue}
         onValueChange={changeValue}
         maximumValue={MAX}
         minimumValue={MIN}
         // step={STEP}
-        trackClickable={false}
         trackMarks={Marked}
         renderTrackMarkComponent={index => (
           <Grid gap={1} style={{ position: 'absolute', top: 17, left: 13 }}>
@@ -83,7 +64,7 @@ const DeviationSlider = ({ value, onSlidingComplete }: DeviationSliderProps) => 
             )}
           </Grid>
         )}
-        renderMinimumTrackComponent={() => <Typography>{2}</Typography>}
+        animationType={'spring'}
       />
     </Grid>
   );

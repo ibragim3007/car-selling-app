@@ -1,19 +1,16 @@
-import { IFilterCreate } from '@/shared/types/filters.types';
 import TitleCheckbox from '@/shared/ui/inputs/TitleCheckbox';
 import Grid from '@/shared/ui/layout/Grid';
-import Typography from '@/shared/ui/typography/Typography';
-
 import React, { useState } from 'react';
+import MarketSlider from './MarketSlider';
+import Typography from '@/shared/ui/typography/Typography';
 import { useController, useFormContext } from 'react-hook-form';
-import DeviationSlider from './DeviationSlider';
+import { IFilterCreate } from '@/shared/types/filters.types';
 
-interface DeviationProps {}
-
-const Deviation = ({ ...props }: DeviationProps) => {
+const Market = () => {
   const { control, setValue } = useFormContext<IFilterCreate>();
   const {
     field: { value: avgCostDeviation },
-  } = useController({ control, name: 'avgCostDeviation' });
+  } = useController({ control, name: 'minPricechange' });
 
   const isCheckedDefault = avgCostDeviation !== undefined ? (avgCostDeviation > 0 ? true : false) : false;
   const [isChecked, setIsChecked] = useState(isCheckedDefault);
@@ -27,17 +24,16 @@ const Deviation = ({ ...props }: DeviationProps) => {
   const onChangeComplete = (value: number[]) => {
     setValue('avgCostDeviation', Math.ceil(value[0]));
   };
-
   return (
-    <Grid space="md" paddingBottom={15}>
+    <Grid space="md">
       <TitleCheckbox
-        renderLabel={<Typography variant="footnote">Отклонение от средней цены по региону</Typography>}
+        renderLabel={<Typography variant="footnote">Показывать объявления, в которых изменили цену</Typography>}
         checked={isChecked}
         onChange={updateCheck}
       />
-      {isChecked && <DeviationSlider value={avgCostDeviation} onSlidingComplete={onChangeComplete} />}
+      {isChecked && <MarketSlider onSlidingComplete={onChangeComplete} />}
     </Grid>
   );
 };
 
-export default Deviation;
+export default Market;
