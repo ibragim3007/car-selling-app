@@ -48,9 +48,9 @@ for (let i = 100; i < 1600; i += 25) {
   ENGINE_POWER_MOCK.push(i.toString());
 }
 
-const MANUFACTURE_YEAR_MOCK = [''];
+const MANUFACTURE_YEAR_MOCK: number[] = [];
 for (let i = new Date().getFullYear(); i > 1980; i--) {
-  MANUFACTURE_YEAR_MOCK.push(i.toString());
+  MANUFACTURE_YEAR_MOCK.push(i);
 }
 
 export { PRICE_MOCK, MILEAGE_MOCK, MANUFACTURE_YEAR_MOCK };

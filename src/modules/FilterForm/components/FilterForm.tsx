@@ -3,11 +3,12 @@ import Grid from '@/shared/ui/layout/Grid';
 import React from 'react';
 import { FieldValues, UseFormReturn } from 'react-hook-form';
 import CarInput from './inputs/CarInput/CarInput';
+import CharacteristicInput from './inputs/CharacteristicInput/CharacteristicInput';
 import { GeoInputs } from './inputs/GeoInput/GeoInputs';
 import MileagesInput from './inputs/MileagesInput/MileagesInput';
+import PriceInput from './inputs/PriceInput/PriceInput';
 import StateInput from './inputs/StateInput/StateInput';
 import WrapperBlock from './wrapper/WrapperBlock';
-import PriceInput from './inputs/PriceInput/PriceInput';
 
 interface FilterFormProps<T extends FieldValues> {
   formApi: UseFormReturn<T, any, undefined>;
@@ -26,6 +27,7 @@ const FilterForm = <T extends FieldValues>({ formApi }: FilterFormProps<T>) => {
       <StateInput />
       <MileagesInput />
       <PriceInput />
+      <CharacteristicInput />
     </Grid>
   );
 };

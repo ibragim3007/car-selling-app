@@ -4,7 +4,7 @@ export interface IFilterCreate {
   idCities?: number[];
   devicetoken?: string;
   name?: string;
-  years?: number[];
+  years?: TRange;
   prices?: TRange;
   horsepower?: number[];
   mileages?: TRange;
