@@ -2,7 +2,8 @@
 
 export interface IEnum {
   id: number | null;
-  text: string;
+  text?: string;
+  name?: string;
 }
 
 export const colors = [
@@ -29,19 +30,19 @@ export const colors = [
 export const transmissions = [
   {
     id: 1,
-    text: 'механика',
+    name: 'механика',
   },
   {
     id: 2,
-    text: 'автомат',
+    name: 'автомат',
   },
   {
     id: 3,
-    text: 'робот',
+    name: 'робот',
   },
   {
     id: 4,
-    text: 'вариатор',
+    name: 'вариатор',
   },
 ];
 
@@ -71,38 +72,38 @@ export const transmissionsAdditional = [
 export const gears = [
   {
     id: 1,
-    text: 'передний',
+    name: 'передний',
   },
   {
     id: 2,
-    text: 'задний',
+    name: 'задний',
   },
   {
     id: 3,
-    text: 'полный',
+    name: 'полный',
   },
 ];
 
 export const ices = [
   {
     id: 1,
-    text: 'бензин',
+    name: 'бензин',
   },
   {
     id: 2,
-    text: 'дизель',
+    name: 'дизель',
   },
   {
     id: 3,
-    text: 'гибрид',
+    name: 'гибрид',
   },
   {
     id: 4,
-    text: 'электро',
+    name: 'электро',
   },
   {
     id: 5,
-    text: 'газ',
+    name: 'газ',
   },
 ];
 
@@ -231,15 +232,15 @@ export const states = [
 export const wheels = [
   {
     id: 0,
-    text: 'любой',
+    name: 'любой',
   },
   {
     id: 1,
-    text: 'левый',
+    name: 'левый',
   },
   {
     id: 2,
-    text: 'правый',
+    name: 'правый',
   },
 ];
 

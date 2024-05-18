@@ -1,36 +1,46 @@
-import React, { useRef } from 'react';
-import GoInButton from '../../buttons/GoInButton';
-import { useController, useFormContext } from 'react-hook-form';
+import ModalCheckboxList from '@/components/ModalCheckboxList/ModalCheckboxList';
+import { wheels } from '@/shared/constants/enums/Car';
 import { IFilterCreate } from '@/shared/types/filters.types';
-import Typography from '@/shared/ui/typography/Typography';
-import BottomSheetModal from '@/components/Modal/BottomSheetModal';
-import { BottomSheetModal as BSM } from '@gorhom/bottom-sheet';
 import Button from '@/shared/ui/buttons/Button';
+import { BottomSheetModal as BSM } from '@gorhom/bottom-sheet';
+import React, { useRef } from 'react';
+import { useController, useFormContext } from 'react-hook-form';
+import GoInButton from '../../buttons/GoInButton';
+import { enumCompare } from '@/shared/helpers/enumCompare';
+import { BaseTypeDictionary } from '@/shared/types/dictionary.types';
 
-interface GISLIstProps {}
+interface GISLIstProps {
+  name: keyof IFilterCreate;
+  title: string;
+  items: BaseTypeDictionary[];
+}
 
-const GISLIst = () => {
+const GISLIst = ({ name, title, items }: GISLIstProps) => {
   const buttomSheetRef = useRef<BSM>(null);
-  const { control, setValue } = useFormContext<IFilterCreate>();
+  const formApi = useFormContext<IFilterCreate>();
   const {
-    field: { value: wheels },
-  } = useController({ control, name: 'wheels' });
+    field: { value },
+  } = useController({ control: formApi.control, name });
+
+  const typedValue = value as number[];
 
   const reset = () => {
-    setValue('wheels', []);
+    formApi.setValue(name, []);
   };
 
   const present = () => {
     buttomSheetRef.current?.present();
   };
 
-  const isShowValues = wheels && wheels.length !== 0;
+  const isShowValues = typedValue && typedValue.length !== 0;
+
+  const displayString = typedValue?.map(a => enumCompare(items, a)).join(', ');
 
   return (
     <>
       <GoInButton
-        title={'Руль'}
-        value={wheels?.join(', ')}
+        title={title}
+        value={displayString}
         isDivider
         onPress={present}
         renderButton={() => {
@@ -42,9 +52,21 @@ const GISLIst = () => {
             );
         }}
       />
-      <BottomSheetModal handleComponent={() => null} ref={buttomSheetRef}>
-        <Typography>12</Typography>
-      </BottomSheetModal>
+      <ModalCheckboxList
+        bottomSheetModal={{
+          title: 'Руль',
+          children: null,
+          snapPoints: ['60%'],
+        }}
+        formApi={formApi}
+        ref={buttomSheetRef}
+        pageData={{
+          isShowSearch: false,
+          search: { placeholder: 'Поиск...' },
+          name,
+          items,
+        }}
+      />
     </>
   );
 };

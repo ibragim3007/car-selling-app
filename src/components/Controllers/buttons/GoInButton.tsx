@@ -20,16 +20,25 @@ const GoInButton = ({ title, name, value, fn, onPress, renderButton, isDivider, 
   return (
     <Pressable onPress={onPress}>
       <Grid wrap {...props} row justfity="space-between" align="center">
-        <Grid gap={4}>
-          <Typography variant="footnote" color="secondary">
-            {title}
-          </Typography>
-          <Typography variant="subhead">{value}</Typography>
-        </Grid>
+        <Grid wrap row align="center">
+          <Grid gap={4} flex={1}>
+            <Typography numberOfLines={1} variant="footnote" color="secondary">
+              {title}
+            </Typography>
 
-        {props.children && props.children}
-        {(fn || name || renderButton) &&
-          (renderButton ? renderButton() : <PressableIcon onPress={fn} size={18} Icon={ArrowRightGreen} />)}
+            <Typography numberOfLines={1} variant="subhead">
+              {value}
+            </Typography>
+          </Grid>
+
+          {props.children && props.children}
+          {(fn || name || renderButton) &&
+            (renderButton ? (
+              <Grid flex={0.5}>{renderButton()}</Grid>
+            ) : (
+              <PressableIcon onPress={fn} size={18} Icon={ArrowRightGreen} />
+            ))}
+        </Grid>
         {isDivider && <Divider />}
       </Grid>
     </Pressable>

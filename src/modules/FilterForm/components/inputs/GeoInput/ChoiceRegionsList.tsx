@@ -2,7 +2,7 @@ import List from '@/components/Informers/tables/List';
 import RowList from '@/components/Informers/tables/RowList';
 import { useRegion } from '@/shared/hooks/entityies/filter/useRegions';
 import { useTheme } from '@/shared/hooks/stylesHooks/useTheme';
-import { BaseTypeDictionary, IRegion, orderIdType } from '@/shared/types/dictionary.types';
+import { BaseTypeDictionary, orderIdType } from '@/shared/types/dictionary.types';
 import LabelCheckbox from '@/shared/ui/inputs/LabelCheckbox';
 import TextField from '@/shared/ui/inputs/TextField';
 import Grid from '@/shared/ui/layout/Grid';
@@ -57,7 +57,7 @@ const ChoiceRegionsList = ({ regionUse }: ChoiceRegionsListProps) => {
         keyExtractor={keyExtractor}
         ListFooterComponent={() => loading && <LoadingData />}
         renderItem={({ item }) => (
-          <RowList<IRegion>
+          <RowList
             onChange={onChangeCurrentPicked}
             selectedValues={currentPickedRegions}
             value={item.id}

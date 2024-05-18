@@ -21,10 +21,19 @@ export interface MainPageProps {
   name: keyof IFilterCreate;
   listProps?: Partial<ListProps>;
   showAllSelect?: boolean;
+  isShowSearch?: boolean;
   checkModalboxUse: ReturnType<typeof useModalcheckbox>;
 }
 
-const MainPage = ({ name, items, search, listProps, checkModalboxUse, showAllSelect }: MainPageProps) => {
+const MainPage = ({
+  name,
+  items,
+  isShowSearch = true,
+  search,
+  listProps,
+  checkModalboxUse,
+  showAllSelect,
+}: MainPageProps) => {
   const {
     selectedValues,
     searchText,
@@ -42,12 +51,14 @@ const MainPage = ({ name, items, search, listProps, checkModalboxUse, showAllSel
   return (
     <Grid flex={1}>
       <Grid padding={12}>
-        <SearchInput
-          value={searchText}
-          onChangeText={text => setSearchText(text)}
-          endIcon={<AntDesign name="search1" size={22} />}
-          {...search}
-        />
+        {isShowSearch && (
+          <SearchInput
+            value={searchText}
+            onChangeText={text => setSearchText(text)}
+            endIcon={<AntDesign name="search1" size={22} />}
+            {...search}
+          />
+        )}
       </Grid>
       {showAllSelect && (
         <TitleCheckbox

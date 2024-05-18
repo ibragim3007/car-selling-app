@@ -1,10 +1,10 @@
 import { useTheme } from '@/shared/hooks/stylesHooks/useTheme';
 import Grid from '@/shared/ui/layout/Grid';
 import React from 'react';
-// export interface IItem {
-//   value: string;
-//   title: string;
-// }
+export interface IItem {
+  value: string;
+  title: string;
+}
 interface ToggleButtonProps<TItem> {
   items: TItem[];
 

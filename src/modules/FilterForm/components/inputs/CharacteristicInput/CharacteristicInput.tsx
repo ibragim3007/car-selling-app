@@ -3,6 +3,7 @@ import React from 'react';
 import WrapperBlock from '../../wrapper/WrapperBlock';
 import GISLIst from '@/components/Controllers/Input/Select/GISLIst';
 import GISRange from '@/components/Controllers/Input/Select/SelectRanges/GISRange';
+import { gears, ices, transmissions, wheels } from '@/shared/constants/enums/Car';
 
 const CharacteristicInput = () => {
   return (
@@ -15,11 +16,10 @@ const CharacteristicInput = () => {
         name="iceValues"
       />
       <GISRange bottomSheetTitle="Мощность" title="Мощность, л.с." dataMock={ENGINE_POWER_MOCK} name="horsepower" />
-      <GISLIst />
-      {/* <GoInButton bottomSheetTitle="Руль" title="Руль" isDivider />
-      <GoInButton bottomSheetTitle="Коробка" title="Коробка" isDivider />
-      <GoInButton bottomSheetTitle="Тип топлива" title="Тип топлива" isDivider />
-      <GoInButton bottomSheetTitle="Привод" title="Привод" /> */}
+      <GISLIst name={'wheels'} title={'Руль'} items={wheels} />
+      <GISLIst name={'transmissions'} title={'Коробка'} items={transmissions} />
+      <GISLIst name={'iceValues'} title={'Тип топлива'} items={ices} />
+      <GISLIst name={'gears'} title={'Привод'} items={gears} />
     </WrapperBlock>
   );
 };
