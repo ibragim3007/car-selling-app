@@ -18,7 +18,7 @@ const CharacteristicInput = () => {
       <GISRange bottomSheetTitle="Мощность" title="Мощность, л.с." dataMock={ENGINE_POWER_MOCK} name="horsepower" />
       <GISLIst name={'wheels'} title={'Руль'} items={wheels} />
       <GISLIst name={'transmissions'} title={'Коробка'} items={transmissions} />
-      <GISLIst name={'iceValues'} title={'Тип топлива'} items={ices} />
+      <GISLIst name={'ices'} title={'Тип топлива'} items={ices} />
       <GISLIst name={'gears'} title={'Привод'} items={gears} />
     </WrapperBlock>
   );

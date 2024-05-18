@@ -19,8 +19,6 @@ const EditFilterPageInner = ({ filter }: EditFilterPageInnerProps) => {
     reValidateMode: 'onChange',
   });
 
-  console.log(formApi.formState.isDirty);
-
   const onPressCreate = (data: FieldValues) => {
     console.log(data);
   };
@@ -34,7 +32,9 @@ const EditFilterPageInner = ({ filter }: EditFilterPageInnerProps) => {
         <ScrollViewPage style={{ flexGrow: 1 }} spaceVertical="sm">
           <FilterForm formApi={formApi} />
         </ScrollViewPage>
-        <BottomButton>Сохранить</BottomButton>
+        <BottomButton disabled={!formApi.formState.isDirty} onPress={formApi.handleSubmit(onPressCreate)}>
+          Сохранить
+        </BottomButton>
       </Grid>
     </FormProvider>
   );

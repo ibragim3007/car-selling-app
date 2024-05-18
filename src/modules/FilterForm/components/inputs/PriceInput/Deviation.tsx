@@ -20,12 +20,13 @@ const Deviation = ({ ...props }: DeviationProps) => {
   const updateCheck = () => {
     setIsChecked(!isChecked);
     if (isChecked) {
-      setValue('avgCostDeviation', 0);
+      setValue('avgCostDeviation', 0, { shouldDirty: true });
     }
   };
 
   const onChangeComplete = (value: number[]) => {
-    setValue('avgCostDeviation', Math.ceil(value[0]));
+    console.log(value);
+    setValue('avgCostDeviation', Math.ceil(value[0]), { shouldDirty: true });
   };
 
   return (
