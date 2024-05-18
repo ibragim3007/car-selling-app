@@ -38,14 +38,14 @@ for (let i = 80000; i < 150000; i += 10000) {
 
 MILEAGE_MOCK.push(150000, 200000, 250000, 300000);
 
-const ENGINE_VOLUME_MOCK = [''];
+const ENGINE_VOLUME_MOCK: number[] = [];
 for (let i = 10; i < 60; i += 1) {
-  ENGINE_VOLUME_MOCK.push((i / 10).toString());
+  ENGINE_VOLUME_MOCK.push(i / 10);
 }
 
-const ENGINE_POWER_MOCK = [''];
+const ENGINE_POWER_MOCK: number[] = [];
 for (let i = 100; i < 1600; i += 25) {
-  ENGINE_POWER_MOCK.push(i.toString());
+  ENGINE_POWER_MOCK.push(i);
 }
 
 const MANUFACTURE_YEAR_MOCK: number[] = [];
@@ -53,4 +53,4 @@ for (let i = new Date().getFullYear(); i > 1980; i--) {
   MANUFACTURE_YEAR_MOCK.push(i);
 }
 
-export { PRICE_MOCK, MILEAGE_MOCK, MANUFACTURE_YEAR_MOCK };
+export { PRICE_MOCK, MILEAGE_MOCK, ENGINE_POWER_MOCK, ENGINE_VOLUME_MOCK, MANUFACTURE_YEAR_MOCK };
