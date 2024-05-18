@@ -1,4 +1,3 @@
-import SelectRange from '@/components/Controllers/Input/Select/SelectRange';
 import { PRICE_MOCK } from '@/shared/constants/enums/RangeValues';
 import { IFilterCreate } from '@/shared/types/filters.types';
 import Grid from '@/shared/ui/layout/Grid';
@@ -8,6 +7,7 @@ import WrapInputLabel from '../../wrapper/WrapInputLabel';
 import WrapperBlock from '../../wrapper/WrapperBlock';
 import Deviation from './Deviation';
 import Market from './Market';
+import SelectRange from '@/components/Controllers/Input/Select/SelectRanges/SelectRange';
 
 const PriceInput = () => {
   const { control, setValue } = useFormContext<IFilterCreate>();

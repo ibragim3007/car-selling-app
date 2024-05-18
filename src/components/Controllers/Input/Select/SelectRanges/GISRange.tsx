@@ -3,18 +3,20 @@ import { useController, useFormContext } from 'react-hook-form';
 import { BottomSheetModal as BSM } from '@gorhom/bottom-sheet';
 import { IFilterCreate, TRange } from '@/shared/types/filters.types';
 import { inputPlaceholderText } from '@/shared/helpers/formatRangeString';
-import GoInButton from '../../buttons/GoInButton';
+
 import BottomSheetModal from '@/components/Modal/BottomSheetModal';
 import SelectRangeMain from './SelectRangeMain';
 import Button from '@/shared/ui/buttons/Button';
+import GoInButton from '@/components/Controllers/buttons/GoInButton';
 
 interface GISRangeProps {
   title: string;
+  bottomSheetTitle?: string;
   dataMock: number[];
   name: keyof IFilterCreate;
 }
 
-const GISRange = ({ title, dataMock, name }: GISRangeProps) => {
+const GISRange = ({ title, dataMock, name, bottomSheetTitle }: GISRangeProps) => {
   const buttomSheetRef = useRef<BSM>(null);
   const { control, setValue } = useFormContext<IFilterCreate>();
   const {
@@ -55,7 +57,7 @@ const GISRange = ({ title, dataMock, name }: GISRangeProps) => {
         }}
       />
       <BottomSheetModal handleComponent={() => null} ref={buttomSheetRef}>
-        <SelectRangeMain values={valueToNumber} dataMock={dataMock} onPress={accept} />
+        <SelectRangeMain title={bottomSheetTitle} values={valueToNumber} dataMock={dataMock} onPress={accept} />
       </BottomSheetModal>
     </>
   );

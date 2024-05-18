@@ -3,17 +3,19 @@ import { TRange } from '@/shared/types/filters.types';
 import Grid from '@/shared/ui/layout/Grid';
 import { useBottomSheetModal } from '@gorhom/bottom-sheet';
 import React, { useState } from 'react';
-import Range from '../Range/Range';
+
 import QuitResetHeader from '@/components/Modal/components/QuitResetHeader';
+import Range from '../../Range/Range';
 
 interface SelectRangeMainProps {
   values: TRange;
   dataMock: number[];
   onPress: (value: TRange) => void;
   subtitleInput?: string;
+  title?: string;
 }
 
-const SelectRangeMain = ({ values, dataMock, onPress }: SelectRangeMainProps) => {
+const SelectRangeMain = ({ values, title, dataMock, onPress }: SelectRangeMainProps) => {
   const [firstValue, secondValue] = values || [0, 0];
 
   const [firstRange, setFirstRange] = useState(firstValue || 0);
@@ -39,7 +41,7 @@ const SelectRangeMain = ({ values, dataMock, onPress }: SelectRangeMainProps) =>
 
   return (
     <Grid flex={1}>
-      <QuitResetHeader title={'title'} reset={resetFunction} />
+      <QuitResetHeader title={title} reset={resetFunction} />
       <Grid padding={16} row gap={1}>
         <Range label="От" onChange={updateFirstRange} currentValue={firstRange} data={dataMock} />
         <Range label="До" onChange={updateSecondRange} currentValue={secondRange} data={filteredSecondRange} />

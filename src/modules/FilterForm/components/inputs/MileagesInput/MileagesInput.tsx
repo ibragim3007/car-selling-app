@@ -1,4 +1,3 @@
-import SelectRange from '@/components/Controllers/Input/Select/SelectRange';
 import ToggleButton from '@/components/Controllers/buttons/ToggleButton';
 import ToggleButtonItem from '@/components/Controllers/buttons/ToggleButtonItem';
 import { carMiliages } from '@/shared/constants/enums/Car';
@@ -9,6 +8,7 @@ import { useController, useFormContext } from 'react-hook-form';
 import WrapInputLabel from '../../wrapper/WrapInputLabel';
 import WrapperBlock from '../../wrapper/WrapperBlock';
 import { MILEAGE_MOCK } from '@/shared/constants/enums/RangeValues';
+import SelectRange from '@/components/Controllers/Input/Select/SelectRanges/SelectRange';
 
 const MileagesInput = () => {
   const { setValue, control } = useFormContext<IFilterCreate>();

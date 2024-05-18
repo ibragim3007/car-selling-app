@@ -1,12 +1,12 @@
 import BottomSheetModal from '@/components/Modal/BottomSheetModal';
-import QuitResetHeader from '@/components/Modal/components/QuitResetHeader';
 import { inputPlaceholderText } from '@/shared/helpers/formatRangeString';
 import { IFilterCreate, TRange } from '@/shared/types/filters.types';
 import { BottomSheetModal as BSM } from '@gorhom/bottom-sheet';
 import React, { useRef, useState } from 'react';
-import { InputProps } from '../Input';
-import SelectButtonWrap from './SelectButtonWrap';
+
 import SelectRangeMain from './SelectRangeMain';
+import SelectButtonWrap from '../SelectButtonWrap';
+import { InputProps } from '../../Input';
 
 interface SelectRangeProps extends InputProps {
   title: string;
@@ -40,7 +40,7 @@ const SelectRange = ({ title, name, values, subtitleInput, onChangeValues, dataM
     <>
       <SelectButtonWrap value={inputPlaceholder} name={name} onPress={onPresent} {...props} />
       <BottomSheetModal handleComponent={() => null} ref={buttomSheetRef}>
-        <SelectRangeMain onPress={pressAccept} dataMock={dataMock || []} values={values || [0, 0]} />
+        <SelectRangeMain title={title} onPress={pressAccept} dataMock={dataMock || []} values={values || [0, 0]} />
       </BottomSheetModal>
     </>
   );
