@@ -3,30 +3,41 @@ import TitleCheckbox from '@/shared/ui/inputs/TitleCheckbox';
 import Grid from '@/shared/ui/layout/Grid';
 import Typography from '@/shared/ui/typography/Typography';
 
-import React, { useState } from 'react';
-import { useController, useFormContext } from 'react-hook-form';
+import React from 'react';
+import { useController, useFormContext, useWatch } from 'react-hook-form';
 import DeviationSlider from './DeviationSlider';
+import { isArraysEqual } from '@/shared/utils/isArraysEqual';
 
 interface DeviationProps {}
+
+const Ничего_не_выбрано = [0];
+const Показывать_объявления_в_которых_изменили_цену = [0, 1, 2];
+const Показывать_объявления_в_которых_изменили_цену_и_выбрано_Цена_понизилась = [0, 2];
+const Показывать_объявления_в_которых_изменили_цену_и_выбрано_Цена_повысилась = [0, 1];
 
 const Deviation = ({ ...props }: DeviationProps) => {
   const { control, setValue } = useFormContext<IFilterCreate>();
   const {
-    field: { value: avgCostDeviation },
-  } = useController({ control, name: 'avgCostDeviation' });
+    field: { value: minPricechange },
+  } = useController({ control, name: 'minPricechange' });
 
-  const isCheckedDefault = avgCostDeviation !== undefined ? (avgCostDeviation > 0 ? true : false) : false;
-  const [isChecked, setIsChecked] = useState(isCheckedDefault);
+  const pricechanges = useWatch({ control, name: 'pricechanges' });
+
+  // const isCheckedDefault = minPricechange !== undefined ? (minPricechange > 0 ? true : false) : false;
+  const isChecked =
+    isArraysEqual(pricechanges, Показывать_объявления_в_которых_изменили_цену) ||
+    pricechanges === Показывать_объявления_в_которых_изменили_цену_и_выбрано_Цена_понизилась ||
+    pricechanges === Показывать_объявления_в_которых_изменили_цену_и_выбрано_Цена_повысилась;
+
   const updateCheck = () => {
-    setIsChecked(!isChecked);
-    if (isChecked) {
-      setValue('avgCostDeviation', 0, { shouldDirty: true });
-    }
+    // console.log(isChecked, pricechanges);
+    if (!isChecked) {
+      setValue('pricechanges', Показывать_объявления_в_которых_изменили_цену);
+    } else setValue('pricechanges', Ничего_не_выбрано);
   };
 
   const onChangeComplete = (value: number[]) => {
-    console.log(value);
-    setValue('avgCostDeviation', Math.ceil(value[0]), { shouldDirty: true });
+    setValue('minPricechange', Math.ceil(value[0]), { shouldDirty: true });
   };
 
   return (
@@ -36,7 +47,7 @@ const Deviation = ({ ...props }: DeviationProps) => {
         checked={isChecked}
         onChange={updateCheck}
       />
-      {isChecked && <DeviationSlider value={avgCostDeviation} onSlidingComplete={onChangeComplete} />}
+      {isChecked && <DeviationSlider value={minPricechange} onSlidingComplete={onChangeComplete} />}
     </Grid>
   );
 };

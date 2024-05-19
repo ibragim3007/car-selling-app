@@ -6,6 +6,8 @@ import Typography from '@/shared/ui/typography/Typography';
 import { useController, useFormContext } from 'react-hook-form';
 import { IFilterCreate } from '@/shared/types/filters.types';
 
+const отклонение_не_задано = [0, 0];
+
 const Market = () => {
   const { control, setValue } = useFormContext<IFilterCreate>();
   const {
@@ -24,6 +26,7 @@ const Market = () => {
   const onChangeComplete = (value: number[]) => {
     setValue('avgCostDeviation', Math.ceil(value[0]), { shouldDirty: true });
   };
+
   return (
     <Grid space="md">
       <TitleCheckbox
@@ -31,6 +34,7 @@ const Market = () => {
         checked={isChecked}
         onChange={updateCheck}
       />
+
       {isChecked && <MarketSlider onSlidingComplete={onChangeComplete} />}
     </Grid>
   );
