@@ -4,7 +4,7 @@ import Typography from '@/shared/ui/typography/Typography';
 import React from 'react';
 
 interface InfoItemProps {
-  infoString: string | number;
+  infoString?: string | number;
   isLastElement?: boolean;
 }
 
@@ -13,7 +13,7 @@ const InfoItem: React.FC<InfoItemProps> = ({ infoString, isLastElement }) => {
   return (
     <Grid row align="center">
       <Typography color="secondary" variant="caption-1">
-        {infoString}
+        {infoString ? infoString : '--Error'}
       </Typography>
       {!isLastElement && <Divider vertical space={6} style={{ height: 13 }} />}
     </Grid>

@@ -12,7 +12,7 @@ export const useModalcheckbox = ({ name, items }: MainPagePropsGlobal) => {
   const { dismiss } = useBottomSheetModal();
   const { field } = useController({ control, name: name });
 
-  const [selectedValues, setSelectedValues] = useState<number[]>(field.value as number[]);
+  const [selectedValues, setSelectedValues] = useState<number[]>((field.value as number[]) || []);
   const onChange = (value: number, isSelected: boolean) => {
     if (isSelected) setSelectedValues(selectedValues.filter(selectedValue => selectedValue !== value));
     else setSelectedValues([...selectedValues, value]);
@@ -31,7 +31,7 @@ export const useModalcheckbox = ({ name, items }: MainPagePropsGlobal) => {
   };
 
   const [searchText, setSearchText] = useState('');
-  const filterItems = () => items.filter(item => item.name.toLowerCase().includes(searchText.toLowerCase()));
+  const filterItems = () => (items || []).filter(item => item.name.toLowerCase().includes(searchText.toLowerCase()));
 
   const selecteThisListValues = selectedValues.filter(sV => items.map(item => item.id).includes(sV));
   const isEverythingSelected = selecteThisListValues.length === items.length;

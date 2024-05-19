@@ -19,6 +19,8 @@ const apiConfig = {
   filter: {
     filters: { url: '/filters', method: 'GET' },
     delete: { url: '/filters', method: 'DELETE' },
+    create: { url: '/filters', method: 'POST' },
+    edit: { url: '/filters', method: 'PUT' },
   },
   dictionary: {
     dictionary: { url: '/dictionaries', method: 'GET' },

@@ -1,3 +1,6 @@
+import { useDictionaryQuery } from '@/shared/api/entityies/dictionary/dictionary.api';
+import { offlineDict } from '@/shared/constants/enums/offilneDict';
+import { compare } from '@/shared/helpers/compare';
 import { formatToMillage } from '@/shared/helpers/formatMileage';
 import { priceFormat } from '@/shared/helpers/priceFormat';
 import { ICar } from '@/shared/types';
@@ -12,8 +15,6 @@ import CarImage from './InsideCard/CarImage';
 import HeaderTitle from './InsideCard/HeaderTitle';
 import BottomInfo from './InsideCard/InfoList/BottomInfo';
 import InfoItem from './InsideCard/InfoList/InfoItem';
-import { useDictionaryQuery } from '@/shared/api/entityies/dictionary/dictionary.api';
-import { compare } from '@/shared/helpers/compare';
 
 interface CarItemProps {
   car: ICar;
@@ -38,7 +39,10 @@ function CarItem({ car }: CarItemProps) {
                 {car.mileage && <InfoItem infoString={formatToMillage(car.mileage)} />}
                 <InfoItem infoString={car.engine} />
                 <InfoItem infoString={`${car.volume} л.`} />
-                <InfoItem infoString={compare(dict!.transmissions, car.transmission)} isLastElement />
+                <InfoItem
+                  infoString={compare(dict?.transmissions || offlineDict.transmissions, car.transmission)}
+                  isLastElement
+                />
               </Grid>
               <Typography weight="bold">{priceFormat(car.price)}</Typography>
             </Grid>

@@ -10,6 +10,7 @@ import LoadingData from '@/shared/ui/loading/LoadingData';
 import { AntDesign } from '@expo/vector-icons';
 import React from 'react';
 import AcceptButton from '../../../../../components/ModalCheckboxList/components/AcceptButton';
+import ELD from '@/components/Handlers/ELD/ELD';
 
 // Надо будет рефакторить
 
@@ -52,22 +53,24 @@ const ChoiceRegionsList = ({ regionUse }: ChoiceRegionsListProps) => {
           style={{ borderBottomWidth: 1, borderColor: colors.divider }}
         />
       </Grid>
-      <List<BaseTypeDictionary & orderIdType>
-        data={filteredRegions}
-        keyExtractor={keyExtractor}
-        ListFooterComponent={() => loading && <LoadingData />}
-        renderItem={({ item }) => (
-          <RowList
-            onChange={onChangeCurrentPicked}
-            selectedValues={currentPickedRegions}
-            value={item.id}
-            title={item.name}
-          />
-        )}
-        estimatedItemSize={43}
-      />
+      <ELD data={filteredRegions} isLoading={loading}>
+        <List<BaseTypeDictionary & orderIdType>
+          data={filteredRegions}
+          keyExtractor={keyExtractor}
+          ListFooterComponent={() => loading && <LoadingData />}
+          renderItem={({ item }) => (
+            <RowList
+              onChange={onChangeCurrentPicked}
+              selectedValues={currentPickedRegions}
+              value={item.id}
+              title={item.name}
+            />
+          )}
+          estimatedItemSize={43}
+        />
 
-      <AcceptButton onPress={onAcceptChanges} />
+        <AcceptButton onPress={onAcceptChanges} />
+      </ELD>
     </Grid>
   );
 };

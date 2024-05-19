@@ -6,10 +6,11 @@ import Typography from '@/shared/ui/typography/Typography';
 import { normalizedSize } from '@/shared/utils/size';
 import { SliderOnChangeCallback } from '@miblanchard/react-native-slider/lib/types';
 import React, { useEffect, useState } from 'react';
+import LineDivider from './components/LineDivider';
 
 const STEP = 50_000;
 const MIN = -500_000;
-const MAX = 500_000;
+const MAX = 1;
 const Marked = [MIN];
 const MarkedNumber = [0];
 for (let i = MIN; i <= MAX; i += 2 * STEP) {
@@ -25,9 +26,14 @@ interface MarketSliderProps {
 
 const MarketSlider = ({ value, onSlidingComplete }: MarketSliderProps) => {
   const [currentValue, setCurrentValue] = useState(value || 0);
+
   const { colors } = useTheme();
   const changeValue = (newValue: number[]) => {
-    setCurrentValue(newValue[0]);
+    const [updatedValue] = newValue;
+
+    if (updatedValue > 0) {
+      setCurrentValue(0);
+    } else setCurrentValue(updatedValue);
   };
 
   const [currentColor, setCurrentColor] = useState(colors.accent.primary);
@@ -66,42 +72,48 @@ const MarketSlider = ({ value, onSlidingComplete }: MarketSliderProps) => {
           </Typography>
         </Grid>
       </Grid>
-      <SliderCustom
-        startFromZero
-        onSlidingComplete={onSlidingComplete}
-        onValueChange={changeValue}
-        animationType={'spring'}
-        value={value}
-        step={10000}
-        maximumValue={MAX}
-        minimumValue={MIN}
-        trackMarks={Marked}
-        minimumTrackTintColor={currentColor}
-        renderMaximumTrackComponent={() => (
-          <Grid style={{ backgroundColor: colors.accent.primary, opacity: 0.4, height: 4, width: '50%' }} />
-        )}
-        renderTrackMarkComponent={index => (
-          <Grid gap={1} style={{ position: 'absolute', top: 17, left: 13 }}>
-            <Grid>
-              <Grid
-                style={{
-                  width: normalizedSize(1),
-                  height: normalizedSize(4),
-                  backgroundColor: colors.text.secondary,
-                }}
-              />
+      <Grid row align="center" style={{ flexDirection: 'row-reverse' }}>
+        <Grid style={{ width: '15%', height: 4, backgroundColor: colors.background.negative }}>
+          <Grid style={{ position: 'absolute', top: 19, left: '80%', alignContent: 'center' }}>
+            <LineDivider />
+            <Grid style={{ right: '45%', top: 1 }}>
+              <Typography color="secondary" variant="caption-2">
+                {convertNumberToSliderView(100)}
+              </Typography>
             </Grid>
+          </Grid>
+        </Grid>
 
-            {MarkedNumber.includes(Marked[index]) && (
-              <Grid style={{ right: '45%' }}>
-                <Typography color="secondary" variant="caption-2">
-                  {convertNumberToSliderView(Marked[index])}
-                </Typography>
+        <Grid flex={1}>
+          <SliderCustom
+            startFromZero
+            onSlidingComplete={onSlidingComplete}
+            onValueChange={changeValue}
+            animationType={'spring'}
+            value={currentValue < 0 ? currentValue : 0}
+            step={10000}
+            maximumValue={MAX}
+            minimumValue={MIN}
+            trackMarks={Marked}
+            minimumTrackTintColor={currentColor}
+            renderMaximumTrackComponent={() => (
+              <Grid style={{ backgroundColor: colors.accent.primary, opacity: 0.05, height: 4, width: '81%' }} />
+            )}
+            renderTrackMarkComponent={index => (
+              <Grid gap={1} style={{ position: 'absolute', top: 17, left: 13 }}>
+                <LineDivider />
+                {MarkedNumber.includes(Marked[index]) && (
+                  <Grid style={{ right: '45%' }}>
+                    <Typography color="secondary" variant="caption-2">
+                      {convertNumberToSliderView(Marked[index])}
+                    </Typography>
+                  </Grid>
+                )}
               </Grid>
             )}
-          </Grid>
-        )}
-      />
+          />
+        </Grid>
+      </Grid>
     </Grid>
   );
 };

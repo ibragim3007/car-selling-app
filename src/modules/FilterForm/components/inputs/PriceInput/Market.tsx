@@ -27,7 +27,7 @@ const Market = () => {
   return (
     <Grid space="md">
       <TitleCheckbox
-        renderLabel={<Typography variant="footnote">Показывать объявления, в которых изменили цену</Typography>}
+        renderLabel={<Typography variant="footnote">Отклонение от средней цены по региону</Typography>}
         checked={isChecked}
         onChange={updateCheck}
       />

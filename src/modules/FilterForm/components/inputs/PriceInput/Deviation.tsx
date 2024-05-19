@@ -32,7 +32,7 @@ const Deviation = ({ ...props }: DeviationProps) => {
   return (
     <Grid space="md" paddingBottom={15}>
       <TitleCheckbox
-        renderLabel={<Typography variant="footnote">Отклонение от средней цены по региону</Typography>}
+        renderLabel={<Typography variant="footnote">Показывать объявления, в которых изменили цену</Typography>}
         checked={isChecked}
         onChange={updateCheck}
       />
