@@ -6,7 +6,7 @@ export const createFilterDefault: IFilterCreate = {
   name: '',
   years: [0, 0],
   prices: [0, 0],
-  horsepower: [],
+  horsepower: [0, 0],
   mileages: [0, 0],
   marks: [],
   models: [],

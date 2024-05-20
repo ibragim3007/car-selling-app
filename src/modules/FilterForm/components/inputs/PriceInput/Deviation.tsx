@@ -26,8 +26,8 @@ const Deviation = ({ ...props }: DeviationProps) => {
   // const isCheckedDefault = minPricechange !== undefined ? (minPricechange > 0 ? true : false) : false;
   const isChecked =
     isArraysEqual(pricechanges, Показывать_объявления_в_которых_изменили_цену) ||
-    pricechanges === Показывать_объявления_в_которых_изменили_цену_и_выбрано_Цена_понизилась ||
-    pricechanges === Показывать_объявления_в_которых_изменили_цену_и_выбрано_Цена_повысилась;
+    isArraysEqual(pricechanges, Показывать_объявления_в_которых_изменили_цену_и_выбрано_Цена_понизилась) ||
+    isArraysEqual(pricechanges, Показывать_объявления_в_которых_изменили_цену_и_выбрано_Цена_повысилась);
 
   const updateCheck = () => {
     // console.log(isChecked, pricechanges);

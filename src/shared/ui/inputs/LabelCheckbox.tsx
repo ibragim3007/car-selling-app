@@ -30,15 +30,17 @@ const LabelCheckbox = ({
         align="center"
         color={isBackgroundHighlight ? colors.background.active : 'transparent'}
       >
-        <TitleCheckbox
-          checked={checked}
-          title={title}
-          type={type}
-          badgeNumber={badgeNumber}
-          flex={0.9}
-          paddingVertical={14}
-          paddingHorizontal={18}
-        />
+        <Grid flex={0.9}>
+          <TitleCheckbox
+            checked={checked}
+            title={title}
+            type={type}
+            badgeNumber={badgeNumber}
+            flex={0.9}
+            paddingVertical={14}
+            paddingHorizontal={18}
+          />
+        </Grid>
         {/* <Grid {...props}>
           <Checkbox type={type} onValueChange={onChange} value={checked} />
           <Typography variant="subhead">{title ? title : '---(error)'}</Typography>

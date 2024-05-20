@@ -12,6 +12,7 @@ export interface TitleCheckboxProps extends GridProps {
   type?: CheckboxCustom['type'];
   badgeNumber?: number;
   renderLabel?: React.ReactNode;
+  isCheckboxOpen?: boolean;
 }
 
 const TitleCheckbox = ({
@@ -25,8 +26,10 @@ const TitleCheckbox = ({
 }: TitleCheckboxProps) => {
   return (
     <Pressable onPress={onChange}>
-      <Grid row align="center" space="sm" pointerEvents="none" {...props}>
-        <Checkbox type={type} value={checked} />
+      <Grid row align="center" space="sm" {...props}>
+        <Pressable onPress={() => 'Check'}>
+          <Checkbox type={type} value={checked} />
+        </Pressable>
         {renderLabel ? renderLabel : <Typography variant="subhead">{title ? title : '---(error)'}</Typography>}
         {badgeNumber !== undefined && badgeNumber !== 0 && <Badge value={badgeNumber} />}
       </Grid>

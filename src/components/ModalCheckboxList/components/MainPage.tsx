@@ -19,7 +19,7 @@ export interface MainPageProps {
   search: TextFieldProps;
   items: BaseTypeDictionary[];
   name: keyof IFilterCreate;
-  listProps?: Partial<ListProps>;
+  listProps?: Partial<ListProps<BaseTypeDictionary>>;
   showAllSelect?: boolean;
   isShowSearch?: boolean;
   checkModalboxUse: ReturnType<typeof useModalcheckbox>;
@@ -70,7 +70,7 @@ const MainPage = ({
           onChange={onToggleSelection}
         />
       )}
-      <List
+      <List<BaseTypeDictionary>
         {...listProps}
         estimatedItemSize={43}
         data={filterItems()}

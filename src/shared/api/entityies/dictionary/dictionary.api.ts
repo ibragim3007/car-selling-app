@@ -2,6 +2,7 @@ import { rootApi } from '../../root/api';
 
 import apiConfig from '@/shared/config/apiConfig';
 import { IDictionaryRoot, IMarkaModel, IModel, IRegionsDict } from '@/shared/types/dictionary.types';
+import { ISourceGroups } from '@/shared/types/source.types';
 
 export const filterApi = rootApi.injectEndpoints({
   endpoints: build => ({
@@ -38,7 +39,15 @@ export const filterApi = rootApi.injectEndpoints({
         };
       },
     }),
+    sites: build.query<ISourceGroups, void>({
+      query: () => {
+        return {
+          url: apiConfig.dictionary.sourcegroups.url,
+          method: apiConfig.dictionary.sourcegroups.method,
+        };
+      },
+    }),
   }),
 });
 
-export const { useDictionaryQuery, useRegionsQuery, useMarkaModelQuery, useModelsQuery } = filterApi;
+export const { useDictionaryQuery, useRegionsQuery, useMarkaModelQuery, useModelsQuery, useSitesQuery } = filterApi;

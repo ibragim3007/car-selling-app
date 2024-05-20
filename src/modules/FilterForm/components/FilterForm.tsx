@@ -9,6 +9,7 @@ import MileagesInput from './inputs/MileagesInput/MileagesInput';
 import PriceInput from './inputs/PriceInput/PriceInput';
 import StateInput from './inputs/StateInput/StateInput';
 import WrapperBlock from './wrapper/WrapperBlock';
+import SourceInput from './inputs/SourceInput/SourceInput';
 
 interface FilterFormProps<T extends FieldValues> {
   formApi: UseFormReturn<T, any, undefined>;
@@ -28,6 +29,7 @@ const FilterForm = <T extends FieldValues>({ formApi }: FilterFormProps<T>) => {
       <MileagesInput />
       <PriceInput />
       <CharacteristicInput />
+      <SourceInput />
     </Grid>
   );
 };

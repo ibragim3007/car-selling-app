@@ -43,12 +43,12 @@ const PriceInput = () => {
             subtitleInput="₽"
           />
         </WrapInputLabel>
-        <Grid>
+        {/* <Grid>
           <Typography>prices: {JSON.stringify(priceValue)}</Typography>
           <Typography>pricechanges: {JSON.stringify(pricechanges)}</Typography>
           <Typography>minPricechange: {JSON.stringify(minPricechange)}</Typography>
           <Typography>avgPriceDelta: {JSON.stringify(avgPriceDelta)}</Typography>
-        </Grid>
+        </Grid> */}
         <Deviation />
         <Market />
       </Grid>

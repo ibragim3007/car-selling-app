@@ -6,7 +6,7 @@ import PressableIcon from '@/shared/ui/buttons/PressableButton';
 import ArrowDown from '@/icons/linear/arrow-down.svg';
 
 interface SelectButtonWrapProps extends InputProps {
-  onPress: () => void;
+  onPress?: () => void;
 }
 
 const SelectButtonWrap = ({ onPress, ...props }: SelectButtonWrapProps) => {
