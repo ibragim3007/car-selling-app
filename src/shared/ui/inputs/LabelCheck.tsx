@@ -4,9 +4,11 @@ import Checkbox from './Checkbox';
 import Typography from '../typography/Typography';
 import { Pressable } from 'react-native';
 import { normalizedSize } from '@/shared/utils/size';
+import { TitleCheckboxProps } from './TitleCheckbox';
+import { useTheme } from '@/shared/hooks/stylesHooks/useTheme';
 
-interface LabelCheckProps {
-  label: string;
+interface LabelCheckProps extends TitleCheckboxProps {
+  label: string | number;
   onPressLabel?: () => void;
   onPressCheck?: () => void;
   onPressRightSide?: () => void;
@@ -14,24 +16,38 @@ interface LabelCheckProps {
   rightSide?: React.ReactNode;
 }
 
-const LabelCheck = ({ label, value, rightSide, onPressCheck, onPressLabel, onPressRightSide }: LabelCheckProps) => {
+const LabelCheck = ({
+  label,
+  value,
+  rightSide,
+  type = 'check',
+  onPressCheck,
+  onPressLabel,
+  onPressRightSide,
+  ...props
+}: LabelCheckProps) => {
+  const { colors } = useTheme();
+
   const onPressCheckDetect = onPressCheck ? onPressCheck : onPressLabel;
   const onPressLabelDetect = onPressLabel ? onPressLabel : onPressCheck;
   const onPressRightSideDetect = onPressRightSide ? onPressRightSide : onPressLabel ? onPressLabel : onPressCheck;
 
+  const isBackgroundHighlight = value && type === 'check';
+
   return (
-    <Grid height={48} row align="center">
+    <Grid color={isBackgroundHighlight ? colors.background.active : 'transparent'} height={48} row align="center">
       <Pressable
         onPress={onPressCheckDetect}
         style={{
-          paddingHorizontal: normalizedSize(18),
+          paddingLeft: normalizedSize(18),
+          paddingRight: normalizedSize(10),
           height: '100%',
           alignItems: 'center',
           justifyContent: 'center',
         }}
       >
         <Grid pointerEvents="none">
-          <Checkbox value={value} />
+          <Checkbox {...props} value={value} />
         </Grid>
       </Pressable>
 
@@ -46,6 +62,7 @@ const LabelCheck = ({ label, value, rightSide, onPressCheck, onPressLabel, onPre
           onPress={onPressRightSideDetect}
           style={{
             width: 50,
+            paddingRight: 10,
             alignItems: 'center',
             justifyContent: 'center',
             height: '100%',

@@ -1,14 +1,14 @@
 import List, { ListProps } from '@/components/Informers/tables/List';
 
-import ArrowDown from '@/icons/linear/arrow-down.svg';
 import { useTreeModalCheckbox } from '@/shared/hooks/helpers/useTreeModalCheckbox';
 import { useTheme } from '@/shared/hooks/stylesHooks/useTheme';
 import { IFilterCreate } from '@/shared/types/filters.types';
 import { ISourceGroup } from '@/shared/types/source.types';
-import LabelCheck from '@/shared/ui/inputs/LabelCheck';
 import { TextFieldProps } from '@/shared/ui/inputs/TextField';
 import Grid from '@/shared/ui/layout/Grid';
+import AntDesign from '@expo/vector-icons/build/AntDesign';
 import React from 'react';
+import SearchInput from '../ModalCheckboxList/components/SearchInput';
 import TreeListItem from './TreeListItem';
 
 export interface TreeListPropsGlobal extends Omit<TreeListProps, 'checkModalboxUse'> {}
@@ -32,13 +32,22 @@ const TreeList = ({
   checkModalboxUse,
   showAllSelect,
 }: TreeListProps) => {
-  const { keyExtractor } = checkModalboxUse;
+  const {
+    keyExtractor,
+    searchText,
+    selectedValues,
+    selectedParents,
+    filterBySearch,
+    onParentPress,
+    toggleSelectedValue,
+    setSearchText,
+  } = checkModalboxUse;
 
   const { colors } = useTheme();
 
   return (
     <Grid flex={1}>
-      {/* <Grid padding={12}>
+      <Grid padding={12}>
         {isShowSearch && (
           <SearchInput
             value={searchText}
@@ -47,31 +56,22 @@ const TreeList = ({
             {...search}
           />
         )}
-      </Grid> */}
-      {/* {showAllSelect && (
-        <TitleCheckbox
-          paddingHorizontal={18}
-          paddingVertical={14}
-          style={{ borderBottomColor: colors.divider, borderBottomWidth: 1 }}
-          title="Выбрать все"
-          checked={isEverythingSelected}
-          onChange={onToggleSelection}
-        />
-      )} */}
-      <Grid>
-        <LabelCheck
-          onPressCheck={() => console.log('check')}
-          onPressLabel={() => console.log('label')}
-          rightSide={<ArrowDown />}
-          label="Другое"
-        />
       </Grid>
+
       <List<ISourceGroup>
         {...listProps}
         estimatedItemSize={43}
-        data={items}
+        data={filterBySearch()}
         keyExtractor={keyExtractor}
-        renderItem={({ item }) => <TreeListItem item={item} />}
+        renderItem={({ item }) => (
+          <TreeListItem
+            selectedParents={selectedParents.map(s => s.Id)}
+            onPressChildren={value => toggleSelectedValue(value.Id)}
+            onPressCheck={value => onParentPress(value.Id)}
+            selectedValues={selectedValues}
+            item={item}
+          />
+        )}
       />
       {/* <AcceptButton onPress={acceptChanges} /> */}
     </Grid>
