@@ -1,6 +1,7 @@
 import { TreeListPropsGlobal } from '@/components/ModalTreeCheckbox/TreeList';
 import { IFilterCreate } from '@/shared/types/filters.types';
 import { ISourceGroup } from '@/shared/types/source.types';
+import { CheckboxCustom } from '@/shared/ui/inputs/Checkbox';
 import { addUniqueValues } from '@/shared/utils/addUniqueValues';
 import { removeMatchingValues } from '@/shared/utils/removeMatchingValues';
 import { useCallback, useState } from 'react';
@@ -65,6 +66,15 @@ export const useTreeModalCheckbox = ({ items }: TreeListPropsGlobal) => {
 
     return filtered;
   };
+
+  const getCheckType = (parentId: number): CheckboxCustom['type'] => {
+    const parent = items.find(item => item.Id === parentId);
+
+    const allParentsIdsNow = findAllSelectedChildrenByParent(parent?.Sources.map(s => s.Id) || [], selectedValues);
+
+    return allParentsIdsNow.length === parent?.Sources.length ? 'check' : 'partial';
+  };
+
   const pressAcceptButton = () => {
     formApi.setValue('sites', selectedValues);
   };
@@ -79,11 +89,16 @@ export const useTreeModalCheckbox = ({ items }: TreeListPropsGlobal) => {
     pressAcceptButton,
     keyExtractor,
     onParentPress,
+    getCheckType,
   };
 };
 
 const findParentByChildren = (items: ISourceGroup[], childrenId: number) => {
   return items.find(item => item.Sources.some(source => source.Id === childrenId));
+};
+
+const findAllSelectedChildrenByParent = (parentSourcesIds: number[], selectedValues: number[]): number[] => {
+  return selectedValues.filter(sV => parentSourcesIds.includes(sV));
 };
 
 // Chat GPT

@@ -39,11 +39,10 @@ const TreeList = ({
     selectedParents,
     filterBySearch,
     onParentPress,
+    getCheckType,
     toggleSelectedValue,
     setSearchText,
   } = checkModalboxUse;
-
-  const { colors } = useTheme();
 
   return (
     <Grid flex={1}>
@@ -69,6 +68,7 @@ const TreeList = ({
             onPressChildren={value => toggleSelectedValue(value.Id)}
             onPressCheck={value => onParentPress(value.Id)}
             selectedValues={selectedValues}
+            getCheckType={parentId => getCheckType(parentId)}
             item={item}
           />
         )}

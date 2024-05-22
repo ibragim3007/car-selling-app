@@ -35,7 +35,13 @@ const LabelCheck = ({
   const isBackgroundHighlight = value && type === 'check';
 
   return (
-    <Grid color={isBackgroundHighlight ? colors.background.active : 'transparent'} height={48} row align="center">
+    <Grid
+      {...props}
+      color={isBackgroundHighlight ? colors.background.active : 'transparent'}
+      height={48}
+      row
+      align="center"
+    >
       <Pressable
         onPress={onPressCheckDetect}
         style={{
@@ -47,7 +53,7 @@ const LabelCheck = ({
         }}
       >
         <Grid pointerEvents="none">
-          <Checkbox {...props} value={value} />
+          <Checkbox {...props} value={value} type={type} />
         </Grid>
       </Pressable>
 
