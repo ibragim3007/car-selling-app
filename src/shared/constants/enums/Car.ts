@@ -1,8 +1,11 @@
 // TODO - Обновить значения
 
+import { BaseTypeDictionary } from '@/shared/types/dictionary.types';
+
 export interface IEnum {
   id: number | null;
-  text: string;
+  text?: string;
+  name?: string;
 }
 
 export const colors = [
@@ -29,19 +32,19 @@ export const colors = [
 export const transmissions = [
   {
     id: 1,
-    text: 'механика',
+    name: 'механика',
   },
   {
     id: 2,
-    text: 'автомат',
+    name: 'автомат',
   },
   {
     id: 3,
-    text: 'робот',
+    name: 'робот',
   },
   {
     id: 4,
-    text: 'вариатор',
+    name: 'вариатор',
   },
 ];
 
@@ -71,76 +74,76 @@ export const transmissionsAdditional = [
 export const gears = [
   {
     id: 1,
-    text: 'передний',
+    name: 'передний',
   },
   {
     id: 2,
-    text: 'задний',
+    name: 'задний',
   },
   {
     id: 3,
-    text: 'полный',
+    name: 'полный',
   },
 ];
 
 export const ices = [
   {
     id: 1,
-    text: 'бензин',
+    name: 'бензин',
   },
   {
     id: 2,
-    text: 'дизель',
+    name: 'дизель',
   },
   {
     id: 3,
-    text: 'гибрид',
+    name: 'гибрид',
   },
   {
     id: 4,
-    text: 'электро',
+    name: 'электро',
   },
   {
     id: 5,
-    text: 'газ',
+    name: 'газ',
   },
 ];
 
 export const carTypes = [
   {
     id: 1,
-    text: 'легковой',
+    name: 'легковой',
   },
   {
     id: 2,
-    text: 'грузовой',
+    name: 'грузовой',
   },
   {
     id: 3,
-    text: 'коммерческий',
+    name: 'коммерческий',
   },
   {
     id: 4,
-    text: 'спецтехника',
+    name: 'спецтехника',
   },
   {
     id: 5,
-    text: 'мототехника',
+    name: 'мототехника',
   },
 ];
 
-export const carStates = [
+export const carMiliages = [
   {
     id: 0,
     text: 'Любые',
   },
   {
-    id: 2,
-    text: 'С пробегом',
-  },
-  {
     id: 1,
     text: 'Новые',
+  },
+  {
+    id: 2,
+    text: 'С пробегом',
   },
 ];
 
@@ -186,30 +189,30 @@ export const priceTypes = [
   },
 ];
 
-export const owners = [
+export const owners: BaseTypeDictionary[] = [
   {
     id: 0,
-    text: 'Неважно',
+    name: 'Неважно',
   },
   {
     id: 1,
-    text: '1 владелец',
+    name: '1 владелец',
   },
   {
     id: 2,
-    text: 'До 2 владельцев',
+    name: 'До 2 владельцев',
   },
   {
     id: 3,
-    text: 'До 3 владельцев',
+    name: 'До 3 владельцев',
   },
   {
     id: 4,
-    text: 'До 4 владельцев',
+    name: 'До 4 владельцев',
   },
   {
     id: 5,
-    text: 'До 5 владельцев',
+    name: 'До 5 владельцев',
   },
 ];
 
@@ -231,15 +234,15 @@ export const states = [
 export const wheels = [
   {
     id: 0,
-    text: 'любой',
+    name: 'любой',
   },
   {
     id: 1,
-    text: 'левый',
+    name: 'левый',
   },
   {
     id: 2,
-    text: 'правый',
+    name: 'правый',
   },
 ];
 

@@ -23,12 +23,13 @@ const RegionsDisplay = () => {
     setValue(
       'regions',
       newValue?.filter(v => v !== value),
+      { shouldDirty: true, shouldTouch: true, shouldValidate: true },
     );
   };
 
   return (
     <Grid row space="sm" wrap>
-      {selectedRegions?.map(selectedRegion => (
+      {(selectedRegions || []).map(selectedRegion => (
         <SurfaceItemClose
           key={selectedRegion}
           onRemove={onChangeCheckBox}

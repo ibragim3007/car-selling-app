@@ -19,12 +19,15 @@ const apiConfig = {
   filter: {
     filters: { url: '/filters', method: 'GET' },
     delete: { url: '/filters', method: 'DELETE' },
+    create: { url: '/filters', method: 'POST' },
+    edit: { url: '/filters', method: 'PUT' },
   },
   dictionary: {
     dictionary: { url: '/dictionaries', method: 'GET' },
     regions: { url: '/regions', method: 'GET' },
     markaModel: { url: '/markamodel', method: 'GET' },
     models: { url: '/models', method: 'GET' },
+    sourcegroups: { url: '/sourcegroups', method: 'GET' },
   },
 };
 

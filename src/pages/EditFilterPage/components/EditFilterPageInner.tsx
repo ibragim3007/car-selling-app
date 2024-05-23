@@ -1,27 +1,42 @@
+import BottomButton from '@/components/Controllers/buttons/BottomButton';
 import FilterForm from '@/modules/FilterForm';
 import { createFilterDefault } from '@/shared/constants/defaultValues/createFilterDefault';
 import { IEditFilter } from '@/shared/types/filters.types';
-import { Stack } from 'expo-router';
+import Grid from '@/shared/ui/layout/Grid';
+import ScrollViewPage from '@/shared/ui/layout/ScrollViewPage';
+import { Stack, useLocalSearchParams } from 'expo-router';
 import React from 'react';
-import { FormProvider, useForm, useWatch } from 'react-hook-form';
+import { FieldValues, FormProvider, useForm, useWatch } from 'react-hook-form';
 
 interface EditFilterPageInnerProps {
   filter: IEditFilter;
 }
 
 const EditFilterPageInner = ({ filter }: EditFilterPageInnerProps) => {
+  const params = useLocalSearchParams<{ id: string }>();
   const { ...formApi } = useForm({
     defaultValues: filter || createFilterDefault,
     mode: 'onChange',
     reValidateMode: 'onChange',
   });
 
+  const onPressCreate = (data: FieldValues) => {
+    console.log(data, params.id);
+  };
+
   const { name } = useWatch({ control: formApi.control });
 
   return (
     <FormProvider {...formApi}>
       <Stack.Screen options={{ headerTitle: name || '' }} />
-      <FilterForm formApi={formApi} />
+      <Grid flex={1}>
+        <ScrollViewPage style={{ flexGrow: 1 }} spaceVertical="sm">
+          <FilterForm formApi={formApi} />
+        </ScrollViewPage>
+        <BottomButton disabled={!formApi.formState.isDirty} onPress={formApi.handleSubmit(onPressCreate)}>
+          Сохранить
+        </BottomButton>
+      </Grid>
     </FormProvider>
   );
 };

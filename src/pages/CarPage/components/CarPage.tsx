@@ -1,18 +1,20 @@
+import BottomButton from '@/components/Controllers/buttons/BottomButton';
 import CarInfoBig from '@/modules/CarInfoBig';
-import OpenAd from '@/modules/CarInfoBig/components/OpenAd/OpenAd';
+import Grid from '@/shared/ui/layout/Grid';
 import ScrollViewPage from '@/shared/ui/layout/ScrollViewPage';
 import React from 'react';
 
 const CarPage = () => {
   return (
-    <ScrollViewPage>
-      <CarInfoBig />
-      {/* <Grid flex={0.88}>
+    <Grid flex={1}>
+      <ScrollViewPage style={{ flexGrow: 1 }}>
+        <CarInfoBig />
+        {/* <Grid flex={0.88}>
         <CarList headerComponent={} />
       </Grid> */}
-
-      <OpenAd />
-    </ScrollViewPage>
+      </ScrollViewPage>
+      <BottomButton>Открыть объявление</BottomButton>
+    </Grid>
   );
 };
 

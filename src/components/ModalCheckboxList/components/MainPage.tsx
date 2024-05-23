@@ -3,15 +3,15 @@ import RowList from '@/components/Informers/tables/RowList';
 
 import SearchInput from '@/components/ModalCheckboxList/components/SearchInput';
 import { useModalcheckbox } from '@/shared/hooks/helpers/useModalcheckbox';
+import { useTheme } from '@/shared/hooks/stylesHooks/useTheme';
 import { BaseTypeDictionary } from '@/shared/types/dictionary.types';
 import { IFilterCreate } from '@/shared/types/filters.types';
-import LabelCheckbox from '@/shared/ui/inputs/LabelCheckbox';
 import { TextFieldProps } from '@/shared/ui/inputs/TextField';
+import TitleCheckbox from '@/shared/ui/inputs/TitleCheckbox';
 import Grid from '@/shared/ui/layout/Grid';
 import AntDesign from '@expo/vector-icons/build/AntDesign';
 import React from 'react';
 import AcceptButton from './AcceptButton';
-import { useTheme } from '@/shared/hooks/stylesHooks/useTheme';
 
 export interface MainPagePropsGlobal extends Omit<MainPageProps, 'checkModalboxUse'> {}
 
@@ -19,12 +19,21 @@ export interface MainPageProps {
   search: TextFieldProps;
   items: BaseTypeDictionary[];
   name: keyof IFilterCreate;
-  listProps?: Partial<ListProps>;
+  listProps?: Partial<ListProps<BaseTypeDictionary>>;
   showAllSelect?: boolean;
+  isShowSearch?: boolean;
   checkModalboxUse: ReturnType<typeof useModalcheckbox>;
 }
 
-const MainPage = ({ name, items, search, listProps, checkModalboxUse, showAllSelect }: MainPageProps) => {
+const MainPage = ({
+  name,
+  items,
+  isShowSearch = true,
+  search,
+  listProps,
+  checkModalboxUse,
+  showAllSelect,
+}: MainPageProps) => {
   const {
     selectedValues,
     searchText,
@@ -42,22 +51,26 @@ const MainPage = ({ name, items, search, listProps, checkModalboxUse, showAllSel
   return (
     <Grid flex={1}>
       <Grid padding={12}>
-        <SearchInput
-          value={searchText}
-          onChangeText={text => setSearchText(text)}
-          endIcon={<AntDesign name="search1" size={22} />}
-          {...search}
-        />
+        {isShowSearch && (
+          <SearchInput
+            value={searchText}
+            onChangeText={text => setSearchText(text)}
+            endIcon={<AntDesign name="search1" size={22} />}
+            {...search}
+          />
+        )}
       </Grid>
       {showAllSelect && (
-        <LabelCheckbox
+        <TitleCheckbox
+          paddingHorizontal={18}
+          paddingVertical={14}
           style={{ borderBottomColor: colors.divider, borderBottomWidth: 1 }}
           title="Выбрать все"
           checked={isEverythingSelected}
           onChange={onToggleSelection}
         />
       )}
-      <List
+      <List<BaseTypeDictionary>
         {...listProps}
         estimatedItemSize={43}
         data={filterItems()}

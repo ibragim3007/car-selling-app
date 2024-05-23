@@ -1,8 +1,11 @@
+import BottomButton from '@/components/Controllers/buttons/BottomButton';
 import FilterForm from '@/modules/FilterForm';
+import { useCreateFilterMutation } from '@/shared/api/entityies/filters/filter.api';
 import { createFilterDefault } from '@/shared/constants/defaultValues/createFilterDefault';
+import { Inform } from '@/shared/services/logger.service/loger.service';
 import ScrollViewPage from '@/shared/ui/layout/ScrollViewPage';
 import React from 'react';
-import { FormProvider, useForm } from 'react-hook-form';
+import { FieldValues, FormProvider, useForm } from 'react-hook-form';
 
 const NewFIlterPage = () => {
   const { ...formApi } = useForm({
@@ -11,12 +14,24 @@ const NewFIlterPage = () => {
     reValidateMode: 'onChange',
   });
 
+  const [create, { isLoading, isError, error }] = useCreateFilterMutation();
+  const createNewFilter = async (data: FieldValues) => {
+    try {
+      await create(data).unwrap();
+    } catch (e) {
+      Inform.error(e);
+    }
+  };
+
   return (
-    <ScrollViewPage spaceVertical="sm">
-      <FormProvider {...formApi}>
+    <FormProvider {...formApi}>
+      <ScrollViewPage spaceVertical="sm">
         <FilterForm formApi={formApi} />
-      </FormProvider>
-    </ScrollViewPage>
+      </ScrollViewPage>
+      <BottomButton loading={isLoading} onPress={formApi.handleSubmit(createNewFilter)}>
+        Создать
+      </BottomButton>
+    </FormProvider>
   );
 };
 

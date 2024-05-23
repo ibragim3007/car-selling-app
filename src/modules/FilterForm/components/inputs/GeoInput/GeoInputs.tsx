@@ -8,6 +8,7 @@ import { useFormContext } from 'react-hook-form';
 import AddButton from '../../buttons/AddButton';
 import WrapperBlock from '../../wrapper/WrapperBlock';
 import RegionsDisplay from './DisplaySelected/RegionsDisplay';
+import WrapInputLabel from '../../wrapper/WrapInputLabel';
 
 export const GeoInputs = () => {
   const buttomSheetRef = useRef<BTMS>(null);
@@ -20,25 +21,27 @@ export const GeoInputs = () => {
   const regionUse = useRegion();
 
   return (
-    <WrapperBlock title="География">
-      <ToggleButton
-        items={[
-          { title: 'По городам', value: 'city' },
-          { title: 'По регионам', value: 'regions' },
-        ]}
-        Item={(item, index) => (
-          <ToggleButtonItem
-            onPress={item => console.log(item)}
-            key={item.value}
-            currentValue={'regions'}
-            title={item.title}
-            value={item.value}
-            length={2}
-            index={index}
-            item={item}
-          />
-        )}
-      />
+    <WrapperBlock>
+      <WrapInputLabel title="География">
+        <ToggleButton
+          items={[
+            { title: 'По городам', value: 'city' },
+            { title: 'По регионам', value: 'regions' },
+          ]}
+          Item={(item, index) => (
+            <ToggleButtonItem
+              onPress={item => console.log(item)}
+              key={item.value}
+              currentValue={'regions'}
+              title={item.title}
+              value={item.value}
+              length={2}
+              index={index}
+              item={item}
+            />
+          )}
+        />
+      </WrapInputLabel>
 
       <ModalCheckboxList
         bottomSheetModal={{

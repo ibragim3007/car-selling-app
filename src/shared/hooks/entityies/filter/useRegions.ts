@@ -24,7 +24,9 @@ export const useRegion = () => {
   };
 
   const onAcceptChanges = () => {
-    setValue('regions', currentPickedRegions, {});
+    setValue('regions', currentPickedRegions, {
+      shouldDirty: true,
+    });
     dismiss();
   };
 

@@ -34,8 +34,8 @@ const Checkbox = ({ value = false, type, disabled, color, onValueChange }: Check
 
   return (
     <Pressable disabled={disabled} onPress={() => onValueChange && onValueChange(!value)} style={styles.checkbox}>
-      {value && !isPartial && <Fontisto name="check" size={11} color="#fff" />}
-      {isPartial && value && <Entypo name="minus" size={20} color="#fff" />}
+      {value && !isPartial && <Fontisto name="check" size={9} color="#fff" />}
+      {isPartial && value && <Entypo name="minus" size={17} color="#fff" />}
     </Pressable>
   );
 };

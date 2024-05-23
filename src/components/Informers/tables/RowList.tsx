@@ -2,7 +2,8 @@ import { GridProps } from '@/shared/ui/layout/Grid';
 import React from 'react';
 
 import { CheckboxCustom } from '@/shared/ui/inputs/Checkbox';
-import LabelCheckbox from '@/shared/ui/inputs/LabelCheckbox';
+import LabelCheck from '@/shared/ui/inputs/LabelCheck';
+import { StyleProp, ViewStyle } from 'react-native';
 
 export interface RowListProps extends GridProps {
   title?: string | number;
@@ -13,6 +14,7 @@ export interface RowListProps extends GridProps {
   badgeNumber?: number;
   rightSide?: React.ReactNode;
   isSelectedForce?: boolean;
+  style?: StyleProp<ViewStyle>;
 }
 
 const RowList = ({
@@ -24,6 +26,7 @@ const RowList = ({
   rightSide,
   badgeNumber,
   isSelectedForce,
+  style,
 }: RowListProps) => {
   const isSelected = selectedValues?.find(v => v === value) !== undefined ? true : false;
 
@@ -32,13 +35,15 @@ const RowList = ({
   };
 
   return (
-    <LabelCheckbox
+    <LabelCheck
       badgeNumber={badgeNumber}
       type={type}
-      checked={isSelectedForce || isSelected}
-      title={title || '--error'}
-      onChange={onChangeCheckBox}
+      style={style}
+      // title={title || '--error'}
+      onPressLabel={onChangeCheckBox}
       rightSide={rightSide}
+      value={isSelectedForce || isSelected}
+      label={title || '--error'}
     />
   );
 };

@@ -22,7 +22,7 @@ const SelectItem = ({ item, currentValue, onChange }: SelectItemProps) => {
   return (
     <Pressable onPress={onPress}>
       <Grid padding={16} row justfity="space-between">
-        <Typography>{item.text}</Typography>
+        <Typography>{item.text || item.name}</Typography>
         {isSelected && <AntDesign color={colors.text.primary} name="check" size={normalizedSize(20)} />}
       </Grid>
     </Pressable>

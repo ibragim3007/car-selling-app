@@ -3,10 +3,13 @@ import Grid from '@/shared/ui/layout/Grid';
 import React from 'react';
 import { FieldValues, UseFormReturn } from 'react-hook-form';
 import CarInput from './inputs/CarInput/CarInput';
-import WrapperBlock from './wrapper/WrapperBlock';
-import Button from '@/shared/ui/buttons/Button';
+import CharacteristicInput from './inputs/CharacteristicInput/CharacteristicInput';
 import { GeoInputs } from './inputs/GeoInput/GeoInputs';
+import MileagesInput from './inputs/MileagesInput/MileagesInput';
+import PriceInput from './inputs/PriceInput/PriceInput';
 import StateInput from './inputs/StateInput/StateInput';
+import WrapperBlock from './wrapper/WrapperBlock';
+import SourceInput from './inputs/SourceInput/SourceInput';
 
 interface FilterFormProps<T extends FieldValues> {
   formApi: UseFormReturn<T, any, undefined>;
@@ -15,19 +18,18 @@ interface FilterFormProps<T extends FieldValues> {
 const FilterForm = <T extends FieldValues>({ formApi }: FilterFormProps<T>) => {
   const { control, handleSubmit, formState } = formApi;
 
-  const onPressCreate = (data: FieldValues) => {
-    console.log(data.regions);
-  };
-
   return (
-    <Grid space="sm">
+    <Grid space="sm" paddingBottom={40}>
       <WrapperBlock title="Название подборки">
         <Input control={control} name="name" />
       </WrapperBlock>
       <GeoInputs />
       <CarInput />
       <StateInput />
-      <Button onPress={handleSubmit(onPressCreate)}>Создать</Button>
+      <MileagesInput />
+      <PriceInput />
+      <CharacteristicInput />
+      <SourceInput />
     </Grid>
   );
 };
