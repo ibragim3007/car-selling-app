@@ -73,12 +73,12 @@ const FilterComponent = ({ filter }: FilterComponentProps) => {
         <Typography>{filter.horsepower.join(', ')}</Typography>
       </SectionWrapper> */}
 
-      <TableInfo title="Пробег, км" value={filter.mileages.join('-')} />
+      <TableInfo title="Пробег, км" value={filter.mileages?.join(' - ')} />
       <TableInfo title="Повреждения" value={filter.carState} />
-      <TableInfo title="Цена, ₽" value={filter.pricechanges.join('-')} />
+      <TableInfo title="Цена, ₽" value={filter.pricechanges?.join(' - ')} />
       {/* <TableInfo title="Год выпуска" value={filter} /> */}
-      <TableInfo title="Объем двигателя, л" value={filter.ices?.join('-')} />
-      <TableInfo title="Пробег, км" value={filter.mileages.join('-')} />
+      <TableInfo title="Объем двигателя, л" value={filter.ices?.join(' - ')} />
+      <TableInfo title="Пробег, км" value={filter.mileages?.join(' - ')} />
       <TableInfo title="Владельцы" value={filter.owners} />
       {/* <TableInfo title="Тип топлива" value={filter.mileages.join('-')} /> */}
 

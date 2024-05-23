@@ -1,12 +1,12 @@
 import MyFilters from '@/modules/MyFilters';
-import Grid from '@/shared/ui/layout/Grid';
+import PageBackground from '@/shared/ui/layout/PageBackground';
 import React from 'react';
 
 const MyFiltersPage = () => {
   return (
-    <Grid flex={1}>
+    <PageBackground>
       <MyFilters />
-    </Grid>
+    </PageBackground>
   );
 };
 
