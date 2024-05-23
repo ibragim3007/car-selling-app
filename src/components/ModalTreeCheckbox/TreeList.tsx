@@ -10,6 +10,7 @@ import AntDesign from '@expo/vector-icons/build/AntDesign';
 import React from 'react';
 import SearchInput from '../ModalCheckboxList/components/SearchInput';
 import TreeListItem from './TreeListItem';
+import AcceptButton from '../ModalCheckboxList/components/AcceptButton';
 
 export interface TreeListPropsGlobal extends Omit<TreeListProps, 'checkModalboxUse'> {}
 
@@ -42,6 +43,7 @@ const TreeList = ({
     getCheckType,
     toggleSelectedValue,
     setSearchText,
+    pressAcceptButton,
   } = checkModalboxUse;
 
   return (
@@ -52,6 +54,7 @@ const TreeList = ({
             value={searchText}
             onChangeText={text => setSearchText(text)}
             endIcon={<AntDesign name="search1" size={22} />}
+            placeholder="Введите..."
             {...search}
           />
         )}
@@ -73,7 +76,7 @@ const TreeList = ({
           />
         )}
       />
-      {/* <AcceptButton onPress={acceptChanges} /> */}
+      <AcceptButton onPress={pressAcceptButton} />
     </Grid>
   );
 };
