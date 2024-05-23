@@ -1,5 +1,7 @@
 // TODO - Обновить значения
 
+import { BaseTypeDictionary } from '@/shared/types/dictionary.types';
+
 export interface IEnum {
   id: number | null;
   text?: string;
@@ -187,30 +189,30 @@ export const priceTypes = [
   },
 ];
 
-export const owners = [
+export const owners: BaseTypeDictionary[] = [
   {
     id: 0,
-    text: 'Неважно',
+    name: 'Неважно',
   },
   {
     id: 1,
-    text: '1 владелец',
+    name: '1 владелец',
   },
   {
     id: 2,
-    text: 'До 2 владельцев',
+    name: 'До 2 владельцев',
   },
   {
     id: 3,
-    text: 'До 3 владельцев',
+    name: 'До 3 владельцев',
   },
   {
     id: 4,
-    text: 'До 4 владельцев',
+    name: 'До 4 владельцев',
   },
   {
     id: 5,
-    text: 'До 5 владельцев',
+    name: 'До 5 владельцев',
   },
 ];
 

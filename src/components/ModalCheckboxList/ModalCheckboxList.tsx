@@ -19,7 +19,9 @@ const ModalCheckboxList = React.forwardRef<Ref, ModalCheckboxListProps>((props, 
   const checkModalboxUse = useModalcheckbox(props.pageData);
   return (
     <BottomSheetModal
-      handleComponent={() => <QuitResetHeader reset={checkModalboxUse.reset} title="Регион" />}
+      handleComponent={() => (
+        <QuitResetHeader reset={checkModalboxUse.reset} title={props.bottomSheetModal.title || ''} />
+      )}
       snapPoints={['90%']}
       ref={ref}
       {...props.bottomSheetModal}

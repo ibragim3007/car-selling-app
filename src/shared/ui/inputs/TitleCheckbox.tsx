@@ -26,7 +26,7 @@ const TitleCheckbox = ({
 }: TitleCheckboxProps) => {
   return (
     <Pressable onPress={onChange}>
-      <Grid row align="center" space="sm" {...props}>
+      <Grid pointerEvents="none" row align="center" space="sm" {...props}>
         <Pressable onPress={() => 'Check'}>
           <Checkbox type={type} value={checked} />
         </Pressable>

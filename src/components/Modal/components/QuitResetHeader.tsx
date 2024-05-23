@@ -9,7 +9,7 @@ import { Pressable } from 'react-native';
 import { SvgProps } from 'react-native-svg';
 
 interface BottomSheetModalHeaderProps {
-  title?: string;
+  title?: string | number;
   reset?: () => void;
   close?: () => void;
   dismissIcon?: React.FC<SvgProps>;

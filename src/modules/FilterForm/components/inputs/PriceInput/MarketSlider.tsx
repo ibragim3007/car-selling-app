@@ -96,7 +96,7 @@ const MarketSlider = ({ value, onSlidingComplete }: MarketSliderProps) => {
           trackMarks={Marked}
           minimumTrackTintColor={currentColor}
           renderMaximumTrackComponent={() => (
-            <Grid style={{ backgroundColor: colors.accent.primary, opacity: 0.05, height: 4, width: '100%' }} />
+            <Grid style={{ backgroundColor: colors.accent.red, opacity: 0.05, height: 4, width: '100%' }} />
           )}
           renderTrackMarkComponent={index => (
             <Grid gap={1} style={{ position: 'absolute', top: 17, left: 13 }}>

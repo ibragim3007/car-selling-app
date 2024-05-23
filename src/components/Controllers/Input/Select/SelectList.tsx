@@ -1,27 +1,20 @@
 import List from '@/components/Informers/tables/List';
 import { IEnum } from '@/shared/constants/enums/Car';
-import { IFilterCreate } from '@/shared/types/filters.types';
 import React from 'react';
-import { useFormContext, useWatch } from 'react-hook-form';
 import SelectItem from './SelectItem';
-import { useBottomSheetModal } from '@gorhom/bottom-sheet';
 
 interface SelectListProps {
   data: IEnum[];
-  name: keyof IFilterCreate;
+  currentValue: number;
+  onChange: (item: IEnum) => void;
 }
 
-const SelectList = ({ data, name }: SelectListProps) => {
-  const { control, setValue } = useFormContext<IFilterCreate>();
-  const value = useWatch({ control, name }) as number;
-  const { dismiss } = useBottomSheetModal();
-  const onChange = (item: IEnum) => {
-    setValue(name, item.id as number);
-    dismiss();
-  };
-
+const SelectList = ({ data, currentValue, onChange }: SelectListProps) => {
   return (
-    <List renderItem={({ item }) => <SelectItem onChange={onChange} currentValue={value} item={item} />} data={data} />
+    <List
+      renderItem={({ item }) => <SelectItem onChange={onChange} currentValue={currentValue} item={item} />}
+      data={data}
+    />
   );
 };
 
