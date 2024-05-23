@@ -1,7 +1,7 @@
-import Select from '@/components/Controllers/Input/Select/Select';
+import SelectButtonWrap from '@/components/Controllers/Input/Select/SelectButtonWrap';
 import BottomSheetModal from '@/components/Modal/BottomSheetModal';
+import ModalCheckboxList from '@/components/ModalCheckboxList/ModalCheckboxList';
 import { carTypes } from '@/shared/constants/enums/Car';
-import { enumCompare } from '@/shared/helpers/enumCompare';
 import { IFilterCreate } from '@/shared/types/filters.types';
 import Typography from '@/shared/ui/typography/Typography';
 import { BottomSheetModal as BTMS } from '@gorhom/bottom-sheet';
@@ -13,9 +13,11 @@ import WrapInputLabel from '../../wrapper/WrapInputLabel';
 import WrapperBlock from '../../wrapper/WrapperBlock';
 import AutoChoiceList from './AutoChoiceList';
 import SelectedCars from './DisplaySelected/SelectedCars';
+import { enumCompare } from '@/shared/helpers/enumCompare';
 
 const CarInput = () => {
   const buttomSheetRef = useRef<BTMS>(null);
+  const buttomSheetRefCarType = useRef<BTMS>(null);
   const formApi = useFormContext<IFilterCreate>();
 
   const { field } = useController({ control: formApi.control, name: 'carTypes' });
@@ -24,15 +26,36 @@ const CarInput = () => {
     buttomSheetRef.current?.present();
   };
 
+  const onPressChangeCarType = () => {
+    buttomSheetRefCarType.current?.present();
+  };
+
+  const stringForLabel = field.value?.map(a => enumCompare(carTypes, a)).join(', ');
+
   return (
     <WrapperBlock>
       <WrapInputLabel title="Тип авто">
-        <Select
+        <SelectButtonWrap
+          value={stringForLabel || 'Неважно'}
+          onPress={onPressChangeCarType}
           control={formApi.control}
-          value={field.value?.map(v => enumCompare(carTypes, v)).join(', ')}
-          name={field.name}
-          title={''}
-          data={[]}
+          name=""
+        />
+        <ModalCheckboxList
+          bottomSheetModal={{
+            title: 'Тип автомобиля',
+            children: null,
+            snapPoints: ['60%'],
+          }}
+          formApi={formApi}
+          ref={buttomSheetRefCarType}
+          pageData={{
+            showAllSelect: false,
+            isShowSearch: false,
+            search: { placeholder: 'Поиск...' },
+            name: 'carTypes',
+            items: carTypes || [],
+          }}
         />
         <BottomSheetModal
           snapPoints={['90%']}
