@@ -23,7 +23,7 @@ const GISRange = ({ title, dataMock, name, bottomSheetTitle }: GISRangeProps) =>
     field: { value },
   } = useController({ control, name });
 
-  const valueToNumber = value as TRange;
+  const valueToNumber = (value || []) as TRange;
 
   const present = () => {
     buttomSheetRef.current?.present();
@@ -35,7 +35,7 @@ const GISRange = ({ title, dataMock, name, bottomSheetTitle }: GISRangeProps) =>
   };
 
   const reset = () => {
-    setValue(name, [0, 0]);
+    setValue(name, [0, 0], { shouldDirty: true });
   };
 
   const isShowValues = valueToNumber && valueToNumber[1] && valueToNumber[0];

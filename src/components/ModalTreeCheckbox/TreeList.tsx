@@ -1,16 +1,15 @@
 import List, { ListProps } from '@/components/Informers/tables/List';
 
 import { useTreeModalCheckbox } from '@/shared/hooks/helpers/useTreeModalCheckbox';
-import { useTheme } from '@/shared/hooks/stylesHooks/useTheme';
 import { IFilterCreate } from '@/shared/types/filters.types';
 import { ISourceGroup } from '@/shared/types/source.types';
 import { TextFieldProps } from '@/shared/ui/inputs/TextField';
 import Grid from '@/shared/ui/layout/Grid';
 import AntDesign from '@expo/vector-icons/build/AntDesign';
 import React from 'react';
+import AcceptButton from '../ModalCheckboxList/components/AcceptButton';
 import SearchInput from '../ModalCheckboxList/components/SearchInput';
 import TreeListItem from './TreeListItem';
-import AcceptButton from '../ModalCheckboxList/components/AcceptButton';
 
 export interface TreeListPropsGlobal extends Omit<TreeListProps, 'checkModalboxUse'> {}
 
@@ -24,15 +23,7 @@ export interface TreeListProps {
   checkModalboxUse: ReturnType<typeof useTreeModalCheckbox>;
 }
 
-const TreeList = ({
-  name,
-  items,
-  isShowSearch = true,
-  search,
-  listProps,
-  checkModalboxUse,
-  showAllSelect,
-}: TreeListProps) => {
+const TreeList = ({ isShowSearch = true, search, listProps, checkModalboxUse }: TreeListProps) => {
   const {
     keyExtractor,
     searchText,

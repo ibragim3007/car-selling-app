@@ -6,6 +6,7 @@ import { FormProvider, UseFormReturn } from 'react-hook-form';
 import BottomSheetModal, { CustomBottomSheetModalProps } from '../Modal/BottomSheetModal';
 import TreeList, { TreeListPropsGlobal } from './TreeList';
 import Grid from '@/shared/ui/layout/Grid';
+import QuitResetHeader from '../Modal/components/QuitResetHeader';
 
 export type Ref = BSM;
 
@@ -19,7 +20,7 @@ const ModalTreeCheckbox = React.forwardRef<Ref, ModalTreeCheckboxProps>((props, 
   const checkModalboxUse = useTreeModalCheckbox(props.pageData);
   return (
     <BottomSheetModal
-      // handleComponent={() => <QuitResetHeader reset={checkModalboxUse} title={''} />}
+      handleComponent={() => <QuitResetHeader reset={checkModalboxUse.reset} title={'Источники'} />}
       snapPoints={['90%']}
       ref={ref}
       {...props.bottomSheetModal}
