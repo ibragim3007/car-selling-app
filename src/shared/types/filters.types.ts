@@ -41,9 +41,7 @@ export interface IFilterCreate {
   distance?: number;
 }
 
-export interface IEditFilter extends IFilterCreate {
-  id: number;
-}
+export interface IEditFilter extends IFilterCreate {}
 
 export interface IFilter {
   id: number;

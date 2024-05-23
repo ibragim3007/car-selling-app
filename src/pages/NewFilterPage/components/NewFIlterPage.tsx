@@ -18,6 +18,7 @@ const NewFIlterPage = () => {
   const createNewFilter = async (data: FieldValues) => {
     try {
       await create(data).unwrap();
+      Inform.success('Фильтр создан');
     } catch (e) {
       Inform.error(e);
     }

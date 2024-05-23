@@ -16,12 +16,12 @@ interface FilterFormProps<T extends FieldValues> {
 }
 
 const FilterForm = <T extends FieldValues>({ formApi }: FilterFormProps<T>) => {
-  const { control, handleSubmit, formState } = formApi;
+  const { control } = formApi;
 
   return (
     <Grid space="sm" paddingBottom={40}>
       <WrapperBlock title="Название подборки">
-        <Input control={control} name="name" />
+        <Input control={control} name="name" showError rules={{ required: 'Поле должно быть заполнено!' }} />
       </WrapperBlock>
       <GeoInputs />
       <CarInput />

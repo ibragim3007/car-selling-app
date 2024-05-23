@@ -41,10 +41,11 @@ export const filterApi = rootApi.injectEndpoints({
         body: filter,
       }),
     }),
-    editFilter: build.mutation<IFilter, IEditFilter>({
-      query: () => ({
-        url: apiConfig.filter.edit.url,
+    editFilter: build.mutation<IFilter, { id: string; filter: IEditFilter }>({
+      query: (body: { id: string; filter: IEditFilter }) => ({
+        url: `${apiConfig.filter.edit.url}/${body.id}`,
         method: apiConfig.filter.edit.method,
+        body: body.filter,
       }),
     }),
   }),
