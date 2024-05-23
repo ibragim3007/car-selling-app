@@ -8,19 +8,30 @@ import React, { useRef } from 'react';
 import { useFormContext, useWatch } from 'react-hook-form';
 import WrapInputLabel from '../../wrapper/WrapInputLabel';
 import WrapperBlock from '../../wrapper/WrapperBlock';
+import { moveFirstElementToEnd } from '@/shared/utils/moveFirstElementToEnd';
+import Select from '@/components/Controllers/Input/Select/Select';
+import { ownerTypes } from '@/shared/constants/enums/Car';
+import { enumCompare } from '@/shared/helpers/enumCompare';
 
 const SourceInput = () => {
   const formApi = useFormContext<IFilterCreate>();
   const { data: site } = useSitesQuery();
 
   const sites = useWatch({ control: formApi.control, name: 'sites' });
+  const ownerType = useWatch({ control: formApi.control, name: 'ownerType' });
 
   const buttomSheetRef = useRef<BTMS>(null);
   const valueInput = getNamesByIds(site?.sourceGroups || [], sites || []);
   return (
     <WrapperBlock>
       <WrapInputLabel title="Тип продавца">
-        {/* <SCBList name={'ownerType'} title={'Тип продавца'} items={[]} /> */}
+        <Select
+          title="Тип продавца"
+          name="ownerType"
+          value={enumCompare(ownerTypes, ownerType || 0)}
+          control={formApi.control}
+          data={ownerTypes}
+        />
       </WrapInputLabel>
       <WrapInputLabel title="Источники">
         <SelectButtonWrap
@@ -37,7 +48,7 @@ const SourceInput = () => {
           formApi={formApi}
           ref={buttomSheetRef}
           pageData={{
-            items: site?.sourceGroups || [],
+            items: moveFirstElementToEnd(site?.sourceGroups || []),
             name: 'sites',
           }}
         />
