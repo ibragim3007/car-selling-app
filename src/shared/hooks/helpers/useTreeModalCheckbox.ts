@@ -5,8 +5,11 @@ import { ISourceGroup } from '@/shared/types/source.types';
 import { CheckboxCustom } from '@/shared/ui/inputs/Checkbox';
 import { addUniqueValues } from '@/shared/utils/addUniqueValues';
 import { removeMatchingValues } from '@/shared/utils/removeMatchingValues';
+import { useBottomSheetModal } from '@gorhom/bottom-sheet';
 import { useCallback, useEffect, useState } from 'react';
 import { useFormContext } from 'react-hook-form';
+
+export const айдишники_фундоментальных_источников = [1001, 1002, 1004, 1005];
 
 export const useTreeModalCheckbox = ({ items }: TreeListPropsGlobal) => {
   const keyExtractor = useCallback((item: ISourceGroup, i: number) => `${i}-${item.Id}`, []);
@@ -15,12 +18,9 @@ export const useTreeModalCheckbox = ({ items }: TreeListPropsGlobal) => {
   const formApi = useFormContext<IFilterCreate>();
   const values = formApi.getValues('sites');
 
-  const parent = parentsLook(items);
   const [selectedValues, setSelectedValues] = useState<number[]>(values || []);
-  // const [selectedParents, setSelectedParents] = useState(findAllSelectedParent(items, selectedValues));
-  const [selectedParents, setSelectedParents] = useState(parent.selected(items, selectedValues).get());
-
-  // const [currentPickedValues, setCurrentPickedValue] = useState();
+  const parent = parentsLook(items);
+  const [selectedParents, setSelectedParents] = useState(parent.selected(selectedValues).get());
 
   const toggleSelectedValue = (id: number) => {
     try {
@@ -76,29 +76,31 @@ export const useTreeModalCheckbox = ({ items }: TreeListPropsGlobal) => {
     return allParentsIdsNow.length === parent?.Sources.length ? 'check' : 'partial';
   };
 
+  const { dismiss } = useBottomSheetModal();
   const pressAcceptButton = () => {
     formApi.setValue('sites', selectedValues);
+    dismiss();
   };
 
   const reset = () => {
     setSelectedValues(values || []);
     const parentsUnselected = parentsLook(selectedParents)
-      .unSelected(selectedParents, values || [])
+      .unSelected(values || [])
       .get();
 
     setSelectedParents(selectedParents.filter(sP => !parentsUnselected.map(a => a.Id).includes(sP.Id)));
   };
 
   useEffect(() => {
-    const newSelectedParent = parentsLook(items).selected(items, selectedValues).get();
+    const newSelectedParent = parentsLook(items).selected(selectedValues).get();
     setSelectedParents(newSelectedParent);
   }, [items, selectedValues]);
 
-  // useEffect(() => {
-  //   const a = selectedValues.filter(sV => selectedParents.some(sP => sP.Sources.some(s => s.Id === sV)));
-
-  //   setSelectedValues(a);
-  // }, [selectedParents]);
+  const onPressFundomentalSource = (value: ISourceGroup) => {
+    const isSelected = selectedValues.find(a => a === value.Id);
+    if (!isSelected) setSelectedValues([...selectedValues, value.Id]);
+    else setSelectedValues(selectedValues.filter(sP => sP !== value.Id));
+  };
 
   return {
     selectedValues,
@@ -112,6 +114,7 @@ export const useTreeModalCheckbox = ({ items }: TreeListPropsGlobal) => {
     onParentPress,
     getCheckType,
     reset,
+    onPressFundomentalSource,
   };
 };
 
@@ -128,14 +131,14 @@ const findAllSelectedParent = (items: ISourceGroup[], selectedValues: number[]):
   return items.filter(group => group.Sources.some(source => selectedValues.includes(source.Id)));
 };
 
-function parentsLook(items: ISourceGroup[]) {
+function parentsLook(items: ISourceGroup[], excludeSources?: number[]) {
   let i = items;
   return {
-    selected: function (items: ISourceGroup[], selectedValues: number[]) {
+    selected: function (selectedValues: number[]) {
       i = items.filter(group => group.Sources.some(source => selectedValues.includes(source.Id)));
       return this;
     },
-    unSelected: function (items: ISourceGroup[], selectedValues: number[]) {
+    unSelected: function (selectedValues: number[]) {
       i = items.filter(group => !group.Sources.some(source => selectedValues.includes(source.Id)));
       return this;
     },

@@ -35,6 +35,7 @@ const TreeList = ({ isShowSearch = true, search, listProps, checkModalboxUse }: 
     toggleSelectedValue,
     setSearchText,
     pressAcceptButton,
+    onPressFundomentalSource,
   } = checkModalboxUse;
 
   return (
@@ -63,6 +64,7 @@ const TreeList = ({ isShowSearch = true, search, listProps, checkModalboxUse }: 
             onPressCheck={value => onParentPress(value.Id)}
             selectedValues={selectedValues}
             getCheckType={parentId => getCheckType(parentId)}
+            onPressFundomentalSource={value => onPressFundomentalSource(value)}
             item={item}
           />
         )}

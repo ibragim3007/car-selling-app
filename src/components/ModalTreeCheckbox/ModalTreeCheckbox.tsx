@@ -7,6 +7,7 @@ import BottomSheetModal, { CustomBottomSheetModalProps } from '../Modal/BottomSh
 import TreeList, { TreeListPropsGlobal } from './TreeList';
 import Grid from '@/shared/ui/layout/Grid';
 import QuitResetHeader from '../Modal/components/QuitResetHeader';
+import Typography from '@/shared/ui/typography/Typography';
 
 export type Ref = BSM;
 
@@ -27,6 +28,7 @@ const ModalTreeCheckbox = React.forwardRef<Ref, ModalTreeCheckboxProps>((props, 
     >
       <FormProvider {...props.formApi}>
         <Grid flex={1}>
+          <Typography style={{ padding: 10 }}>{JSON.stringify(checkModalboxUse.selectedValues)}</Typography>
           <TreeList {...props.pageData} checkModalboxUse={checkModalboxUse} />
         </Grid>
       </FormProvider>

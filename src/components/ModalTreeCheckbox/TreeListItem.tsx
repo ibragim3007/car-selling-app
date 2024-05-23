@@ -7,6 +7,7 @@ import React, { useState } from 'react';
 import RowList from '../Informers/tables/RowList';
 import { CheckboxCustom } from '@/shared/ui/inputs/Checkbox';
 import { normalizedSize } from '@/shared/utils/size';
+import { айдишники_фундоментальных_источников } from '@/shared/hooks/helpers/useTreeModalCheckbox';
 
 interface TreeListItemProps {
   item: ISourceGroup;
@@ -15,6 +16,7 @@ interface TreeListItemProps {
   onPressCheck: (value: ISourceGroup) => void;
   onPressChildren: (value: ISource) => void;
   getCheckType: (parentId: number) => CheckboxCustom['type'];
+  onPressFundomentalSource: (value: ISourceGroup) => void;
 }
 
 const TreeListItem = ({
@@ -24,6 +26,7 @@ const TreeListItem = ({
   getCheckType,
   onPressCheck,
   onPressChildren,
+  onPressFundomentalSource,
 }: TreeListItemProps) => {
   const [isListOpen, setIsListOpen] = useState(false);
 
@@ -34,6 +37,13 @@ const TreeListItem = ({
   const isParrentSelected = selectedParents.includes(item.Id);
 
   const checkType = getCheckType(item.Id);
+
+  if (айдишники_фундоментальных_источников.includes(item.Id)) {
+    const isFundomentalSelected = selectedValues.includes(item.Id);
+    return (
+      <LabelCheck onPressLabel={() => onPressFundomentalSource(item)} label={item.Name} value={isFundomentalSelected} />
+    );
+  }
 
   return (
     <Grid flex={1}>
