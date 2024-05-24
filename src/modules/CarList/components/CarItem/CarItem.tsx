@@ -28,7 +28,7 @@ function CarItem({ car }: CarItemProps) {
   const { data: dict } = useDictionaryQuery();
   return (
     <Pressable onPress={onPressCar}>
-      <Card p={8} borderRadius={0} mt={8} style={{ width: '100%' }}>
+      <Card p={8} borderRadius={0} style={{ width: '100%' }}>
         <Grid gap={12} justfity="space-between" row>
           <CarImage image={car.picture} />
           <Grid justfity="space-between" flex={1}>

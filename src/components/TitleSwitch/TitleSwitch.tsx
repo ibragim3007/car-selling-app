@@ -9,7 +9,7 @@ interface TitleSwitchProps extends SwitchCustomProps {
 
 const TitleSwitch = ({ title, ...props }: TitleSwitchProps) => {
   return (
-    <Grid row justfity="space-between">
+    <Grid align="center" row justfity="space-between">
       <Typography>{title}</Typography>
       <SwitchCustom {...props} />
     </Grid>

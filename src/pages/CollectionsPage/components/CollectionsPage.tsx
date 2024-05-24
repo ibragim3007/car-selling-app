@@ -10,6 +10,8 @@ import Typography from '@/shared/ui/typography/Typography';
 import { useIsFocused } from '@react-navigation/native';
 import { Stack } from 'expo-router';
 import React, { useState } from 'react';
+import { Pressable } from 'react-native';
+import Separator from './Separator';
 
 const CollectionsPage = () => {
   const isFocused = useIsFocused();
@@ -24,18 +26,20 @@ const CollectionsPage = () => {
   };
 
   return (
-    <PageBackground>
+    <PageBackground color="primary">
       <Stack.Screen
         options={{
           headerLeft: () => {
             if (isPolling)
               return (
-                <Grid row paddingHorizontal={10} align="center">
-                  <Typography color="secondary" variant="caption-2">
-                    Новое...
-                  </Typography>
-                  <LoadingData />
-                </Grid>
+                <Pressable onPress={() => setisPolling(!isPolling)}>
+                  <Grid row paddingHorizontal={10} align="center">
+                    <Typography color="secondary" variant="caption-2">
+                      Новое...
+                    </Typography>
+                    <LoadingData />
+                  </Grid>
+                </Pressable>
               );
           },
         }}
@@ -46,12 +50,14 @@ const CollectionsPage = () => {
         onRefresh={refetch}
         loading={isLoading || (isFetching && !isPolling)}
         onEndReached={nextPage}
+        ItemSeparatorComponent={() => <Separator />}
         updatePoolingInfo={updatePoolingInfo}
         ListFooterComponent={() => (isLoading || isFetching) && <LoadingData />}
         headerComponent={
-          <Grid gap={8}>
+          <Grid>
             {!data && <UnSubscripbeSuggestion />}
             <MyCollectionSettings />
+            <Separator />
           </Grid>
         }
       />
