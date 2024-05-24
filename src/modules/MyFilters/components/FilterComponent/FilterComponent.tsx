@@ -17,13 +17,14 @@ interface FilterComponentProps {
 }
 
 const FilterComponent = ({ filter }: FilterComponentProps) => {
-  const [deleteFilter] = useDeleteFilterMutation();
+  const [deleteFilter, { isLoading }] = useDeleteFilterMutation();
 
   return (
     <CardTitle
       title={filter.name}
       rightHeader={
         <Dropdown
+          isLoading={isLoading}
           items={[
             {
               Icon: EditIcon,

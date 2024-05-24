@@ -7,6 +7,7 @@ import { NativeScrollEvent, NativeSyntheticEvent } from 'react-native';
 import GoTopButton from './Buttons/GoTopButton';
 import UpdateDataButton from './Buttons/UpdateDataButton';
 import CarItem from './CarItem/CarItem';
+import Animated, { LinearTransition } from 'react-native-reanimated';
 
 interface CarListProps extends Partial<FlashListProps<ICar>> {
   headerComponent?: React.JSX.Element;
@@ -59,29 +60,31 @@ function CarList({
   };
 
   return (
-    <Grid flex={1} style={{ paddingTop: 0 }}>
-      {goTopButtonShow && <UpdateDataButton goUpdateButton={goUpdateButton} />}
-      {goTopButtonShow && <GoTopButton goTopButton={goTopButton} />}
-      <FlashList
-        ref={ref => {
-          flastListRef = ref;
-        }}
-        data={data}
-        onRefresh={onRefresh}
-        refreshing={loading}
-        renderItem={renderItem}
-        contentContainerStyle={{ paddingTop: topOffset }}
-        estimatedItemSize={lengthItem}
-        stickyHeaderIndices={stickyHeaderIndices}
-        removeClippedSubviews
-        ListHeaderComponent={headerComponent}
-        ListFooterComponent={footerComponent}
-        keyExtractor={keyExtractor}
-        onScroll={onScroll}
-        onEndReachedThreshold={4}
-        {...props}
-      />
-    </Grid>
+    <Animated.View style={{ flex: 1 }} layout={LinearTransition}>
+      <Grid flex={1} style={{ paddingTop: 0 }}>
+        {goTopButtonShow && <UpdateDataButton goUpdateButton={goUpdateButton} />}
+        {goTopButtonShow && <GoTopButton goTopButton={goTopButton} />}
+        <FlashList
+          ref={ref => {
+            flastListRef = ref;
+          }}
+          data={data}
+          onRefresh={onRefresh}
+          refreshing={loading}
+          renderItem={renderItem}
+          contentContainerStyle={{ paddingTop: topOffset }}
+          estimatedItemSize={lengthItem}
+          stickyHeaderIndices={stickyHeaderIndices}
+          removeClippedSubviews
+          ListHeaderComponent={headerComponent}
+          ListFooterComponent={footerComponent}
+          keyExtractor={keyExtractor}
+          onScroll={onScroll}
+          onEndReachedThreshold={4}
+          {...props}
+        />
+      </Grid>
+    </Animated.View>
   );
 }
 

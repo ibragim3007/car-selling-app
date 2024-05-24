@@ -56,7 +56,12 @@ const Card = ({
   ]);
 
   return (
-    <Animated.View key={String(isFocused)} layout={LinearTransition.duration(120)} {...props} style={mergedStyles} />
+    <Animated.View
+      key={String(isFocused)}
+      layout={LinearTransition.duration(120).springify().mass(0.5)}
+      {...props}
+      style={mergedStyles}
+    />
   );
 };
 

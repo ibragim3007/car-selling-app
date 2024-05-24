@@ -3,6 +3,7 @@ import DropButton, { DropButtonProps } from '@/shared/ui/buttons/DropButton';
 import PressableIcon from '@/shared/ui/buttons/PressableButton';
 import DarkModal from '@/shared/ui/layout/DarkModal';
 import GroupDropButton from '@/shared/ui/layout/GroupDropButton';
+import LoadingData from '@/shared/ui/loading/LoadingData';
 import React, { useState } from 'react';
 import { GestureResponderEvent, Modal, ViewProps } from 'react-native';
 
@@ -10,9 +11,10 @@ interface DropdownProps {
   items: DropButtonProps[];
   style?: ViewProps['style'];
   modal?: boolean;
+  isLoading?: boolean;
 }
 
-export const Dropdown = ({ items }: DropdownProps) => {
+export const Dropdown = ({ items, isLoading }: DropdownProps) => {
   const [isOpen, setModalVisible] = useState(false);
 
   const closeModal = () => {
@@ -34,6 +36,8 @@ export const Dropdown = ({ items }: DropdownProps) => {
     setModalPosition({ x: pageX, y: pageY }); // Подстраиваем позицию модального окна под кнопку
     setModalVisible(true);
   };
+
+  if (isLoading) return <LoadingData />;
 
   return (
     <PressableIcon

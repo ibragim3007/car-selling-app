@@ -13,7 +13,7 @@ const Hint: React.FC<HintProps> = ({ children, isShow, onClose }) => {
     <>
       {isShow ? (
         <View style={{ flex: 1 }}>
-          <Modal visible={isShow} transparent={true}>
+          <Modal animationType="fade" visible={isShow} transparent={true}>
             <DarkModal style={{ flexGrow: 1, marginTop: 98 }} onPress={onClose}>
               <Pressable>{children}</Pressable>
             </DarkModal>

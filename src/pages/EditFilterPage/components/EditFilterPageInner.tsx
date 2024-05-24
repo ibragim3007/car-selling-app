@@ -25,6 +25,7 @@ const EditFilterPageInner = ({ filter }: EditFilterPageInnerProps) => {
 
   const onPressSave = async (data: FieldValues) => {
     try {
+      console.log(data);
       await editFilter({ id: params.id || '0', filter: data }).unwrap();
       Inform.success('Фильтр сохранен!');
     } catch (e) {

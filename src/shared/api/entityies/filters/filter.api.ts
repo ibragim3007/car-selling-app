@@ -12,8 +12,9 @@ export const filterApi = rootApi.injectEndpoints({
           method: apiConfig.filter.filters.method,
         };
       },
-      providesTags: (result, error, arg) =>
-        result ? [...result.map(({ id }) => ({ type: 'Filters' as const, id })), 'Filters'] : ['Filters'],
+      // providesTags: (result, error, arg) =>
+      //   result ? [...result.map(({ id }) => ({ type: 'Filters' as const, id })), 'Filters'] : ['Filters'],
+      providesTags: ['Filters'],
     }),
     filter: build.query<IEditFilter, string>({
       query: (filterId: string) => {
@@ -40,6 +41,7 @@ export const filterApi = rootApi.injectEndpoints({
         method: apiConfig.filter.create.method,
         body: filter,
       }),
+      invalidatesTags: ['Filters'],
     }),
     editFilter: build.mutation<IFilter, { id: string; filter: IEditFilter }>({
       query: (body: { id: string; filter: IEditFilter }) => ({
@@ -47,6 +49,7 @@ export const filterApi = rootApi.injectEndpoints({
         method: apiConfig.filter.edit.method,
         body: body.filter,
       }),
+      invalidatesTags: ['Filters'],
     }),
   }),
 });
