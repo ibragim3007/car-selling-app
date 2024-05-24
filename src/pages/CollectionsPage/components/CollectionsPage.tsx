@@ -7,31 +7,28 @@ import Grid from '@/shared/ui/layout/Grid';
 import PageBackground from '@/shared/ui/layout/PageBackground';
 import LoadingData from '@/shared/ui/loading/LoadingData';
 import Typography from '@/shared/ui/typography/Typography';
+import { useIsFocused } from '@react-navigation/native';
 import { Stack } from 'expo-router';
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 
 const CollectionsPage = () => {
+  const isFocused = useIsFocused();
   const { data } = useUserQuery();
-  const [isPooling, setIsPooling] = useState(false);
-  const { carsForDisplay, nextPage, isLoading, isFetching, refetch, startPolling, stopPolling } = useCarsList();
+  const [isPolling, setisPolling] = useState(true);
+  const { carsForDisplay, nextPage, isLoading, isFetching, refetch } = useCarsList({
+    isPolling: isPolling && isFocused,
+  });
 
   const updatePoolingInfo = (value: boolean) => {
-    if (value) startPolling();
-    else stopPolling();
-
-    setIsPooling(value);
+    setisPolling(value);
   };
-
-  useEffect(() => {
-    return stopPolling();
-  }, [stopPolling]);
 
   return (
     <PageBackground>
       <Stack.Screen
         options={{
           headerLeft: () => {
-            if (isPooling)
+            if (isPolling)
               return (
                 <Grid row paddingHorizontal={10} align="center">
                   <Typography color="secondary" variant="caption-2">
@@ -47,7 +44,7 @@ const CollectionsPage = () => {
         data={carsForDisplay}
         topOffset={0}
         onRefresh={refetch}
-        loading={isLoading || (isFetching && !isPooling)}
+        loading={isLoading || (isFetching && !isPolling)}
         onEndReached={nextPage}
         updatePoolingInfo={updatePoolingInfo}
         ListFooterComponent={() => (isLoading || isFetching) && <LoadingData />}

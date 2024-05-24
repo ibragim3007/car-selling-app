@@ -1,15 +1,28 @@
-import { useLazyCarsQuery } from '@/shared/api/entityies/car/api.car';
-import { SECONDS_FOR_POOLING } from '@/shared/config/config';
+import { useCarsQuery, useLazyCarsQuery } from '@/shared/api/entityies/car/api.car';
 import { Inform } from '@/shared/services/logger.service/loger.service';
 import { ICar } from '@/shared/types';
 import { isCars, isErrorCars } from '@/shared/utils/isErrorCars';
-import { useCallback, useEffect, useRef, useState } from 'react';
+import { useEffect, useState } from 'react';
 
-export const useCarsList = () => {
-  const [getCars, { data: cars, isFetching, isLoading }] = useLazyCarsQuery();
+export const useCarsList = (params: { isPolling?: boolean }) => {
+  const { isPolling } = params;
+
+  const [getCars, { isLoading: isLoadingNextPage, isFetching: isFetchingNextPage }] = useLazyCarsQuery();
+  const {
+    data: cars,
+    isFetching,
+    isLoading,
+    refetch,
+  } = useCarsQuery({}, { pollingInterval: isPolling ? 4000 : 0, skipPollingIfUnfocused: true });
+
+  useEffect(() => {
+    if (cars && !isLoading && !isFetching) {
+      udpdateCarState(cars, { rewrite: true });
+    }
+  }, [cars, isLoading, isFetching]);
+
   const [carsForDisplay, setCarsForDisplay] = useState<ICar[]>([]);
   const [pollingIntervalId, setPollingIntervalId] = useState<number | null>(null);
-  const isPolling = useRef(false);
 
   const nextPage = async () => {
     if (carsForDisplay && carsForDisplay[carsForDisplay.length - 1]) {
@@ -40,37 +53,13 @@ export const useCarsList = () => {
     if (isCars(value)) setCarsForDisplay([...carsForDisplay, ...value]);
   };
 
-  const refetch = useCallback(async () => {
-    const res = (await getCars().unwrap()) as unknown;
-
-    udpdateCarState(res, { rewrite: true });
-  }, []);
-
-  useEffect(() => {
-    void (async () => {
-      await refetch();
-    })();
-  }, [getCars, refetch]);
-
-  const startPolling = () => {
-    if (!pollingIntervalId) {
-      const id = window.setInterval(() => {
-        void refetch();
-      }, SECONDS_FOR_POOLING);
-      setPollingIntervalId(id);
-    }
+  return {
+    carsForDisplay,
+    cars,
+    isFetching,
+    isLoading: isLoadingNextPage || isLoading || isFetchingNextPage,
+    getCars,
+    nextPage,
+    refetch,
   };
-
-  const stopPolling = () => {
-    if (pollingIntervalId) {
-      window.clearInterval(pollingIntervalId);
-      setPollingIntervalId(null);
-    }
-  };
-
-  useEffect(() => {
-    return () => stopPolling();
-  }, []);
-
-  return { carsForDisplay, cars, isFetching, isLoading, getCars, nextPage, refetch, startPolling, stopPolling };
 };
