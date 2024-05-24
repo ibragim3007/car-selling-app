@@ -16,6 +16,7 @@ interface CarListProps extends Partial<FlashListProps<ICar>> {
   data?: ICar[];
   loading?: boolean;
   onRefresh?: () => void;
+  updatePoolingInfo: (value: boolean) => void;
 }
 
 function CarList({
@@ -26,6 +27,7 @@ function CarList({
   stickyHeaderIndices,
   topOffset,
   onRefresh,
+  updatePoolingInfo,
   ...props
 }: CarListProps) {
   const renderItem: ListRenderItem<ICar> = ({ item }) => {
@@ -49,6 +51,9 @@ function CarList({
   const [goTopButtonShow, setGoTopButtonShow] = useState(false);
 
   const onScroll = (event: NativeSyntheticEvent<NativeScrollEvent>) => {
+    if (event.nativeEvent.contentOffset.y <= 100) updatePoolingInfo(true);
+    else updatePoolingInfo(false);
+
     if (event.nativeEvent.contentOffset.y > 2000) setGoTopButtonShow(true);
     else setGoTopButtonShow(false);
   };
