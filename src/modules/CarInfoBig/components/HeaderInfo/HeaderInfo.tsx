@@ -46,7 +46,7 @@ const HeaderInfo = ({ car, dict }: HeaderInfoProps) => {
             {car.deviation > 0 ? 'Выше' : 'Ниже'} рынка на {formatCurrency(car.deviation)}
           </HighlightText>
         </Grid>
-        <Carousel data={car.photos} />
+        {car.photos.length > 0 && <Carousel data={car.photos} />}
       </Grid>
     </Card>
   );

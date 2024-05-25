@@ -9,17 +9,28 @@ import Card from '@/shared/ui/card/Card';
 import Grid from '@/shared/ui/layout/Grid';
 import { router } from 'expo-router';
 import React from 'react';
-import Animated, { FadeInUp, FadeOutUp, LinearTransition, SlideInUp, SlideOutUp } from 'react-native-reanimated';
+import Animated, {
+  FadeInUp,
+  FadeOutUp,
+  LinearTransition,
+  SharedValue,
+  SlideInUp,
+  SlideOutUp,
+  useAnimatedStyle,
+  withTiming,
+} from 'react-native-reanimated';
 
 interface MyCollectionSettings2Props {
   isShowStickey: boolean;
   toggleShowCollection: () => void;
   isShowCollections: boolean;
+  scrollY: SharedValue<number>;
 }
 
 const MyCollectionSettings2 = ({
   isShowCollections,
   isShowStickey,
+  scrollY,
   toggleShowCollection,
 }: MyCollectionSettings2Props) => {
   const { data: filters, isLoading, isFetching, isError } = useFiltersQuery();
@@ -33,10 +44,25 @@ const MyCollectionSettings2 = ({
     router.navigate('/filters');
   };
 
+  const headerAnimatedStyle = useAnimatedStyle(() => {
+    return {
+      height: withTiming(scrollY.value < 25 ? -100 : 0, { duration: 100 }),
+      transform: [
+        {
+          translateY: withTiming(scrollY.value > 25 ? -100 : 0, { duration: 250 }),
+        },
+      ],
+    };
+  });
+
   return (
     <>
-      {isShowStickey && (
-        <Animated.View style={{ zIndex: 20, elevation: 20, width: '100%' }} exiting={FadeOutUp} entering={FadeInUp}>
+      {true && (
+        <Animated.View
+          style={[{ zIndex: 20, elevation: 20, width: '100%' }, headerAnimatedStyle]}
+          exiting={FadeOutUp}
+          entering={FadeInUp}
+        >
           <Card
             paddingHorizontal={16}
             // paddingVertical={0}
@@ -50,7 +76,6 @@ const MyCollectionSettings2 = ({
               width: '100%',
               gap: 16,
               height: 'auto',
-              // position: 'absolute',
             }}
           >
             <ELD data={filters} isLoading={isLoading || isFetching} isError={isError}>

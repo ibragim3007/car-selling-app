@@ -17,6 +17,7 @@ interface CarListProps extends Partial<FlashListProps<ICar>> {
   toScrollOffsetY?: number;
   onRefresh?: () => void;
   updatePoolingInfo: (value: boolean) => void;
+  scrollHandler: (yPos: number) => void;
 }
 
 function CarList({
@@ -28,7 +29,7 @@ function CarList({
   topOffset,
   onRefresh,
   updatePoolingInfo,
-
+  scrollHandler,
   ...props
 }: CarListProps) {
   const lengthItem = normalizedSize(145);
@@ -39,12 +40,6 @@ function CarList({
 
   let flashListRef: FlashList<ICar> | null;
 
-  // useEffect(() => {
-  //   if ( toScrollOffsetY !== undefined) {
-  //     flashListRef.scrollToOffset({ offset: toScrollOffsetY, animated: false });
-  //   }
-  // }, [toScrollOffsetY]);
-
   const goTopButton = () => flashListRef?.scrollToOffset({ offset: 0, animated: true });
   const goUpdateButton = () => {
     if (onRefresh) onRefresh();
@@ -53,7 +48,7 @@ function CarList({
 
   const onScroll = (event: NativeSyntheticEvent<NativeScrollEvent>) => {
     const yPos = event.nativeEvent.contentOffset.y;
-
+    scrollHandler(yPos);
     if (yPos <= 100) updatePoolingInfo(true);
     else updatePoolingInfo(false);
 

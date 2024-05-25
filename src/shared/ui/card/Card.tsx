@@ -58,7 +58,7 @@ const Card = ({
   return (
     <Animated.View
       key={String(isFocused)}
-      layout={LinearTransition.duration(120).springify().mass(0.5)}
+      layout={LinearTransition.duration(120).springify().mass(0.3)}
       {...props}
       style={mergedStyles}
     />

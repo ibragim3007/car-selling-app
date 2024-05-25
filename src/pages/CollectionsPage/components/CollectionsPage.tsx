@@ -9,8 +9,8 @@ import LoadingData from '@/shared/ui/loading/LoadingData';
 import Typography from '@/shared/ui/typography/Typography';
 import { Stack } from 'expo-router';
 import React, { useState } from 'react';
-import { StyleSheet } from 'react-native';
-import Animated, { FadeIn, FadeOut, LinearTransition } from 'react-native-reanimated';
+import { Pressable, StyleSheet } from 'react-native';
+import Animated, { FadeIn, FadeOut, LinearTransition, useSharedValue } from 'react-native-reanimated';
 import Separator from './Separator';
 
 const CollectionsPage = () => {
@@ -27,6 +27,12 @@ const CollectionsPage = () => {
   const [isShowCollection, setIsShowCollection] = useState(false);
   const toggleShowCollection = () => {
     setIsShowCollection(!isShowCollection);
+  };
+
+  const scrollY = useSharedValue(0);
+
+  const changeScrollY = (yPox: number) => {
+    scrollY.value = yPox;
   };
 
   return (
@@ -48,6 +54,7 @@ const CollectionsPage = () => {
       />
 
       <MyCollectionSettings2
+        scrollY={scrollY}
         isShowStickey={isPolling}
         isShowCollections={isShowCollection}
         toggleShowCollection={toggleShowCollection}
@@ -55,6 +62,7 @@ const CollectionsPage = () => {
 
       <Animated.View layout={LinearTransition} style={{ flex: 1 }}>
         <CarList
+          scrollHandler={changeScrollY}
           data={carsForDisplay}
           // topOffset={80}
           onRefresh={refetch}
@@ -75,7 +83,9 @@ const CollectionsPage = () => {
             entering={FadeIn}
             exiting={FadeOut}
             style={{ ...StyleSheet.absoluteFillObject, backgroundColor: 'rgba(0, 0, 0, 0.2)', marginTop: -20 }}
-          />
+          >
+            <Pressable onPress={toggleShowCollection} style={{ height: '100%' }} />
+          </Animated.View>
         )}
       </Animated.View>
     </PageBackground>

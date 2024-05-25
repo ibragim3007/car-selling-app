@@ -48,14 +48,14 @@ const Carousel = ({ data }: ImageCarouselProps) => {
         showsHorizontalScrollIndicator={false}
         decelerationRate="fast"
         estimatedItemSize={ITEM_LENGTH}
-        snapToInterval={ITEM_LENGTH}
+        snapToInterval={ITEM_LENGTH + 6}
         onScroll={ev => {
           const index = Math.round(ev.nativeEvent.contentOffset.x / ITEM_LENGTH);
           setIndex(index);
         }}
         renderItem={({ item }) => {
           return (
-            <Animated.View style={[{ width: ITEM_LENGTH }, styles.itemContent]}>
+            <Animated.View style={{ marginRight: 6, width: ITEM_LENGTH, height: normalizedSize(234) }}>
               <ImageLazy source={{ uri: item }} uri={item} style={styles.itemImage} />
             </Animated.View>
           );
@@ -74,11 +74,12 @@ const styles = StyleSheet.create({
   },
   item: {},
   itemContent: {
+    height: normalizedSize(234),
     marginRight: normalizedSize(8),
     alignItems: 'center',
   },
   itemImage: {
-    width: '100%',
+    width: ITEM_LENGTH,
     height: normalizedSize(234),
     borderRadius: BORDER_RADIUS,
     resizeMode: 'cover',
