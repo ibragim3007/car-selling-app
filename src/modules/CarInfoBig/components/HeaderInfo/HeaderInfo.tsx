@@ -1,18 +1,17 @@
+import Carousel from '@/components/ImageCarousel/Carousel';
 import GroupInfo from '@/components/Informers/GroupInfo';
 import HighlightText from '@/components/Informers/HighlightText';
 import TagPrice from '@/components/Informers/TagPrice';
 import ArrowRight from '@/icons/linear/arrow-right.svg';
 import { formatCurrency, priceFormat } from '@/shared/helpers/priceFormat';
 import { ICarBig } from '@/shared/types';
+import { IDictionaryRoot } from '@/shared/types/dictionary.types';
 import Card from '@/shared/ui/card/Card';
 import Grid from '@/shared/ui/layout/Grid';
 import Typography from '@/shared/ui/typography/Typography';
 import { normalizedSize } from '@/shared/utils/size';
 import React from 'react';
 import { Pressable } from 'react-native';
-import SliderImages from './SliderImages';
-import { IDictionaryRoot } from '@/shared/types/dictionary.types';
-import { compare } from '@/shared/helpers/compare';
 
 interface HeaderInfoProps {
   car: ICarBig;
@@ -47,9 +46,8 @@ const HeaderInfo = ({ car, dict }: HeaderInfoProps) => {
             {car.deviation > 0 ? 'Выше' : 'Ниже'} рынка на {formatCurrency(car.deviation)}
           </HighlightText>
         </Grid>
-        <SliderImages items={car.photos} />
+        <Carousel data={car.photos} />
       </Grid>
-      {/* <ImageCarousel data={carImages} /> */}
     </Card>
   );
 };
