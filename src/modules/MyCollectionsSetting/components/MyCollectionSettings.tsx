@@ -49,83 +49,78 @@ const MyCollectionSettings = () => {
   return (
     <>
       {isShowCollections && <Grid height={defaultHeight} />}
-      <Hint onClose={pressSettingOpen} isShow={isShowCollections}>
-        <Grid
+      {/* <Hint onClose={pressSettingOpen} isShow={isShowCollections}> */}
+      <Grid
+        style={{
+          borderBottomLeftRadius: isShowCollections ? 20 : 0,
+          borderBottomRightRadius: isShowCollections ? 20 : 0,
+          height: defaultHeight,
+        }}
+        color={colors.background.secondary}
+      >
+        <Card
+          paddingHorizontal={16}
+          paddingVertical={16}
+          borderRadius={0}
           style={{
-            borderBottomLeftRadius: isShowCollections ? 20 : 0,
-            borderBottomRightRadius: isShowCollections ? 20 : 0,
-            height: defaultHeight,
+            overflow: 'hidden',
+            borderBottomLeftRadius: 20,
+            borderBottomRightRadius: 20,
+            zIndex: 20,
+            elevation: 20,
+            width: '100%',
+            height: openSetting ? 'auto' : defaultHeight,
+            gap: 16,
           }}
-          color={colors.background.secondary}
         >
-          <Card
-            paddingHorizontal={16}
-            paddingVertical={16}
-            borderRadius={0}
-            style={{
-              overflow: 'hidden',
-              borderBottomLeftRadius: 20,
-              borderBottomRightRadius: 20,
-              zIndex: 20,
-              elevation: 20,
-              width: '100%',
-              height: openSetting ? 'auto' : defaultHeight,
-              gap: 16,
-            }}
-          >
-            <ELD data={filters} isLoading={isLoading || isFetching} isError={isError}>
-              <Grid space="md">
-                {isShowCollections && (
-                  <Grid row justfity="space-between">
-                    <Grid flex={0.9} row wrap gap={10}>
-                      <Button variant={'outline'} color="black" size="small">
-                        Все объявления
-                      </Button>
-                      <Button variant={'outline'} color="black" size="small">
-                        Избранное
-                      </Button>
-                      <Button variant={'outline'} color="black" size="small">
-                        История кликов
-                      </Button>
-                    </Grid>
-                    <Grid flex={0}>
-                      <PressableIcon onPress={pressSettingOpen} Icon={CloseIcon} />
-                    </Grid>
+          <ELD data={filters} isLoading={isLoading || isFetching} isError={isError}>
+            <Grid space="md">
+              {isShowCollections && (
+                <Grid row justfity="space-between">
+                  <Grid flex={0.9} row wrap gap={10}>
+                    <Button variant={'outline'} color="black" size="small">
+                      Все объявления
+                    </Button>
+                    <Button variant={'outline'} color="black" size="small">
+                      Избранное
+                    </Button>
+                    <Button variant={'outline'} color="black" size="small">
+                      История кликов
+                    </Button>
                   </Grid>
-                )}
+                  <Grid flex={0}>
+                    <PressableIcon onPress={pressSettingOpen} Icon={CloseIcon} />
+                  </Grid>
+                </Grid>
+              )}
 
-                <Animated.View layout={LinearTransition}>
-                  <Grid justfity="space-between" align="center" row>
-                    <GroupInfo leftInfo={'Мои подборки'} rightInfo={filters?.length || 0} weight="bold" />
-                    {isShowCollections ? (
-                      <Button onPress={changePress} color="green" variant="text" size="small">
-                        Изменить
-                      </Button>
-                    ) : (
-                      <PressableIcon onPress={pressSettingOpen} Icon={SettingIcon} />
-                    )}
-                  </Grid>
-                </Animated.View>
+              <Animated.View layout={LinearTransition}>
+                <Grid justfity="space-between" align="center" row>
+                  <GroupInfo leftInfo={'Мои подборки'} rightInfo={filters?.length || 0} weight="bold" />
+                  {isShowCollections ? (
+                    <Button onPress={changePress} color="green" variant="text" size="small">
+                      Изменить
+                    </Button>
+                  ) : (
+                    <PressableIcon onPress={pressSettingOpen} Icon={SettingIcon} />
+                  )}
+                </Grid>
+              </Animated.View>
 
-                {isShowCollections && (
-                  <Grid row wrap gap={10}>
-                    {filters?.map(filter => (
-                      <Button
-                        key={filter.id}
-                        variant={filter.enabled ? 'default' : 'outline'}
-                        color="black"
-                        size="small"
-                      >
-                        {filter.name}
-                      </Button>
-                    ))}
-                  </Grid>
-                )}
-              </Grid>
-            </ELD>
-          </Card>
-        </Grid>
-      </Hint>
+              {isShowCollections && (
+                <Grid row wrap gap={10}>
+                  {filters?.map(filter => (
+                    <Button key={filter.id} variant={filter.enabled ? 'default' : 'outline'} color="black" size="small">
+                      {filter.name}
+                    </Button>
+                  ))}
+                </Grid>
+              )}
+            </Grid>
+          </ELD>
+        </Card>
+      </Grid>
+      {/* </Hint> */}
     </>
   );
 };
