@@ -82,8 +82,8 @@ const MyCollectionSettings2 = ({
               <Grid space="md">
                 {isShowCollections && (
                   <Animated.View
-                    exiting={SlideOutUp.springify().mass(1).damping(10)}
-                    entering={SlideInUp.springify().mass(0.3)}
+                    exiting={SlideOutUp.springify().mass(0.4).damping(10)}
+                    entering={SlideInUp.springify().mass(0.4)}
                   >
                     <Grid row justfity="space-between">
                       <Grid flex={0.9} row wrap gap={10}>
