@@ -22,7 +22,6 @@ export const useCarsList = (params: { isPolling?: boolean }) => {
   }, [cars, isLoading, isFetching]);
 
   const [carsForDisplay, setCarsForDisplay] = useState<ICar[]>([]);
-  const [pollingIntervalId, setPollingIntervalId] = useState<number | null>(null);
 
   const nextPage = async () => {
     if (carsForDisplay && carsForDisplay[carsForDisplay.length - 1]) {

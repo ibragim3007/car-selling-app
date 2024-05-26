@@ -3,6 +3,9 @@ import GroupInfo from '@/components/Informers/GroupInfo';
 import CloseIcon from '@/icons/linear/close-square.svg';
 import SettingIcon from '@/icons/linear/setting-4.svg';
 import { useFiltersQuery } from '@/shared/api/entityies/filters/filter.api';
+import constants from '@/shared/constants/constants';
+import { CustomAnimations } from '@/shared/ui/animations/AnimationConstants';
+import LayoutAnimation from '@/shared/ui/animations/LayoutAnimation';
 import Button from '@/shared/ui/buttons/Button';
 import PressableIcon from '@/shared/ui/buttons/PressableButton';
 import Card from '@/shared/ui/card/Card';
@@ -10,9 +13,8 @@ import Grid from '@/shared/ui/layout/Grid';
 import { router } from 'expo-router';
 import React from 'react';
 import Animated, {
-  FadeInUp,
-  FadeOutUp,
-  LinearTransition,
+  FadeIn,
+  FadeOut,
   SharedValue,
   SlideInUp,
   SlideOutUp,
@@ -59,9 +61,7 @@ const MyCollectionSettings2 = ({
     <>
       {true && (
         <Animated.View
-          style={[{ zIndex: 20, elevation: 20, width: '100%' }, headerAnimatedStyle]}
-          exiting={FadeOutUp}
-          entering={FadeInUp}
+          style={[{ position: 'absolute', zIndex: 20, elevation: 20, width: '100%' }, headerAnimatedStyle]}
         >
           <Card
             paddingHorizontal={16}
@@ -81,10 +81,7 @@ const MyCollectionSettings2 = ({
             <ELD data={filters} isLoading={isLoading || isFetching} isError={isError}>
               <Grid space="md">
                 {isShowCollections && (
-                  <Animated.View
-                    exiting={SlideOutUp.springify().mass(0.4).damping(10)}
-                    entering={SlideInUp.springify().mass(0.4)}
-                  >
+                  <Animated.View exiting={SlideOutUp} entering={SlideInUp.duration(constants.layoutAnimationSpeed)}>
                     <Grid row justfity="space-between">
                       <Grid flex={0.9} row wrap gap={10}>
                         <Button variant={'outline'} color="black" size="small">
@@ -104,30 +101,36 @@ const MyCollectionSettings2 = ({
                   </Animated.View>
                 )}
 
-                <Animated.View layout={LinearTransition}>
+                <LayoutAnimation>
                   <Grid justfity="space-between" align="center" row>
-                    <GroupInfo leftInfo={'Мои подборки'} rightInfo={filters?.length || 0} weight="bold" />
-                    {isShowCollections ? (
-                      <Button onPress={changePress} color="green" variant="text" size="small">
-                        Изменить
-                      </Button>
-                    ) : (
-                      <PressableIcon onPress={pressSettingOpen} Icon={SettingIcon} />
-                    )}
+                    <LayoutAnimation>
+                      <GroupInfo leftInfo={'Мои подборки'} rightInfo={filters?.length || 0} weight="bold" />
+                    </LayoutAnimation>
+                    <LayoutAnimation>
+                      {isShowCollections ? (
+                        <Button onPress={changePress} color="green" variant="text" size="small">
+                          Изменить
+                        </Button>
+                      ) : (
+                        <PressableIcon onPress={pressSettingOpen} Icon={SettingIcon} />
+                      )}
+                    </LayoutAnimation>
                   </Grid>
-                </Animated.View>
+                </LayoutAnimation>
 
                 {isShowCollections && (
                   <Grid row wrap gap={10}>
-                    {filters?.map(filter => (
-                      <Button
-                        key={filter.id}
-                        variant={filter.enabled ? 'default' : 'outline'}
-                        color="black"
-                        size="small"
-                      >
-                        {filter.name}
-                      </Button>
+                    {filters?.map((filter, index) => (
+                      <Animated.View entering={CustomAnimations.showItem(index)} key={filter.id}>
+                        <Button
+                          key={filter.id}
+                          variant={filter.enabled ? 'default' : 'outline'}
+                          color="black"
+                          size="small"
+                        >
+                          {filter.name}
+                        </Button>
+                      </Animated.View>
                     ))}
                   </Grid>
                 )}

@@ -1,10 +1,11 @@
 import { useTheme } from '@/shared/hooks/stylesHooks/useTheme';
 import { normalizedSize } from '@/shared/utils/size';
+import { useIsFocused } from '@react-navigation/native';
 import React from 'react';
 import { StyleSheet } from 'react-native';
-import Animated, { LinearTransition } from 'react-native-reanimated';
+import Animated from 'react-native-reanimated';
 import { ViewProps } from 'react-native-svg/lib/typescript/fabric/utils';
-import { useIsFocused } from '@react-navigation/native';
+import { CustomAnimations } from '../animations/AnimationConstants';
 
 export interface CardProps extends ViewProps {
   borderRadius?: number;
@@ -56,12 +57,7 @@ const Card = ({
   ]);
 
   return (
-    <Animated.View
-      key={String(isFocused)}
-      layout={LinearTransition.duration(120).springify().mass(0.3)}
-      {...props}
-      style={mergedStyles}
-    />
+    <Animated.View key={String(isFocused)} layout={CustomAnimations.layoutDefault} {...props} style={mergedStyles} />
   );
 };
 

@@ -62,7 +62,7 @@ const CollectionsPage = () => {
 
       <Animated.View layout={LinearTransition} style={{ flex: 1 }}>
         <CarList
-          // topOffset={80}
+          topOffset={80}
           scrollHandler={changeScrollY}
           data={carsForDisplay}
           onRefresh={refetch}
