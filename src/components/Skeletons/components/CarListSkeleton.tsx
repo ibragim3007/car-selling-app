@@ -1,20 +1,21 @@
+import { useTheme } from '@/shared/hooks/stylesHooks/useTheme';
 import Card from '@/shared/ui/card/Card';
 import Grid from '@/shared/ui/layout/Grid';
 import React from 'react';
 import ContentLoader from 'react-content-loader/native';
 import Rect from './Over/Rect';
-import { normalizedSize } from '@/shared/utils/size';
 
 const CarListSkeleton = () => {
+  const { colors } = useTheme();
   const Item = () => (
     <Card>
       <ContentLoader
         speed={2}
-        width={normalizedSize(476)}
-        height={normalizedSize(124)}
+        width={476}
+        height={124}
         viewBox="0 0 476 124"
-        backgroundColor="#f3f3f3"
-        foregroundColor="#ecebeb"
+        backgroundColor={colors.background.secondary}
+        foregroundColor={colors.background.primary}
       >
         <Rect x={2} y={1} rx={10} ry={10} width={104} height={120} />
         <Rect x={125} y={3} rx={3} ry={3} width={200} height={20} />

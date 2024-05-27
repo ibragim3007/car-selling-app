@@ -22,7 +22,7 @@ const Rect = ({ ...props }: RectProps) => {
   };
 
   Object.keys(props).map(propsName => {
-    obj[propsName as keyof RectProps] = normalizedSize(props[propsName as keyof RectProps]);
+    obj[propsName as keyof RectProps] = props[propsName as keyof RectProps];
   });
 
   return <ReactDefault {...obj} />;

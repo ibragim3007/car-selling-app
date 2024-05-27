@@ -37,8 +37,6 @@ const CollectionsPage = () => {
     scrollY.value = yPox;
   };
 
-  console.log('first');
-
   return (
     <PageBackground color="secondary">
       <Stack.Screen
