@@ -45,29 +45,27 @@ export interface IEditFilter extends IFilterCreate {}
 
 export interface IFilter {
   id: number;
-  cityList: CityList[];
+  cityList: any[];
   name: string;
-  horsepower: number[];
-  mileages: number[];
-  marks: number[];
-  models: number[];
-  states: number[];
-  transmissions: number[];
-  wheels: number[];
-  regions: number[];
-  sites: number[];
+  years?: number[];
+  prices?: number[];
+  horsepower?: number[];
+  mileages?: number[];
+  marks?: number[];
+  models?: number[];
+  transmissions?: number[];
+  wheels?: number[];
+  regions?: number[];
+  sites?: number[];
   secondhand: number;
   notifications: boolean;
   enabled: boolean;
-  ices: number[];
-  gears: number[];
-  owners: number;
-  bodies: number[];
-  avgCostDeviation: number;
-  iceValues: number[];
+  ices?: number[];
+  gears?: number[];
+  iceValues?: number[];
   ownerType: number;
   carState: number;
-  ownersCount: any[];
+  ownersCount: number[];
   FilterVersion: string;
   credateTimeStamp: number;
   credateString: string;
@@ -76,9 +74,5 @@ export interface IFilter {
   idCity: number;
   cityName: string;
   distance: number;
-}
-
-export interface CityList {
-  id: number;
-  name: string;
+  carTypes?: number[];
 }

@@ -27,8 +27,6 @@ const CarListSkeleton = () => {
     </Card>
   );
 
-  const arr = [1, 2, 3, 4];
-
   return (
     <Grid space="sm" flex={1}>
       {/* <FlashList estimatedItemSize={normalizedSize(145)} data={arr} renderItem={() => <Item />} /> */}

@@ -1,4 +1,3 @@
-import { normalizedSize } from '@/shared/utils/size';
 import React from 'react';
 import { Rect as ReactDefault } from 'react-content-loader/native';
 

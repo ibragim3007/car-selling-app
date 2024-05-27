@@ -6,6 +6,11 @@ import Grid from '@/shared/ui/layout/Grid';
 import React, { useEffect } from 'react';
 import { useFormContext, useWatch } from 'react-hook-form';
 
+interface SelectedCarsProps {
+  models: number[];
+  marks: number[];
+}
+
 const SelectedCars = () => {
   const formApi = useFormContext<IFilterCreate>();
   const marks = useWatch({ control: formApi.control, name: 'marks' });
