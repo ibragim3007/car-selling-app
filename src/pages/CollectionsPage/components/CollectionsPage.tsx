@@ -12,11 +12,13 @@ import React, { useState } from 'react';
 import { Pressable, StyleSheet } from 'react-native';
 import Animated, { FadeIn, FadeOut, LinearTransition, useSharedValue } from 'react-native-reanimated';
 import Separator from './Separator';
+import CarListSkeleton from '@/components/Skeletons/components/CarListSkeleton';
+import { normalizedSize } from '@/shared/utils/size';
 
 const CollectionsPage = () => {
   const { data, isLoading: loadingUser } = useUserQuery();
   const [isPolling, setisPolling] = useState(true);
-  const { carsForDisplay, nextPage, isLoading, isFetching, refetch } = useCarsList({
+  const { carsForDisplay, isLoadingCarsFirstTime, nextPage, isLoading, isFetching, refetch } = useCarsList({
     isPolling,
   });
 
@@ -34,6 +36,8 @@ const CollectionsPage = () => {
   const changeScrollY = (yPox: number) => {
     scrollY.value = yPox;
   };
+
+  console.log('first');
 
   return (
     <PageBackground color="secondary">
@@ -60,34 +64,40 @@ const CollectionsPage = () => {
         toggleShowCollection={toggleShowCollection}
       />
 
-      <Animated.View layout={LinearTransition} style={{ flex: 1 }}>
-        <CarList
-          topOffset={80}
-          scrollHandler={changeScrollY}
-          data={carsForDisplay}
-          onRefresh={refetch}
-          loading={isLoading || (isFetching && !isPolling)}
-          onEndReached={nextPage}
-          ItemSeparatorComponent={() => <Separator />}
-          updatePoolingInfo={updatePoolingInfo}
-          ListFooterComponent={() => (isLoading || isFetching) && <LoadingData />}
-          headerComponent={
-            <Grid>
-              {!data && !loadingUser && <UnSubscripbeSuggestion />}
-              <Separator />
-            </Grid>
-          }
-        />
-        {isShowCollection && (
-          <Animated.View
-            entering={FadeIn}
-            exiting={FadeOut}
-            style={{ ...StyleSheet.absoluteFillObject, backgroundColor: 'rgba(0, 0, 0, 0.2)', marginTop: -20 }}
-          >
-            <Pressable onPress={toggleShowCollection} style={{ height: '100%' }} />
-          </Animated.View>
-        )}
-      </Animated.View>
+      {isLoadingCarsFirstTime ? (
+        <Grid flex={1} style={{ marginTop: normalizedSize(80) }}>
+          <CarListSkeleton />
+        </Grid>
+      ) : (
+        <Animated.View layout={LinearTransition} style={{ flex: 1 }}>
+          <CarList
+            topOffset={80}
+            scrollHandler={changeScrollY}
+            data={carsForDisplay}
+            onRefresh={refetch}
+            loading={isLoading || (isFetching && !isPolling)}
+            onEndReached={nextPage}
+            ItemSeparatorComponent={() => <Separator />}
+            updatePoolingInfo={updatePoolingInfo}
+            ListFooterComponent={() => (isLoading || isFetching) && <LoadingData />}
+            headerComponent={
+              <Grid>
+                {!data && !loadingUser && <UnSubscripbeSuggestion />}
+                <Separator />
+              </Grid>
+            }
+          />
+          {isShowCollection && (
+            <Animated.View
+              entering={FadeIn}
+              exiting={FadeOut}
+              style={{ ...StyleSheet.absoluteFillObject, backgroundColor: 'rgba(0, 0, 0, 0.2)', marginTop: -20 }}
+            >
+              <Pressable onPress={toggleShowCollection} style={{ height: '100%' }} />
+            </Animated.View>
+          )}
+        </Animated.View>
+      )}
     </PageBackground>
   );
 };

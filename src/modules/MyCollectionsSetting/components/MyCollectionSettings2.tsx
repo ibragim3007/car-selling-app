@@ -12,15 +12,7 @@ import Card from '@/shared/ui/card/Card';
 import Grid from '@/shared/ui/layout/Grid';
 import { router } from 'expo-router';
 import React from 'react';
-import Animated, {
-  FadeIn,
-  FadeOut,
-  SharedValue,
-  SlideInUp,
-  SlideOutUp,
-  useAnimatedStyle,
-  withTiming,
-} from 'react-native-reanimated';
+import Animated, { SharedValue, SlideInUp, SlideOutUp, useAnimatedStyle, withTiming } from 'react-native-reanimated';
 
 interface MyCollectionSettings2Props {
   isShowStickey: boolean;
@@ -59,13 +51,12 @@ const MyCollectionSettings2 = ({
 
   return (
     <>
-      {true && (
+      {isShowStickey && (
         <Animated.View
           style={[{ position: 'absolute', zIndex: 20, elevation: 20, width: '100%' }, headerAnimatedStyle]}
         >
           <Card
             paddingHorizontal={16}
-            // paddingVertical={0}
             borderRadius={0}
             style={{
               overflow: 'hidden',

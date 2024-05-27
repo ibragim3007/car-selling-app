@@ -11,15 +11,15 @@ export const useCarsList = (params: { isPolling?: boolean }) => {
   const {
     data: cars,
     isFetching,
-    isLoading,
+    isLoading: isLoadingCarsFirstTime,
     refetch,
   } = useCarsQuery({}, { pollingInterval: isPolling ? 4000 : 0, skipPollingIfUnfocused: true });
 
   useEffect(() => {
-    if (cars && !isLoading && !isFetching) {
+    if (cars && !isLoadingCarsFirstTime && !isFetching) {
       udpdateCarState(cars, { rewrite: true });
     }
-  }, [cars, isLoading, isFetching]);
+  }, [cars, isLoadingCarsFirstTime, isFetching]);
 
   const [carsForDisplay, setCarsForDisplay] = useState<ICar[]>([]);
 
@@ -56,7 +56,8 @@ export const useCarsList = (params: { isPolling?: boolean }) => {
     carsForDisplay,
     cars,
     isFetching,
-    isLoading: isLoadingNextPage || isLoading || isFetchingNextPage,
+    isLoading: isLoadingNextPage || isFetchingNextPage,
+    isLoadingCarsFirstTime,
     getCars,
     nextPage,
     refetch,

@@ -5,5 +5,8 @@ import { Easing, FadeInDown, LinearTransition } from 'react-native-reanimated';
 
 export const CustomAnimations = {
   layoutDefault: LinearTransition.duration(constants.layoutAnimationSpeed).easing(Easing.sin),
-  showItem: (index: number) => FadeInDown.delay(14 * index).springify(),
+  showItem: (index: number) =>
+    FadeInDown.delay(14 * index)
+      .springify()
+      .mass(0.34),
 };

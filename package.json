@@ -31,6 +31,7 @@
     "lodash": "^4.17.21",
     "logger-service-ts": "^1.0.1",
     "react": "18.2.0",
+    "react-content-loader": "^7.0.0",
     "react-dom": "18.2.0",
     "react-hook-form": "^7.51.3",
     "react-native": "0.74.1",
