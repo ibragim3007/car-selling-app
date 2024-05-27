@@ -14,6 +14,7 @@ export interface CardProps extends ViewProps {
   flex?: number;
   color?: 'primary' | 'secondary' | 'transparent';
   marginVertical?: number;
+  marginHorizontal?: number;
   paddingVertical?: number;
   paddingBottom?: number;
   paddingTop?: number;
@@ -24,6 +25,7 @@ export interface CardProps extends ViewProps {
 const Card = ({
   borderRadius,
   marginVertical,
+  marginHorizontal,
   paddingVertical,
   paddingBottom,
   paddingTop,
@@ -48,6 +50,7 @@ const Card = ({
     stylesView,
     flex !== undefined && { flex },
     marginVertical !== undefined && { marginVertical: normalizedSize(marginVertical) },
+    marginHorizontal !== undefined && { marginHorizontal: normalizedSize(marginHorizontal) },
     paddingVertical !== undefined && { paddingVertical: normalizedSize(paddingVertical) },
     paddingHorizontal !== undefined && { paddingHorizontal: normalizedSize(paddingHorizontal) },
     paddingTop !== undefined && { paddingTop: normalizedSize(paddingTop) },

@@ -1,19 +1,18 @@
+import CarListSkeleton from '@/components/Skeletons/components/CarListSkeleton';
 import UnSubscripbeSuggestion from '@/components/UnSubscripbeSuggestion/UnSubscripbeSuggestion';
 import CarList from '@/modules/CarList';
-import MyCollectionSettings2 from '@/modules/MyCollectionsSetting/components/MyCollectionSettings2';
 import { useUserQuery } from '@/shared/api/entityies/auth/api.auth';
 import { useCarsList } from '@/shared/hooks/entityies/cars/useCarsList';
 import Grid from '@/shared/ui/layout/Grid';
 import PageBackground from '@/shared/ui/layout/PageBackground';
 import LoadingData from '@/shared/ui/loading/LoadingData';
-import Typography from '@/shared/ui/typography/Typography';
-import { Stack } from 'expo-router';
+import { normalizedSize } from '@/shared/utils/size';
 import React, { useState } from 'react';
 import { Pressable, StyleSheet } from 'react-native';
-import Animated, { FadeIn, FadeOut, LinearTransition, useSharedValue } from 'react-native-reanimated';
+import Animated, { FadeIn, FadeOut, useSharedValue } from 'react-native-reanimated';
 import Separator from './Separator';
-import CarListSkeleton from '@/components/Skeletons/components/CarListSkeleton';
-import { normalizedSize } from '@/shared/utils/size';
+import ServiceRoute from './Service/ServiceRoute';
+import { useFiltersQuery } from '@/shared/api/entityies/filters/filter.api';
 
 const CollectionsPage = () => {
   const { data, isLoading: loadingUser } = useUserQuery();
@@ -37,29 +36,20 @@ const CollectionsPage = () => {
     scrollY.value = yPox;
   };
 
+  const { data: filters, isLoading: isLoadingFilters } = useFiltersQuery();
+
+  const isShowCardSuggestion = (!filters || filters.length === 0) && !isLoadingFilters;
+
   return (
     <PageBackground color="secondary">
-      <Stack.Screen
-        options={{
-          headerLeft: () => {
-            if (isPolling)
-              return (
-                <Grid row paddingHorizontal={10} align="center">
-                  <Typography color="secondary" variant="caption-2">
-                    Новое...
-                  </Typography>
-                  <LoadingData />
-                </Grid>
-              );
-          },
+      <ServiceRoute
+        myCollectionProps={{
+          scrollY: scrollY,
+          isShowStickey: isPolling,
+          isShowCollections: isShowCollection,
+          toggleShowCollection: toggleShowCollection,
         }}
-      />
-
-      <MyCollectionSettings2
-        scrollY={scrollY}
-        isShowStickey={isPolling}
-        isShowCollections={isShowCollection}
-        toggleShowCollection={toggleShowCollection}
+        isShowCardSuggestion={isShowCardSuggestion}
       />
 
       {isLoadingCarsFirstTime ? (
@@ -67,9 +57,9 @@ const CollectionsPage = () => {
           <CarListSkeleton />
         </Grid>
       ) : (
-        <Animated.View layout={LinearTransition} style={{ flex: 1 }}>
+        <Grid flex={1}>
           <CarList
-            topOffset={80}
+            topOffset={isShowCardSuggestion ? 0 : 80}
             scrollHandler={changeScrollY}
             data={carsForDisplay}
             onRefresh={refetch}
@@ -80,6 +70,9 @@ const CollectionsPage = () => {
             ListFooterComponent={() => (isLoading || isFetching) && <LoadingData />}
             headerComponent={
               <Grid>
+                {/* <Grid marginHorizontal={8} marginVertical={8}>
+                  <SuggestCreateFilter />
+                </Grid> */}
                 {!data && !loadingUser && <UnSubscripbeSuggestion />}
                 <Separator />
               </Grid>
@@ -94,7 +87,7 @@ const CollectionsPage = () => {
               <Pressable onPress={toggleShowCollection} style={{ height: '100%' }} />
             </Animated.View>
           )}
-        </Animated.View>
+        </Grid>
       )}
     </PageBackground>
   );

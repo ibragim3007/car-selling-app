@@ -14,7 +14,7 @@ import { router } from 'expo-router';
 import React from 'react';
 import Animated, { SharedValue, SlideInUp, SlideOutUp, useAnimatedStyle, withTiming } from 'react-native-reanimated';
 
-interface MyCollectionSettings2Props {
+export interface MyCollectionSettings2Props {
   isShowStickey: boolean;
   toggleShowCollection: () => void;
   isShowCollections: boolean;

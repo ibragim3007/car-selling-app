@@ -20,6 +20,7 @@ export interface GridProps extends ViewProps {
   paddingBottom?: number;
   paddingTop?: number;
   marginVertical?: number;
+  marginHorizontal?: number;
 }
 
 const Grid = ({
@@ -35,6 +36,7 @@ const Grid = ({
   space,
   paddingHorizontal,
   paddingVertical,
+  marginHorizontal,
   paddingBottom,
   paddingTop,
   marginVertical,
@@ -55,6 +57,7 @@ const Grid = ({
     paddingTop !== undefined && { paddingTop: normalizedSize(paddingTop) },
     paddingBottom !== undefined && { paddingBottom: normalizedSize(paddingBottom) },
     marginVertical !== undefined && { marginVertical: normalizedSize(marginVertical) },
+    marginHorizontal !== undefined && { marginHorizontal: normalizedSize(marginHorizontal) },
     space !== undefined && { gap: normalizedSize(calculateSpacing(space)) },
     props.style,
   ]);
