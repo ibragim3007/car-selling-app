@@ -5,8 +5,8 @@ import { carTypes } from '@/shared/constants/enums/Car';
 import { IFilterCreate } from '@/shared/types/filters.types';
 import Typography from '@/shared/ui/typography/Typography';
 import { BottomSheetModal as BTMS } from '@gorhom/bottom-sheet';
-import React, { useRef } from 'react';
-import { FormProvider, useController, useFormContext } from 'react-hook-form';
+import React, { useEffect, useRef } from 'react';
+import { FormProvider, useController, useFormContext, useWatch } from 'react-hook-form';
 import QuitResetHeader from '../../../../../components/Modal/components/QuitResetHeader';
 import AddButton from '../../buttons/AddButton';
 import WrapInputLabel from '../../wrapper/WrapInputLabel';
@@ -14,6 +14,7 @@ import WrapperBlock from '../../wrapper/WrapperBlock';
 import AutoChoiceList from './AutoChoiceList';
 import SelectedCars from './DisplaySelected/SelectedCars';
 import { enumCompare } from '@/shared/helpers/enumCompare';
+import { useMarkaModelQuery } from '@/shared/api/entityies/dictionary/dictionary.api';
 
 const CarInput = () => {
   const buttomSheetRef = useRef<BTMS>(null);
@@ -31,6 +32,39 @@ const CarInput = () => {
   };
 
   const stringForLabel = field.value?.map(a => enumCompare(carTypes, a)).join(', ');
+  const { data: markaModels } = useMarkaModelQuery();
+  const marks = useWatch({ control: formApi.control, name: 'marks' });
+  const models = useWatch({ control: formApi.control, name: 'models' });
+
+  const removeMark = (markaId: number) => {
+    if (!markaModels) return;
+
+    const modelsOfThisMark = markaModels.filter(markaModel => markaModel.markaid === markaId).map(mb => mb.modelid);
+
+    formApi.setValue(
+      'models',
+      models?.filter(m => !modelsOfThisMark.includes(m)),
+    );
+
+    formApi.setValue(
+      'marks',
+      marks?.filter(m => m !== markaId),
+    );
+  };
+
+  useEffect(() => {
+    const res = markaModels?.filter(a => models?.includes(a.modelid));
+
+    if (!res) return;
+
+    const answer = res?.reduce((acc: number[], obj) => {
+      if (!acc.includes(obj.markaid)) acc.push(obj.markaid);
+
+      return acc;
+    }, []);
+
+    if (answer) formApi.setValue('marks', answer);
+  }, [markaModels, models]);
 
   return (
     <WrapperBlock>
@@ -69,7 +103,7 @@ const CarInput = () => {
         </BottomSheetModal>
       </WrapInputLabel>
       <Typography>Марка и модель</Typography>
-      <SelectedCars />
+      <SelectedCars onDelete={removeMark} models={models || []} marks={marks || []} />
       <AddButton onPress={onPressAddAuto}>Добавить авто</AddButton>
     </WrapperBlock>
   );
