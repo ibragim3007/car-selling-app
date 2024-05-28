@@ -58,8 +58,8 @@ function CarList({
 
   return (
     <>
-      {goTopButtonShow && <UpdateDataButton goUpdateButton={goUpdateButton} />}
-      {goTopButtonShow && <GoTopButton goTopButton={goTopButton} />}
+      {goTopButtonShow && <UpdateDataButton onPress={goUpdateButton} />}
+      {/* {goTopButtonShow && <GoTopButton goTopButton={goTopButton} />} */}
       <FlashList
         ref={ref => {
           flashListRef = ref;

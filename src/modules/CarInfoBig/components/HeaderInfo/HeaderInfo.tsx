@@ -40,11 +40,13 @@ const HeaderInfo = ({ car, dict }: HeaderInfoProps) => {
               </Grid>
             </Pressable>
           </Grid>
-          <HighlightText isRed={car.deviation > 0}>
-            {/* исправить и сделать по дефолту */}
-            {/* {compare(dict!.avgCostDeviations, car.drive)} */}
-            {car.deviation > 0 ? 'Выше' : 'Ниже'} рынка на {formatCurrency(car.deviation)}
-          </HighlightText>
+          {car.deviation && (
+            <HighlightText isRed={car.deviation > 0}>
+              {/* исправить и сделать по дефолту */}
+              {/* {compare(dict!.avgCostDeviations, car.drive)} */}
+              {car.deviation > 0 ? 'Выше' : 'Ниже'} рынка на {formatCurrency(car.deviation)}
+            </HighlightText>
+          )}
         </Grid>
         {car.photos.length > 0 && <Carousel data={car.photos} />}
       </Grid>

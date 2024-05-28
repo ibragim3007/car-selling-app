@@ -9,7 +9,7 @@ export function formatCurrency(price: number) {
     minimumFractionDigits: 0,
   });
 
-  const formatPrice = (value: number, unit: string) => formatter.format(value) + ` ${unit} ₽`;
+  const formatPrice = (value: number, unit: string) => formatter.format(Math.floor(value)) + ` ${unit} ₽`;
 
   if (Math.abs(price) >= 1000000000) {
     return formatPrice(price / 1000000000, 'млрд.');

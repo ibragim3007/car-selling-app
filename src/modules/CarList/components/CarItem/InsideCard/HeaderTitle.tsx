@@ -12,7 +12,7 @@ const HeaderTitle: React.FC<HeaderTitleProps> = ({ title }) => {
   return (
     <Grid row align="center" gap={5}>
       <CheckIcon />
-      <Typography style={{ flex: 1 }} lineBreakMode="clip" numberOfLines={1} variant="headline" weight="bold">
+      <Typography style={{ flex: 1 }} lineBreakMode="clip" numberOfLines={1} variant="footnote" weight="bold">
         {title}
       </Typography>
     </Grid>
