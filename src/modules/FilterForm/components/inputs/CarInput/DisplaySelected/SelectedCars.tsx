@@ -21,7 +21,7 @@ const SelectedCars = ({ models, marks, onDelete }: SelectedCarsProps) => {
         const modelsOfThisMark = markaModels?.filter(markaModel => markaModel.markaid === mark).map(mb => mb.modelid);
         const amountOf = models?.filter(m => modelsOfThisMark?.includes(m)).length;
 
-        const isSame = modelsOfThisMark?.length === amountOf;
+        const isSame = modelsOfThisMark?.length === amountOf || amountOf === 0;
 
         return (
           <SurfaceItemClose

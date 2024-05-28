@@ -3,7 +3,6 @@ import { normalizedSize } from '@/shared/utils/size';
 import { FlashList, FlashListProps, ListRenderItem } from '@shopify/flash-list';
 import React, { useCallback, useState } from 'react';
 import { NativeScrollEvent, NativeSyntheticEvent } from 'react-native';
-import GoTopButton from './Buttons/GoTopButton';
 import UpdateDataButton from './Buttons/UpdateDataButton';
 import CarItem from './CarItem/CarItem';
 interface CarListProps extends Partial<FlashListProps<ICar>> {

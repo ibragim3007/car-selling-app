@@ -28,6 +28,7 @@ const Range = ({ currentValue, onChange, label, ...props }: RangeProps) => {
     const posY = event.nativeEvent.contentOffset.y;
     scrollX.setValue(posY);
     setIndex(Math.round(posY / ITEM_SIZE));
+
     // if (props.data) onChange(props.data[index]);
   };
 
