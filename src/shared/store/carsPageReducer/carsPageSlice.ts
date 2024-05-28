@@ -2,10 +2,12 @@ import { PayloadAction, createSlice } from '@reduxjs/toolkit';
 
 interface StoreInterface {
   currentOffsetY: number;
+  showSuggestCreateFilter: boolean;
 }
 
 const initialState: StoreInterface = {
   currentOffsetY: 0,
+  showSuggestCreateFilter: false,
 };
 
 export const carsPageSlice = createSlice({
@@ -14,6 +16,10 @@ export const carsPageSlice = createSlice({
   reducers: {
     setCurrentOffsetY(state, action: PayloadAction<number>) {
       state.currentOffsetY = action.payload;
+    },
+
+    setShowSuggestCreateFilter(state, action: PayloadAction<boolean>) {
+      state.showSuggestCreateFilter = action.payload;
     },
   },
 });

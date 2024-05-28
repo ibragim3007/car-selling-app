@@ -1,21 +1,24 @@
+import ImageLazy from '@/components/Informers/images/ImageLazy';
+import CarSuggestionImage from '@/images/car_suggestion_image.png';
+import { routes } from '@/shared/config/routes';
+import { useAppDispatch } from '@/shared/hooks/storeHooks';
 import { useTheme } from '@/shared/hooks/stylesHooks/useTheme';
+import { toggleSuggestionCreateFilter } from '@/shared/store/carsPageReducer/actions/toggleSuggestionCreateFilter';
 import Button from '@/shared/ui/buttons/Button';
 import Card from '@/shared/ui/card/Card';
 import Grid from '@/shared/ui/layout/Grid';
 import Typography from '@/shared/ui/typography/Typography';
-import React from 'react';
-import CarSuggestionImage from '@/images/car_suggestion_image.png';
-import ImageLazy from '@/components/Informers/images/ImageLazy';
 import { normalizedSize } from '@/shared/utils/size';
-import { Inform } from '@/shared/services/logger.service/loger.service';
 import { router } from 'expo-router';
-import { routes } from '@/shared/config/routes';
+import React from 'react';
 
 export const SuggestCreateFilter = () => {
   const { colors } = useTheme();
 
+  const dispatch = useAppDispatch();
+
   const closeCard = () => {
-    Inform.log('В процессе!');
+    dispatch(toggleSuggestionCreateFilter());
   };
 
   const goToFilters = () => {

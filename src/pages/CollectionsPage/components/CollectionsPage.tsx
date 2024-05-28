@@ -13,6 +13,7 @@ import Animated, { FadeIn, FadeOut, useSharedValue } from 'react-native-reanimat
 import Separator from './Separator';
 import ServiceRoute from './Service/ServiceRoute';
 import { useFiltersQuery } from '@/shared/api/entityies/filters/filter.api';
+import { useAppSelector } from '@/shared/hooks/storeHooks';
 
 const CollectionsPage = () => {
   const { data, isLoading: loadingUser } = useUserQuery();
@@ -21,24 +22,17 @@ const CollectionsPage = () => {
     isPolling,
   });
 
-  const updatePoolingInfo = (value: boolean) => {
-    setisPolling(value);
-  };
+  const updatePoolingInfo = (value: boolean) => setisPolling(value);
 
   const [isShowCollection, setIsShowCollection] = useState(false);
-  const toggleShowCollection = () => {
-    setIsShowCollection(!isShowCollection);
-  };
+  const toggleShowCollection = () => setIsShowCollection(!isShowCollection);
 
   const scrollY = useSharedValue(0);
-
-  const changeScrollY = (yPox: number) => {
-    scrollY.value = yPox;
-  };
+  const changeScrollY = (yPox: number) => (scrollY.value = yPox);
 
   const { data: filters, isLoading: isLoadingFilters } = useFiltersQuery();
-
-  const isShowCardSuggestion = (!filters || filters.length === 0) && !isLoadingFilters;
+  const showSuggestCreateFilter = useAppSelector(state => state.carsPageReducer.showSuggestCreateFilter);
+  const isShowCardSuggestion = (!filters || filters.length === 0) && !isLoadingFilters && !showSuggestCreateFilter;
 
   return (
     <PageBackground color="secondary">
@@ -59,7 +53,7 @@ const CollectionsPage = () => {
       ) : (
         <Grid flex={1}>
           <CarList
-            topOffset={isShowCardSuggestion ? 0 : 80}
+            topOffset={isShowCardSuggestion ? 192 : 80}
             scrollHandler={changeScrollY}
             data={carsForDisplay}
             onRefresh={refetch}
@@ -70,9 +64,6 @@ const CollectionsPage = () => {
             ListFooterComponent={() => (isLoading || isFetching) && <LoadingData />}
             headerComponent={
               <Grid>
-                {/* <Grid marginHorizontal={8} marginVertical={8}>
-                  <SuggestCreateFilter />
-                </Grid> */}
                 {!data && !loadingUser && <UnSubscripbeSuggestion />}
                 <Separator />
               </Grid>

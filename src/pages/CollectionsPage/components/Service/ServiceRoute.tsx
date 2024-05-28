@@ -12,7 +12,11 @@ interface ServiceRouteProps {
 const ServiceRoute = ({ myCollectionProps, isShowCardSuggestion }: ServiceRouteProps) => {
   if (isShowCardSuggestion)
     return (
-      <Grid marginHorizontal={8} marginVertical={8}>
+      <Grid
+        style={{ position: 'absolute', zIndex: 30, elevation: 30, width: '95%', alignSelf: 'center' }}
+        // marginHorizontal={8}
+        marginVertical={8}
+      >
         <SuggestCreateFilter />
       </Grid>
     );
