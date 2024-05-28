@@ -1,13 +1,12 @@
 import ModalCheckboxList from '@/components/ModalCheckboxList/ModalCheckboxList';
-import { wheels } from '@/shared/constants/enums/Car';
+import { enumCompare } from '@/shared/helpers/enumCompare';
+import { BaseTypeDictionary } from '@/shared/types/dictionary.types';
 import { IFilterCreate } from '@/shared/types/filters.types';
 import Button from '@/shared/ui/buttons/Button';
 import { BottomSheetModal as BSM } from '@gorhom/bottom-sheet';
 import React, { useRef } from 'react';
 import { useController, useFormContext } from 'react-hook-form';
 import GoInButton from '../../buttons/GoInButton';
-import { enumCompare } from '@/shared/helpers/enumCompare';
-import { BaseTypeDictionary } from '@/shared/types/dictionary.types';
 
 interface GISLIstProps {
   name: keyof IFilterCreate;
@@ -54,7 +53,7 @@ const GISLIst = ({ name, title, items }: GISLIstProps) => {
       />
       <ModalCheckboxList
         bottomSheetModal={{
-          title: 'Руль',
+          title,
           children: null,
           snapPoints: ['60%'],
         }}

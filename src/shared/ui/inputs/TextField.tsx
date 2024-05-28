@@ -35,6 +35,7 @@ const TextField = React.forwardRef<Ref, TextFieldProps>(
         width: '100%',
         fontSize: normalizedSize(15),
         padding: normalizedSize(16),
+        paddingRight: 0,
         fontFamily: fontWeight.regular,
       },
       props.style,

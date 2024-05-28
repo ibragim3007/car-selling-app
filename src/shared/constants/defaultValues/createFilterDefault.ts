@@ -28,7 +28,7 @@ export const createFilterDefault: IFilterCreate = {
   ownerType: 0,
   priceTypes: [],
   carState: 0,
-  carTypes: [0],
+  carTypes: [],
   avgPriceDelta: [0, 0],
   ownersCount: [],
   FilterVersion: '',

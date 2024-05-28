@@ -2,7 +2,7 @@ import { PRICE_MOCK } from '@/shared/constants/enums/RangeValues';
 import { IFilterCreate } from '@/shared/types/filters.types';
 import Grid from '@/shared/ui/layout/Grid';
 import React from 'react';
-import { useController, useFormContext } from 'react-hook-form';
+import { useController, useFormContext, useWatch } from 'react-hook-form';
 import WrapInputLabel from '../../wrapper/WrapInputLabel';
 import WrapperBlock from '../../wrapper/WrapperBlock';
 import Deviation from './Deviation';
@@ -13,9 +13,7 @@ import Typography from '@/shared/ui/typography/Typography';
 const PriceInput = () => {
   const { control, setValue } = useFormContext<IFilterCreate>();
 
-  const {
-    field: { value: priceValue },
-  } = useController({ control, name: 'prices' });
+  const priceValue = useWatch({ control, name: 'prices' });
 
   const {
     field: { value: pricechanges },
