@@ -24,6 +24,7 @@ export interface TypographyProps extends TextProps {
   weight?: TypographyWeight;
   color?: TColor;
   textAlign?: TTextAlign;
+  isLayoutAnimation?: boolean;
 }
 
 export const TypographyStyles: Record<TypographyVariants, TextProps['style']> = {

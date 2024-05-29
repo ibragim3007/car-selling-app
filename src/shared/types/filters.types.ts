@@ -6,8 +6,8 @@ export interface IFilterCreate {
   name?: string;
   years?: TRange;
   prices?: TRange;
-  horsepower?: number[];
   mileages?: TRange;
+  horsepower?: number[];
   marks?: number[];
   models?: number[];
   states?: number[];
@@ -47,12 +47,12 @@ export interface IFilter {
   id: number;
   cityList: any[];
   name: string;
-  years?: number[];
-  prices?: number[];
   horsepower?: number[];
-  mileages?: number[];
   marks?: number[];
   models?: number[];
+  years?: TRange;
+  prices?: TRange;
+  mileages?: TRange;
   transmissions?: number[];
   wheels?: number[];
   regions?: number[];

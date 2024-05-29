@@ -2,22 +2,23 @@ import { Dropdown } from '@/components/Dropdown/Dropdown';
 import TableInfo from '@/components/Informers/TableInfo';
 import TitleSwitch from '@/components/TitleSwitch/TitleSwitch';
 import CardTitle from '@/components/Wrappers/CardTitle';
+import ArrowDown from '@/icons/linear/arrow-down.svg';
 import EditIcon from '@/icons/linear/edit-2.svg';
 import { useDeleteFilterMutation } from '@/shared/api/entityies/filters/filter.api';
 import { gears, ices, owners } from '@/shared/constants/enums/Car';
 import { enumCompare } from '@/shared/helpers/enumCompare';
 import { formatNumber } from '@/shared/helpers/formatMileage';
 import { IFilter } from '@/shared/types/filters.types';
+import LayoutAnimation from '@/shared/ui/animations/LayoutAnimation';
 import Button from '@/shared/ui/buttons/Button';
 import Divider from '@/shared/ui/divider/Divider';
 import Grid from '@/shared/ui/layout/Grid';
+import { normalizedSize } from '@/shared/utils/size';
 import { router } from 'expo-router';
-import React, { createRef, useState } from 'react';
+import React, { useState } from 'react';
 import CarsDisplay from './Section/CarsDisplay';
 import Geography from './Section/Geography';
-import ArrowDown from '@/icons/linear/arrow-down.svg';
-import LayoutAnimation from '@/shared/ui/animations/LayoutAnimation';
-import { normalizedSize } from '@/shared/utils/size';
+import { useUpdateFilter } from '@/shared/hooks/entityies/filter/useUpdateFilter';
 
 interface FilterComponentProps {
   filter: IFilter;
@@ -25,7 +26,7 @@ interface FilterComponentProps {
 
 const FilterComponent = ({ filter }: FilterComponentProps) => {
   const [deleteFilter, { isLoading }] = useDeleteFilterMutation();
-  const refComponent = createRef();
+  const { toggleEnableFilter, toggleNotifications } = useUpdateFilter(filter);
 
   const lastOwner = filter.ownersCount[filter.ownersCount.length - 1];
 
@@ -63,6 +64,10 @@ const FilterComponent = ({ filter }: FilterComponentProps) => {
       <LayoutAnimation>
         <Grid paddingHorizontal={16} space="sm" style={{ maxHeight: isOpen ? 'auto' : 310, overflow: 'hidden' }}>
           <Divider />
+          <Grid space="lg">
+            <TitleSwitch onChange={toggleEnableFilter} title="Включить подборку" value={filter.enabled} />
+            <TitleSwitch onChange={toggleNotifications} title="Уведомления (Telegram)" value={filter.notifications} />
+          </Grid>
           <CarsDisplay filter={filter} />
           <Geography filter={filter} />
           <TableInfo title="Пробег, км" value={filter.mileages?.map(item => formatNumber(item)).join(' - ')} />
@@ -72,10 +77,6 @@ const FilterComponent = ({ filter }: FilterComponentProps) => {
           <TableInfo title="Тип топлива" value={filter.ices?.map(item => enumCompare(ices, item)).join(', ')} />
           <TableInfo title="Коробка" value={filter.gears?.map(item => enumCompare(gears, item)).join(', ')} />
           <TableInfo title="Владельцы" value={enumCompare(owners, lastOwner)} />
-          <Grid space="lg">
-            <TitleSwitch title="Включить подборку" value={filter.enabled} />
-            <TitleSwitch title="Уведомления (Telegram)" value={filter.notifications} />
-          </Grid>
         </Grid>
       </LayoutAnimation>
       <Button onPress={() => setIsOpen(!isOpen)} style={{ marginTop: 10 }} variant="text" color="black">

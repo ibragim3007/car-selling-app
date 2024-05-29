@@ -12,28 +12,25 @@ export const filterApi = rootApi.injectEndpoints({
           method: apiConfig.filter.filters.method,
         };
       },
-      // providesTags: (result, error, arg) =>
-      //   result ? [...result.map(({ id }) => ({ type: 'Filters' as const, id })), 'Filters'] : ['Filters'],
-      providesTags: ['Filters'],
+      providesTags: ['Filter'],
     }),
-    filter: build.query<IEditFilter, string>({
+    filter: build.query<IFilter, string>({
       query: (filterId: string) => {
         return {
           url: `${apiConfig.filter.filters.url}/${filterId}`,
           method: apiConfig.filter.filters.method,
         };
       },
-      // providesTags: (result, error, arg) =>
-      //   result ? [...result.map(({ id }) => ({ type: 'Filters' as const, id })), 'Filters'] : ['Filters'],
+      providesTags: ['Filter'],
     }),
-    deleteFilter: build.mutation<IFilter[], number>({
+    deleteFilter: build.mutation<void, number>({
       query: (filterId: number) => {
         return {
           url: `${apiConfig.filter.delete.url}/${filterId}`,
           method: apiConfig.filter.delete.method,
         };
       },
-      invalidatesTags: ['Filters'],
+      invalidatesTags: ['Filter'],
     }),
     createFilter: build.mutation<IFilter, IFilterCreate>({
       query: (filter: IFilterCreate) => ({
@@ -41,7 +38,7 @@ export const filterApi = rootApi.injectEndpoints({
         method: apiConfig.filter.create.method,
         body: filter,
       }),
-      invalidatesTags: ['Filters'],
+      invalidatesTags: ['Filter'],
     }),
     editFilter: build.mutation<IFilter, { id: string; filter: IEditFilter }>({
       query: (body: { id: string; filter: IEditFilter }) => ({
@@ -49,7 +46,29 @@ export const filterApi = rootApi.injectEndpoints({
         method: apiConfig.filter.edit.method,
         body: body.filter,
       }),
-      invalidatesTags: ['Filters'],
+      async onQueryStarted({ id, filter: newFilter }, { dispatch, queryFulfilled }) {
+        // Предварительное обновление кэша
+        const patchResult = dispatch(
+          filterApi.util.updateQueryData('filters', undefined, draft => {
+            const filterToUpdate = draft.find(f => f.id === parseInt(id));
+            if (filterToUpdate) {
+              Object.assign(filterToUpdate, newFilter);
+            }
+          }),
+        );
+
+        try {
+          await queryFulfilled;
+        } catch {
+          patchResult.undo(); // Откатываем изменения в случае ошибки
+        }
+      },
+      invalidatesTags: result => [
+        {
+          type: 'Filter',
+          id: result?.id,
+        },
+      ],
     }),
   }),
 });

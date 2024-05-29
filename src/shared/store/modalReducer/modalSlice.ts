@@ -26,6 +26,7 @@ const initialState: StoreInterface = {
 export const modalSlice = createSlice({
   name: 'modal',
   initialState: initialState,
+
   reducers: {
     setOpen(state, action: PayloadAction<StoreInterface['isOpen']>) {
       state.isOpen = action.payload;

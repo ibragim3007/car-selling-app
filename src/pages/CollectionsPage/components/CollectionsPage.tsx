@@ -14,12 +14,14 @@ import Separator from './Separator';
 import ServiceRoute from './Service/ServiceRoute';
 import { useFiltersQuery } from '@/shared/api/entityies/filters/filter.api';
 import { useAppSelector } from '@/shared/hooks/storeHooks';
+import { useIsFocused } from '@react-navigation/native';
 
 const CollectionsPage = () => {
   const { data, isLoading: loadingUser } = useUserQuery();
   const [isPolling, setisPolling] = useState(true);
+  const isFocused = useIsFocused();
   const { carsForDisplay, isLoadingCarsFirstTime, nextPage, isLoading, isFetching, refetch } = useCarsList({
-    isPolling,
+    isPolling: isPolling && isFocused,
   });
 
   const updatePoolingInfo = (value: boolean) => setisPolling(value);
@@ -57,6 +59,7 @@ const CollectionsPage = () => {
             scrollHandler={changeScrollY}
             data={carsForDisplay}
             onRefresh={refetch}
+            refreshing={isFetching}
             loading={isLoading || (isFetching && !isPolling)}
             onEndReached={nextPage}
             ItemSeparatorComponent={() => <Separator />}

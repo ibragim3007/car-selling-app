@@ -20,7 +20,7 @@ const baseQuery = fetchBaseQuery({
 
 export const rootApi = createApi({
   reducerPath: 'apiRoot',
-  tagTypes: ['Filters'],
+  tagTypes: ['Filter'],
   baseQuery: baseQuery,
   refetchOnReconnect: true,
   endpoints: () => ({}),
