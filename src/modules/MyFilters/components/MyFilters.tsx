@@ -1,12 +1,12 @@
 import ELD from '@/components/Handlers/ELD/ELD';
 import { useFiltersQuery } from '@/shared/api/entityies/filters/filter.api';
+import LayoutAnimation from '@/shared/ui/animations/LayoutAnimation';
 import Grid from '@/shared/ui/layout/Grid';
 import Typography from '@/shared/ui/typography/Typography';
 import { FlashList } from '@shopify/flash-list';
+import { Stack } from 'expo-router';
 import React from 'react';
 import FilterComponent from './FilterComponent/FilterComponent';
-import { Stack } from 'expo-router';
-import LayoutAnimation from '@/shared/ui/animations/LayoutAnimation';
 
 const MyFilters = () => {
   const { data, isLoading, isError, error, isFetching, refetch } = useFiltersQuery(undefined, {
@@ -32,6 +32,7 @@ const MyFilters = () => {
           ),
         }}
       />
+
       <ELD data={data} isLoading={isLoading} isError={isError} error={error}>
         <Grid flex={1}>
           <FlashList

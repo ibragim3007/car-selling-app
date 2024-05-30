@@ -65,9 +65,9 @@ const CollectionsPage = () => {
             topOffset={isShowCardSuggestion ? 192 : 80}
             scrollHandler={changeScrollY}
             data={carsForDisplay}
-            onRefresh={refetch}
+            // onRefresh={refetch}
             // refreshing={isFetching}
-            loading={isLoading || (isFetching && !isPolling)}
+            // loading={isLoading}
             onEndReached={nextPage}
             ItemSeparatorComponent={() => <Separator />}
             updatePoolingInfo={updatePoolingInfo}

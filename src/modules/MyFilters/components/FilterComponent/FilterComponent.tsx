@@ -35,7 +35,8 @@ const FilterComponent = ({ filter }: FilterComponentProps) => {
   return (
     <CardTitle
       style={{ overflow: 'hidden' }}
-      headerProps={{ style: { paddingVertical: normalizedSize(16) } }}
+      headerProps={{ style: { paddingVertical: normalizedSize(8), paddingHorizontal: normalizedSize(16) } }}
+      titleProps={{ style: { paddingHorizontal: 0, paddingVertical: 0 } }}
       title={filter.name}
       isNoPadding
       rightHeader={
