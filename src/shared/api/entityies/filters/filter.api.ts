@@ -63,12 +63,12 @@ export const filterApi = rootApi.injectEndpoints({
           patchResult.undo(); // Откатываем изменения в случае ошибки
         }
       },
-      invalidatesTags: result => [
-        {
-          type: 'Filter',
-          id: result?.id,
-        },
-      ],
+      // invalidatesTags: result => [
+      //   {
+      //     type: 'Filter',
+      //     id: result?.id,
+      //   },
+      // ],
     }),
   }),
 });
