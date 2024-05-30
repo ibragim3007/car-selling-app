@@ -15,6 +15,7 @@ import ServiceRoute from './Service/ServiceRoute';
 import { useFiltersQuery } from '@/shared/api/entityies/filters/filter.api';
 import { useAppSelector } from '@/shared/hooks/storeHooks';
 import { useIsFocused } from '@react-navigation/native';
+import { Stack } from 'expo-router';
 
 const CollectionsPage = () => {
   const { data, isLoading: loadingUser } = useUserQuery();
@@ -38,6 +39,12 @@ const CollectionsPage = () => {
 
   return (
     <PageBackground color="secondary">
+      <Stack.Screen
+        options={{
+          headerLeft: () => <Grid>{isFetching && <LoadingData />}</Grid>,
+        }}
+      />
+
       <ServiceRoute
         myCollectionProps={{
           scrollY: scrollY,
@@ -59,7 +66,7 @@ const CollectionsPage = () => {
             scrollHandler={changeScrollY}
             data={carsForDisplay}
             onRefresh={refetch}
-            refreshing={isFetching}
+            // refreshing={isFetching}
             loading={isLoading || (isFetching && !isPolling)}
             onEndReached={nextPage}
             ItemSeparatorComponent={() => <Separator />}

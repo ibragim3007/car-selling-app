@@ -1,4 +1,5 @@
 import { useCarsQuery, useLazyCarsQuery } from '@/shared/api/entityies/car/api.car';
+import { useFiltersQuery } from '@/shared/api/entityies/filters/filter.api';
 import { Inform } from '@/shared/services/logger.service/loger.service';
 import { ICar } from '@/shared/types';
 import { isCars, isErrorCars } from '@/shared/utils/isErrorCars';
@@ -7,13 +8,23 @@ import { useEffect, useState } from 'react';
 export const useCarsList = (params: { isPolling?: boolean }) => {
   const { isPolling } = params;
 
+  const { data: filters } = useFiltersQuery();
+  const filterdIdString = filters
+    ?.filter(filter => filter.enabled)
+    .map(filter => filter.id)
+    .join(', ');
+  console.log(filterdIdString);
+
   const [getCars, { isLoading: isLoadingNextPage, isFetching: isFetchingNextPage }] = useLazyCarsQuery();
   const {
     data: cars,
     isFetching,
     isLoading: isLoadingCarsFirstTime,
     refetch,
-  } = useCarsQuery({}, { pollingInterval: isPolling ? 4000 : 0, skipPollingIfUnfocused: true });
+  } = useCarsQuery(
+    { filters: filterdIdString },
+    { pollingInterval: isPolling ? 4000 : 0, skipPollingIfUnfocused: true },
+  );
 
   useEffect(() => {
     if (cars && !isLoadingCarsFirstTime && !isFetching) {
@@ -26,7 +37,10 @@ export const useCarsList = (params: { isPolling?: boolean }) => {
   const nextPage = async () => {
     if (carsForDisplay && carsForDisplay[carsForDisplay.length - 1]) {
       try {
-        const result = await getCars({ lastId: carsForDisplay[carsForDisplay.length - 1].id }).unwrap();
+        const result = await getCars({
+          filters: filterdIdString,
+          lastId: carsForDisplay[carsForDisplay.length - 1].id,
+        }).unwrap();
 
         udpdateCarState(result);
       } catch (e) {
