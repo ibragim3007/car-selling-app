@@ -1,14 +1,15 @@
 import ToggleButton from '@/components/Controllers/buttons/ToggleButton';
 import ToggleButtonItem from '@/components/Controllers/buttons/ToggleButtonItem';
+import DisplayGeography from '@/components/DisplaySurfaces/DisplayGeography';
 import ModalCheckboxList from '@/components/ModalCheckboxList/ModalCheckboxList';
 import { useRegion } from '@/shared/hooks/entityies/filter/useRegions';
+import { IFilterCreate } from '@/shared/types/filters.types';
 import { BottomSheetModal as BTMS } from '@gorhom/bottom-sheet';
 import React, { useRef } from 'react';
 import { useFormContext } from 'react-hook-form';
 import AddButton from '../../buttons/AddButton';
-import WrapperBlock from '../../wrapper/WrapperBlock';
-import RegionsDisplay from './DisplaySelected/RegionsDisplay';
 import WrapInputLabel from '../../wrapper/WrapInputLabel';
+import WrapperBlock from '../../wrapper/WrapperBlock';
 
 export const GeoInputs = () => {
   const buttomSheetRef = useRef<BTMS>(null);
@@ -16,9 +17,21 @@ export const GeoInputs = () => {
   const pressOpen2 = () => {
     buttomSheetRef.current?.present();
   };
-  const control = useFormContext();
+  const control = useFormContext<IFilterCreate>();
+
+  const regions = control.getValues('regions');
 
   const regionUse = useRegion();
+
+  const onChangeCheckBox = (value: number) => {
+    const newValue = [...(regions || [])];
+
+    control.setValue(
+      'regions',
+      newValue?.filter(v => v !== value),
+      { shouldDirty: true, shouldTouch: true, shouldValidate: true },
+    );
+  };
 
   return (
     <WrapperBlock>
@@ -57,7 +70,8 @@ export const GeoInputs = () => {
           items: regionUse.filteredRegions || [],
         }}
       />
-      <RegionsDisplay />
+
+      <DisplayGeography onDeleteButton={onChangeCheckBox} regions={regions || []} />
 
       <AddButton onPress={pressOpen2}>Добавить регион</AddButton>
     </WrapperBlock>

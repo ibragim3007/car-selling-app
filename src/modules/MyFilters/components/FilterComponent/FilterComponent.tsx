@@ -1,3 +1,4 @@
+import DisplayGeography from '@/components/DisplaySurfaces/DisplayGeography';
 import { Dropdown } from '@/components/Dropdown/Dropdown';
 import TableInfo from '@/components/Informers/TableInfo';
 import TitleSwitch from '@/components/TitleSwitch/TitleSwitch';
@@ -18,7 +19,7 @@ import { normalizedSize } from '@/shared/utils/size';
 import { router } from 'expo-router';
 import React, { useState } from 'react';
 import CarsDisplay from './Section/CarsDisplay';
-import Geography from './Section/Geography';
+import SectionWrapper from './Section/SectionWrapper';
 interface FilterComponentProps {
   filter: IFilter;
 }
@@ -68,7 +69,11 @@ const FilterComponent = ({ filter }: FilterComponentProps) => {
           </Grid>
           <Divider />
           <CarsDisplay filter={filter} />
-          <Geography filter={filter} />
+
+          <SectionWrapper title="География">
+            <DisplayGeography regions={filter.regions || []} />
+          </SectionWrapper>
+
           <TableInfo title="Пробег, км" value={filter.mileages?.map(item => formatNumber(item)).join(' - ')} />
           <TableInfo title="Цена, ₽" value={filter.prices?.map(item => formatNumber(item)).join(' - ')} />
           <TableInfo title="Год выпуска" value={filter.years?.join(' - ')} />
