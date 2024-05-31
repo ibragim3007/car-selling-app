@@ -53,7 +53,7 @@ export const Dropdown = ({ items, isLoading }: DropdownProps) => {
       popoverStyle={{
         borderRadius: 16,
         shadowColor: '#000000',
-        shadowOpacity: 0.35,
+        shadowOpacity: 0.15,
         shadowRadius: 64,
         shadowOffset: {
           height: 8,
@@ -63,7 +63,7 @@ export const Dropdown = ({ items, isLoading }: DropdownProps) => {
       offset={normalizedSize(4)}
       arrowSize={{ height: 0, width: 0 }}
       from={
-        <TouchableOpacity onPress={() => setShowPopover(true)}>
+        <TouchableOpacity activeOpacity={1} onPress={() => setShowPopover(true)}>
           <Grid pointerEvents="none">
             <PressableIcon isPressed={showPopover} Icon={MoreIcon} />
           </Grid>

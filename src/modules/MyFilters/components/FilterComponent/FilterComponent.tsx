@@ -8,6 +8,7 @@ import { useDeleteFilterMutation } from '@/shared/api/entityies/filters/filter.a
 import { gears, ices, owners } from '@/shared/constants/enums/Car';
 import { enumCompare } from '@/shared/helpers/enumCompare';
 import { formatNumber } from '@/shared/helpers/formatMileage';
+import { useUpdateFilter } from '@/shared/hooks/entityies/filter/useUpdateFilter';
 import { IFilter } from '@/shared/types/filters.types';
 import LayoutAnimation from '@/shared/ui/animations/LayoutAnimation';
 import Button from '@/shared/ui/buttons/Button';
@@ -18,8 +19,6 @@ import { router } from 'expo-router';
 import React, { useState } from 'react';
 import CarsDisplay from './Section/CarsDisplay';
 import Geography from './Section/Geography';
-import { useUpdateFilter } from '@/shared/hooks/entityies/filter/useUpdateFilter';
-
 interface FilterComponentProps {
   filter: IFilter;
 }
@@ -49,11 +48,9 @@ const FilterComponent = ({ filter }: FilterComponentProps) => {
               onPress: () => router.push(`(mycollections)/filters/${filter.id}`),
             },
             {
-              Icon: EditIcon,
               title: 'Копировать',
             },
             {
-              Icon: EditIcon,
               title: 'Удалить',
               onPress: () => deleteFilter(filter.id),
               color: 'red',
@@ -69,6 +66,7 @@ const FilterComponent = ({ filter }: FilterComponentProps) => {
             <TitleSwitch onChange={toggleEnableFilter} title="Включить подборку" value={filter.enabled} />
             <TitleSwitch onChange={toggleNotifications} title="Уведомления (Telegram)" value={filter.notifications} />
           </Grid>
+          <Divider />
           <CarsDisplay filter={filter} />
           <Geography filter={filter} />
           <TableInfo title="Пробег, км" value={filter.mileages?.map(item => formatNumber(item)).join(' - ')} />

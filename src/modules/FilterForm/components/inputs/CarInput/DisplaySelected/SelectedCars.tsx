@@ -1,8 +1,9 @@
 import SurfaceItemClose from '@/components/Informers/tables/SurfaceItemClose';
 import { useDictionaryQuery, useMarkaModelQuery } from '@/shared/api/entityies/dictionary/dictionary.api';
 import { compare } from '@/shared/helpers/compare';
+import Button from '@/shared/ui/buttons/Button';
 import Grid from '@/shared/ui/layout/Grid';
-import React from 'react';
+import React, { useState } from 'react';
 
 interface SelectedCarsProps {
   models: number[];
@@ -10,13 +11,25 @@ interface SelectedCarsProps {
   onDelete?: (markaId: number) => void;
 }
 
+const numberOfItemsToShow = 5;
+
 const SelectedCars = ({ models, marks, onDelete }: SelectedCarsProps) => {
   const { data: dict } = useDictionaryQuery();
   const { data: markaModels } = useMarkaModelQuery();
 
+  const leftCars = marks.length - numberOfItemsToShow;
+
+  const [isShowAll, setIsShowAll] = useState(false);
+
+  const toggleShowAll = () => {
+    setIsShowAll(!isShowAll);
+  };
+
+  const marksToShow = isShowAll ? marks : marks.slice(0, numberOfItemsToShow);
+
   return (
     <Grid wrap row space="sm">
-      {marks?.map(mark => {
+      {marksToShow?.map(mark => {
         if (!mark) return null;
         const modelsOfThisMark = markaModels?.filter(markaModel => markaModel.markaid === mark).map(mb => mb.modelid);
         const amountOf = models?.filter(m => modelsOfThisMark?.includes(m)).length;
@@ -33,6 +46,12 @@ const SelectedCars = ({ models, marks, onDelete }: SelectedCarsProps) => {
           />
         );
       })}
+
+      {leftCars > 0 && (
+        <Button onPress={toggleShowAll} size="small" variant="text">
+          {isShowAll ? 'Скрыть' : `Ещё ${leftCars}`}
+        </Button>
+      )}
     </Grid>
   );
 };
