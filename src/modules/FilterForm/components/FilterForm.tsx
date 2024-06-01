@@ -10,18 +10,19 @@ import PriceInput from './inputs/PriceInput/PriceInput';
 import StateInput from './inputs/StateInput/StateInput';
 import WrapperBlock from './wrapper/WrapperBlock';
 import SourceInput from './inputs/SourceInput/SourceInput';
+import TelegramNotificationInput from './inputs/TelegramNotificationInput/TelegramNotificationInput';
 
 interface FilterFormProps<T extends FieldValues> {
   formApi: UseFormReturn<T, any, undefined>;
 }
 
 const FilterForm = <T extends FieldValues>({ formApi }: FilterFormProps<T>) => {
-  const { control, handleSubmit, formState } = formApi;
+  const { control } = formApi;
 
   return (
     <Grid space="sm" paddingBottom={40}>
       <WrapperBlock title="Название подборки">
-        <Input control={control} name="name" />
+        <Input control={control} name="name" showError rules={{ required: 'Поле должно быть заполнено!' }} />
       </WrapperBlock>
       <GeoInputs />
       <CarInput />
@@ -30,6 +31,7 @@ const FilterForm = <T extends FieldValues>({ formApi }: FilterFormProps<T>) => {
       <PriceInput />
       <CharacteristicInput />
       <SourceInput />
+      <TelegramNotificationInput />
     </Grid>
   );
 };

@@ -44,8 +44,11 @@ const DeviationSlider = ({ value, onSlidingComplete }: DeviationSliderProps) => 
             onValueChange={changeValue}
             maximumValue={MAX}
             minimumValue={MIN}
+            maximumTrackTintColor={colors.accent.primary}
+            minimumTrackTintColor={colors.accent.primary_pale}
             step={1000}
             trackMarks={Marked}
+            startFromZero
             renderTrackMarkComponent={index => (
               <Grid gap={1} style={{ position: 'absolute', top: 17, left: 13 }}>
                 <Grid>

@@ -1,6 +1,8 @@
 import BottomButton from '@/components/Controllers/buttons/BottomButton';
 import FilterForm from '@/modules/FilterForm';
+import { useEditFilterMutation, useFilterQuery } from '@/shared/api/entityies/filters/filter.api';
 import { createFilterDefault } from '@/shared/constants/defaultValues/createFilterDefault';
+import { Inform } from '@/shared/services/logger.service/loger.service';
 import { IEditFilter } from '@/shared/types/filters.types';
 import Grid from '@/shared/ui/layout/Grid';
 import ScrollViewPage from '@/shared/ui/layout/ScrollViewPage';
@@ -14,14 +16,21 @@ interface EditFilterPageInnerProps {
 
 const EditFilterPageInner = ({ filter }: EditFilterPageInnerProps) => {
   const params = useLocalSearchParams<{ id: string }>();
+  const [editFilter, { isLoading }] = useEditFilterMutation();
   const { ...formApi } = useForm({
     defaultValues: filter || createFilterDefault,
     mode: 'onChange',
     reValidateMode: 'onChange',
   });
 
-  const onPressCreate = (data: FieldValues) => {
-    console.log(data, params.id);
+  const onPressSave = async (data: FieldValues) => {
+    try {
+      console.log(data);
+      await editFilter({ id: params.id || '0', filter: data }).unwrap();
+      Inform.success('Фильтр сохранен!');
+    } catch (e) {
+      Inform.error(e);
+    }
   };
 
   const { name } = useWatch({ control: formApi.control });
@@ -33,7 +42,11 @@ const EditFilterPageInner = ({ filter }: EditFilterPageInnerProps) => {
         <ScrollViewPage style={{ flexGrow: 1 }} spaceVertical="sm">
           <FilterForm formApi={formApi} />
         </ScrollViewPage>
-        <BottomButton disabled={!formApi.formState.isDirty} onPress={formApi.handleSubmit(onPressCreate)}>
+        <BottomButton
+          loading={isLoading}
+          disabled={!formApi.formState.isDirty}
+          onPress={formApi.handleSubmit(onPressSave)}
+        >
           Сохранить
         </BottomButton>
       </Grid>

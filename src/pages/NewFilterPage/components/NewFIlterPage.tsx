@@ -14,10 +14,11 @@ const NewFIlterPage = () => {
     reValidateMode: 'onChange',
   });
 
-  const [create, { isLoading, isError, error }] = useCreateFilterMutation();
+  const [create, { isLoading }] = useCreateFilterMutation();
   const createNewFilter = async (data: FieldValues) => {
     try {
       await create(data).unwrap();
+      Inform.success('Фильтр создан');
     } catch (e) {
       Inform.error(e);
     }

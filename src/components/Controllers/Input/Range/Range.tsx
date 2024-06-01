@@ -2,7 +2,7 @@ import Grid from '@/shared/ui/layout/Grid';
 import Typography from '@/shared/ui/typography/Typography';
 import { FlashList, FlashListProps } from '@shopify/flash-list';
 import React, { useEffect, useRef, useState } from 'react';
-import { Animated } from 'react-native';
+import { Animated, NativeScrollEvent, NativeSyntheticEvent } from 'react-native';
 
 import { normalizedSize } from '@/shared/utils/size';
 import { ScrollView } from 'react-native-gesture-handler';
@@ -22,6 +22,14 @@ const Range = ({ currentValue, onChange, label, ...props }: RangeProps) => {
 
   const onUpdate = () => {
     if (props.data) onChange(props.data[index]);
+  };
+
+  const onScroll = (event: NativeSyntheticEvent<NativeScrollEvent>) => {
+    const posY = event.nativeEvent.contentOffset.y;
+    scrollX.setValue(posY);
+    setIndex(Math.round(posY / ITEM_SIZE));
+
+    // if (props.data) onChange(props.data[index]);
   };
 
   useEffect(() => {
@@ -49,11 +57,7 @@ const Range = ({ currentValue, onChange, label, ...props }: RangeProps) => {
           decelerationRate="fast"
           renderScrollComponent={ScrollView}
           onMomentumScrollEnd={onUpdate}
-          onScroll={ev => {
-            const index = Math.round(ev.nativeEvent.contentOffset.y / ITEM_SIZE);
-            setIndex(index);
-            scrollX.setValue(ev.nativeEvent.contentOffset.y);
-          }}
+          onScroll={onScroll}
           contentContainerStyle={{
             paddingVertical: ITEM_SIZE + normalizedSize(32.5),
           }}

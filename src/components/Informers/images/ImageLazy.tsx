@@ -8,7 +8,7 @@ interface ImageLazyProps extends ImageProps {
 }
 
 const ImageLazy = ({ uri, ...props }: ImageLazyProps) => {
-  return <Image {...props} recyclingKey={uri || null} placeholder={{ isAnimated: true, blurhash }} transition={200} />;
+  return <Image {...props} recyclingKey={uri || null} transition={150} />;
 };
 
 export default ImageLazy;

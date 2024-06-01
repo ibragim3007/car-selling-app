@@ -1,10 +1,11 @@
 import { useTheme } from '@/shared/hooks/stylesHooks/useTheme';
 import { normalizedSize } from '@/shared/utils/size';
+import { useIsFocused } from '@react-navigation/native';
 import React from 'react';
 import { StyleSheet } from 'react-native';
-import Animated, { LinearTransition } from 'react-native-reanimated';
+import Animated from 'react-native-reanimated';
 import { ViewProps } from 'react-native-svg/lib/typescript/fabric/utils';
-import { useIsFocused } from '@react-navigation/native';
+import { CustomAnimations } from '../animations/AnimationConstants';
 
 export interface CardProps extends ViewProps {
   borderRadius?: number;
@@ -13,6 +14,7 @@ export interface CardProps extends ViewProps {
   flex?: number;
   color?: 'primary' | 'secondary' | 'transparent';
   marginVertical?: number;
+  marginHorizontal?: number;
   paddingVertical?: number;
   paddingBottom?: number;
   paddingTop?: number;
@@ -23,6 +25,7 @@ export interface CardProps extends ViewProps {
 const Card = ({
   borderRadius,
   marginVertical,
+  marginHorizontal,
   paddingVertical,
   paddingBottom,
   paddingTop,
@@ -47,6 +50,7 @@ const Card = ({
     stylesView,
     flex !== undefined && { flex },
     marginVertical !== undefined && { marginVertical: normalizedSize(marginVertical) },
+    marginHorizontal !== undefined && { marginHorizontal: normalizedSize(marginHorizontal) },
     paddingVertical !== undefined && { paddingVertical: normalizedSize(paddingVertical) },
     paddingHorizontal !== undefined && { paddingHorizontal: normalizedSize(paddingHorizontal) },
     paddingTop !== undefined && { paddingTop: normalizedSize(paddingTop) },
@@ -56,7 +60,7 @@ const Card = ({
   ]);
 
   return (
-    <Animated.View key={String(isFocused)} layout={LinearTransition.duration(120)} {...props} style={mergedStyles} />
+    <Animated.View key={String(isFocused)} layout={CustomAnimations.layoutDefault} {...props} style={mergedStyles} />
   );
 };
 

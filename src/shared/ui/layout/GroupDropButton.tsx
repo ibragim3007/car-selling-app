@@ -7,7 +7,7 @@ interface GroupDropButtonProps extends PropsWithChildren, CardProps {}
 const GroupDropButton = ({ children, ...props }: GroupDropButtonProps) => {
   return (
     <Card borderRadius={16} color="secondary" p={0} style={{ overflow: 'hidden' }} {...props}>
-      <Grid gap={1}>{children}</Grid>
+      <Grid style={{ gap: 0.5 }}>{children}</Grid>
     </Card>
   );
 };

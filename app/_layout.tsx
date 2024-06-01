@@ -22,13 +22,16 @@ import {
 } from '@expo-google-fonts/montserrat';
 import React from 'react';
 import { Provider } from 'react-redux';
-import StackRoute from './(stack)';
+import StackRoute from './stack';
 import ModalAction from '@/components/Modal/ModalAction';
 import { GestureHandlerRootView } from 'react-native-gesture-handler';
 import { BottomSheetModalProvider } from '@gorhom/bottom-sheet';
 import LoadApp from '@/shared/providers/LoadApp';
+import Toast from 'react-native-toast-message';
+import { useSafeAreaInsets } from 'react-native-safe-area-context';
 
 const RootLayout = () => {
+  const { top } = useSafeAreaInsets();
   const [fontsLoaded, fontError] = useFonts({
     Montserrat_100Thin,
     Montserrat_200ExtraLight,
@@ -63,6 +66,7 @@ const RootLayout = () => {
           <BottomSheetModalProvider>
             <StackRoute />
             <ModalAction />
+            <Toast topOffset={top} />
           </BottomSheetModalProvider>
         </GestureHandlerRootView>
       </LoadApp>

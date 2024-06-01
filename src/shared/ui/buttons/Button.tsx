@@ -16,6 +16,7 @@ export interface ButtonProps extends PressableProps {
   textStyle?: TextProps['style'];
   loading?: boolean;
   fullWidth?: boolean;
+  leftIcon?: React.ReactNode;
 }
 
 const Button: React.FC<ButtonProps> = ({
@@ -25,6 +26,7 @@ const Button: React.FC<ButtonProps> = ({
   textStyle,
   loading,
   fullWidth,
+  leftIcon,
   ...props
 }: ButtonProps) => {
   const { colors } = useTheme();
@@ -104,6 +106,9 @@ const Button: React.FC<ButtonProps> = ({
     paddingHorizontal: size === 'large' ? normalizedSize(13) : normalizedSize(12),
     borderRadius: colors.styles.borderRadius,
     justifyContent: 'center',
+    alignItems: 'center',
+    flexDirection: 'row',
+    gap: normalizedSize(12),
   };
 
   const styleText: TextProps['style'] = {
@@ -130,6 +135,7 @@ const Button: React.FC<ButtonProps> = ({
 
   return (
     <Pressable {...props} style={buttonS} onTouchStart={onTouchStart} onTouchEnd={onTouchEnd}>
+      {leftIcon && leftIcon}
       {loading ? (
         <ActivityIndicator size={'small'} color={styleText.color} />
       ) : (

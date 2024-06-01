@@ -3,11 +3,13 @@ import { appReducer } from './appReducer/appSlice';
 import { themeReducer } from './themeReducer/themeSlice';
 import { modalReducer } from './modalReducer/modalSlice';
 import { rootApi } from '../api/root/api';
+import { carsPageReducer } from './carsPageReducer/carsPageSlice';
 
 const rootReducer = combineReducers({
   appReducer,
   themeReducer,
   modalReducer,
+  carsPageReducer,
   [rootApi.reducerPath]: rootApi.reducer,
 });
 

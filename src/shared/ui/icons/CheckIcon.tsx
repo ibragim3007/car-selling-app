@@ -5,7 +5,7 @@ import React from 'react';
 
 const CheckIcon = () => {
   const { colors } = useTheme();
-  return <AntDesign name="checkcircle" size={normalizedSize(20)} color={colors.accent.primary} />;
+  return <AntDesign name="checkcircle" size={normalizedSize(13)} color={colors.accent.primary} />;
 };
 
 export default CheckIcon;

@@ -1,8 +1,8 @@
-import React from 'react';
-import Typography from '../typography/Typography';
-import { View } from 'react-native';
 import { useTheme } from '@/shared/hooks/stylesHooks/useTheme';
 import { normalizedSize } from '@/shared/utils/size';
+import React from 'react';
+import { View } from 'react-native';
+import Typography from '../typography/Typography';
 
 interface BadgeProps {
   value: string | number;

@@ -7,6 +7,7 @@ import {
 } from '@/shared/ui/styles/typography/typography';
 import React from 'react';
 import { StyleSheet, Text, TextProps } from 'react-native';
+import LayoutAnimation from '../animations/LayoutAnimation';
 
 const Typography = (props: TypographyProps) => {
   const { colors } = useTheme();
@@ -22,6 +23,16 @@ const Typography = (props: TypographyProps) => {
     colorStyle,
     props.style,
   ]);
+
+  if (props.isLayoutAnimation) {
+    return (
+      <LayoutAnimation>
+        <Text {...props} style={stylesText}>
+          {props.children}
+        </Text>
+      </LayoutAnimation>
+    );
+  }
 
   return (
     <Text {...props} style={stylesText}>

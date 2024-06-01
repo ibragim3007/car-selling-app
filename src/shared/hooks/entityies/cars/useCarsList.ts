@@ -1,17 +1,46 @@
-import { useLazyCarsQuery } from '@/shared/api/entityies/car/api.car';
+import { useCarsQuery, useLazyCarsQuery } from '@/shared/api/entityies/car/api.car';
+import { useFiltersQuery } from '@/shared/api/entityies/filters/filter.api';
 import { Inform } from '@/shared/services/logger.service/loger.service';
 import { ICar } from '@/shared/types';
 import { isCars, isErrorCars } from '@/shared/utils/isErrorCars';
-import { useCallback, useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 
-export const useCarsList = () => {
-  const [getCars, { data: cars, isFetching, isLoading }] = useLazyCarsQuery();
+export const useCarsList = (params: { isPolling?: boolean }) => {
+  const { isPolling } = params;
+
+  const { data: filters } = useFiltersQuery();
+  const filterdIdString = filters
+    ?.filter(filter => filter.enabled)
+    .map(filter => filter.id)
+    .join(', ');
+  console.log(filterdIdString);
+
+  const [getCars, { isLoading: isLoadingNextPage, isFetching: isFetchingNextPage }] = useLazyCarsQuery();
+  const {
+    data: cars,
+    isFetching,
+    isLoading: isLoadingCarsFirstTime,
+    refetch,
+  } = useCarsQuery(
+    { filters: filterdIdString },
+    { pollingInterval: isPolling ? 4000 : 0, skipPollingIfUnfocused: true },
+  );
+
+  useEffect(() => {
+    if (cars && !isLoadingCarsFirstTime && !isFetching) {
+      udpdateCarState(cars, { rewrite: true });
+    }
+  }, [cars, isLoadingCarsFirstTime, isFetching]);
+
   const [carsForDisplay, setCarsForDisplay] = useState<ICar[]>([]);
 
   const nextPage = async () => {
     if (carsForDisplay && carsForDisplay[carsForDisplay.length - 1]) {
       try {
-        const result = await getCars({ lastId: carsForDisplay[carsForDisplay.length - 1].id }).unwrap();
+        const result = await getCars({
+          filters: filterdIdString,
+          lastId: carsForDisplay[carsForDisplay.length - 1].id,
+        }).unwrap();
 
         udpdateCarState(result);
       } catch (e) {
@@ -20,7 +49,16 @@ export const useCarsList = () => {
     }
   };
 
-  const udpdateCarState = (value: unknown) => {
+  const udpdateCarState = (value: unknown, options?: { rewrite?: boolean }) => {
+    if (options?.rewrite) {
+      if (isErrorCars(value)) {
+        setCarsForDisplay(value.results);
+        return;
+      }
+      if (isCars(value)) setCarsForDisplay(value);
+      return;
+    }
+
     if (isErrorCars(value)) {
       setCarsForDisplay([...carsForDisplay, ...value.results]);
       return;
@@ -28,17 +66,14 @@ export const useCarsList = () => {
     if (isCars(value)) setCarsForDisplay([...carsForDisplay, ...value]);
   };
 
-  const refetch = useCallback(async () => {
-    const res = (await getCars().unwrap()) as unknown;
-
-    udpdateCarState(res);
-  }, []);
-
-  useEffect(() => {
-    void (async () => {
-      await refetch();
-    })();
-  }, [getCars, refetch]);
-
-  return { carsForDisplay, cars, isFetching, isLoading, getCars, nextPage, refetch };
+  return {
+    carsForDisplay,
+    cars,
+    isFetching,
+    isLoading: isLoadingNextPage || isFetchingNextPage,
+    isLoadingCarsFirstTime,
+    getCars,
+    nextPage,
+    refetch,
+  };
 };

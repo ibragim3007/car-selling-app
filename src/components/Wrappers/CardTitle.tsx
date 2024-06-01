@@ -1,5 +1,5 @@
 import Card, { CardProps } from '@/shared/ui/card/Card';
-import Grid from '@/shared/ui/layout/Grid';
+import Grid, { GridProps } from '@/shared/ui/layout/Grid';
 import { TypographyProps } from '@/shared/ui/styles/typography/typography';
 import Typography from '@/shared/ui/typography/Typography';
 import React from 'react';
@@ -11,6 +11,7 @@ export interface CardTitleProps extends CardProps {
   rightHeader?: React.ReactNode;
   titleProps?: TypographyProps;
   transparent?: boolean;
+  headerProps?: GridProps;
   onPressHeader?: () => void;
 }
 
@@ -20,6 +21,7 @@ const CardTitle = ({
   rightHeader,
   titleProps,
   transparent,
+  headerProps,
   onPressHeader,
   ...props
 }: CardTitleProps) => {
@@ -33,7 +35,7 @@ const CardTitle = ({
       <Grid gap={isNoPadding ? 0 : 12}>
         {title && (
           <Pressable onPress={onPressHeader}>
-            <Grid row justfity="space-between" align="center">
+            <Grid {...headerProps} row justfity="space-between" align="center">
               <Typography
                 variant="headline"
                 weight="bold"
