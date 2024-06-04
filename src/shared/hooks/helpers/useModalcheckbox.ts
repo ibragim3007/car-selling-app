@@ -14,7 +14,6 @@ export const useModalcheckbox = ({ name, items }: MainPagePropsGlobal) => {
 
   const [selectedValues, setSelectedValues] = useState<number[]>((field.value || []) as number[]);
   const onChange = (value: number, isSelected: boolean) => {
-    console.log(selectedValues);
     if (isSelected) setSelectedValues(selectedValues.filter(selectedValue => selectedValue !== value));
     else setSelectedValues([...(selectedValues || []), value]);
   };

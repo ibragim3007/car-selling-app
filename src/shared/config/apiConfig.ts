@@ -28,6 +28,7 @@ const apiConfig = {
     markaModel: { url: '/markamodel', method: 'GET' },
     models: { url: '/models', method: 'GET' },
     sourcegroups: { url: '/sourcegroups', method: 'GET' },
+    cities: { url: '/cities', method: 'GET' },
   },
 };
 

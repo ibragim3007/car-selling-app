@@ -64,3 +64,9 @@ export interface IModel {
   id: number;
   name: string;
 }
+
+export interface ICitiesModel extends BaseTypeDictionary {
+  regionid: number;
+  lat: number;
+  lng: number;
+}

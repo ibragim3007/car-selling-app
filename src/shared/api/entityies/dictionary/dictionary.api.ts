@@ -1,7 +1,14 @@
 import { rootApi } from '../../root/api';
 
 import apiConfig from '@/shared/config/apiConfig';
-import { IDictionaryRoot, IMarkaModel, IModel, IRegionsDict } from '@/shared/types/dictionary.types';
+import {
+  BaseTypeDictionary,
+  ICitiesModel,
+  IDictionaryRoot,
+  IMarkaModel,
+  IModel,
+  IRegionsDict,
+} from '@/shared/types/dictionary.types';
 import { ISourceGroups } from '@/shared/types/source.types';
 
 export const filterApi = rootApi.injectEndpoints({
@@ -47,7 +54,22 @@ export const filterApi = rootApi.injectEndpoints({
         };
       },
     }),
+    cities: build.query<{ cities: BaseTypeDictionary[] }, void>({
+      query: () => {
+        return {
+          url: apiConfig.dictionary.cities.url,
+          method: apiConfig.dictionary.cities.method,
+        };
+      },
+    }),
   }),
 });
 
-export const { useDictionaryQuery, useRegionsQuery, useMarkaModelQuery, useModelsQuery, useSitesQuery } = filterApi;
+export const {
+  useDictionaryQuery,
+  useRegionsQuery,
+  useMarkaModelQuery,
+  useModelsQuery,
+  useSitesQuery,
+  useCitiesQuery,
+} = filterApi;

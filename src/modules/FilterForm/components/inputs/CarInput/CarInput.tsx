@@ -44,11 +44,13 @@ const CarInput = () => {
     formApi.setValue(
       'models',
       models?.filter(m => !modelsOfThisMark.includes(m)),
+      { shouldDirty: true },
     );
 
     formApi.setValue(
       'marks',
       marks?.filter(m => m !== markaId),
+      { shouldDirty: true },
     );
   };
 
@@ -95,7 +97,7 @@ const CarInput = () => {
           snapPoints={['90%']}
           handleComponent={() => <QuitResetHeader title="Марка" reset={() => console.log('first')} />}
           ref={buttomSheetRef}
-          title="Тип автомобиля"
+          title="Т3ип автомобиля"
         >
           <FormProvider {...formApi}>
             <AutoChoiceList />
