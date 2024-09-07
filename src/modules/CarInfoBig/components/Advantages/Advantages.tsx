@@ -1,6 +1,6 @@
 import HighlightText from '@/components/Informers/HighlightText';
 import CardTitle from '@/components/Wrappers/CardTitle';
-import { ICar, ICarBig } from '@/shared/types';
+import { ICarBig } from '@/shared/types';
 import React from 'react';
 
 interface AdvantagesProps {
